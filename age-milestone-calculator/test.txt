@@ -1,0 +1,1 @@
+Direct PowerShell execution works!
