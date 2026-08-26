@@ -19,7 +19,7 @@ async function prompt(question) {
 
 async function main() {
   const dir = __dirname;
-  let username = process.argv[2];
+  let username = process.argv[2] || process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
   let password = process.argv[3];
 
   if (!username) {
