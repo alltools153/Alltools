@@ -150,7 +150,7 @@ export function calculateNextBirthday(birthDate: Date | string, now: Date = new 
     hours,
     minutes,
     seconds,
-    nextBirthdayDate: nextBday,
+    nextBirthdayDate: nextBday.toLocaleDateString(),
     nextBirthdayDayOfWeek: DAYS_OF_WEEK[nextBday.getDay()],
     turningAge,
     halfBirthdayDate,
