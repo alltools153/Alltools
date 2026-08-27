@@ -24,7 +24,7 @@ export function calculateChronologicalAge(
 
   if (isNaN(b.getTime()) || isNaN(t.getTime())) {
     return {
-      years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0,
+      years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0, miliseconds: 0,
       totalDays: 0, totalWeeks: 0, remainingDaysInWeek: 0, totalMonths: 0, remainingDaysInMonth:0,
       totalHours: 0, totalMinutes: 0, totalSeconds: 0, decimalAgeYears: 0,
       birthDayOfWeek: 'Sunday', isLeapYearBaby: false, isBirthdayToday: false,
