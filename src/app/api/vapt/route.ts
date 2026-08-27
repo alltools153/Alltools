@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { simulateVaptScan } from '@/lib/vaptEngine';
+import { executeVaptScan } from '@/lib/vaptEngine';
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Valid URL is required' }, { status: 400 });
     }
 
-    const report = simulateVaptScan(url);
+    const report = executeVaptScan(url);
     return NextResponse.json({
       status: 'success',
       ...report,
