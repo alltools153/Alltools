@@ -187,7 +187,7 @@ export function calculatePlanetaryAges(birthDate: Date | string, now: Date = new
       ageOnPlanet,
       nextBirthdayEarthDate: `${MONTH_NAMES[nextBday.getMonth()].slice(0, 3)} ${nextBday.getDate()}, ${nextBday.getFullYear()}`,
       daysToNextBirthday: Math.max(0, Math.ceil(daysToNext)),
-      color: p.color,
+      accentColor: p.color,
       symbol: p.symbol,
       funFact: p.funFact,
     };
