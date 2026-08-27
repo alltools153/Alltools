@@ -22,12 +22,30 @@ interface ApiEndpoint {
   name: string;
   method: 'GET' | 'POST';
   path: string;
-  category: 'Age Calculator' | 'VAPT Scanner' | 'Bengali Calendar' | 'SEO Intelligence';
+  category: 'Age Calculator' | 'VAPT Scanner' | 'Bengali Calendar' | 'SEO Intelligence' | 'Document Tools';
   description: string;
   sampleParams: Record<string, string>;
 }
 
 const ENDPOINTS: ApiEndpoint[] = [
+  {
+    id: 'document-merge',
+    name: 'Merge PDF Documents',
+    method: 'POST',
+    path: '/api/pdf/merge',
+    category: 'Document Tools',
+    description: 'Combines uploaded PDF files into one document while preserving page quality.',
+    sampleParams: {},
+  },
+  {
+    id: 'document-text-pdf',
+    name: 'Convert Text to PDF',
+    method: 'POST',
+    path: '/api/convert/txt-to-pdf',
+    category: 'Document Tools',
+    description: 'Converts an uploaded plain-text file into a paginated PDF.',
+    sampleParams: {},
+  },
   {
     id: 'age-calc',
     name: 'Calculate Chronological Age & Orbits',

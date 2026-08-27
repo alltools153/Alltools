@@ -92,7 +92,41 @@ export default function DeveloperPage() {
         </div>
       </section>
 
-      {/* 2. TECHNICAL EXPERTISE MATRIX */}
+      {/* 2. DEVELOPER PROFILES */}
+      <section className="space-y-6">
+        <div className="space-y-1">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-secondary">Developer Profiles</h2>
+          <h3 className="text-2xl sm:text-3xl font-bold text-foreground">People behind the build</h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="p-6 rounded-2xl border border-secondary/40 bg-card space-y-4 shadow-sm">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-secondary">Full Stack Developer</p>
+                <h4 className="mt-1 text-2xl font-bold text-foreground">Saikat Samanta</h4>
+              </div>
+              <div className="w-11 h-11 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center text-secondary">
+                <Code2 className="w-5 h-5" />
+              </div>
+            </div>
+
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Full Stack Developer focused on building reliable, scalable web applications across the frontend, backend, and data layer.
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {['ReactJS', 'Node.js', 'Python', 'MongoDB'].map((technology) => (
+                <span key={technology} className="px-3 py-1.5 rounded-lg border border-border bg-muted/60 text-xs font-semibold text-foreground">
+                  {technology}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. TECHNICAL EXPERTISE MATRIX */}
       <section className="space-y-6">
         <div className="space-y-1">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-primary">Core Competencies</h2>

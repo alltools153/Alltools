@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    serverComponentsExternalPackages: [
+      'pdfjs-dist',
+      'tesseract.js',
+      'libreoffice-convert',
+      'canvas',
+      'sharp',
+    ],
+  },
   async rewrites() {
     return [
       {

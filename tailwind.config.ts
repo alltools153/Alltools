@@ -10,6 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        ink: {
+          950: '#0B0E14',
+          900: '#12161F',
+          800: '#1B2130',
+          700: '#262E42',
+          600: '#39415A',
+        },
+        forge: {
+          400: '#8B7CF6',
+          500: '#6D5AE6',
+          600: '#5541D0',
+          700: '#4432A8',
+        },
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         card: 'var(--card)',
@@ -86,6 +99,9 @@ const config: Config = {
           white: '#e6ffe6',
         },
         paper: {
+          50: '#FAFBFC',
+          100: '#F3F5F8',
+          200: '#E7EAF0',
           bg: '#fcfbf7',
           alt: '#f4f1ea',
           stripe: '#eef6ee',
@@ -125,6 +141,8 @@ const config: Config = {
       boxShadow: {
         'glow-primary': '0 0 25px -5px var(--primary)',
         'glow-accent': '0 0 25px -5px var(--accent)',
+        soft: '0 1px 2px rgba(15,18,26,0.04), 0 8px 24px -8px rgba(15,18,26,0.10)',
+        lift: '0 2px 8px rgba(15,18,26,0.06), 0 24px 48px -16px rgba(15,18,26,0.18)',
         'royal-gold': '0 0 25px rgba(212, 175, 55, 0.35)',
         'vintage-card': '0 8px 30px rgba(43, 8, 12, 0.08), 0 2px 8px rgba(212, 175, 55, 0.12)',
         'modal-glow': '0 25px 50px -12px rgba(26, 14, 23, 0.65)',
