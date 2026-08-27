@@ -199,7 +199,7 @@ export const NetworkAuditView: React.FC<NetworkAuditViewProps> = ({
     if (!p) return false;
     if (selectedFilter === 'OPEN') return p.status === 'OPEN';
     if (selectedFilter === 'CLOSED') return p.status === 'CLOSED';
-    if (selectedFilter === 'CRITICAL') return p.risk === 'CRITICAL' || p.risk === 'HIGH';
+    if (selectedFilter === 'CRITICAL') return p.risk === 'CRITICAL';
     return true;
   });
 
