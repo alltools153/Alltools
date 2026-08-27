@@ -100,7 +100,7 @@ export function calculateNextBirthday(birthDate: Date | string, now: Date = new 
     return {
       days: 0, hours: 0, minutes: 0, seconds: 0,
       nextBirthdayDate: new Date(now), nextBirthdayDayOfWeek: 'Sunday',
-      turningAge: 1, upcomingBirthdays: []
+      turningAge: 1, halfBirthdayDate: new Date(now), upcomingBirthdays: []
     };
   }
 
