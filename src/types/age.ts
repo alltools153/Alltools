@@ -71,7 +71,7 @@ export interface PlanetaryAge {
   planet: string;
   orbitalPeriodDays: number;
   ageOnPlanet: number;
-  nextBirthdayEarthDate: Date;
+  nextBirthdayEarthDate: string;
   daysToNextBirthday: number;
   daysToOextBirthday?: number;
   color: string;
