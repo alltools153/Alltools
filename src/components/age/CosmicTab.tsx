@@ -240,11 +240,7 @@ export const CosmicTab: React.FC<CosmicTabProps> = ({ stats, planets }) => {
                   Next {p.planet} B-Day:
                 </span>
                 <span className="font-semibold text-indigo-300">
-                  {p.nextBirthdayEarthDate.toLocaleDateString(undefined, {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
+                  {p.nextBirthdayEarthDate}
                 </span>
               </div>
             </div>
