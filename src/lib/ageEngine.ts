@@ -99,7 +99,7 @@ export function calculateNextBirthday(birthDate: Date | string, now: Date = new 
   if (isNaN(b.getTime())) {
     return {
       days: 0, hours: 0, minutes: 0, seconds: 0,
-      nextBirthdayDate: now.toISOString(), nextBirthdayDayOfWeek: 'Sunday',
+      nextBirthdayDate: new Date(now), nextBirthdayDayOfWeek: 'Sunday',
       turningAge: 1, upcomingBirthdays: []
     };
   }
