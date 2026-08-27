@@ -27,7 +27,7 @@ export interface NextBirthdayInfo {
   hours: number;
   minutes: number;
   seconds: number;
-  nextBirthdayDate: Date;
+  nextBirthdayDate: string;
   nextBirthdayDayOfWeek: string;
   turningAge: number;
   halfBirthdayDate: Date;
