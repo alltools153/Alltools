@@ -18,6 +18,8 @@ export interface ChronologicalAgeResult {
   isBirthdayToday: boolean;
   birthDateFormatted: string;
   targetDateFormatted: string;
+  miliseconds: number;
+  remainingDaysInMonth: number;
 }
 
 export interface NextBirthdayInfo {
