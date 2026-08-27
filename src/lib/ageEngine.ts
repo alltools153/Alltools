@@ -143,7 +143,7 @@ export function calculateNextBirthday(birthDate: Date | string, now: Date = new 
     hours,
     minutes,
     seconds,
-    nextBirthdayDate: nextBday.toISOString(),
+    nextBirthdayDate: nextBday,
     nextBirthdayDayOfWeek: DAYS_OF_WEEK[nextBday.getDay()],
     turningAge,
     upcomingBirthdays,
