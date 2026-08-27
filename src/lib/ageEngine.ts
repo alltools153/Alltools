@@ -137,6 +137,13 @@ export function calculateNextBirthday(birthDate: Date | string, now: Date = new 
       age: y - b.getFullYear(),
     });
   }
+  const halfBirthdayDate = new Date(nextBday);
+  halfBirthdayDate.setMonth(halfBirthdayDate.getMonth() - 6);
+
+  const daysToHalfBirthday = Math.floor(
+    (halfBirthdayDate.getTime() - now.getTime()) /
+    (1000 * 60 * 60 * 24)
+);
 
   return {
     days,
@@ -146,6 +153,8 @@ export function calculateNextBirthday(birthDate: Date | string, now: Date = new 
     nextBirthdayDate: nextBday,
     nextBirthdayDayOfWeek: DAYS_OF_WEEK[nextBday.getDay()],
     turningAge,
+    halfBirthdayDate,
+    daysToHalfBirthday,
     upcomingBirthdays,
   };
 }
