@@ -187,7 +187,7 @@ export const MilestonesTab: React.FC<MilestonesTabProps> = ({ milestones, onCele
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/30">
-                    <Clock className="w-3.5 h-3.5" /> in {m.daysRemaining.toLocaleString()} days
+                    <Clock className="w-3.5 h-3.5" /> in {m.daysRemaining?.toLocaleString()} days
                   </span>
                 )}
               </div>
