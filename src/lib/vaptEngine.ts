@@ -1013,8 +1013,8 @@ app.use(helmet({
  */
 export async function executeVaptScan(
   targetUrl: string,
-  targetHost: string,
-  resolvedIp: string
+  targetHost: string='',
+  resolvedIp: string=''
 ): Promise<ScanReport> {
   const startTime = Date.now();
   const parsedUrl = new URL(targetUrl);
