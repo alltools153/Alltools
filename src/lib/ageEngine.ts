@@ -76,7 +76,7 @@ export function calculateChronologicalAge(
     hours: newer.getHours(),
     minutes: newer.getMinutes(),
     seconds: newer.getSeconds(),
-    miliseconds: newer.getMiliseconds(),
+    miliseconds: newer.getMilliseconds(),
     totalDays,
     totalWeeks,
     remainingDaysInWeek,
