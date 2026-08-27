@@ -46,11 +46,11 @@ export interface MilestoneItem {
   category: 'age' | 'days' | 'seconds' | 'life';
   targetValue: number | string;
   targetDate: Date;
-  reached: boolean;
-  daysRemaining: number;
-  description: string;
-  badge: string;
-  icon: string;
+  reached?: boolean;
+  daysRemaining?: number;
+  description?: string;
+  badge?: string;
+  icon?: string;
 }
 
 export interface CosmicBioStats {
