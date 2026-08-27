@@ -174,7 +174,7 @@ export const MilestonesTab: React.FC<MilestonesTabProps> = ({ milestones, onCele
                         : 'bg-indigo-500/20 text-indigo-400 border border-indigo-500/30'
                     }`}
                   >
-                    {getIcon(m.icon)}
+                    {getIcon(m.icon || "star")}
                   </div>
                   <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-800/80 text-slate-300 border border-slate-700">
                     {m.badge}
