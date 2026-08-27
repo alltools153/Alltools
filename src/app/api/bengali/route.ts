@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   const muhurats = getBengaliMuhurats();
 
   const todayFestivals = FESTIVALS_LIST.filter(
-    (f) => f.monthIndex === bengaliDate.monthIndex
+    (f) => f.dateStr === targetDate.toISOString().split('T')[0]
   );
 
   return NextResponse.json({
