@@ -10,11 +10,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Valid URL is required' }, { status: 400 });
     }
 
-    const report = executeVaptScan(url);
-    return NextResponse.json({
-      status: 'success',
-      ...report,
-    });
+    const parsedUrl = new URL(url);
+    const host = parsedUrl.hostname;
+    const report = await executeVaptScan(
+      url,
+      host,
+      host
+    );  
   } catch (err: any) {
     return NextResponse.json({ error: err.message || 'Internal Server Error' }, { status: 500 });
   }
