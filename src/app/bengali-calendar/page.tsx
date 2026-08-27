@@ -71,7 +71,7 @@ export default function BengaliCalendarPage() {
               >
                 {LOCATIONS.map((loc) => (
                   <option key={loc.id} value={loc.id} className="bg-[#2B080C] text-[#FEF3C7]">
-                    {isBn ? loc.nameBn : loc.nameEn} ({loc.country})
+                    {isBn ? loc.bengaliName : loc.name} ({loc.country})
                   </option>
                 ))}
               </select>
