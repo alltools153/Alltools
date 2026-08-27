@@ -75,7 +75,6 @@ export interface PlanetaryAge {
   daysToNextBirthday: number;
   daysToOextBirthday?: number;
   color: string;
-  accentColor: string;
   symbol: string;
   funFact: string;
 }
