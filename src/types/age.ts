@@ -5,12 +5,10 @@ export interface ChronologicalAgeResult {
   hours: number;
   minutes: number;
   seconds: number;
-  milliseconds: number;
   totalDays: number;
   totalWeeks: number;
   remainingDaysInWeek: number;
   totalMonths: number;
-  remainingDaysInMonth: number;
   totalHours: number;
   totalMinutes: number;
   totalSeconds: number;
