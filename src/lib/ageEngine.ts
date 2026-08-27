@@ -220,7 +220,7 @@ export function calculateMilestones(birthDate: Date | string, now: Date = new Da
   const b = new Date(birthDate);
   if (isNaN(b.getTime())) return [];
 
-  const list: MilestoneItem[] = [
+  const list = [
     { id: 'm-1', title: '1st Birthday (Toddlerhood)', category: 'age', targetValue: '1 Year', targetDate: new Date(b.getFullYear() + 1, b.getMonth(), b.getDate()).toISOString(), reached: false, daysRemaining: 0, description: 'First step into early childhood', icon: 'Baby' },
     { id: 'm-18', title: '18th Birthday (Adulthood)', category: 'age', targetValue: '18 Years', targetDate: new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()).toISOString(), reached: false, daysRemaining: 0, description: 'Official legal milestone', icon: 'Award' },
     { id: 'm-25', title: 'Quarter Century (25 Years)', category: 'age', targetValue: '25 Years', targetDate: new Date(b.getFullYear() + 25, b.getMonth(), b.getDate()).toISOString(), reached: false, daysRemaining: 0, description: 'Prefrontal cortex fully developed', icon: 'Brain' },
