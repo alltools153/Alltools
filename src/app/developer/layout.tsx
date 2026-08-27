@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Lead Architect & Developer Profile | Santanu Batabyal | AllTools',
+  title: 'Developer Profiles | AllTools',
   description:
-    'Meet Santanu Batabyal — Principal Application Security Architect & Full-Stack Engineer. Creator and Lead Architect of AllTools, Age Milestone Calculator, Website VAPT Security Scanner, and Bengali Calendar.',
+    'Meet the developers behind AllTools: Santanu Batabyal, Lead Architect, and Saikat Samanta, Full Stack Developer specializing in ReactJS, Node.js, Python, and MongoDB.',
   keywords: [
     'santanu batabyal',
     'principal security architect',
@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     'alltools creator',
     'nextjs fastapi developer',
     'vapt application security engineer',
+    'saikat samanta',
+    'reactjs nodejs python mongodb developer',
   ],
 };
 

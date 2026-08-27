@@ -16,6 +16,7 @@ import {
   Code2,
   FileJson,
   KeyRound,
+  FileText,
 } from 'lucide-react';
 
 const NAV_LINKS = [
@@ -25,6 +26,7 @@ const NAV_LINKS = [
   { href: '/json-formatter', label: 'JSON Formatter', icon: FileJson },
   { href: '/regex-tester', label: 'Regex Tester', icon: Code2 },
   { href: '/jwt-decoder', label: 'JWT Decoder', icon: KeyRound },
+  { href: '/document-tools', label: 'Document Tools', icon: FileText },
   { href: '/developer', label: 'Developer', icon: User },
 ];
 
