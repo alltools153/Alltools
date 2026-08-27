@@ -34,11 +34,7 @@ export const NextBirthdayCard: React.FC<NextBirthdayCardProps> = ({ info, onCele
 
           <p className="text-slate-400 text-sm mt-1 flex items-center gap-2">
             <Calendar className="w-4 h-4 text-indigo-400" />
-            {info.nextBirthdayDate.toLocaleDateString(undefined, {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric',
-            })}
+            {info.nextBirthdayDate}
           </p>
         </div>
 
