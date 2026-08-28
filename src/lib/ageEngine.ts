@@ -24,7 +24,7 @@ export function calculateChronologicalAge(
 
   if (isNaN(b.getTime()) || isNaN(t.getTime())) {
     return {
-      years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0, miliseconds: 0,
+      years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0, milliseconds: 0,
       totalDays: 0, totalWeeks: 0, remainingDaysInWeek: 0, totalMonths: 0, remainingDaysInMonth:0,
       totalHours: 0, totalMinutes: 0, totalSeconds: 0, decimalAgeYears: 0,
       birthDayOfWeek: 'Sunday', isLeapYearBaby: false, isBirthdayToday: false,
@@ -76,7 +76,7 @@ export function calculateChronologicalAge(
     hours: newer.getHours(),
     minutes: newer.getMinutes(),
     seconds: newer.getSeconds(),
-    miliseconds: newer.getMilliseconds(),
+    milliseconds: newer.getMilliseconds(),
     totalDays,
     totalWeeks,
     remainingDaysInWeek,
@@ -221,12 +221,12 @@ export function calculateMilestones(birthDate: Date | string, now: Date = new Da
   if (isNaN(b.getTime())) return [];
 
   const list: MilestoneItem[] = [
-    { id: 'm-1', title: '1st Birthday (Toddlerhood)', category: 'age', targetValue: '1 Year', targetDate: new Date(b.getFullYear() + 1, b.getMonth(), b.getDate()).toISOString(), reached: false, daysRemaining: 0, description: 'First step into early childhood', icon: 'Baby' },
-    { id: 'm-18', title: '18th Birthday (Adulthood)', category: 'age', targetValue: '18 Years', targetDate: new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()).toISOString(), reached: false, daysRemaining: 0, description: 'Official legal milestone', icon: 'Award' },
-    { id: 'm-25', title: 'Quarter Century (25 Years)', category: 'age', targetValue: '25 Years', targetDate: new Date(b.getFullYear() + 25, b.getMonth(), b.getDate()).toISOString(), reached: false, daysRemaining: 0, description: 'Prefrontal cortex fully developed', icon: 'Brain' },
-    { id: 'm-50', title: 'Golden Half-Century (50 Years)', category: 'age', targetValue: '50 Years', targetDate: new Date(b.getFullYear() + 50, b.getMonth(), b.getDate()).toISOString(), reached: false, daysRemaining: 0, description: '50 laps completed around the Sun', icon: 'Crown' },
-    { id: 'd-10k', title: '10,000 Days on Earth', category: 'days', targetValue: '10,000 Days', targetDate: new Date(b.getTime() + 10000 * 86400000).toISOString(), reached: false, daysRemaining: 0, description: 'Massive milestone at ~27.4 years', icon: 'Sparkles' },
-    { id: 's-1b', title: '1 Billion Seconds (The Gigasecond)', category: 'seconds', targetValue: '1,000,000,000 Sec', targetDate: new Date(b.getTime() + 1000000000 * 1000).toISOString(), reached: false, daysRemaining: 0, description: 'Reached around 31.69 years old', icon: 'Clock' },
+    { id: 'm-1', title: '1st Birthday (Toddlerhood)', category: 'age', targetValue: '1 Year', targetDate: new Date(b.getFullYear() + 1, b.getMonth(), b.getDate()), reached: false, daysRemaining: 0, description: 'First step into early childhood', icon: 'Baby' },
+    { id: 'm-18', title: '18th Birthday (Adulthood)', category: 'age', targetValue: '18 Years', targetDate: new Date(b.getFullYear() + 18, b.getMonth(), b.getDate()), reached: false, daysRemaining: 0, description: 'Official legal milestone', icon: 'Award' },
+    { id: 'm-25', title: 'Quarter Century (25 Years)', category: 'age', targetValue: '25 Years', targetDate: new Date(b.getFullYear() + 25, b.getMonth(), b.getDate()), reached: false, daysRemaining: 0, description: 'Prefrontal cortex fully developed', icon: 'Brain' },
+    { id: 'm-50', title: 'Golden Half-Century (50 Years)', category: 'age', targetValue: '50 Years', targetDate: new Date(b.getFullYear() + 50, b.getMonth(), b.getDate()), reached: false, daysRemaining: 0, description: '50 laps completed around the Sun', icon: 'Crown' },
+    { id: 'd-10k', title: '10,000 Days on Earth', category: 'days', targetValue: '10,000 Days', targetDate: new Date(b.getTime() + 10000 * 86400000), reached: false, daysRemaining: 0, description: 'Massive milestone at ~27.4 years', icon: 'Sparkles' },
+    { id: 's-1b', title: '1 Billion Seconds (The Gigasecond)', category: 'seconds', targetValue: '1,000,000,000 Sec', targetDate: new Date(b.getTime() + 1000000000 * 1000), reached: false, daysRemaining: 0, description: 'Reached around 31.69 years old', icon: 'Clock' },
   ];
 
   return list.map((m) => {

@@ -18,7 +18,7 @@ export interface ChronologicalAgeResult {
   isBirthdayToday: boolean;
   birthDateFormatted: string;
   targetDateFormatted: string;
-  miliseconds: number;
+  milliseconds: number;
   remainingDaysInMonth: number;
 }
 

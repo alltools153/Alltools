@@ -351,7 +351,7 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
                     {String(ageResult.seconds).padStart(2, '0')}
                   </span>
                   <span className="font-mono text-xs text-amber-400/80 font-bold">
-                    .{String(ageResult.miliseconds).padStart(3, '0').slice(0, 2)}
+                    .{String(ageResult.milliseconds).padStart(3, '0').slice(0, 2)}
                   </span>
                 </div>
                 <span className="text-[10px] text-slate-400">Seconds & MS</span>
