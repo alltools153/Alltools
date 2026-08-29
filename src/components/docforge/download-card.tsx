@@ -29,7 +29,7 @@ export function DownloadCard({
         <button
           type="button"
           onClick={onReset}
-          className="rounded-full border border-ink-900/15 px-6 py-2.5 text-sm font-medium text-ink-800 hover:bg-paper-100 focus-ring dark:border-paper-100/15 dark:text-paper-100 dark:hover:bg-ink-800"
+          className="rounded-full border border-ink-300 px-6 py-2.5 text-sm font-medium text-ink-800 hover:bg-paper-100 focus-ring dark:border-paper-100/15 dark:text-paper-50 dark:hover:bg-ink-700"
         >
           Convert another file
         </button>
