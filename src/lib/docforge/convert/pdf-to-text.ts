@@ -1,6 +1,7 @@
 // pdfjs-dist's legacy build runs in Node without a DOM/canvas dependency,
 // which is exactly what text extraction needs (no rendering required).
 import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
+import "pdfjs-dist/legacy/build/pdf.worker.mjs";
 
 export interface PdfToTextResult {
   text: string;
