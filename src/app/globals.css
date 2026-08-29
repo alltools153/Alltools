@@ -279,6 +279,39 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
+/* Bengali Panjika Themed Cards */
+.royal-card {
+  background-color: #FDFBF7;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.parchment-card {
+  background-color: #FDFBF7;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .royal-card,
+[data-theme='royal-bengali'] .royal-card,
+[data-theme='cyberpunk'] .royal-card,
+[data-theme='modern-dark'] .royal-card,
+[data-theme='midnight-amoled'] .royal-card {
+  background-color: #1c0f18;
+}
+
+.dark .parchment-card,
+[data-theme='royal-bengali'] .parchment-card,
+[data-theme='cyberpunk'] .parchment-card,
+[data-theme='modern-dark'] .parchment-card,
+[data-theme='midnight-amoled'] .parchment-card {
+  background-color: #1a0e17;
+}
+
+.alpona-frame {
+  position: relative;
+}
+
 /* Mobile Friendly Utilities */
 html {
   scroll-behavior: smooth;
@@ -298,6 +331,10 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
 }
 
 @media print {
