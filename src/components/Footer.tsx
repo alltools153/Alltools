@@ -64,6 +64,11 @@ export default function Footer() {
                   👨‍💻 Lead Architect Profile
                 </Link>
               </li>
+              <li>
+                <Link href="/document-tools" className="hover:text-primary transition-colors">
+                  📁 File Converter
+                </Link>
+              </li>
             </ul>
           </div>
 
