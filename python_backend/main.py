@@ -13,7 +13,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 
-from python_backend.routers import age_router, vapt_router, bengali_router, seo_router
+from python_backend.routers import age_router, vapt_router, bengali_router, seo_router, docforge_router
 
 # Initialize FastAPI with docs and redoc disabled as requested
 app = FastAPI(
@@ -39,6 +39,7 @@ app.include_router(age_router.router)
 app.include_router(vapt_router.router)
 app.include_router(bengali_router.router)
 app.include_router(seo_router.router)
+app.include_router(docforge_router.router)
 
 @app.get("/", summary="AllTools Backend Root Health Check")
 async def root():
