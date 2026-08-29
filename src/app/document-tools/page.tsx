@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ToolSearch } from "@/components/docforge/tool-search";
+import { QuickUploadPicker } from "@/components/docforge/quick-upload-picker";
 import { ToolGrid } from "@/components/docforge/tool-grid";
 
 export default function HomePage() {
@@ -40,15 +40,11 @@ export default function HomePage() {
             <ToolSearch />
           </div>
 
-          <div className="mx-auto mt-6 flex max-w-xl flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Link
-              href="/document-tools/merge-pdf"
-              className="inline-flex items-center gap-2 rounded-full bg-forge-500 px-6 py-3 font-medium text-white shadow-lift transition hover:bg-forge-400 focus-ring"
-            >
-              Upload a file
-            </Link>
-            <span className="text-sm text-paper-100/50">or pick a tool below, then drag &amp; drop your file</span>
-          </div>
+          <QuickUploadPicker />
+
+          <p className="mt-6 text-center text-sm text-paper-100/50">
+            or pick a tool below, then drag &amp; drop your file
+          </p>
 
           <p className="mt-10 text-xs text-paper-100/45">
             Your files are processed securely and temporary files are automatically removed after processing.
