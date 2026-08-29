@@ -9,11 +9,24 @@ Unified REST API supporting:
 Lead Architect & Developer: Santanu Batabyal
 """
 
+import sys
+import os
+
+# Ensure repository root and python_backend are on sys.path
+_current_dir = os.path.dirname(os.path.abspath(__file__))
+_parent_dir = os.path.dirname(_current_dir)
+for p in [_parent_dir, _current_dir]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 
-from python_backend.routers import age_router, vapt_router, bengali_router, seo_router, docforge_router
+try:
+    from python_backend.routers import age_router, vapt_router, bengali_router, seo_router, docforge_router
+except ImportError:
+    from routers import age_router, vapt_router, bengali_router, seo_router, docforge_router
 
 # Initialize FastAPI with docs and redoc disabled as requested
 app = FastAPI(
@@ -69,4 +82,6 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("python_backend.main:app", host="127.0.0.1", port=8000, reload=True)
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app" if os.path.exists("main.py") else "python_backend.main:app", host=host, port=port, reload=False)
