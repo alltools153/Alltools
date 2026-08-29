@@ -1,6 +1,7 @@
 import { mkdir, writeFile, readFile, rm, stat } from "fs/promises";
 import { existsSync } from "fs";
 import path from "path";
+import os from "os";
 import { randomUUID } from "crypto";
 
 /**
@@ -9,7 +10,9 @@ import { randomUUID } from "crypto";
  * kept beyond the lifetime of a single request + its cleanup sweep.
  */
 
-const ROOT = path.resolve(process.cwd(), process.env.DOCFORGE_TMP_DIR || ".tmp/docforge");
+const ROOT = process.env.DOCFORGE_TMP_DIR
+  ? path.resolve(process.env.DOCFORGE_TMP_DIR)
+  : path.join(os.tmpdir(), "docforge");
 const TTL_MINUTES = Number(process.env.DOCFORGE_TMP_TTL_MINUTES || 30);
 
 export interface TempJob {
