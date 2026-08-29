@@ -120,32 +120,33 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-5 overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-[#FDFBF7] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] w-full max-w-4xl max-h-[92vh] rounded-3xl border-2 border-[#D4AF37] shadow-modal-glow overflow-y-auto p-5 sm:p-8 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 sm:p-5 overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-[#FDFBF7] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] w-full max-w-4xl max-h-[94vh] rounded-2xl sm:rounded-3xl border-2 border-[#D4AF37] shadow-modal-glow overflow-y-auto p-3.5 sm:p-8 relative">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-[#F5EBE1] dark:bg-[#2B080C] hover:bg-rose-100 text-[#2B080C] dark:text-[#FDFBF7] transition z-10 border border-[#D4AF37]/50"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 rounded-full bg-[#F5EBE1] dark:bg-[#2B080C] hover:bg-rose-100 text-[#2B080C] dark:text-[#FDFBF7] transition z-10 border border-[#D4AF37]/50 active:scale-95"
+          title="বন্ধ করুন"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* Top Royal Header */}
-        <div className="border-b border-[#E6D7BC] dark:border-[#4D2638] pb-4 pr-10">
+        <div className="border-b border-[#E6D7BC] dark:border-[#4D2638] pb-3 sm:pb-4 pr-8 sm:pr-10">
           <div className="flex items-center space-x-2">
-            <span className="bg-[#8B0000] text-[#FEF3C7] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+            <span className="bg-[#8B0000] text-[#FEF3C7] text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm">
               {isBn ? panjika.bengaliDate.ritu.nameBn : panjika.bengaliDate.ritu.nameEn}
             </span>
-            <span className="text-xs text-[#2B080C]/70 dark:text-[#FDFBF7]/70 font-semibold">
-              {isBn ? `বার: ${panjika.bengaliDate.barBn} (${panjika.bengaliDate.planetLordBn})` : `Weekday: ${panjika.bengaliDate.barEn}`}
+            <span className="text-[11px] sm:text-xs text-[#2B080C]/70 dark:text-[#FDFBF7]/70 font-semibold">
+              {isBn ? `বার: ${panjika.bengaliDate.barBn}` : `Weekday: ${panjika.bengaliDate.barEn}`}
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#8B0000] dark:text-[#E5C158] mt-2">
+          <h2 className="text-xl sm:text-3xl font-serif font-black text-[#8B0000] dark:text-[#E5C158] mt-1.5 sm:mt-2 leading-tight">
             {panjika.bengaliDate.formattedBn}
           </h2>
 
-          <div className="flex flex-wrap items-center gap-3 text-xs text-gray-600 dark:text-gray-300 mt-1 font-medium">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px] sm:text-xs text-gray-600 dark:text-gray-300 mt-1 font-medium">
             <span className="font-bold text-gray-900 dark:text-white" suppressHydrationWarning>
               {formatDeterministicDate(panjika.gregorianDate, isBn, numerals)}
             </span>
@@ -158,18 +159,18 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
 
         {/* Festivals / Parva Highlight Banner */}
         {panjika.festivals.length > 0 && (
-          <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-[#8B0000] to-[#5A0202] text-[#FEF3C7] border-2 border-[#D4AF37] shadow-md">
+          <div className="mt-3 sm:mt-4 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#8B0000] to-[#5A0202] text-[#FEF3C7] border-2 border-[#D4AF37] shadow-md">
             <div className="flex items-center space-x-2">
-              <Sparkles className="w-5 h-5 text-[#FEF3C7] animate-spin" style={{ animationDuration: '8s' }} />
-              <h3 className="font-serif font-bold text-base sm:text-lg text-white">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#FEF3C7] animate-spin shrink-0" style={{ animationDuration: '8s' }} />
+              <h3 className="font-serif font-bold text-sm sm:text-lg text-white truncate">
                 {panjika.festivals[0].nameBn} ({panjika.festivals[0].tithiRequirementBn || 'বিশেষ পর্ব'})
               </h3>
             </div>
-            <p className="text-xs text-gray-200 mt-1 leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-gray-200 mt-1 leading-relaxed">
               {panjika.festivals[0].descriptionBn}
             </p>
             {panjika.festivals[0].pujaTimings && panjika.festivals[0].pujaTimings.length > 0 && (
-              <div className="mt-2 text-xs text-[#FEF08A] font-semibold">
+              <div className="mt-1.5 sm:mt-2 text-[11px] sm:text-xs text-[#FEF08A] font-semibold">
                 পূজা নির্ঘণ্ট: {panjika.festivals[0].pujaTimings.map(t => `${t.labelBn} (${t.time})`).join(' • ')}
               </div>
             )}
@@ -177,55 +178,55 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
         )}
 
         {/* 5 Core Limbs of Panchanga Grid */}
-        <div className="mt-5">
-          <h3 className="text-xs font-bold font-serif text-[#8B0000] dark:text-[#E5C158] uppercase tracking-wider mb-3 flex items-center space-x-2">
-            <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+        <div className="mt-4 sm:mt-5">
+          <h3 className="text-xs font-bold font-serif text-[#8B0000] dark:text-[#E5C158] uppercase tracking-wider mb-2 sm:mb-3 flex items-center space-x-1.5 sm:space-x-2">
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
             <span>{isBn ? 'সনাতন পঞ্চাঙ্গ পঞ্চাঙ্গসমূহ' : 'Five Limbs of Panchang'}</span>
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 text-xs">
             {/* Tithi */}
-            <div className="p-3.5 rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
-              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-sm">
+            <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
+              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-xs sm:text-sm">
                 তিথি: {panjika.tithi.nameBn} ({panjika.tithi.pakshaBn})
               </div>
               <div className="text-gray-700 dark:text-gray-300 mt-1">
                 সমাপ্তি সময়: <span className="font-bold text-gray-900 dark:text-white">{panjika.tithi.endTime}</span>
               </div>
-              <div className="text-gray-500 mt-1 text-[11px]">
+              <div className="text-gray-500 mt-1 text-[10px] sm:text-[11px]">
                 তিথি অধিপতি: {panjika.tithi.deityBn} • {panjika.tithi.natureBn}
               </div>
             </div>
 
             {/* Nakshatra */}
-            <div className="p-3.5 rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
-              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-sm">
+            <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
+              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-xs sm:text-sm">
                 নক্ষত্র: {panjika.nakshatra.nameBn}
               </div>
               <div className="text-gray-700 dark:text-gray-300 mt-1">
                 সমাপ্তি সময়: <span className="font-bold text-gray-900 dark:text-white">{panjika.nakshatra.endTime}</span>
               </div>
-              <div className="text-gray-500 mt-1 text-[11px]">
-                অধিপতি: {panjika.nakshatra.lordBn} • গণ: {panjika.nakshatra.gana} • নাড়ী: {panjika.nakshatra.nadiBn}
+              <div className="text-gray-500 mt-1 text-[10px] sm:text-[11px]">
+                অধিপতি: {panjika.nakshatra.lordBn} • গণ: {panjika.nakshatra.gana}
               </div>
             </div>
 
             {/* Yoga */}
-            <div className="p-3.5 rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
-              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-sm">
+            <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
+              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-xs sm:text-sm">
                 যোগ: {panjika.yoga.nameBn} ({panjika.yoga.natureBn})
               </div>
               <div className="text-gray-700 dark:text-gray-300 mt-1">
                 সমাপ্তি: <span className="font-bold text-gray-900 dark:text-white">{panjika.yoga.endTime}</span>
               </div>
-              <div className="text-gray-500 mt-1 text-[11px]">
+              <div className="text-gray-500 mt-1 text-[10px] sm:text-[11px]">
                 {panjika.yoga.isAuspicious ? 'শুভ ফলপ্রদ যোগ' : 'সাবধানে শুভকর্ম সম্পাদনীয়'}
               </div>
             </div>
 
             {/* Karana */}
-            <div className="p-3.5 rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
-              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-sm">
+            <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
+              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-xs sm:text-sm">
                 করণ: {panjika.karana.nameBn} ({panjika.karana.typeBn})
               </div>
               <div className="text-gray-700 dark:text-gray-300 mt-1">
@@ -234,8 +235,8 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
             </div>
 
             {/* Surya & Chandra */}
-            <div className="p-3.5 rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
-              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-sm">
+            <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
+              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-xs sm:text-sm">
                 সূর্য ও চন্দ্র রাশি
               </div>
               <div className="text-gray-700 dark:text-gray-300 mt-1">
@@ -244,8 +245,8 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
             </div>
 
             {/* Solar Timings */}
-            <div className="p-3.5 rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
-              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-sm">
+            <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white dark:bg-[#23121C] border border-[#E6D7BC] dark:border-[#4D2638] shadow-sm">
+              <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-xs sm:text-sm">
                 সূর্যোদয় ও সূর্যাস্ত
               </div>
               <div className="text-gray-700 dark:text-gray-300 mt-1">
@@ -256,20 +257,20 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
         </div>
 
         {/* Shubh & Ashubh Muhurat Timelines */}
-        <div className="mt-6">
-          <h3 className="text-xs font-bold font-serif text-[#8B0000] dark:text-[#E5C158] uppercase tracking-wider mb-3 flex items-center space-x-2">
-            <Clock className="w-4 h-4 text-[#D4AF37]" />
+        <div className="mt-4 sm:mt-6">
+          <h3 className="text-xs font-bold font-serif text-[#8B0000] dark:text-[#E5C158] uppercase tracking-wider mb-2 sm:mb-3 flex items-center space-x-1.5 sm:space-x-2">
+            <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
             <span>{isBn ? 'শুভ লগ্ন ও বর্জনীয় কাল নির্ঘণ্ট' : 'Auspicious & Inauspicious Timelines'}</span>
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3 text-xs">
             {/* Shubh Muhurat */}
-            <div className="p-4 rounded-2xl bg-emerald-50/70 dark:bg-[#132A20] border border-emerald-300 dark:border-emerald-800">
-              <div className="font-bold text-emerald-900 dark:text-emerald-300 text-sm mb-2 flex items-center space-x-1.5">
+            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-50/70 dark:bg-[#132A20] border border-emerald-300 dark:border-emerald-800">
+              <div className="font-bold text-emerald-900 dark:text-emerald-300 text-xs sm:text-sm mb-2 flex items-center space-x-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                 <span>{isBn ? 'শুভ সময় (Shubh Muhurat)' : 'Auspicious Periods'}</span>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5 sm:space-y-2">
                 {panjika.muhurats
                   .filter((m) => m.isAuspicious)
                   .map((m) => (
@@ -277,13 +278,13 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
                       key={m.id}
                       className="p-2 rounded-xl bg-white/90 dark:bg-[#1A0E17]/90 border border-emerald-200 dark:border-emerald-900 flex flex-col justify-between"
                     >
-                      <div className="flex items-center justify-between font-semibold text-emerald-800 dark:text-emerald-300">
+                      <div className="flex items-center justify-between font-semibold text-emerald-800 dark:text-emerald-300 text-[11px] sm:text-xs">
                         <span>{isBn ? m.nameBn : m.nameEn}</span>
-                        <span className="bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-200 px-2 py-0.5 rounded-md text-[11px] font-bold">
+                        <span className="bg-emerald-100 dark:bg-emerald-900 text-emerald-900 dark:text-emerald-200 px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold">
                           {m.startTime} - {m.endTime}
                         </span>
                       </div>
-                      <p className="text-[11px] text-gray-600 dark:text-gray-400 mt-0.5">
+                      <p className="text-[10px] sm:text-[11px] text-gray-600 dark:text-gray-400 mt-0.5">
                         {isBn ? m.descriptionBn : m.descriptionEn}
                       </p>
                     </div>
@@ -292,12 +293,12 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
             </div>
 
             {/* Ashubh Muhurat */}
-            <div className="p-4 rounded-2xl bg-rose-50/70 dark:bg-[#341117] border border-rose-300 dark:border-rose-900">
-              <div className="font-bold text-rose-900 dark:text-rose-300 text-sm mb-2 flex items-center space-x-1.5">
+            <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-rose-50/70 dark:bg-[#341117] border border-rose-300 dark:border-rose-900">
+              <div className="font-bold text-rose-900 dark:text-rose-300 text-xs sm:text-sm mb-2 flex items-center space-x-1.5">
                 <AlertTriangle className="w-4 h-4 text-rose-600" />
                 <span>{isBn ? 'বর্জনীয় সময় (Ashubh Muhurat)' : 'Inauspicious Periods'}</span>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5 sm:space-y-2">
                 {panjika.muhurats
                   .filter((m) => !m.isAuspicious)
                   .map((m) => (
@@ -305,13 +306,13 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
                       key={m.id}
                       className="p-2 rounded-xl bg-white/90 dark:bg-[#1A0E17]/90 border border-rose-200 dark:border-rose-900 flex flex-col justify-between"
                     >
-                      <div className="flex items-center justify-between font-semibold text-rose-800 dark:text-rose-300">
+                      <div className="flex items-center justify-between font-semibold text-rose-800 dark:text-rose-300 text-[11px] sm:text-xs">
                         <span>{isBn ? m.nameBn : m.nameEn}</span>
-                        <span className="bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-200 px-2 py-0.5 rounded-md text-[11px] font-bold">
+                        <span className="bg-rose-100 dark:bg-rose-900 text-rose-900 dark:text-rose-200 px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-bold">
                           {m.startTime} - {m.endTime}
                         </span>
                       </div>
-                      <p className="text-[11px] text-gray-600 dark:text-gray-400 mt-0.5">
+                      <p className="text-[10px] sm:text-[11px] text-gray-600 dark:text-gray-400 mt-0.5">
                         {isBn ? m.descriptionBn : m.descriptionEn}
                       </p>
                     </div>
@@ -322,39 +323,39 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
         </div>
 
         {/* Ceremony suitability indicators */}
-        <div className="mt-5 p-4 rounded-2xl bg-[#F5EBE1] dark:bg-[#25121E] border border-[#D4AF37]/50 text-xs">
-          <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-sm mb-2 flex items-center space-x-1.5">
+        <div className="mt-4 sm:mt-5 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#F5EBE1] dark:bg-[#25121E] border border-[#D4AF37]/50 text-xs">
+          <div className="font-bold text-[#8B0000] dark:text-[#E5C158] text-xs sm:text-sm mb-2 flex items-center space-x-1.5">
             <Heart className="w-4 h-4" />
             <span>{isBn ? 'মাঙ্গলিক কর্মের প্রশস্ততা:' : 'Auspicious Ceremony Suitability:'}</span>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2">
             <div className="p-2 rounded-xl bg-white dark:bg-[#1A0E17] border border-[#E6D7BC] dark:border-[#4D2638] text-center">
-              <span className="font-bold block text-emerald-700 dark:text-emerald-400">শুভ বিবাহ</span>
-              <span className="text-[10px] text-gray-500">গোধূলি ও নিশীথ লগ্ন</span>
+              <span className="font-bold block text-emerald-700 dark:text-emerald-400 text-xs">শুভ বিবাহ</span>
+              <span className="text-[9px] sm:text-[10px] text-gray-500">গোধূলি ও নিশীথ লগ্ন</span>
             </div>
             <div className="p-2 rounded-xl bg-white dark:bg-[#1A0E17] border border-[#E6D7BC] dark:border-[#4D2638] text-center">
-              <span className="font-bold block text-emerald-700 dark:text-emerald-400">গৃহপ্রবেশ</span>
-              <span className="text-[10px] text-gray-500">বাস্তু শান্তি পূজা</span>
+              <span className="font-bold block text-emerald-700 dark:text-emerald-400 text-xs">গৃহপ্রবেশ</span>
+              <span className="text-[9px] sm:text-[10px] text-gray-500">বাস্তু শান্তি পূজা</span>
             </div>
             <div className="p-2 rounded-xl bg-white dark:bg-[#1A0E17] border border-[#E6D7BC] dark:border-[#4D2638] text-center">
-              <span className="font-bold block text-emerald-700 dark:text-emerald-400">অন্নপ্রাশন</span>
-              <span className="text-[10px] text-gray-500">মুখেভাত লগ্ন</span>
+              <span className="font-bold block text-emerald-700 dark:text-emerald-400 text-xs">অন্নপ্রাশন</span>
+              <span className="text-[9px] sm:text-[10px] text-gray-500">মুখেভাত লগ্ন</span>
             </div>
             <div className="p-2 rounded-xl bg-white dark:bg-[#1A0E17] border border-[#E6D7BC] dark:border-[#4D2638] text-center">
-              <span className="font-bold block text-emerald-700 dark:text-emerald-400">উপনয়ন</span>
-              <span className="text-[10px] text-gray-500">পৈতে সংস্কার</span>
+              <span className="font-bold block text-emerald-700 dark:text-emerald-400 text-xs">উপনয়ন</span>
+              <span className="text-[9px] sm:text-[10px] text-gray-500">পৈতে সংস্কার</span>
             </div>
           </div>
         </div>
 
         {/* Personal Notes & Ritual Reminders */}
-        <div className="mt-6 border-t border-[#E6D7BC] dark:border-[#4D2638] pt-4">
+        <div className="mt-4 sm:mt-6 border-t border-[#E6D7BC] dark:border-[#4D2638] pt-3 sm:pt-4">
           <h3 className="text-xs font-bold font-serif text-[#8B0000] dark:text-[#E5C158] uppercase tracking-wider mb-2 flex items-center space-x-1.5">
-            <Bookmark className="w-4 h-4 text-[#D4AF37]" />
+            <Bookmark className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37]" />
             <span>{isBn ? 'এই দিনের ব্যক্তিগত নোট ও ব্রত স্মরণিকা' : 'Personal Ritual Reminders'}</span>
           </h3>
 
-          <div className="flex flex-col sm:flex-row items-center gap-2 mb-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-3">
             <input
               type="text"
               value={newNoteTitle}
@@ -364,7 +365,7 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
             />
             <button
               onClick={handleAddNote}
-              className="w-full sm:w-auto bg-[#8B0000] hover:bg-[#6B0707] text-[#FEF3C7] px-4 py-2 rounded-xl text-xs font-bold flex items-center justify-center space-x-1 shadow"
+              className="w-full sm:w-auto bg-[#8B0000] hover:bg-[#6B0707] text-[#FEF3C7] px-4 py-2 rounded-xl text-xs font-bold flex items-center justify-center space-x-1 shadow active:scale-95 transition shrink-0"
             >
               <Plus className="w-4 h-4" />
               <span>{isBn ? 'যুক্ত করুন' : 'Add Note'}</span>
@@ -392,18 +393,18 @@ export const DayDetailsModal: React.FC<DayDetailsModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="mt-6 pt-4 border-t border-[#E6D7BC] dark:border-[#4D2638] flex items-center justify-between">
+        <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-[#E6D7BC] dark:border-[#4D2638] flex items-center justify-between">
           <button
             onClick={handleShare}
-            className="flex items-center space-x-1.5 text-xs text-[#8B0000] dark:text-[#E5C158] font-bold hover:underline"
+            className="flex items-center space-x-1.5 text-xs text-[#8B0000] dark:text-[#E5C158] font-bold hover:underline active:scale-95"
           >
-            <Share2 className="w-4 h-4" />
-            <span>{copied ? (isBn ? 'কপি হয়েছে! ✓' : 'Copied! ✓') : (isBn ? 'পঞ্জিকা বিবরণী কপি করুন' : 'Copy Summary')}</span>
+            <Share2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span>{copied ? (isBn ? 'কপি হয়েছে! ✓' : 'Copied! ✓') : (isBn ? 'পঞ্জিকা কপি' : 'Copy Summary')}</span>
           </button>
 
           <button
             onClick={onClose}
-            className="bg-[#8B0000] hover:bg-[#6B0707] text-[#FEF3C7] px-5 py-2 rounded-xl text-xs font-bold shadow"
+            className="bg-[#8B0000] hover:bg-[#6B0707] text-[#FEF3C7] px-4 sm:px-5 py-1.5 sm:py-2 rounded-xl text-xs font-bold shadow active:scale-95 transition"
           >
             {isBn ? 'বন্ধ করুন' : 'Close'}
           </button>

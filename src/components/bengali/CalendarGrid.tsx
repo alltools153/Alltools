@@ -135,59 +135,59 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   return (
     <section className="w-full relative select-none">
       {/* Alpona & Paisley Styled Container */}
-      <div className="parchment-card rounded-3xl p-4 sm:p-7 border-2 border-[#D4AF37] shadow-vintage-card relative overflow-hidden alpona-frame">
+      <div className="parchment-card rounded-2xl sm:rounded-3xl p-2.5 sm:p-5 md:p-7 border-2 border-[#D4AF37] shadow-vintage-card relative overflow-hidden alpona-frame">
         {/* Subtle Paisley / Shankha Top Watermark */}
         <div className="absolute top-2 right-2 opacity-5 pointer-events-none">
           <ShankhaIcon size={180} />
         </div>
 
         {/* Top Controls & Dual Navigation Switcher */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b border-[#E6D7BC] dark:border-[#4D2638] pb-4">
-          <div>
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 sm:gap-4 border-b border-[#E6D7BC] dark:border-[#4D2638] pb-3 sm:pb-4">
+          <div className="w-full lg:w-auto">
             {/* Nav Mode Switcher (Gregorian Months ↔ Bengali Months) */}
-            <div className="flex items-center space-x-1.5 bg-[#F5EBE1] dark:bg-[#1A0E17] p-1 rounded-2xl border border-[#D4AF37]/50 inline-flex mb-2">
+            <div className="grid grid-cols-2 gap-1 w-full sm:w-auto bg-[#F5EBE1] dark:bg-[#1A0E17] p-1 rounded-xl sm:rounded-2xl border border-[#D4AF37]/50 mb-2">
               <button
                 onClick={() => setNavMode('gregorian')}
-                className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                className={`px-2 sm:px-3 py-1 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all text-center ${
                   navMode === 'gregorian'
                     ? 'bg-[#8B0000] text-[#FEF3C7] shadow-md'
                     : 'text-[#2B080C] dark:text-[#FDFBF7] hover:bg-[#E6D7BC]/50'
                 }`}
               >
-                📅 {isBn ? 'ইংরেজি মাস (Jan - Dec)' : 'Gregorian Months'}
+                📅 {isBn ? 'ইংরেজি মাস' : 'Gregorian'}
               </button>
               <button
                 onClick={() => setNavMode('bengali')}
-                className={`px-3 py-1 rounded-xl text-xs font-bold transition-all ${
+                className={`px-2 sm:px-3 py-1 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-bold transition-all text-center ${
                   navMode === 'bengali'
                     ? 'bg-[#8B0000] text-[#FEF3C7] shadow-md'
                     : 'text-[#2B080C] dark:text-[#FDFBF7] hover:bg-[#E6D7BC]/50'
                 }`}
               >
-                🌸 {isBn ? 'বাংলা মাস (বৈশাখ - চৈত্র)' : 'Bengali Months'}
+                🌸 {isBn ? 'বাংলা মাস' : 'Bengali'}
               </button>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-serif font-black text-[#8B0000] dark:text-[#E5C158] flex items-center space-x-2">
+            <h2 className="text-xl sm:text-3xl font-serif font-black text-[#8B0000] dark:text-[#E5C158] flex items-center space-x-2">
               <span>{headerTitleBn}</span>
             </h2>
-            <p className="text-xs sm:text-sm text-[#2B080C]/80 dark:text-[#FDFBF7]/80 font-medium mt-0.5">
+            <p className="text-[11px] sm:text-sm text-[#2B080C]/80 dark:text-[#FDFBF7]/80 font-medium mt-0.5">
               {headerSubtitle}
             </p>
           </div>
 
           {/* Nav Buttons & Quick Actions */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 w-full lg:w-auto justify-between lg:justify-end">
             <button
               onClick={handleJumpToday}
-              className="px-3.5 py-1.5 bg-[#8B0000] hover:bg-[#6B0707] text-[#FEF3C7] text-xs font-bold rounded-xl border border-[#D4AF37] shadow-sm transition"
+              className="flex-1 lg:flex-initial px-3 sm:px-3.5 py-1.5 bg-[#8B0000] hover:bg-[#6B0707] text-[#FEF3C7] text-xs font-bold rounded-xl border border-[#D4AF37] shadow-sm transition active:scale-95 text-center"
             >
-              {isBn ? 'আজকের পঞ্জিকা' : 'Jump to Today'}
+              {isBn ? 'আজ' : 'Today'}
             </button>
 
             <button
               onClick={handlePrev}
-              className="p-2 bg-[#F5EBE1] dark:bg-[#1A0E17] hover:bg-[#E6D7BC] text-[#8B0000] dark:text-[#E5C158] rounded-xl border border-[#D4AF37] shadow-sm transition"
+              className="p-1.5 sm:p-2 bg-[#F5EBE1] dark:bg-[#1A0E17] hover:bg-[#E6D7BC] text-[#8B0000] dark:text-[#E5C158] rounded-xl border border-[#D4AF37] shadow-sm transition active:scale-95"
               title="পূর্ববর্তী মাস"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -195,7 +195,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
 
             <button
               onClick={handleNext}
-              className="p-2 bg-[#F5EBE1] dark:bg-[#1A0E17] hover:bg-[#E6D7BC] text-[#8B0000] dark:text-[#E5C158] rounded-xl border border-[#D4AF37] shadow-sm transition"
+              className="p-1.5 sm:p-2 bg-[#F5EBE1] dark:bg-[#1A0E17] hover:bg-[#E6D7BC] text-[#8B0000] dark:text-[#E5C158] rounded-xl border border-[#D4AF37] shadow-sm transition active:scale-95"
               title="পরবর্তী মাস"
             >
               <ChevronRight className="w-4 h-4" />
@@ -203,7 +203,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
 
             <button
               onClick={onPrintCalendar}
-              className="p-2 bg-[#F5EBE1] dark:bg-[#1A0E17] hover:bg-[#E6D7BC] text-[#8B0000] dark:text-[#E5C158] rounded-xl border border-[#D4AF37] shadow-sm transition hidden sm:flex items-center space-x-1"
+              className="p-1.5 sm:p-2 bg-[#F5EBE1] dark:bg-[#1A0E17] hover:bg-[#E6D7BC] text-[#8B0000] dark:text-[#E5C158] rounded-xl border border-[#D4AF37] shadow-sm transition hidden sm:flex items-center space-x-1"
               title="মুদ্রণযোগ্য ক্যালেন্ডার"
             >
               <Printer className="w-4 h-4" />
@@ -212,15 +212,15 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
         </div>
 
         {/* Quick Filter Chips */}
-        <div className="flex items-center space-x-2 overflow-x-auto py-3 border-b border-[#E6D7BC]/70 dark:border-[#4D2638]/70 scrollbar-none text-xs">
+        <div className="flex items-center space-x-1.5 sm:space-x-2 overflow-x-auto py-2 sm:py-3 border-b border-[#E6D7BC]/70 dark:border-[#4D2638]/70 no-scrollbar touch-scroll -mx-2.5 px-2.5 sm:mx-0 sm:px-0 text-xs">
           <span className="text-[#2B080C]/70 dark:text-[#FDFBF7]/70 font-semibold flex items-center space-x-1 mr-1 shrink-0">
             <Filter className="w-3.5 h-3.5 text-[#D4AF37]" />
-            <span>{isBn ? 'ফিল্টার:' : 'Filter:'}</span>
+            <span className="hidden xs:inline">{isBn ? 'ফিল্টার:' : 'Filter:'}</span>
           </span>
 
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl font-bold whitespace-nowrap transition shrink-0 ${
               activeFilter === 'all'
                 ? 'bg-[#8B0000] text-white shadow-sm'
                 : 'bg-[#F5EBE1] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] hover:bg-[#E6D7BC]'
@@ -231,59 +231,59 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
 
           <button
             onClick={() => setActiveFilter('marriage')}
-            className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 shrink-0 ${
               activeFilter === 'marriage'
                 ? 'bg-[#8B0000] text-white shadow-sm'
                 : 'bg-[#F5EBE1] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] hover:bg-[#E6D7BC]'
             }`}
           >
             <span>💍</span>
-            <span>{isBn ? 'শুভ বিবাহ লগ্ন (Marriage Dates)' : 'Marriage Dates'}</span>
+            <span>{isBn ? 'শুভ বিবাহ' : 'Marriage'}</span>
           </button>
 
           <button
             onClick={() => setActiveFilter('ekadashi')}
-            className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 shrink-0 ${
               activeFilter === 'ekadashi'
                 ? 'bg-[#8B0000] text-white shadow-sm'
                 : 'bg-[#F5EBE1] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] hover:bg-[#E6D7BC]'
             }`}
           >
             <span>🍃</span>
-            <span>{isBn ? 'একাদশী তালিকা (Ekadashi)' : 'Ekadashi List'}</span>
+            <span>{isBn ? 'একাদশী' : 'Ekadashi'}</span>
           </button>
 
           <button
             onClick={() => setActiveFilter('purnima_amavasya')}
-            className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 shrink-0 ${
               activeFilter === 'purnima_amavasya'
                 ? 'bg-[#8B0000] text-white shadow-sm'
                 : 'bg-[#F5EBE1] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] hover:bg-[#E6D7BC]'
             }`}
           >
             <span>🌕</span>
-            <span>{isBn ? 'পূর্ণিমা ও অমাবস্যা' : 'Purnima / Amavasya'}</span>
+            <span>{isBn ? 'পূর্ণিমা/অমাবস্যা' : 'Purnima/Amavasya'}</span>
           </button>
 
           <button
             onClick={() => setActiveFilter('holidays')}
-            className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl font-bold whitespace-nowrap transition flex items-center space-x-1 shrink-0 ${
               activeFilter === 'holidays'
                 ? 'bg-[#8B0000] text-white shadow-sm'
                 : 'bg-[#F5EBE1] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] hover:bg-[#E6D7BC]'
             }`}
           >
             <span>🌺</span>
-            <span>{isBn ? 'সরকারি ও ধর্মীয় ছুটি (Holidays)' : 'Govt Holidays'}</span>
+            <span>{isBn ? 'ছুটি ও উৎসব' : 'Holidays'}</span>
           </button>
         </div>
 
         {/* 7-Column Weekday Headers */}
-        <div className="grid grid-cols-7 gap-1 sm:gap-2 mt-3 text-center">
+        <div className="grid grid-cols-7 gap-0.5 sm:gap-2 mt-2 sm:mt-3 text-center">
           {WEEKDAYS.map((w, idx) => (
             <div
               key={w.index}
-              className={`py-2 px-1 rounded-xl text-xs sm:text-sm font-serif font-bold ${
+              className={`py-1.5 sm:py-2 px-0.5 sm:px-1 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-serif font-bold ${
                 idx === 0
                   ? 'bg-[#8B0000] text-[#FEF3C7] border border-[#D4AF37]'
                   : 'bg-[#F5EBE1] dark:bg-[#1A0E17] text-[#2B080C] dark:text-[#FDFBF7] border border-[#E6D7BC] dark:border-[#4D2638]'
@@ -298,12 +298,12 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
         </div>
 
         {/* 7-Column Days Grid */}
-        <div className="grid grid-cols-7 gap-1 sm:gap-2 mt-2">
+        <div className="grid grid-cols-7 gap-0.5 sm:gap-2 mt-1 sm:mt-2">
           {/* Empty prefix padding */}
           {Array.from({ length: firstDayWeekday }).map((_, i) => (
             <div
               key={`empty-${i}`}
-              className="min-h-[85px] sm:min-h-[110px] p-2 rounded-2xl bg-gray-100/30 dark:bg-[#150a12]/30 border border-dashed border-gray-300 dark:border-gray-800 opacity-40 select-none"
+              className="min-h-[58px] sm:min-h-[105px] md:min-h-[120px] p-1 sm:p-2 rounded-lg sm:rounded-2xl bg-gray-100/30 dark:bg-[#150a12]/30 border border-dashed border-gray-300 dark:border-gray-800 opacity-40 select-none"
             />
           ))}
 
@@ -336,11 +336,11 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
               <div
                 key={panjikaDay.dateStr}
                 onClick={() => onSelectDate(panjikaDay.gregorianDate)}
-                className={`min-h-[95px] sm:min-h-[120px] p-2 sm:p-2.5 rounded-2xl border-2 cursor-pointer transition-all duration-200 flex flex-col justify-between relative group ${
+                className={`min-h-[58px] sm:min-h-[105px] md:min-h-[120px] p-1 sm:p-2 md:p-2.5 rounded-lg sm:rounded-2xl border sm:border-2 cursor-pointer transition-all duration-200 flex flex-col justify-between relative group ${
                   isSelected
                     ? 'border-[#8B0000] bg-[#FDE8E8] dark:bg-[#3D1420] shadow-royal-gold scale-[1.02] z-10'
                     : isToday
-                    ? 'border-[#D4AF37] bg-[#FEF3C7]/60 dark:bg-[#2E1B15] shadow-md ring-2 ring-[#D4AF37]/50'
+                    ? 'border-[#D4AF37] bg-[#FEF3C7]/60 dark:bg-[#2E1B15] shadow-md ring-1 sm:ring-2 ring-[#D4AF37]/50'
                     : 'border-[#E6D7BC] dark:border-[#4D2638] bg-white/90 dark:bg-[#1A0E17]/90 hover:bg-[#F5EBE1] dark:hover:bg-[#2B1220] hover:border-[#D4AF37] hover:shadow-md'
                 }`}
               >
@@ -348,7 +348,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                 <div className="flex items-start justify-between">
                   {/* Large English Date (e.g. "22") */}
                   <span
-                    className={`font-sans text-xl sm:text-2xl font-black leading-none ${
+                    className={`font-sans text-xs sm:text-xl md:text-2xl font-black leading-none ${
                       panjikaDay.gregorianDate.getDay() === 0
                         ? 'text-red-700 dark:text-red-400'
                         : 'text-[#2B080C] dark:text-[#FDFBF7]'
@@ -357,25 +357,48 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                     {gDay}
                   </span>
 
-                  {/* Subscript Bengali Date (e.g. "৭ ভাদ্র") */}
-                  <span className="text-[11px] font-serif font-bold text-[#8B0000] dark:text-[#E5C158] bg-[#F5EBE1] dark:bg-[#2B1220] px-1.5 py-0.5 rounded-md border border-[#D4AF37]/30">
+                  {/* Subscript Bengali Date (Desktop: "৭ ভাদ্র", Mobile: "৭") */}
+                  <span className="hidden sm:inline-block text-[11px] font-serif font-bold text-[#8B0000] dark:text-[#E5C158] bg-[#F5EBE1] dark:bg-[#2B1220] px-1.5 py-0.5 rounded-md border border-[#D4AF37]/30">
                     {toBengaliDigits(panjikaDay.bengaliDate.day)} {panjikaDay.bengaliDate.monthNameBn}
+                  </span>
+                  <span className="sm:hidden text-[9px] font-serif font-bold text-[#8B0000] dark:text-[#E5C158] bg-[#F5EBE1]/80 dark:bg-[#2B1220]/80 px-1 py-0.2 rounded border border-[#D4AF37]/30 leading-none">
+                    {toBengaliDigits(panjikaDay.bengaliDate.day)}
                   </span>
                 </div>
 
-                {/* Middle Row: Subscript Tithi Badge (e.g. "একাদশী" / "শুক্লা অষ্টমী") */}
-                <div className="my-1">
-                  <div className="text-[10px] sm:text-[11px] font-medium text-[#8B0000] dark:text-[#FEF3C7] truncate font-serif flex items-center space-x-1">
+                {/* Middle Row: Subscript Tithi Badge */}
+                <div className="my-0.5 sm:my-1 min-w-0">
+                  <div className="text-[8px] sm:text-[11px] font-medium text-[#8B0000] dark:text-[#FEF3C7] truncate font-serif flex items-center space-x-0.5 sm:space-x-1">
                     {isPurnima ? <span>🌕</span> : isAmavasya ? <span>🌑</span> : isEkadashi ? <span>🍃</span> : null}
-                    <span>{panjikaDay.tithi.nameBn}</span>
+                    <span className="truncate">{panjikaDay.tithi.nameBn}</span>
                   </div>
                   <div className="text-[9px] text-gray-500 dark:text-gray-400 truncate hidden sm:block">
                     {panjikaDay.nakshatra.nameBn}
                   </div>
                 </div>
 
-                {/* Bottom Badges */}
-                <div className="space-y-0.5">
+                {/* Bottom Row / Badges */}
+                {/* Mobile: compact indicators */}
+                <div className="sm:hidden flex items-center gap-0.5 overflow-hidden">
+                  {hasFestivals && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" title={panjikaDay.festivals[0].nameBn} />
+                  )}
+                  {isMarriageDate && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" title="শুভ বিবাহ" />
+                  )}
+                  {isEkadashi && !hasFestivals && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" title="একাদশী" />
+                  )}
+                  {isPurnima && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0" title="পূর্ণিমা" />
+                  )}
+                  {isAmavasya && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" title="অমাবস্যা" />
+                  )}
+                </div>
+
+                {/* Desktop: full badges */}
+                <div className="hidden sm:block space-y-0.5">
                   {hasFestivals && (
                     <div className="bg-[#8B0000] text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-md truncate shadow-sm flex items-center space-x-1">
                       <span>🌺</span>
@@ -398,7 +421,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
 
                 {/* Today Badge */}
                 {isToday && (
-                  <span className="absolute -top-2 -right-2 bg-[#D4AF37] text-[#2B080C] text-[9px] font-black px-1.5 py-0.5 rounded-full uppercase shadow border border-white">
+                  <span className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 bg-[#D4AF37] text-[#2B080C] text-[7px] sm:text-[9px] font-black px-1 sm:px-1.5 py-0.2 sm:py-0.5 rounded-full uppercase shadow border border-white">
                     আজ
                   </span>
                 )}

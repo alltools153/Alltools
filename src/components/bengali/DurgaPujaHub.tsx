@@ -151,18 +151,18 @@ export const DurgaPujaHub: React.FC<DurgaPujaHubProps> = ({ language, numerals }
 
   return (
     <section className="w-full">
-      <div className="royal-card rounded-3xl p-5 sm:p-8 border-2 border-[#d4af37] shadow-2xl relative overflow-hidden">
+      <div className="royal-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-8 border-2 border-[#d4af37] shadow-2xl relative overflow-hidden">
         {/* Top Visual Festive Banner */}
         <div className="text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center space-x-2 bg-[#8b0000] text-[#fef08a] px-4 py-1.5 rounded-full text-xs font-bold shadow-md mb-2">
+          <div className="inline-flex items-center space-x-2 bg-[#8b0000] text-[#fef08a] px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-bold shadow-md mb-2">
             <DiyaFlameIcon size={16} />
             <span>{isBn ? 'শারদীয়া দুর্গোৎসব ১৪৩৩ / ২০২৬' : 'Sharadiya Durga Puja 2026'}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-serif font-black text-[#8b0000] dark:text-[#fef08a] tracking-wide">
+          <h2 className="text-2xl sm:text-4xl font-serif font-black text-[#8b0000] dark:text-[#fef08a] tracking-wide leading-tight">
             {isBn ? 'মা আসছেন! শারদীয়া দুর্গাপূজা' : 'Ma Durga Arrival Countdown'}
           </h2>
-          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
+          <p className="text-[11px] sm:text-sm text-gray-600 dark:text-gray-300 mt-1">
             {isBn
               ? 'কাশফুলের শুভ্রতা, শিউলির সুবাস আর ঢাকের মধুর আওয়াজে মায়ের আবাহন।'
               : 'The pristine white Kash blossoms, fragrance of Shiuli, and reverberating Dhak rhythms.'}
@@ -170,101 +170,101 @@ export const DurgaPujaHub: React.FC<DurgaPujaHubProps> = ({ language, numerals }
         </div>
 
         {/* Live Countdown Timer Grid */}
-        <div className="grid grid-cols-4 gap-2 sm:gap-4 max-w-xl mx-auto mt-6">
-          <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border-2 border-[#d4af37] shadow-md">
-            <div suppressHydrationWarning className="text-2xl sm:text-4xl font-bold font-serif text-[#fef08a]">
+        <div className="grid grid-cols-4 gap-1.5 sm:gap-4 max-w-xl mx-auto mt-4 sm:mt-6">
+          <div className="p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border sm:border-2 border-[#d4af37] shadow-md">
+            <div suppressHydrationWarning className="text-lg sm:text-4xl font-bold font-serif text-[#fef08a]">
               {numerals === 'bn' ? toBengaliDigits(timeLeft.days) : timeLeft.days}
             </div>
-            <div className="text-[10px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-1">
+            <div className="text-[8.5px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-0.5 sm:mt-1">
               {isBn ? 'দিন' : 'DAYS'}
             </div>
           </div>
 
-          <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border-2 border-[#d4af37] shadow-md">
-            <div suppressHydrationWarning className="text-2xl sm:text-4xl font-bold font-serif text-[#fef08a]">
+          <div className="p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border sm:border-2 border-[#d4af37] shadow-md">
+            <div suppressHydrationWarning className="text-lg sm:text-4xl font-bold font-serif text-[#fef08a]">
               {numerals === 'bn' ? toBengaliDigits(timeLeft.hours) : timeLeft.hours}
             </div>
-            <div className="text-[10px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-1">
+            <div className="text-[8.5px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-0.5 sm:mt-1">
               {isBn ? 'ঘণ্টা' : 'HOURS'}
             </div>
           </div>
 
-          <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border-2 border-[#d4af37] shadow-md">
-            <div suppressHydrationWarning className="text-2xl sm:text-4xl font-bold font-serif text-[#fef08a]">
+          <div className="p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border sm:border-2 border-[#d4af37] shadow-md">
+            <div suppressHydrationWarning className="text-lg sm:text-4xl font-bold font-serif text-[#fef08a]">
               {numerals === 'bn' ? toBengaliDigits(timeLeft.minutes) : timeLeft.minutes}
             </div>
-            <div className="text-[10px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-1">
+            <div className="text-[8.5px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-0.5 sm:mt-1">
               {isBn ? 'মিনিট' : 'MINUTES'}
             </div>
           </div>
 
-          <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border-2 border-[#d4af37] shadow-md">
-            <div suppressHydrationWarning className="text-2xl sm:text-4xl font-bold font-serif text-[#fef08a]">
+          <div className="p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-[#8b0000] to-[#5a0202] text-white text-center border sm:border-2 border-[#d4af37] shadow-md">
+            <div suppressHydrationWarning className="text-lg sm:text-4xl font-bold font-serif text-[#fef08a]">
               {numerals === 'bn' ? toBengaliDigits(timeLeft.seconds) : timeLeft.seconds}
             </div>
-            <div className="text-[10px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-1">
+            <div className="text-[8.5px] sm:text-xs text-[#fde68a] uppercase font-semibold mt-0.5 sm:mt-1">
               {isBn ? 'সেকেন্ড' : 'SECONDS'}
             </div>
           </div>
         </div>
 
         {/* Audio Dhak Trigger Button */}
-        <div className="flex justify-center mt-5">
+        <div className="flex justify-center mt-3.5 sm:mt-5">
           <button
             onClick={handlePlayDhak}
-            className={`flex items-center space-x-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-lg transition-all transform active:scale-95 ${
+            className={`flex items-center space-x-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-lg transition-all transform active:scale-95 ${
               isPlayingDhak
                 ? 'bg-amber-400 text-[#430202] scale-105 ring-4 ring-amber-300'
                 : 'bg-[#8b0000] hover:bg-[#6b0707] text-[#fef08a] border-2 border-[#d4af37]'
             }`}
           >
-            <Volume2 className="w-4 h-4" />
+            <Volume2 className="w-4 h-4 shrink-0" />
             <span>
               {isPlayingDhak
                 ? isBn
                   ? 'ঢাক বাজছে! তা ধিং তা ধিং...'
                   : 'Dhak Playing!'
                 : isBn
-                ? 'ঢাকের আওয়াজ শুনুন (Play Dhak Beat)'
+                ? 'ঢাকের আওয়াজ শুনুন'
                 : 'Play Festive Dhak'}
             </span>
           </button>
         </div>
 
-        <AlponaBorderDivider color="#d4af37" className="my-6" />
+        <AlponaBorderDivider color="#d4af37" className="my-4 sm:my-6" />
 
-        {/* Sandhi Puja Special Interactive Feature (১০৮ পদ্ম ও প্রদীপ) */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-[#2a1b14] dark:to-[#381f15] border-2 border-[#d4af37] shadow-md my-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-[#d4af37]/40 pb-3">
+        {/* Sandhi Puja Special Interactive Feature */}
+        <div className="p-3.5 sm:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-[#2a1b14] dark:to-[#381f15] border-2 border-[#d4af37] shadow-md my-4 sm:my-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5 sm:gap-3 border-b border-[#d4af37]/40 pb-2.5 sm:pb-3">
             <div>
-              <div className="flex items-center space-x-2">
-                <span className="bg-amber-600 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span className="bg-amber-600 text-white text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full">
                   {isBn ? 'সন্ধিপূজা বিশেষ মুহূর্ত' : 'Sandhi Puja Window'}
                 </span>
-                <span className="text-xs text-amber-900 dark:text-amber-300 font-semibold">
-                  {isBn ? '১৮ অক্টোবর ২০২৬ • সন্ধ্যা ০৬:৪৫ হইতে ০৭:৩৩' : '18 Oct 2026 • 6:45 PM - 7:33 PM'}
+                <span className="text-[11px] sm:text-xs text-amber-900 dark:text-amber-300 font-semibold">
+                  {isBn ? '১৮ অক্টোবর ২০২৬ • সন্ধ্যা ০৬:৪৫ - ০৭:৩৩' : '18 Oct 2026 • 6:45 PM - 7:33 PM'}
                 </span>
               </div>
-              <h3 className="text-xl font-bold font-serif text-[#8b0000] dark:text-[#fef08a] mt-1">
+              <h3 className="text-lg sm:text-xl font-bold font-serif text-[#8b0000] dark:text-[#fef08a] mt-1">
                 {isBn ? 'সন্ধিপূজা ও ১০৮ নীলপদ্ম-প্রদীপ সাধনা' : 'Sandhi Puja 108 Lotuses & Lamps'}
               </h3>
             </div>
 
             <div className="text-xs text-gray-700 dark:text-gray-300 flex items-center space-x-2">
-              <span>{isBn ? 'প্রজ্জ্বলিত প্রদীপ:' : 'Lit Lamps:'}</span>
-              <span className="font-bold text-base text-[#8b0000] dark:text-[#fef08a]">
+              <span>{isBn ? 'প্রদীপ:' : 'Lamps:'}</span>
+              <span className="font-bold text-sm sm:text-base text-[#8b0000] dark:text-[#fef08a]">
                 {numerals === 'bn' ? toBengaliDigits(litLampsCount) : litLampsCount} / ১০৮
               </span>
               <button
                 onClick={() => setLitLampsCount(Math.min(108, litLampsCount + 12))}
-                className="bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded-lg text-xs font-bold"
+                className="bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1 rounded-lg text-xs font-bold active:scale-95 transition"
               >
                 + প্রদীপ জ্বালাও
               </button>
             </div>
           </div>
 
-          <p className="text-xs text-gray-700 dark:text-gray-300 mt-2">
+          <p className="text-[11px] sm:text-xs text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
             {isBn
               ? 'অষ্টমী তিথির শেষ ২৪ মিনিট এবং নবমী তিথির প্রথম ২৪ মিনিট—মোট ৪৮ মিনিটের এই পুণ্যলগ্নে মা দুর্গা চণ্ডিকা রূপে চণ্ড ও মুণ্ডকে বধ করেছিলেন। এই সময়ে দেবীর চরণে ১০৮টি নীলপদ্ম ও ১০৮টি ঘৃতপ্রদীপ নিবেদন করা হয়।'
               : 'The sacred 48-minute intersection where Ashtami merges with Navami. In this potent time, Ma Durga assumed the wrathful form of Chamunda to vanquish Chanda and Munda.'}
@@ -272,24 +272,24 @@ export const DurgaPujaHub: React.FC<DurgaPujaHubProps> = ({ language, numerals }
         </div>
 
         {/* Day-by-Day Puja Navigation */}
-        <div className="mt-6">
-          <h3 className="text-lg font-serif font-bold text-[#8b0000] dark:text-[#fef08a] mb-4">
+        <div className="mt-4 sm:mt-6">
+          <h3 className="text-base sm:text-lg font-serif font-bold text-[#8b0000] dark:text-[#fef08a] mb-2.5 sm:mb-4">
             {isBn ? 'দুর্গাপূজার প্রতিটি দিনের তাৎপর্য ও আচারবিধি' : 'Day-by-Day Rituals & Significance'}
           </h3>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-4">
+          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 sm:gap-2 mb-3 sm:mb-4">
             {pujaDays.map((day) => (
               <button
                 key={day.id}
                 onClick={() => setActiveRitualTab(day.id)}
-                className={`p-3 rounded-2xl border text-center transition-all text-xs flex flex-col justify-between ${
+                className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl border text-center transition-all text-xs flex flex-col justify-between active:scale-95 ${
                   activeRitualTab === day.id
-                    ? 'bg-[#8b0000] text-white border-[#d4af37] shadow-lg scale-105 font-bold'
+                    ? 'bg-[#8b0000] text-white border-[#d4af37] shadow-lg scale-[1.02] font-bold'
                     : 'bg-[#ffffff]/80 dark:bg-[#1a1210] border-[#e6d7bc] dark:border-[#443228] text-gray-800 dark:text-gray-200 hover:bg-[#f4ebd9]'
                 }`}
               >
-                <span className="font-serif text-sm block">{day.titleBn}</span>
-                <span className="text-[10px] text-amber-300 block mt-1">{day.dateBn.split(' ')[0]}</span>
+                <span className="font-serif text-xs sm:text-sm block truncate">{day.titleBn}</span>
+                <span className="text-[9px] sm:text-[10px] text-amber-300 block mt-0.5 truncate">{day.dateBn.split(' ')[0]}</span>
               </button>
             ))}
           </div>
@@ -298,36 +298,36 @@ export const DurgaPujaHub: React.FC<DurgaPujaHubProps> = ({ language, numerals }
           {(() => {
             const selected = pujaDays.find((d) => d.id === activeRitualTab) || pujaDays[3];
             return (
-              <div className="p-5 rounded-2xl bg-[#ffffff]/90 dark:bg-[#201714] border border-[#e6d7bc] dark:border-[#443228] shadow-sm">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#e6d7bc] dark:border-[#443228] pb-3 mb-3">
+              <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-[#ffffff]/90 dark:bg-[#201714] border border-[#e6d7bc] dark:border-[#443228] shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#e6d7bc] dark:border-[#443228] pb-2.5 sm:pb-3 mb-2.5 sm:mb-3">
                   <div>
-                    <h4 className="text-xl font-bold font-serif text-[#8b0000] dark:text-[#fef08a]">
+                    <h4 className="text-lg sm:text-xl font-bold font-serif text-[#8b0000] dark:text-[#fef08a]">
                       {isBn ? selected.titleBn : selected.titleEn}
                     </h4>
-                    <span className="text-xs text-amber-700 dark:text-amber-400 font-medium">
+                    <span className="text-[11px] sm:text-xs text-amber-700 dark:text-amber-400 font-medium">
                       {isBn ? selected.dateBn : selected.dateEn} • {selected.tagBn}
                     </span>
                   </div>
                 </div>
 
-                <div className="space-y-2 mt-3">
+                <div className="space-y-1.5 sm:space-y-2 mt-2 sm:mt-3">
                   <div className="text-xs font-bold text-gray-700 dark:text-gray-300">
                     {isBn ? 'প্রধান আচার ও নিয়মাবলী:' : 'Key Rituals:'}
                   </div>
                   {selected.highlightsBn.map((item, idx) => (
-                    <div key={idx} className="flex items-start space-x-2 text-xs text-gray-700 dark:text-gray-300">
-                      <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <div key={idx} className="flex items-start space-x-2 text-[11px] sm:text-xs text-gray-700 dark:text-gray-300">
+                      <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Chandi Mantra */}
-                <div className="mt-4 p-3.5 rounded-xl bg-[#f4ebd9]/80 dark:bg-[#150f0d] border border-[#d4af37]/40 text-center">
-                  <div className="text-[11px] text-amber-900 dark:text-amber-300 font-bold uppercase tracking-wider mb-1">
+                <div className="mt-3 sm:mt-4 p-2.5 sm:p-3.5 rounded-xl bg-[#f4ebd9]/80 dark:bg-[#150f0d] border border-[#d4af37]/40 text-center">
+                  <div className="text-[10px] sm:text-[11px] text-amber-900 dark:text-amber-300 font-bold uppercase tracking-wider mb-1">
                     {isBn ? 'পবিত্র পুষ্পাঞ্জলি ও চণ্ডী শ্লোক' : 'Sacred Pushpanjali Shloka'}
                   </div>
-                  <div className="font-serif text-sm font-semibold text-[#8b0000] dark:text-[#fef08a] italic">
+                  <div className="font-serif text-xs sm:text-sm font-semibold text-[#8b0000] dark:text-[#fef08a] italic leading-relaxed">
                     {selected.mantraBn}
                   </div>
                 </div>
