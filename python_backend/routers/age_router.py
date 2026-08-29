@@ -7,13 +7,22 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
-from python_backend.services.age_service import (
-    calculate_chronological_age,
-    calculate_next_birthday,
-    calculate_planetary_ages,
-    calculate_cosmic_bio_stats,
-    get_astrological_insights
-)
+try:
+    from python_backend.services.age_service import (
+        calculate_chronological_age,
+        calculate_next_birthday,
+        calculate_planetary_ages,
+        calculate_cosmic_bio_stats,
+        get_astrological_insights
+    )
+except ImportError:
+    from services.age_service import (
+        calculate_chronological_age,
+        calculate_next_birthday,
+        calculate_planetary_ages,
+        calculate_cosmic_bio_stats,
+        get_astrological_insights
+    )
 
 router = APIRouter(prefix="/api/v1/age", tags=["Age Calculator & Cosmic Biology"])
 

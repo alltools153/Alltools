@@ -9,44 +9,84 @@ from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from io import BytesIO
 
-from python_backend.services.docforge_service import (
-    # PDF Operations
-    merge_pdfs,
-    split_pdf,
-    extract_pdf_pages,
-    delete_pdf_pages,
-    rotate_pdf_pages,
-    reorder_pdf_pages,
-    crop_pdf_pages,
-    compress_pdf,
-    add_watermark,
-    add_page_numbers,
-    protect_pdf,
-    unlock_pdf,
-    remove_pdf_metadata,
-    flatten_pdf_forms,
-    repair_pdf,
-    extract_text_from_pdf,
-    
-    # Image & PDF Conversions
-    images_to_pdf,
-    pdf_to_images,
-    
-    # Format Conversions
-    word_to_pdf,
-    excel_to_pdf,
-    powerpoint_to_pdf,
-    text_to_pdf,
-    pdf_to_text,
-    pdf_to_word,
-    pdf_to_excel,
-    html_to_pdf,
-    
-    # OCR
-    ocr_pdf,
-    ocr_image,
-    scan_to_pdf,
-)
+try:
+    from python_backend.services.docforge_service import (
+        # PDF Operations
+        merge_pdfs,
+        split_pdf,
+        extract_pdf_pages,
+        delete_pdf_pages,
+        rotate_pdf_pages,
+        reorder_pdf_pages,
+        crop_pdf_pages,
+        compress_pdf,
+        add_watermark,
+        add_page_numbers,
+        protect_pdf,
+        unlock_pdf,
+        remove_pdf_metadata,
+        flatten_pdf_forms,
+        repair_pdf,
+        extract_text_from_pdf,
+        
+        # Image & PDF Conversions
+        images_to_pdf,
+        pdf_to_images,
+        
+        # Format Conversions
+        word_to_pdf,
+        excel_to_pdf,
+        powerpoint_to_pdf,
+        text_to_pdf,
+        pdf_to_text,
+        pdf_to_word,
+        pdf_to_excel,
+        html_to_pdf,
+        
+        # OCR
+        ocr_pdf,
+        ocr_image,
+        scan_to_pdf,
+    )
+except ImportError:
+    from services.docforge_service import (
+        # PDF Operations
+        merge_pdfs,
+        split_pdf,
+        extract_pdf_pages,
+        delete_pdf_pages,
+        rotate_pdf_pages,
+        reorder_pdf_pages,
+        crop_pdf_pages,
+        compress_pdf,
+        add_watermark,
+        add_page_numbers,
+        protect_pdf,
+        unlock_pdf,
+        remove_pdf_metadata,
+        flatten_pdf_forms,
+        repair_pdf,
+        extract_text_from_pdf,
+        
+        # Image & PDF Conversions
+        images_to_pdf,
+        pdf_to_images,
+        
+        # Format Conversions
+        word_to_pdf,
+        excel_to_pdf,
+        powerpoint_to_pdf,
+        text_to_pdf,
+        pdf_to_text,
+        pdf_to_word,
+        pdf_to_excel,
+        html_to_pdf,
+        
+        # OCR
+        ocr_pdf,
+        ocr_image,
+        scan_to_pdf,
+    )
 
 router = APIRouter(prefix="/api/v1/docforge", tags=["DocForge - PDF & File Conversion"])
 

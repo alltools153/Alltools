@@ -7,12 +7,20 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 import urllib.parse
 
-from python_backend.services.vapt_service import (
-    is_safe_target,
-    inspect_headers_and_cookies,
-    inspect_ssl,
-    get_owasp_api_top10
-)
+try:
+    from python_backend.services.vapt_service import (
+        is_safe_target,
+        inspect_headers_and_cookies,
+        inspect_ssl,
+        get_owasp_api_top10
+    )
+except ImportError:
+    from services.vapt_service import (
+        is_safe_target,
+        inspect_headers_and_cookies,
+        inspect_ssl,
+        get_owasp_api_top10
+    )
 
 router = APIRouter(prefix="/api/v1/vapt", tags=["VAPT Security Scanner & OWASP"])
 

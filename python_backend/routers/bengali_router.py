@@ -6,13 +6,22 @@ from fastapi import APIRouter, Query, HTTPException
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
-from python_backend.services.bengali_service import (
-    get_bengali_date,
-    get_muhurat_timings,
-    get_month_calendar,
-    FESTIVALS_DB,
-    BENGALI_MONTHS
-)
+try:
+    from python_backend.services.bengali_service import (
+        get_bengali_date,
+        get_muhurat_timings,
+        get_month_calendar,
+        FESTIVALS_DB,
+        BENGALI_MONTHS
+    )
+except ImportError:
+    from services.bengali_service import (
+        get_bengali_date,
+        get_muhurat_timings,
+        get_month_calendar,
+        FESTIVALS_DB,
+        BENGALI_MONTHS
+    )
 
 router = APIRouter(prefix="/api/v1/bengali", tags=["Bengali Calendar & Panjika"])
 

@@ -5,11 +5,18 @@ FastAPI Router for SEO Intelligence & Meta Generation API
 from fastapi import APIRouter, Query
 from typing import Optional, List, Dict, Any
 
-from python_backend.services.seo_service import (
-    get_keywords_by_category,
-    generate_json_ld_schemas,
-    SEO_KEYWORDS_MASTER
-)
+try:
+    from python_backend.services.seo_service import (
+        get_keywords_by_category,
+        generate_json_ld_schemas,
+        SEO_KEYWORDS_MASTER
+    )
+except ImportError:
+    from services.seo_service import (
+        get_keywords_by_category,
+        generate_json_ld_schemas,
+        SEO_KEYWORDS_MASTER
+    )
 
 router = APIRouter(prefix="/api/v1/seo", tags=["SEO Intelligence & Keywords"])
 
