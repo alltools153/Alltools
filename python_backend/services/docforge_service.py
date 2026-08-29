@@ -372,6 +372,7 @@ def word_to_pdf(docx_buffer: bytes) -> bytes:
     import subprocess
     import tempfile
     
+    soffice_bin = os.getenv("LIBREOFFICE_BIN", "soffice")
     with tempfile.NamedTemporaryFile(suffix='.docx', delete=False) as tmp_docx:
         tmp_docx.write(docx_buffer)
         tmp_docx.flush()
@@ -380,7 +381,7 @@ def word_to_pdf(docx_buffer: bytes) -> bytes:
     with tempfile.TemporaryDirectory() as tmpdir:
         try:
             subprocess.run(
-                ['soffice', '--headless', '--convert-to', 'pdf', '--outdir', tmpdir, tmp_path],
+                [soffice_bin, '--headless', '--convert-to', 'pdf', '--outdir', tmpdir, tmp_path],
                 check=True,
                 capture_output=True
             )
@@ -397,6 +398,7 @@ def excel_to_pdf(xlsx_buffer: bytes) -> bytes:
     import subprocess
     import tempfile
     
+    soffice_bin = os.getenv("LIBREOFFICE_BIN", "soffice")
     with tempfile.NamedTemporaryFile(suffix='.xlsx', delete=False) as tmp_xlsx:
         tmp_xlsx.write(xlsx_buffer)
         tmp_xlsx.flush()
@@ -405,7 +407,7 @@ def excel_to_pdf(xlsx_buffer: bytes) -> bytes:
     with tempfile.TemporaryDirectory() as tmpdir:
         try:
             subprocess.run(
-                ['soffice', '--headless', '--convert-to', 'pdf', '--outdir', tmpdir, tmp_path],
+                [soffice_bin, '--headless', '--convert-to', 'pdf', '--outdir', tmpdir, tmp_path],
                 check=True,
                 capture_output=True
             )
@@ -422,6 +424,7 @@ def powerpoint_to_pdf(pptx_buffer: bytes) -> bytes:
     import subprocess
     import tempfile
     
+    soffice_bin = os.getenv("LIBREOFFICE_BIN", "soffice")
     with tempfile.NamedTemporaryFile(suffix='.pptx', delete=False) as tmp_pptx:
         tmp_pptx.write(pptx_buffer)
         tmp_pptx.flush()
@@ -430,7 +433,7 @@ def powerpoint_to_pdf(pptx_buffer: bytes) -> bytes:
     with tempfile.TemporaryDirectory() as tmpdir:
         try:
             subprocess.run(
-                ['soffice', '--headless', '--convert-to', 'pdf', '--outdir', tmpdir, tmp_path],
+                [soffice_bin, '--headless', '--convert-to', 'pdf', '--outdir', tmpdir, tmp_path],
                 check=True,
                 capture_output=True
             )
