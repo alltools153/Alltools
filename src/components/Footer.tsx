@@ -1,23 +1,27 @@
 import React from 'react';
 import Link from 'next/link';
-import { Wrench, Shield, Heart, User, CheckCircle2, Lock, Cpu } from 'lucide-react';
+import { Wrench, Shield, Heart, User, CheckCircle2, Lock, Cpu, Sparkles, Layers } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-border bg-card/60 backdrop-blur text-muted-foreground pt-12 pb-8 transition-colors">
+    <footer
+      className="w-full border-t border-border bg-card text-muted-foreground pt-12 pb-8 transition-colors mt-auto"
+      style={{ backgroundColor: 'var(--card)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
+          
           {/* Column 1: Brand & Architect */}
           <div className="lg:col-span-2 space-y-3.5">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground shadow-glow-primary">
-                <Wrench className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-accent to-secondary flex items-center justify-center text-black font-bold shadow-glow-primary">
+                <Wrench className="w-5 h-5 text-black" />
               </div>
-              <span className="text-xl font-bold text-foreground">AllTools</span>
+              <span className="text-xl font-bold text-foreground">AllTools Suite</span>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
-              A clean, modular web utility suite delivering high-precision chronological & planetary age calculations,
-              passive in-server website VAPT security audits, and authentic Bengali Calendar & Panjika almanac.
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-md">
+              A clean, unified multi-tool web platform delivering high-precision chronological & planetary age calculations,
+              passive in-server website VAPT security audits, authentic Bengali Calendar & Panjika almanac, developer micro-tools, and a complete 25+ PDF studio.
             </p>
             <div className="pt-1 text-xs flex items-center gap-2 text-foreground font-medium">
               <span>Lead Architect:</span>
@@ -25,9 +29,9 @@ export default function Footer() {
                 <User className="w-3.5 h-3.5" /> Santanu Batabyal
               </Link>
             </div>
-            <div className="flex flex-wrap items-center gap-2 text-xs">
+            <div className="flex flex-wrap items-center gap-2 text-xs pt-1">
               <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3" /> 100% In-Server Engine
+                <CheckCircle2 className="w-3 h-3" /> 100% In-Server
               </span>
               <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/30 flex items-center gap-1">
                 <Lock className="w-3 h-3" /> Zero 3rd-Party APIs
@@ -38,65 +42,106 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Tools Directory */}
+          {/* Column 2: Flagship & Security Tools */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Current Tools
+              Security &amp; Calculators
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/age-calculator" className="hover:text-primary transition-colors">
-                  🧮 Age & Milestone Calculator
+                <Link href="/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <span>🛡️ Website VAPT Scanner</span>
                 </Link>
               </li>
               <li>
-                <Link href="/vapt-scanner" className="hover:text-primary transition-colors">
-                  🛡️ Website VAPT Scanner
+                <Link href="/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <span>📡 N-Map Port Audit</span>
                 </Link>
               </li>
               <li>
-                <Link href="/bengali-calendar" className="hover:text-primary transition-colors">
-                  📅 বাংলা পঞ্জিকা ও ক্যালেন্ডার
+                <Link href="/age-calculator" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <span>🧮 Age &amp; Planetary Calc</span>
                 </Link>
               </li>
               <li>
-                <Link href="/developer" className="hover:text-primary transition-colors">
-                  👨‍💻 Lead Architect Profile
-                </Link>
-              </li>
-              <li>
-                <Link href="/document-tools" className="hover:text-primary transition-colors">
-                  📁 File Converter
+                <Link href="/bengali-calendar" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <span>📅 বাংলা পঞ্জিকা ১৪৩১-১৪৩৩</span>
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: In-Server Guarantees */}
+          {/* Column 3: Developer & PDF Tools */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
-              Architecture Standards
+              Dev &amp; PDF Tools
             </h4>
             <ul className="space-y-2 text-xs">
-              <li className="flex items-center gap-1.5">
-                <Shield className="w-3.5 h-3.5 text-emerald-400" /> 100% In-Server Processing
+              <li>
+                <Link href="/json-formatter" className="hover:text-primary transition-colors">
+                  ⚡ JSON Formatter &amp; Tree
+                </Link>
               </li>
-              <li className="flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5 text-primary" /> Zero 3rd-Party API Calls
+              <li>
+                <Link href="/regex-tester" className="hover:text-primary transition-colors">
+                  🔍 Regex Tester &amp; VM
+                </Link>
               </li>
-              <li className="flex items-center gap-1.5">
-                <Cpu className="w-3.5 h-3.5 text-accent" /> Zero Tracking & Privacy First
+              <li>
+                <Link href="/jwt-decoder" className="hover:text-primary transition-colors">
+                  🔑 JWT Decoder &amp; Claims
+                </Link>
               </li>
-              <li className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-secondary" /> Extensible for Future Tools
+              <li>
+                <Link href="/document-tools/merge-pdf" className="hover:text-primary transition-colors">
+                  📄 Merge &amp; Split PDF
+                </Link>
+              </li>
+              <li>
+                <Link href="/document-tools/compress-pdf" className="hover:text-primary transition-colors">
+                  🗜️ Compress PDF
+                </Link>
+              </li>
+              <li>
+                <Link href="/document-tools" className="hover:text-primary transition-colors font-semibold text-primary">
+                  📁 Explore 25+ PDF Tools →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Architecture Standards */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+              Architecture &amp; Docs
+            </h4>
+            <ul className="space-y-2 text-xs">
+              <li>
+                <Link href="/api-hub" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <span>⚡ REST API Hub</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/seo-keywords" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <span>🌐 SEO Keywords Index</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/developer" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                  <span>👨‍💻 Developer Profile</span>
+                </Link>
+              </li>
+              <li className="pt-1 text-[11px] text-muted-foreground flex items-center gap-1">
+                <Shield className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Zero Telemetry Policy</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Copyright & Lead Credits */}
-        <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} AllTools Suite. Built with Next.js 14, TypeScript & Python.</p>
+        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+          <p>© {new Date().getFullYear()} AllTools Suite. Built with Next.js 14, TypeScript &amp; Python FastAPI.</p>
           <div className="flex items-center gap-1">
             <span>Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
