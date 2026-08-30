@@ -13,11 +13,12 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/api/py/docforge/:path*',
+        destination: `${(process.env.PYTHON_API_URL || 'https://alltools-c30i.onrender.com').replace(/\/$/, '')}/api/v1/docforge/:path*`,
+      },
+      {
         source: '/api/py/:path*',
-        destination:
-          process.env.NODE_ENV === 'development'
-            ? 'https://alltools-c30i.onrender.com/v1/:path*'
-            : 'https://alltools-c30i.onrender.com/api/v1/:path*',
+        destination: `${(process.env.PYTHON_API_URL || 'https://alltools-c30i.onrender.com').replace(/\/$/, '')}/api/v1/:path*`,
       },
     ];
   },

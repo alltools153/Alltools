@@ -20,7 +20,8 @@ const ACCEPTED_SIGNATURES: Record<string, string[]> = {
   xlsx: ["application/zip"],
   pptx: ["application/zip"],
   txt: [], // plain text has no magic bytes; validated by content heuristics instead
-  html: []
+  html: [],
+  htm: []
 };
 
 export interface ValidatedFile {
