@@ -65,6 +65,15 @@ All 3 projects feature full REST API endpoints with interactive Swagger UI and R
 * **Bengali Date Convert API**: `GET /api/v1/bengali/convert?dateStr=YYYY-MM-DD`
 * **SEO Keywords API**: `GET /api/v1/seo/keywords`
 
+The Next.js frontend proxies `/api/py/*` to the Render backend at
+`https://alltools-c30i.onrender.com/api/v1/*` by default. Set
+`PYTHON_API_URL` on the frontend deployment to use a different backend URL.
+
+Document and PDF Studio routes under `/api/convert/*`, `/api/pdf/*`, and
+`/api/ocr/*` run in the Next.js server. PDF image rendering requires the
+native `canvas` package; Office-to-PDF routes additionally require LibreOffice
+(`soffice`) on the server.
+
 ---
 
 ## 🔍 SEO Strategy & Keywords Matrix

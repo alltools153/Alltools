@@ -20,7 +20,9 @@ export async function fetchAgeData(birthDate: string, targetDate?: string) {
 
   // Fallback to Next.js internal API route
   try {
-    const res = await fetch(`/api/age?birthDate=${encodeURIComponent(birthDate)}`);
+    const params = new URLSearchParams({ birthDate });
+    if (targetDate) params.append('targetDate', targetDate);
+    const res = await fetch(`/api/age?${params.toString()}`);
     if (res.ok) {
       return await res.json();
     }
@@ -100,7 +102,11 @@ export async function fetchSeoKeywords(category?: string, lang?: string) {
   }
 
   try {
-    const res = await fetch('/api/seo');
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (lang) params.append('lang', lang);
+    const query = params.toString();
+    const res = await fetch(`/api/seo${query ? `?${query}` : ''}`);
     if (res.ok) {
       return await res.json();
     }

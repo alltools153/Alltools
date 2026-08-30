@@ -7,5 +7,5 @@ export const POST = createFileHandler(
     const bytes = await htmlToPdf(files[0].buffer.toString("utf-8"));
     return { filename: "converted.pdf", bytes, contentType: contentTypeFor("pdf") };
   },
-  { accept: ["html"], multiple: false }
+  { accept: ["html", "htm"], multiple: false }
 );
