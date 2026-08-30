@@ -98,7 +98,7 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-border bg-card/95 backdrop-blur-xl transition-colors shadow-sm" style={{ backgroundColor: 'var(--card)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-2 sm:gap-4">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-4 lg:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
           
           {/* Left: Brand Logo */}
           <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
@@ -119,7 +119,7 @@ export default function Navbar() {
           </Link>
 
           {/* Center: Desktop Navigation & Mega Menubar */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+          <nav className="hidden lg:flex flex-1 items-center justify-start gap-1 xl:gap-1.5 min-w-0 pl-2">
             
             {/* 1. ALL TOOLS MEGA MENU TRIGGER */}
             <div className="relative" ref={megaMenuRef}>
@@ -509,6 +509,8 @@ export default function Navbar() {
             </div>
 
             {/* Quick Search Button */}
+            <ThemeSwitcher />
+
             <button
               type="button"
               onClick={() => setIsSearchOpen(true)}
@@ -522,9 +524,6 @@ export default function Navbar() {
                 ⌘K
               </kbd>
             </button>
-
-            {/* Theme Switcher with Solid Opaque Background */}
-            <ThemeSwitcher />
 
             {/* Mobile menu button */}
             <button
