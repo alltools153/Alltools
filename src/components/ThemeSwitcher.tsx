@@ -36,7 +36,7 @@ export default function ThemeSwitcher() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 sm:py-2 rounded-xl border border-border bg-card hover:border-primary/60 text-foreground transition-all duration-200 text-xs sm:text-sm shadow-sm cursor-pointer select-none"
+        className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card hover:border-primary/60 text-foreground transition-all duration-200 shadow-sm cursor-pointer select-none"
         style={{ backgroundColor: 'var(--card)' }}
         aria-label="Select Application Theme"
         aria-expanded={isOpen}
@@ -45,8 +45,6 @@ export default function ThemeSwitcher() {
           className="w-3.5 h-3.5 rounded-full border border-white/20 shadow-inner flex-shrink-0"
           style={{ backgroundColor: currentThemeObj.previewAccent }}
         />
-        <span className="font-semibold hidden sm:inline max-w-32 truncate">{currentThemeObj.name}</span>
-        <Palette className="w-4 h-4 text-primary opacity-90" />
       </button>
 
       {isOpen && (
