@@ -28,6 +28,9 @@ import {
   FileStack,
   Lock,
   ArrowRight,
+  TrendingUp,
+  ArrowUpRight,
+  ArrowDownRight,
 } from 'lucide-react';
 import { ALL_TOOLS_CATALOG, TOOL_CATEGORIES } from '@/lib/allToolsList';
 
@@ -86,6 +89,11 @@ export default function Navbar() {
         t.keywords.some((k) => k.toLowerCase().includes(q))
     );
   }, [mobileSearchQuery]);
+
+  const marketTicker = [
+    { name: 'Sensex', value: '81,563', change: '+0.59%' },
+    { name: 'Nifty 50', value: '24,826', change: '+0.62%' },
+  ];
 
   return (
     <>
@@ -461,6 +469,18 @@ export default function Navbar() {
             </div>
 
             <Link
+              href="/stock-market"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all ${
+                pathname === '/stock-market'
+                  ? 'bg-primary text-primary-foreground shadow-glow-primary'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+              }`}
+            >
+              <TrendingUp className="w-4 h-4 text-amber-400" />
+              <span>Market View</span>
+            </Link>
+
+            <Link
               href="/developer"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs xl:text-sm font-medium transition-all ${
                 pathname === '/developer'
@@ -475,7 +495,19 @@ export default function Navbar() {
 
           {/* Right Action Section: Search Button, Theme Switcher & Mobile Menu Toggle */}
           <div className="flex items-center gap-2 sm:gap-3">
-            
+            <div className="hidden xl:flex items-center gap-2 rounded-xl border border-border bg-muted/30 px-2 py-1.5">
+              {marketTicker.map((item) => (
+                <div key={item.name} className="flex items-center gap-1.5 rounded-lg bg-card/80 px-2 py-1">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{item.name}</span>
+                  <span className="text-[10px] font-semibold text-foreground">{item.value}</span>
+                  <span className="inline-flex items-center gap-0.5 text-[9px] font-bold text-emerald-400">
+                    <ArrowUpRight className="h-2.5 w-2.5" />
+                    {item.change}
+                  </span>
+                </div>
+              ))}
+            </div>
+
             {/* Quick Search Button */}
             <button
               type="button"
@@ -721,6 +753,14 @@ export default function Navbar() {
 
               {/* Category 4: System & Resources */}
               <div className="pt-2 border-t border-border flex items-center justify-between">
+                <Link
+                  href="/stock-market"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground p-1"
+                >
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  <span>Market View</span>
+                </Link>
                 <Link
                   href="/api-hub"
                   onClick={() => setMobileMenuOpen(false)}

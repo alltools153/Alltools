@@ -330,6 +330,19 @@ export const ALL_TOOLS_CATALOG: ToolItem[] = [
 
   // 5. System & Resources
   {
+    id: 'stock-market',
+    name: 'Sensex & Nifty 50 Market View',
+    tagline: 'Live-style dashboard covering index movement, performance, and top movers',
+    category: 'System & APIs',
+    categorySlug: 'system',
+    href: '/stock-market',
+    iconName: 'TrendingUp',
+    badge: 'Market Watch',
+    badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+    isPopular: true,
+    keywords: ['sensex', 'nifty 50', 'stock market', 'market view', 'index', 'bse', 'nse', 'trading'],
+  },
+  {
     id: 'api-hub',
     name: 'API Hub & Developer Docs',
     tagline: 'Interactive in-server REST API catalog, test runner & endpoints documentation',
@@ -370,5 +383,5 @@ export const TOOL_CATEGORIES = [
   { slug: 'developer', name: 'Developer Suite', count: 4, iconName: 'Code2', color: 'text-cyan-400' },
   { slug: 'time-culture', name: 'Calculators & Panjika', count: 2, iconName: 'Calendar', color: 'text-amber-400' },
   { slug: 'documents', name: 'Document & PDF Studio', count: 18, iconName: 'FileText', color: 'text-violet-400' },
-  { slug: 'system', name: 'System & Resources', count: 3, iconName: 'Server', color: 'text-sky-400' },
+  { slug: 'system', name: 'System & Resources', count: 4, iconName: 'Server', color: 'text-sky-400' },
 ];
