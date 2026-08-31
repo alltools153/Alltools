@@ -4,6 +4,8 @@ import React from 'react';
 import { RegexTool } from '@/components/RegexTool';
 import { Code2, ShieldCheck } from 'lucide-react';
 
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
+
 export default function RegexTesterPage() {
   return (
     <div className="min-h-screen bg-[#0a0d14] text-slate-100 font-sans selection:bg-[#f72585]/30 selection:text-black pb-20">
@@ -40,6 +42,7 @@ export default function RegexTesterPage() {
       {/* Main Tool Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <RegexTool />
+        <ToolSeoFooter toolSlug="regex-tester" />
       </main>
     </div>
   );

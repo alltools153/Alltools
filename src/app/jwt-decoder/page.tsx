@@ -4,6 +4,8 @@ import React from 'react';
 import { JwtTool } from '@/components/JwtTool';
 import { KeyRound, ShieldCheck } from 'lucide-react';
 
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
+
 export default function JwtDecoderPage() {
   return (
     <div className="min-h-screen bg-[#0a0d14] text-slate-100 font-sans selection:bg-[#a855f7]/30 selection:text-black pb-20">
@@ -40,6 +42,7 @@ export default function JwtDecoderPage() {
       {/* Main Tool Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <JwtTool />
+        <ToolSeoFooter toolSlug="jwt-decoder" />
       </main>
     </div>
   );

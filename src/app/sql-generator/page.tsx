@@ -22,6 +22,7 @@ import {
   Table,
 } from 'lucide-react';
 import { generateSqlFromPrompt, SqlDialect, GeneratedSqlResult } from '@/lib/sqlGeneratorEngine';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 const PROMPT_PRESETS = [
   {
@@ -376,6 +377,7 @@ export default function SqlGeneratorPage() {
           </div>
         )}
 
+        <ToolSeoFooter toolSlug="sql-generator" />
       </div>
     </div>
   );
