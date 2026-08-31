@@ -100,9 +100,9 @@ export function ToolWorkspace({ tool }: { tool: ToolConfig }) {
           type="button"
           onClick={submit}
           disabled={files.length === 0}
-          className="w-full rounded-full bg-forge-500 py-3 text-sm font-medium text-white shadow-soft transition hover:bg-forge-400 disabled:cursor-not-allowed disabled:opacity-40 focus-ring sm:w-auto sm:px-8"
+          className="w-full rounded-2xl bg-primary py-3.5 px-8 text-sm font-bold text-primary-foreground shadow-glow-primary transition-all hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 focus-ring sm:w-auto cursor-pointer"
         >
-          {tool.name}
+          Convert / Process {tool.name}
         </button>
       )}
     </div>
