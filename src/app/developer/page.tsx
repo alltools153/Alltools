@@ -24,6 +24,7 @@ import {
   FileCode2,
   Server,
   Zap,
+  ArrowRight,
 } from 'lucide-react';
 
 export default function DeveloperPage() {
@@ -254,17 +255,14 @@ export default function DeveloperPage() {
           </div>
 
           <div className="space-y-2 pt-2 border-t border-border">
-            <div className="text-xs font-semibold text-foreground">Repository & Source:</div>
-            <a
-              href="https://github.com/alltools153/Alltools.git"
-              target="_blank"
-              rel="noreferrer"
+            <div className="text-xs font-semibold text-foreground">System Documentation:</div>
+            <Link
+              href="/api-hub"
               className="w-full py-2 px-3 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center gap-2 shadow-glow-primary hover:opacity-90"
             >
-              <Github className="w-4 h-4" />
-              <span>GitHub Repository</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+              <span>Explore In-Server APIs &amp; Specs</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </section>

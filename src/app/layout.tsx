@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     'http security headers check',
     'fastapi nextjs developer suite',
   ],
-  authors: [{ name: 'Santanu Batabyal', url: 'https://github.com/alltools153/Alltools' }],
+  authors: [{ name: 'Santanu Batabyal' }],
   creator: 'Santanu Batabyal',
   openGraph: {
     type: 'website',

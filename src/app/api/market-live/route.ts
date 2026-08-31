@@ -40,10 +40,27 @@ export type MarketBreadth = {
   color: string;
 };
 
+export type SectorPerformance = {
+  name: string;
+  change: string;
+  positive: boolean;
+};
+
+export type TopMover = {
+  symbol: string;
+  name: string;
+  price: string;
+  change: string;
+  positive: boolean;
+};
+
 export type MarketPayload = {
   marketSnapshots: MarketSnapshot[];
   sectorHeat: SectorHeat[];
+  sectorPerformance: SectorPerformance[];
   topMovers: StockRow[];
+  topGainers: TopMover[];
+  topLosers: TopMover[];
   watchlist: WatchlistRow[];
   marketBreadth: MarketBreadth[];
   miniTrend: number[];
@@ -207,10 +224,54 @@ async function buildPayloadFromLiveFeed(): Promise<MarketPayload> {
     return clamp(Math.round(base + wave), 20, 100);
   });
 
+  const sectorPerformance: SectorPerformance[] = [
+    { name: 'Banking', change: '+0.78%', positive: true },
+    { name: 'Automobile', change: '+0.54%', positive: true },
+    { name: 'Energy', change: '+0.21%', positive: true },
+    { name: 'IT & Tech', change: '-1.06%', positive: false },
+    { name: 'Pharma', change: '-0.42%', positive: false },
+    { name: 'FMCG', change: '-0.15%', positive: false },
+  ];
+
+  const topGainers: TopMover[] = parsedStocks
+    .filter((s) => s.positive)
+    .slice(0, 4)
+    .map((s) => ({
+      symbol: s.symbol,
+      name: s.name,
+      price: `₹${formatNumber(s.price, 2)}`,
+      change: `+${s.percent.toFixed(2)}%`,
+      positive: true,
+    }));
+
+  const topLosers: TopMover[] = parsedStocks
+    .filter((s) => !s.positive)
+    .slice(0, 4)
+    .map((s) => ({
+      symbol: s.symbol,
+      name: s.name,
+      price: `₹${formatNumber(s.price, 2)}`,
+      change: `${s.percent.toFixed(2)}%`,
+      positive: false,
+    }));
+
   return {
     marketSnapshots,
     sectorHeat,
+    sectorPerformance,
     topMovers,
+    topGainers: topGainers.length ? topGainers : [
+      { symbol: 'TATAMOTORS', name: 'Tata Motors', price: '₹986.40', change: '+3.45%', positive: true },
+      { symbol: 'HDFCBANK', name: 'HDFC Bank', price: '₹1,678.10', change: '+2.12%', positive: true },
+      { symbol: 'RELIANCE', name: 'Reliance Ind.', price: '₹2,940.00', change: '+1.45%', positive: true },
+      { symbol: 'ICICIBANK', name: 'ICICI Bank', price: '₹1,185.30', change: '+1.18%', positive: true },
+    ],
+    topLosers: topLosers.length ? topLosers : [
+      { symbol: 'INFY', name: 'Infosys Ltd', price: '₹1,512.60', change: '-2.35%', positive: false },
+      { symbol: 'TCS', name: 'Tata Consultancy', price: '₹3,845.00', change: '-1.85%', positive: false },
+      { symbol: 'WIPRO', name: 'Wipro Limited', price: '₹478.20', change: '-1.40%', positive: false },
+      { symbol: 'HINDUNILVR', name: 'Hindustan Unilever', price: '₹2,420.50', change: '-0.95%', positive: false },
+    ],
     watchlist,
     marketBreadth,
     miniTrend,
@@ -290,7 +351,27 @@ const buildPayloadFromIndianApi = (payload: any): MarketPayload | null => {
       { sector: 'Pharma', value: 53, color: 'bg-sky-500' },
       { sector: 'Realty', value: 61, color: 'bg-orange-500' },
     ],
+    sectorPerformance: [
+      { name: 'Banking', change: '+0.78%', positive: true },
+      { name: 'Automobile', change: '+0.54%', positive: true },
+      { name: 'Energy', change: '+0.21%', positive: true },
+      { name: 'IT & Tech', change: '-1.06%', positive: false },
+      { name: 'Pharma', change: '-0.42%', positive: false },
+      { name: 'FMCG', change: '-0.15%', positive: false },
+    ],
     topMovers,
+    topGainers: [
+      { symbol: 'TATAMOTORS', name: 'Tata Motors', price: '₹986.40', change: '+3.45%', positive: true },
+      { symbol: 'HDFCBANK', name: 'HDFC Bank', price: '₹1,678.10', change: '+2.12%', positive: true },
+      { symbol: 'RELIANCE', name: 'Reliance Ind.', price: '₹2,940.00', change: '+1.45%', positive: true },
+      { symbol: 'ICICIBANK', name: 'ICICI Bank', price: '₹1,185.30', change: '+1.18%', positive: true },
+    ],
+    topLosers: [
+      { symbol: 'INFY', name: 'Infosys Ltd', price: '₹1,512.60', change: '-2.35%', positive: false },
+      { symbol: 'TCS', name: 'Tata Consultancy', price: '₹3,845.00', change: '-1.85%', positive: false },
+      { symbol: 'WIPRO', name: 'Wipro Limited', price: '₹478.20', change: '-1.40%', positive: false },
+      { symbol: 'HINDUNILVR', name: 'Hindustan Unilever', price: '₹2,420.50', change: '-0.95%', positive: false },
+    ],
     watchlist,
     marketBreadth: [
       { label: 'Advancers', value: 1243, color: 'bg-emerald-500' },

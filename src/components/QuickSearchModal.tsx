@@ -22,6 +22,21 @@ import {
   Globe,
   User,
   ExternalLink,
+  Database,
+  FileCode,
+  Mail,
+  QrCode,
+  Image as ImageIcon,
+  TrendingUp,
+  Binary,
+  Fingerprint,
+  Clock,
+  Lock,
+  Globe2,
+  FileSearch,
+  Receipt,
+  Coins,
+  FileCheck2,
 } from 'lucide-react';
 import { ALL_TOOLS_CATALOG, ToolItem } from '@/lib/allToolsList';
 
@@ -43,6 +58,21 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Radio,
   Globe,
   User,
+  Database,
+  FileCode,
+  Mail,
+  QrCode,
+  ImageIcon,
+  TrendingUp,
+  Binary,
+  Fingerprint,
+  Clock,
+  Lock,
+  Globe2,
+  FileSearch,
+  Receipt,
+  Coins,
+  FileCheck2,
 };
 
 export function QuickSearchModal({ isOpen, onClose }: QuickSearchModalProps) {
