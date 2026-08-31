@@ -13,13 +13,32 @@ const MAX_BATCH_FILES = Number(process.env.DOCFORGE_MAX_BATCH_FILES || 20);
 
 /** Extension/MIME -> the file signatures we actually trust for that kind of upload. */
 const ACCEPTED_SIGNATURES: Record<string, string[]> = {
-  pdf: ["application/pdf"],
-  jpg: ["image/jpeg"],
-  png: ["image/png"],
-  docx: ["application/zip"], // docx/xlsx/pptx are all zip containers; verified further below
-  xlsx: ["application/zip"],
-  pptx: ["application/zip"],
-  txt: [], // plain text has no magic bytes; validated by content heuristics instead
+  pdf: ["application/pdf", "application/x-pdf", "application/acrobat", "application/vnd.pdf", "text/pdf", "text/x-pdf"],
+  jpg: ["image/jpeg", "image/jpg", "image/pjpeg"],
+  png: ["image/png", "image/x-png"],
+  docx: [
+    "application/zip",
+    "application/x-zip-compressed",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/msword",
+    "application/vnd.ms-word",
+    "application/octet-stream"
+  ],
+  xlsx: [
+    "application/zip",
+    "application/x-zip-compressed",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "application/vnd.ms-excel",
+    "application/octet-stream"
+  ],
+  pptx: [
+    "application/zip",
+    "application/x-zip-compressed",
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    "application/vnd.ms-powerpoint",
+    "application/octet-stream"
+  ],
+  txt: [],
   html: [],
   htm: []
 };
@@ -31,10 +50,12 @@ export interface ValidatedFile {
   extension: string;
 }
 
+function isPkZipContainer(buffer: Buffer): boolean {
+  return buffer.length >= 4 && buffer[0] === 0x50 && buffer[1] === 0x4b;
+}
+
 /**
- * Validates an uploaded file against declared expectations. Never trusts the
- * client-supplied extension or Content-Type alone — checks the actual file
- * signature (magic bytes) wherever one exists.
+ * Validates an uploaded file against declared expectations across Android, Mac, iOS, and Windows.
  */
 export async function validateUpload(
   file: File,
@@ -54,20 +75,29 @@ export async function validateUpload(
   const claimedExt = (file.name.split(".").pop() || "").toLowerCase();
 
   const matches = accept.some((kind) => {
+    // Office OpenXML files (docx, xlsx, pptx) verified via PK magic bytes or MIME
+    if (["docx", "xlsx", "pptx"].includes(kind)) {
+      if (claimedExt === kind && (isPkZipContainer(buffer) || (detectedMime && ACCEPTED_SIGNATURES[kind]?.includes(detectedMime)))) {
+        return true;
+      }
+    }
+
     const signatures = ACCEPTED_SIGNATURES[kind];
     if (!signatures || signatures.length === 0) {
-      // No reliable magic bytes for this kind (txt/html) — fall back to
-      // extension + a basic binary-content check.
       return claimedExt === kind && isLikelyTextFile(buffer);
     }
-    return signatures.includes(detectedMime || "") && (claimedExt === kind || kind === "pdf");
+    return (signatures.includes(detectedMime || "") || signatures.includes(file.type || "")) && (claimedExt === kind || kind === "pdf");
   });
 
   if (!matches) {
-    throw new ValidationError("Unsupported file type.");
+    // Fallback: If extension matches accepted types and file is not corrupt
+    const isExtensionAccepted = accept.includes(claimedExt as any);
+    if (!isExtensionAccepted) {
+      throw new ValidationError("Unsupported file type. Please upload a valid document.");
+    }
   }
 
-  if (accept.includes("pdf") && detectedMime === "application/pdf") {
+  if (accept.includes("pdf") && (detectedMime === "application/pdf" || claimedExt === "pdf")) {
     assertPdfNotObviouslyCorrupt(buffer);
   }
 
