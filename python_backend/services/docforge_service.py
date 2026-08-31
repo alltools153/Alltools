@@ -12,14 +12,34 @@ from datetime import datetime
 try:
     from pypdf import PdfWriter, PdfReader
 except ImportError:
-    from PyPDF2 import PdfWriter, PdfReader
+    try:
+        from PyPDF2 import PdfWriter, PdfReader
+    except ImportError:
+        PdfWriter = None
+        PdfReader = None
 
-from PIL import Image, ImageDraw, ImageFont
+try:
+    from PIL import Image, ImageDraw, ImageFont
+except ImportError:
+    Image = None
+    ImageDraw = None
+    ImageFont = None
+
 import os
+
+def _require_pypdf():
+    if PdfWriter is None or PdfReader is None:
+        raise RuntimeError("pypdf (or PyPDF2) is required for this operation. Please install: pip install pypdf")
+
+def _require_pillow():
+    if Image is None:
+        raise RuntimeError("Pillow is required for this operation. Please install: pip install Pillow")
+
 
 # PDF Operations
 def merge_pdfs(pdf_buffers: List[bytes]) -> bytes:
     """Merge multiple PDF files into one"""
+    _require_pypdf()
     writer = PdfWriter()
     
     for pdf_buffer in pdf_buffers:
@@ -38,6 +58,7 @@ def split_pdf(pdf_buffer: bytes, page_ranges: Optional[List[Tuple[int, int]]] = 
     Split PDF into multiple files by page ranges
     Returns dict with page range as key and PDF bytes as value
     """
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     total_pages = len(reader.pages)
     
@@ -68,6 +89,7 @@ def split_pdf(pdf_buffer: bytes, page_ranges: Optional[List[Tuple[int, int]]] = 
 
 def extract_pdf_pages(pdf_buffer: bytes, page_indices: List[int]) -> bytes:
     """Extract specific pages from PDF"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -83,6 +105,7 @@ def extract_pdf_pages(pdf_buffer: bytes, page_indices: List[int]) -> bytes:
 
 def delete_pdf_pages(pdf_buffer: bytes, page_indices: List[int]) -> bytes:
     """Delete specific pages from PDF"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -101,6 +124,7 @@ def rotate_pdf_pages(pdf_buffer: bytes, rotation: int, page_indices: Optional[Li
     Rotate PDF pages by 90, 180, or 270 degrees
     rotation: 90, 180, or 270
     """
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -117,6 +141,7 @@ def rotate_pdf_pages(pdf_buffer: bytes, rotation: int, page_indices: Optional[Li
 
 def reorder_pdf_pages(pdf_buffer: bytes, new_order: List[int]) -> bytes:
     """Reorder PDF pages according to provided indices"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -136,6 +161,7 @@ def crop_pdf_pages(pdf_buffer: bytes, crop_box: Tuple[float, float, float, float
     Crop PDF pages
     crop_box: (left, bottom, right, top) in points
     """
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -153,6 +179,7 @@ def crop_pdf_pages(pdf_buffer: bytes, crop_box: Tuple[float, float, float, float
 
 def compress_pdf(pdf_buffer: bytes) -> bytes:
     """Compress PDF by removing redundant objects"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -168,6 +195,7 @@ def compress_pdf(pdf_buffer: bytes) -> bytes:
 
 def add_watermark(pdf_buffer: bytes, watermark_text: str, opacity: float = 0.3) -> bytes:
     """Add text watermark to PDF pages"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -208,6 +236,7 @@ def _create_watermark_pdf(text: str) -> bytes:
 
 def add_page_numbers(pdf_buffer: bytes, start_num: int = 1, position: str = "bottom-right") -> bytes:
     """Add page numbers to PDF"""
+    _require_pypdf()
     from reportlab.pdfgen import canvas
     from reportlab.lib.pagesizes import letter
     
@@ -235,6 +264,7 @@ def add_page_numbers(pdf_buffer: bytes, start_num: int = 1, position: str = "bot
 
 def protect_pdf(pdf_buffer: bytes, password: str) -> bytes:
     """Add password protection to PDF"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -251,6 +281,7 @@ def protect_pdf(pdf_buffer: bytes, password: str) -> bytes:
 
 def unlock_pdf(pdf_buffer: bytes, password: str) -> bytes:
     """Remove password protection from PDF"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer), password=password)
     writer = PdfWriter()
     
@@ -265,6 +296,7 @@ def unlock_pdf(pdf_buffer: bytes, password: str) -> bytes:
 
 def remove_pdf_metadata(pdf_buffer: bytes) -> bytes:
     """Remove metadata from PDF"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -282,6 +314,7 @@ def remove_pdf_metadata(pdf_buffer: bytes) -> bytes:
 
 def flatten_pdf_forms(pdf_buffer: bytes) -> bytes:
     """Flatten form fields into page content"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     writer = PdfWriter()
     
@@ -296,6 +329,7 @@ def flatten_pdf_forms(pdf_buffer: bytes) -> bytes:
 
 def repair_pdf(pdf_buffer: bytes) -> bytes:
     """Attempt to repair corrupted PDF"""
+    _require_pypdf()
     try:
         reader = PdfReader(BytesIO(pdf_buffer))
         writer = PdfWriter()
@@ -314,6 +348,7 @@ def repair_pdf(pdf_buffer: bytes) -> bytes:
 # Image Conversions
 def images_to_pdf(images: List[Dict[str, Any]]) -> bytes:
     """Convert multiple images (JPG/PNG) to PDF"""
+    _require_pillow()
     from reportlab.pdfgen import canvas
     from reportlab.lib.pagesizes import letter
     
@@ -357,6 +392,7 @@ def pdf_to_images(pdf_buffer: bytes, format: str = 'jpg', dpi: int = 300) -> Dic
 
 def extract_text_from_pdf(pdf_buffer: bytes) -> str:
     """Extract text from PDF"""
+    _require_pypdf()
     reader = PdfReader(BytesIO(pdf_buffer))
     text = ""
     
@@ -543,6 +579,7 @@ def ocr_pdf(pdf_buffer: bytes) -> bytes:
 
 def ocr_image(image_buffer: bytes) -> str:
     """Extract text from image using OCR"""
+    _require_pillow()
     try:
         import pytesseract
     except ImportError:
@@ -554,6 +591,8 @@ def ocr_image(image_buffer: bytes) -> str:
 
 def scan_to_pdf(images: List[Dict[str, Any]]) -> bytes:
     """Convert scanned images to searchable PDF with OCR"""
+    _require_pillow()
+    _require_pypdf()
     try:
         import pytesseract
     except ImportError:

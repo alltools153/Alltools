@@ -1,21 +1,8 @@
 import type { Metadata } from 'next';
+import { constructToolMetadata, TOOLS_METADATA_CONFIG } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Developer Profiles | AllTools',
-  description:
-    'Meet the developers behind AllTools: Santanu Batabyal, Lead Architect, and Saikat Samanta, Full Stack Developer specializing in ReactJS, Node.js, Python, and MongoDB.',
-  keywords: [
-    'santanu batabyal',
-    'principal security architect',
-    'full stack engineer',
-    'alltools creator',
-    'nextjs fastapi developer',
-    'vapt application security engineer',
-    'saikat samanta',
-    'reactjs nodejs python mongodb developer',
-  ],
-};
+export const metadata: Metadata = constructToolMetadata(TOOLS_METADATA_CONFIG['developer']);
 
-export default function DeveloperLayout({ children }: { children: React.ReactNode }) {
-  return children;
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

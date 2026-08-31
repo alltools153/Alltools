@@ -1,12 +1,13 @@
 import { MetadataRoute } from 'next';
 import { ALL_TOOLS_CATALOG } from '@/lib/allToolsList';
+import { TOOLS as PDF_TOOLS } from '@/lib/docforge/tools-config';
 import { SITE_CONFIG } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_CONFIG.url;
   const now = new Date();
 
-  // Root & Hub pages
+  // Root & Category Hub pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
@@ -18,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/document-tools`,
       lastModified: now,
       changeFrequency: 'daily',
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${baseUrl}/dev-tools`,
@@ -46,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Map all tools from the master catalog
+  // Map all standalone tools from the master catalog
   const toolPages: MetadataRoute.Sitemap = ALL_TOOLS_CATALOG.map((tool) => ({
     url: `${baseUrl}${tool.href}`,
     lastModified: now,
@@ -54,11 +55,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: tool.isPopular ? 0.9 : 0.8,
   }));
 
+  // Map all 25+ PDF Studio tools
+  const pdfToolPages: MetadataRoute.Sitemap = PDF_TOOLS.map((tool) => ({
+    url: `${baseUrl}/document-tools/${tool.slug}`,
+    lastModified: now,
+    changeFrequency: 'daily',
+    priority: 0.85,
+  }));
+
   // Deduplicate URLs in case of shared hub links
   const urlSet = new Set<string>();
   const combinedSitemap: MetadataRoute.Sitemap = [];
 
-  for (const page of [...staticPages, ...toolPages]) {
+  for (const page of [...staticPages, ...toolPages, ...pdfToolPages]) {
     if (!urlSet.has(page.url)) {
       urlSet.add(page.url);
       combinedSitemap.push(page);

@@ -1,5 +1,6 @@
 import { rgb, StandardFonts, degrees } from "pdf-lib";
 import { loadPdf } from "./shared";
+import { sanitizeForPdf, drawSafeText, safeWidthOfTextAtSize } from "../pdfSanitizer";
 
 export interface TextWatermarkOptions {
   kind: "text";
@@ -59,12 +60,13 @@ export async function addWatermark(buffer: Buffer, opts: WatermarkOptions): Prom
     const opacity = opts.opacity ?? 0.25;
     const color = opts.color ?? { r: 0.42, g: 0.35, b: 0.9 };
     const rotation = opts.rotationDegrees ?? 45;
-    const textWidth = font.widthOfTextAtSize(opts.text, fontSize);
+    const cleanText = sanitizeForPdf(opts.text || "CONFIDENTIAL");
+    const textWidth = safeWidthOfTextAtSize(font, cleanText, fontSize);
 
     for (const page of pages) {
       const { width, height } = page.getSize();
       const { x, y } = positionFor(opts.position, width, height, textWidth, fontSize);
-      page.drawText(opts.text, {
+      drawSafeText(page, cleanText, {
         x,
         y,
         size: fontSize,

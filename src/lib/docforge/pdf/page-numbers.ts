@@ -1,5 +1,6 @@
 import { rgb, StandardFonts } from "pdf-lib";
 import { loadPdf } from "./shared";
+import { drawSafeText, safeWidthOfTextAtSize } from "../pdfSanitizer";
 
 export type PageNumberPosition =
   | "top-left" | "top-center" | "top-right"
@@ -28,14 +29,14 @@ export async function addPageNumbers(buffer: Buffer, opts: PageNumberOptions): P
       String(n);
 
     const { width } = page.getSize();
-    const textWidth = font.widthOfTextAtSize(label, fontSize);
+    const textWidth = safeWidthOfTextAtSize(font, label, fontSize);
     const margin = 28;
     let x = width / 2 - textWidth / 2;
     if (opts.position.endsWith("left")) x = margin;
     if (opts.position.endsWith("right")) x = width - textWidth - margin;
     const y = opts.position.startsWith("top") ? page.getSize().height - margin : margin - 8;
 
-    page.drawText(label, { x, y, size: fontSize, font, color: rgb(0.2, 0.22, 0.28) });
+    drawSafeText(page, label, { x, y, size: fontSize, font, color: rgb(0.2, 0.22, 0.28) });
   });
 
   return Buffer.from(await doc.save());

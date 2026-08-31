@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getToolBySlug, TOOLS } from "@/lib/docforge/tools-config";
 import { ToolWorkspace } from "@/components/docforge/tool-workspace";
 
+import { constructToolMetadata } from "@/lib/seo";
+
 export function generateStaticParams() {
   return TOOLS.map((t) => ({ tool: t.slug }));
 }
@@ -10,13 +12,13 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { tool: string } }): Metadata {
   const tool = getToolBySlug(params.tool);
   if (!tool) return {};
-  const title = `${tool.name} — ${titleSuffix(tool.outputExt)}`;
-  return {
-    title,
-    description: tool.description,
-    alternates: { canonical: `/document-tools/${tool.slug}` },
-    openGraph: { title, description: tool.description, type: "website" }
-  };
+  return constructToolMetadata({
+    title: `${tool.name} — ${titleSuffix(tool.outputExt)}`,
+    description: tool.description || tool.tagline,
+    path: `/document-tools/${tool.slug}`,
+    category: `PDF Studio • ${tool.category}`,
+    keywords: ['pdf studio', 'document converter', tool.name.toLowerCase(), ...(tool.keywords || [])],
+  });
 }
 
 function titleSuffix(ext: string) {
