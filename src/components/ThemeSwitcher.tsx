@@ -49,7 +49,7 @@ export default function ThemeSwitcher() {
 
       {isOpen && (
         <div
-          className="absolute right-0 mt-2 w-[min(22rem,calc(100vw-1.25rem))] max-w-[calc(100vw-1.25rem)] rounded-2xl border border-border bg-card shadow-2xl z-[100] p-3 sm:p-4 animate-in fade-in zoom-in-95 duration-150"
+          className="fixed sm:absolute right-2 sm:right-0 top-14 sm:top-full mt-2 w-[min(20rem,calc(100vw-1rem))] max-w-[calc(100vw-1rem)] rounded-2xl border border-border bg-card shadow-2xl z-[100] p-3 sm:p-4 animate-in fade-in zoom-in-95 duration-150 origin-top-right"
           style={{ backgroundColor: 'var(--card)' }}
         >
           {/* Header */}

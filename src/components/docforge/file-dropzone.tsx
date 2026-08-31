@@ -32,7 +32,12 @@ export function FileDropzone({ accept, multiple, files, onChange, label }: Props
         return;
       }
 
-      const picked = incoming.map((file) => ({ file, id: `${file.name}-${file.size}-${crypto.randomUUID()}` }));
+      const picked = incoming.map((file) => {
+        const safeId = (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function")
+          ? crypto.randomUUID()
+          : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        return { file, id: `${file.name}-${file.size}-${safeId}` };
+      });
       onChange(multiple ? [...files, ...picked] : picked);
     },
     [files, multiple, onChange]

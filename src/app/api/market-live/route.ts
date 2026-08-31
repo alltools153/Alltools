@@ -54,6 +54,8 @@ export type TopMover = {
   positive: boolean;
 };
 
+import { getIndianMarketStatus } from '@/lib/indianMarket';
+
 export type MarketPayload = {
   marketSnapshots: MarketSnapshot[];
   sectorHeat: SectorHeat[];
@@ -67,6 +69,9 @@ export type MarketPayload = {
   totalMarketCap: string;
   updatedAt: string;
   source: 'indianapi' | 'live_feed';
+  isMarketOpen?: boolean;
+  marketStatus?: 'OPEN' | 'CLOSED' | 'PRE_MARKET';
+  statusText?: string;
 };
 
 const formatNumber = (value: number, digits = 2) =>
@@ -77,8 +82,9 @@ const formatNumber = (value: number, digits = 2) =>
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
-// Helper to add micro second-by-second live jitter so values reflect live tick movements
-const addMicroTick = (val: number, scale = 0.0003): number => {
+// Helper to add micro second-by-second live jitter ONLY when market is open
+const addMicroTick = (val: number, isLiveOpen: boolean, scale = 0.0003): number => {
+  if (!isLiveOpen) return Number(val.toFixed(2));
   const time = Date.now();
   const sinFactor = Math.sin(time / 700) * scale * val;
   const randFactor = (Math.random() - 0.5) * scale * val * 0.4;
@@ -99,7 +105,7 @@ const parseNumber = (value: unknown) => {
   return Number.isFinite(num) ? num : 0;
 };
 
-async function fetchLiveSymbolQuote(symbol: string): Promise<{ price: number; prevClose: number } | null> {
+async function fetchLiveSymbolQuote(symbol: string): Promise<{ price: number; prevClose: number; marketTime?: number } | null> {
   try {
     const url = `https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1m&range=1d`;
     const res = await fetch(url, {
@@ -112,14 +118,18 @@ async function fetchLiveSymbolQuote(symbol: string): Promise<{ price: number; pr
     if (!meta) return null;
     const price = parseNumber(meta.regularMarketPrice);
     const prevClose = parseNumber(meta.chartPreviousClose || meta.previousClose || price);
+    const marketTime = meta.regularMarketTime ? Number(meta.regularMarketTime) * 1000 : undefined;
     if (price <= 0) return null;
-    return { price, prevClose };
+    return { price, prevClose, marketTime };
   } catch (error) {
     return null;
   }
 }
 
 async function buildPayloadFromLiveFeed(): Promise<MarketPayload> {
+  const sessionStatus = getIndianMarketStatus();
+  const isMarketOpen = sessionStatus.isOpen;
+
   const indexSymbols = [
     { name: 'SENSEX', symbol: '^BSESN', fallbackPrice: 76878.98, fallbackPrev: 77264.51 },
     { name: 'NIFTY 50', symbol: '^NSEI', fallbackPrice: 24068.85, fallbackPrev: 24175.65 },
@@ -142,11 +152,21 @@ async function buildPayloadFromLiveFeed(): Promise<MarketPayload> {
     Promise.all(stockSymbols.map((item) => fetchLiveSymbolQuote(item.symbol))),
   ]);
 
+  // Extract latest market timestamp from exchange quote if available
+  const exchangeEpoch = indexResults[0]?.marketTime || indexResults[1]?.marketTime;
+  let formattedExchangeTime = sessionStatus.displayText;
+  if (exchangeEpoch && !isMarketOpen) {
+    const exchangeDate = new Date(exchangeEpoch);
+    const datePart = exchangeDate.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric' });
+    const timePart = exchangeDate.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+    formattedExchangeTime = `Closed • Closed on: ${datePart}, ${timePart} IST`;
+  }
+
   const marketSnapshots: MarketSnapshot[] = indexSymbols.map((item, idx) => {
     const fetched = indexResults[idx];
     const basePrice = fetched?.price ?? item.fallbackPrice;
     const prev = fetched?.prevClose ?? item.fallbackPrev;
-    const livePrice = addMicroTick(basePrice, 0.0002);
+    const livePrice = addMicroTick(basePrice, isMarketOpen, 0.0002);
     const change = livePrice - prev;
     const percent = prev ? (change / prev) * 100 : 0;
     const positive = change >= 0;
@@ -166,7 +186,7 @@ async function buildPayloadFromLiveFeed(): Promise<MarketPayload> {
     const fetched = stockResults[idx];
     const basePrice = fetched?.price ?? item.fallbackPrice;
     const prev = fetched?.prevClose ?? item.fallbackPrev;
-    const livePrice = addMicroTick(basePrice, 0.0003);
+    const livePrice = addMicroTick(basePrice, isMarketOpen, 0.0003);
     const changeVal = livePrice - prev;
     const percent = prev ? (changeVal / prev) * 100 : 0;
     const positive = changeVal >= 0;
@@ -278,10 +298,16 @@ async function buildPayloadFromLiveFeed(): Promise<MarketPayload> {
     totalMarketCap: `₹${(227.4 + Math.sin(nowSec / 10) * 0.8).toFixed(1)}L Cr`,
     updatedAt: new Date().toISOString(),
     source: 'live_feed',
+    isMarketOpen,
+    marketStatus: sessionStatus.status,
+    statusText: formattedExchangeTime,
   };
 }
 
 const buildPayloadFromIndianApi = (payload: any): MarketPayload | null => {
+  const sessionStatus = getIndianMarketStatus();
+  const isMarketOpen = sessionStatus.isOpen;
+
   const idxList = Array.isArray(getNested(payload, 'indices')) ? getNested(payload, 'indices') : [];
   if (!idxList.length) return null;
 
@@ -292,7 +318,7 @@ const buildPayloadFromIndianApi = (payload: any): MarketPayload | null => {
     const changePercent = parseNumber(
       item.percentChange ?? item.percent_change ?? item.changePercent ?? item.day_change_percent ?? item.p_change ?? 0
     );
-    const livePrice = addMicroTick(price, 0.0001);
+    const livePrice = addMicroTick(price, isMarketOpen, 0.0001);
     const positive = change >= 0;
     const trend: MarketSnapshot['trend'] = positive ? 'up' : 'down';
 
@@ -312,7 +338,7 @@ const buildPayloadFromIndianApi = (payload: any): MarketPayload | null => {
     .slice(0, 6)
     .map(([symbol, value]: [string, any]) => {
       const price = parseNumber(value.ltp ?? value.price ?? value.close);
-      const livePrice = addMicroTick(price, 0.0002);
+      const livePrice = addMicroTick(price, isMarketOpen, 0.0002);
       const change = parseNumber(value.day_change ?? value.dayChange ?? 0);
       const positive = change >= 0;
       return {
@@ -327,7 +353,7 @@ const buildPayloadFromIndianApi = (payload: any): MarketPayload | null => {
   const trendingStocks = Array.isArray(marketData?.top_gainers) ? marketData.top_gainers : [];
   const topMovers: StockRow[] = trendingStocks.slice(0, 6).map((stock: any) => {
     const price = parseNumber(stock.price ?? stock.ltp ?? 0);
-    const livePrice = addMicroTick(price, 0.0002);
+    const livePrice = addMicroTick(price, isMarketOpen, 0.0002);
     const change = parseNumber(stock.percent_change ?? stock.percentChange ?? 0);
     const positive = change >= 0;
     return {
@@ -382,6 +408,9 @@ const buildPayloadFromIndianApi = (payload: any): MarketPayload | null => {
     totalMarketCap: payload?.market_cap ?? '₹227.4L Cr',
     updatedAt: new Date().toISOString(),
     source: 'indianapi',
+    isMarketOpen: getIndianMarketStatus().isOpen,
+    marketStatus: getIndianMarketStatus().status,
+    statusText: getIndianMarketStatus().displayText,
   };
 };
 

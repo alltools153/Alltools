@@ -51,6 +51,7 @@ import { THEMES_LIST } from '@/lib/themeConfig';
 import { ALL_TOOLS_CATALOG, TOOL_CATEGORIES, ToolItem } from '@/lib/allToolsList';
 import { getBengaliDate } from '@/lib/bengaliEngine';
 import { calculateChronologicalAge } from '@/lib/ageEngine';
+import { getIndianMarketStatus } from '@/lib/indianMarket';
 
 export default function HomePage() {
   const { theme, setTheme } = useTheme();
@@ -58,6 +59,9 @@ export default function HomePage() {
   // Search state in Hero
   const [heroSearch, setHeroSearch] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('all');
+
+  // Market status (Open / Closed)
+  const [marketStatus, setMarketStatus] = useState(() => getIndianMarketStatus());
 
   // Live market indices state for Indian Stock Market
   const [homeMarket, setHomeMarket] = useState([
@@ -69,6 +73,9 @@ export default function HomePage() {
   useEffect(() => {
     let isMounted = true;
     const fetchHomeMarket = async () => {
+      const currentStatus = getIndianMarketStatus();
+      if (isMounted) setMarketStatus(currentStatus);
+
       try {
         const res = await fetch('/api/market-live', { cache: 'no-store' });
         if (!res.ok) return;
@@ -453,7 +460,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Live Indian Stock Market (Sensex & Nifty 50) Responsive Hero Banner */}
+          {/* Indian Stock Market (Sensex & Nifty 50) Responsive Hero Banner */}
           <div className="max-w-3xl mx-auto pt-2">
             <div className="p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-card/90 backdrop-blur shadow-md">
               <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-border/70">
@@ -461,14 +468,26 @@ export default function HomePage() {
                   <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
                     <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs sm:text-sm font-bold text-foreground">Indian Market Live</span>
-                    <span className="relative inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[9px] font-bold text-emerald-400 uppercase">
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs sm:text-sm font-bold text-foreground">Indian Market</span>
+                    
+                    {marketStatus.isOpen ? (
+                      <span className="relative inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[9px] font-bold text-emerald-400 uppercase">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                        </span>
+                        LIVE
                       </span>
-                      1s Feed
+                    ) : (
+                      <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/15 border border-rose-500/30 px-2 py-0.5 text-[9px] font-bold text-rose-400 uppercase">
+                        <span className="h-1.5 w-1.5 rounded-full bg-rose-500"></span>
+                        CLOSED
+                      </span>
+                    )}
+
+                    <span className="text-[10px] text-muted-foreground font-mono hidden xs:inline">
+                      {marketStatus.isOpen ? `1s Feed` : `Closed • ${marketStatus.istDateFormatted}`}
                     </span>
                   </div>
                 </div>
@@ -1103,7 +1122,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-2.5">
+          {/* Mobile Carousel & Desktop Responsive Grid */}
+          <div className="flex sm:grid overflow-x-auto sm:overflow-visible pb-2 sm:pb-0 gap-2 sm:gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 no-scrollbar scroll-smooth">
             {THEMES_LIST.map((t) => {
               const isSelected = t.id === theme;
               return (
@@ -1111,7 +1131,7 @@ export default function HomePage() {
                   type="button"
                   key={t.id}
                   onClick={() => setTheme(t.id)}
-                  className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between gap-2.5 min-w-0 ${
+                  className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between gap-2 min-w-[130px] sm:min-w-0 flex-shrink-0 sm:flex-shrink ${
                     isSelected
                       ? 'border-primary bg-primary/15 shadow-sm ring-1 ring-primary/40'
                       : 'border-border bg-muted/30 hover:border-primary/40 hover:bg-muted/60'
