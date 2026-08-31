@@ -73,13 +73,13 @@ export default function AgeCalculatorPage() {
     return isNaN(parsed.getTime()) ? new Date() : parsed;
   }, [activeTargetDate, activeTargetTime, isLive, liveNow]);
 
-  // Construct birth Date object
+  // Construct birth Date object (reactive to inputBirthDate & activeBirthDate)
   const birthDateObj = useMemo(() => {
-    if (!activeBirthDate) return new Date(1998, 4, 20, 9, 0, 0);
-    const timeStr = activeBirthTime || '00:00:00';
-    const parsed = new Date(`${activeBirthDate}T${timeStr}`);
+    const bDate = inputBirthDate || activeBirthDate || '1998-05-20';
+    const bTime = inputBirthTime || activeBirthTime || '09:00:00';
+    const parsed = new Date(`${bDate}T${bTime}`);
     return isNaN(parsed.getTime()) ? new Date(1998, 4, 20, 9, 0, 0) : parsed;
-  }, [activeBirthDate, activeBirthTime]);
+  }, [inputBirthDate, inputBirthTime, activeBirthDate, activeBirthTime]);
 
   // Calculate results safely
   const ageResult = useMemo(() => {

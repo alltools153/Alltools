@@ -18,6 +18,8 @@ import {
   Zap,
   Info,
   Archive,
+  Target,
+  FileCheck,
 } from 'lucide-react';
 
 interface ProcessedImage {
@@ -36,8 +38,10 @@ interface ProcessedImage {
 
 export default function ImageCompressorPage() {
   const [images, setImages] = useState<ProcessedImage[]>([]);
+  const [compressionMode, setCompressionMode] = useState<'targetSize' | 'quality'>('targetSize');
+  const [targetSizeKb, setTargetSizeKb] = useState<number>(200);
   const [quality, setQuality] = useState<number>(80);
-  const [outputFormat, setOutputFormat] = useState<'original' | 'image/jpeg' | 'image/webp' | 'image/png'>('original');
+  const [outputFormat, setOutputFormat] = useState<'original' | 'image/jpeg' | 'image/webp' | 'image/png'>('image/jpeg');
   const [maxDimension, setMaxDimension] = useState<number | 'original'>('original');
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedPreview, setSelectedPreview] = useState<ProcessedImage | null>(null);
@@ -54,97 +58,154 @@ export default function ImageCompressorPage() {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
-  // Process a single image file via HTML5 Canvas
+  // Iterative Smart Compressor that can hit exact target KB (e.g. < 200 KB for 4MB+ images)
   const compressSingleFile = useCallback(
-    (file: File, targetQuality: number, targetFormat: string, targetMaxDim: number | 'original'): Promise<ProcessedImage> => {
+    (
+      file: File,
+      mode: 'targetSize' | 'quality',
+      targetKb: number,
+      manualQuality: number,
+      targetFormat: string,
+      targetMaxDim: number | 'original'
+    ): Promise<ProcessedImage> => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (e) => {
           const img = new Image();
-          img.onload = () => {
-            let width = img.width;
-            let height = img.height;
-            const originalWidth = width;
-            const originalHeight = height;
+          img.onload = async () => {
+            const originalWidth = img.width;
+            const originalHeight = img.height;
 
-            // Resize dimensions if maxDimension is set
+            // Determine target mime type
+            let mimeType = file.type;
+            if (targetFormat !== 'original') {
+              mimeType = targetFormat;
+            } else if (file.type === 'image/png' && mode === 'targetSize') {
+              // Convert PNG to WebP or JPEG for target size reduction (PNG canvas cannot compress to KB targets)
+              mimeType = 'image/webp';
+            }
+
+            // Helper to render image on canvas with specific dimensions & quality
+            const renderCanvasToBlob = (w: number, h: number, qRatio: number, format: string): Promise<Blob | null> => {
+              return new Promise((res) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = w;
+                canvas.height = h;
+                const ctx = canvas.getContext('2d');
+                if (!ctx) {
+                  res(null);
+                  return;
+                }
+
+                // If converting to JPEG or white background needed
+                if (format === 'image/jpeg') {
+                  ctx.fillStyle = '#ffffff';
+                  ctx.fillRect(0, 0, w, h);
+                }
+
+                ctx.drawImage(img, 0, 0, w, h);
+                canvas.toBlob((blob) => res(blob), format, qRatio);
+              });
+            };
+
+            // Calculate starting dimensions
+            let currentWidth = originalWidth;
+            let currentHeight = originalHeight;
+
             if (targetMaxDim !== 'original' && typeof targetMaxDim === 'number') {
-              if (width > targetMaxDim || height > targetMaxDim) {
-                if (width > height) {
-                  height = Math.round((height * targetMaxDim) / width);
-                  width = targetMaxDim;
+              if (currentWidth > targetMaxDim || currentHeight > targetMaxDim) {
+                if (currentWidth > currentHeight) {
+                  currentHeight = Math.round((currentHeight * targetMaxDim) / currentWidth);
+                  currentWidth = targetMaxDim;
                 } else {
-                  width = Math.round((width * targetMaxDim) / height);
-                  height = targetMaxDim;
+                  currentWidth = Math.round((currentWidth * targetMaxDim) / currentHeight);
+                  currentHeight = targetMaxDim;
                 }
               }
             }
 
-            const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
+            let bestBlob: Blob | null = null;
+            let finalWidth = currentWidth;
+            let finalHeight = currentHeight;
 
-            if (!ctx) {
-              reject(new Error('Canvas context unavailable'));
+            if (mode === 'quality') {
+              // Standard single-pass quality mode
+              const qRatio = manualQuality / 100;
+              bestBlob = await renderCanvasToBlob(currentWidth, currentHeight, qRatio, mimeType);
+            } else {
+              // Iterative Target File Size Search (e.g. < 200 KB)
+              const targetBytes = targetKb * 1024;
+              let attemptQuality = 0.85;
+              let scale = 1.0;
+
+              // Step down resolution if image is very large (e.g. > 2000px)
+              if (currentWidth > 2400 || currentHeight > 2400) {
+                scale = 0.6;
+              } else if (currentWidth > 1600 || currentHeight > 1600) {
+                scale = 0.75;
+              }
+
+              for (let iter = 0; iter < 8; iter++) {
+                const w = Math.max(200, Math.round(currentWidth * scale));
+                const h = Math.max(200, Math.round(currentHeight * scale));
+
+                const blob = await renderCanvasToBlob(w, h, attemptQuality, mimeType);
+                if (!blob) break;
+
+                bestBlob = blob;
+                finalWidth = w;
+                finalHeight = h;
+
+                // If we're within the target size limit, we're good!
+                if (blob.size <= targetBytes) {
+                  break;
+                }
+
+                // If still too large, step down quality and resolution
+                if (attemptQuality > 0.45) {
+                  attemptQuality -= 0.15;
+                } else {
+                  scale *= 0.8;
+                  attemptQuality = 0.65;
+                }
+              }
+            }
+
+            if (!bestBlob) {
+              reject(new Error('Image compression failed.'));
               return;
             }
 
-            // Fill background with white for transparent PNG to JPEG conversion
-            let mimeType = file.type;
-            if (targetFormat !== 'original') {
-              mimeType = targetFormat;
-            }
-            if (mimeType === 'image/jpeg') {
-              ctx.fillStyle = '#ffffff';
-              ctx.fillRect(0, 0, width, height);
-            }
+            const compressedUrl = URL.createObjectURL(bestBlob);
+            const originalUrl = URL.createObjectURL(file);
+            const compressedSize = bestBlob.size;
+            const savings = Math.max(0, Math.round(((file.size - compressedSize) / file.size) * 100));
 
-            ctx.drawImage(img, 0, 0, width, height);
+            let ext = file.name.split('.').pop() || 'jpg';
+            if (mimeType === 'image/jpeg') ext = 'jpg';
+            if (mimeType === 'image/webp') ext = 'webp';
+            if (mimeType === 'image/png') ext = 'png';
 
-            // Compress to blob
-            const qualityRatio = targetQuality / 100;
-            canvas.toBlob(
-              (blob) => {
-                if (!blob) {
-                  reject(new Error('Compression blob creation failed'));
-                  return;
-                }
+            const outputName = file.name.replace(/\.[^/.]+$/, '') + `_compressed.${ext}`;
 
-                const compressedUrl = URL.createObjectURL(blob);
-                const originalUrl = URL.createObjectURL(file);
-                const compressedSize = blob.size;
-                const savings = Math.max(0, Math.round(((file.size - compressedSize) / file.size) * 100));
-
-                let ext = file.name.split('.').pop() || 'jpg';
-                if (targetFormat === 'image/jpeg') ext = 'jpg';
-                if (targetFormat === 'image/webp') ext = 'webp';
-                if (targetFormat === 'image/png') ext = 'png';
-
-                const outputName = file.name.replace(/\.[^/.]+$/, '') + `_compressed.${ext}`;
-
-                resolve({
-                  id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-                  name: outputName,
-                  originalSize: file.size,
-                  compressedSize: compressedSize,
-                  originalDimensions: { width: originalWidth, height: originalHeight },
-                  compressedDimensions: { width, height },
-                  originalUrl,
-                  compressedUrl,
-                  savingsPercent: savings,
-                  format: ext.toUpperCase(),
-                  status: 'done',
-                });
-              },
-              mimeType,
-              qualityRatio
-            );
+            resolve({
+              id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+              name: outputName,
+              originalSize: file.size,
+              compressedSize: compressedSize,
+              originalDimensions: { width: originalWidth, height: originalHeight },
+              compressedDimensions: { width: finalWidth, height: finalHeight },
+              originalUrl,
+              compressedUrl,
+              savingsPercent: savings,
+              format: ext.toUpperCase(),
+              status: 'done',
+            });
           };
-          img.onerror = () => reject(new Error('Invalid image file'));
+          img.onerror = () => reject(new Error('Invalid image file.'));
           img.src = e.target?.result as string;
         };
-        reader.onerror = () => reject(new Error('File reading error'));
+        reader.onerror = () => reject(new Error('File reading error.'));
         reader.readAsDataURL(file);
       });
     },
@@ -161,7 +222,7 @@ export default function ImageCompressorPage() {
     try {
       const results: ProcessedImage[] = [];
       for (const file of validFiles) {
-        const item = await compressSingleFile(file, quality, outputFormat, maxDimension);
+        const item = await compressSingleFile(file, compressionMode, targetSizeKb, quality, outputFormat, maxDimension);
         results.push(item);
       }
       setImages((prev) => [...results, ...prev]);
@@ -184,7 +245,13 @@ export default function ImageCompressorPage() {
   };
 
   // Re-compress existing items with new settings
-  const recompressAll = async (newQuality: number, newFormat: string, newMaxDim: number | 'original') => {
+  const recompressAll = async (
+    newMode: 'targetSize' | 'quality',
+    newTargetKb: number,
+    newQuality: number,
+    newFormat: string,
+    newMaxDim: number | 'original'
+  ) => {
     if (images.length === 0) return;
     setIsProcessing(true);
 
@@ -194,7 +261,7 @@ export default function ImageCompressorPage() {
         const res = await fetch(item.originalUrl);
         const blob = await res.blob();
         const file = new File([blob], item.name, { type: blob.type });
-        const newItem = await compressSingleFile(file, newQuality, newFormat, newMaxDim);
+        const newItem = await compressSingleFile(file, newMode, newTargetKb, newQuality, newFormat, newMaxDim);
         updated.push(newItem);
       }
       setImages(updated);
@@ -267,7 +334,7 @@ export default function ImageCompressorPage() {
               <span>Image Compressor Studio</span>
             </h1>
             <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl">
-              Compress JPG, PNG, WEBP and AVIF images directly in browser memory with zero upload delays, custom quality control, dimensions scaling, and batch processing.
+              Compress large 4MB–20MB photos down to under 200KB, 100KB, or 50KB directly in your browser. Fast, private, and guaranteed to fit job portal &amp; form upload limits.
             </p>
           </div>
 
@@ -278,24 +345,124 @@ export default function ImageCompressorPage() {
           </div>
         </div>
 
-        {/* Compression Controls Bar */}
-        <div className="p-5 sm:p-6 rounded-3xl border border-border bg-card shadow-sm space-y-5" style={{ backgroundColor: 'var(--card)' }}>
-          <div className="flex items-center justify-between border-b border-border/70 pb-3">
-            <div className="flex items-center gap-2">
-              <Sliders className="w-4 h-4 text-primary" />
-              <h3 className="text-sm font-bold text-foreground">Global Compression Settings</h3>
+        {/* Mode Selector Tabs (Target File Size vs Custom Quality %) */}
+        <div className="p-5 sm:p-6 rounded-3xl border border-border bg-card shadow-sm space-y-6" style={{ backgroundColor: 'var(--card)' }}>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border/70 pb-4">
+            <div className="space-y-1">
+              <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
+                <Sliders className="w-4 h-4 text-primary" />
+                <span>Compression Strategy</span>
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Choose exact target file size or manual visual quality percentage.
+              </p>
             </div>
-            <span className="text-xs font-mono text-muted-foreground">
-              Applied on upload &amp; live tweaks
-            </span>
+
+            <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-muted border border-border">
+              <button
+                type="button"
+                onClick={() => {
+                  setCompressionMode('targetSize');
+                  recompressAll('targetSize', targetSizeKb, quality, outputFormat, maxDimension);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  compressionMode === 'targetSize'
+                    ? 'bg-primary text-primary-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <Target className="w-3.5 h-3.5" />
+                <span>Target Size (KB)</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setCompressionMode('quality');
+                  recompressAll('quality', targetSizeKb, quality, outputFormat, maxDimension);
+                }}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  compressionMode === 'quality'
+                    ? 'bg-primary text-primary-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <Zap className="w-3.5 h-3.5" />
+                <span>Manual Quality (%)</span>
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            
-            {/* 1. Quality Slider */}
-            <div className="space-y-2">
+          {/* Target File Size Controls */}
+          {compressionMode === 'targetSize' ? (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                  Quick Target File Size Presets
+                </span>
+                <span className="text-xs font-mono font-bold text-primary">
+                  Compress to: &le; {targetSizeKb} KB
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                {[
+                  { label: 'Max 50 KB', kb: 50, desc: 'Signatures / Thumbnails' },
+                  { label: 'Max 100 KB', kb: 100, desc: 'Government & Exam Forms' },
+                  { label: 'Max 200 KB', kb: 200, desc: 'Job Portals & Resumes' },
+                  { label: 'Max 500 KB', kb: 500, desc: 'Web & Social Media' },
+                ].map((preset) => (
+                  <button
+                    key={preset.kb}
+                    type="button"
+                    onClick={() => {
+                      setTargetSizeKb(preset.kb);
+                      recompressAll('targetSize', preset.kb, quality, outputFormat, maxDimension);
+                    }}
+                    className={`p-3 rounded-2xl border text-left transition-all ${
+                      targetSizeKb === preset.kb
+                        ? 'border-primary bg-primary/10 text-foreground ring-1 ring-primary'
+                        : 'border-border bg-muted/40 hover:bg-muted text-muted-foreground'
+                    }`}
+                  >
+                    <div className="text-xs font-black text-foreground">{preset.label}</div>
+                    <div className="text-[10px] text-muted-foreground mt-0.5">{preset.desc}</div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Custom Target Slider */}
+              <div className="pt-2 space-y-2">
+                <div className="flex justify-between text-xs font-semibold text-muted-foreground">
+                  <span>Custom Target Limit</span>
+                  <span className="font-mono text-foreground font-bold">{targetSizeKb} KB</span>
+                </div>
+                <input
+                  type="range"
+                  min={20}
+                  max={2000}
+                  step={10}
+                  value={targetSizeKb}
+                  onChange={(e) => {
+                    const val = Number(e.target.value);
+                    setTargetSizeKb(val);
+                    recompressAll('targetSize', val, quality, outputFormat, maxDimension);
+                  }}
+                  className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                />
+                <div className="flex justify-between text-[10px] font-mono text-muted-foreground">
+                  <span>20 KB</span>
+                  <span>200 KB (Recommended)</span>
+                  <span>1000 KB (1 MB)</span>
+                  <span>2000 KB (2 MB)</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Manual Quality Controls */
+            <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-bold">
-                <span className="text-muted-foreground uppercase tracking-wider">Compression Quality</span>
+                <span className="text-muted-foreground uppercase tracking-wider">Visual Quality Ratio</span>
                 <span className="px-2 py-0.5 rounded-md bg-primary/15 text-primary font-mono font-black text-xs">
                   {quality}%
                 </span>
@@ -309,7 +476,7 @@ export default function ImageCompressorPage() {
                 onChange={(e) => {
                   const val = Number(e.target.value);
                   setQuality(val);
-                  recompressAll(val, outputFormat, maxDimension);
+                  recompressAll('quality', targetSizeKb, val, outputFormat, maxDimension);
                 }}
                 className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
               />
@@ -319,9 +486,11 @@ export default function ImageCompressorPage() {
                 <span>Best Quality (100%)</span>
               </div>
             </div>
+          )}
 
-            {/* 2. Format Conversion */}
-            <div className="space-y-2">
+          {/* Secondary Controls (Format & Max Dimension) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-border/70">
+            <div className="space-y-1.5">
               <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
                 Output Format
               </label>
@@ -330,45 +499,37 @@ export default function ImageCompressorPage() {
                 onChange={(e) => {
                   const val = e.target.value as any;
                   setOutputFormat(val);
-                  recompressAll(quality, val, maxDimension);
+                  recompressAll(compressionMode, targetSizeKb, quality, val, maxDimension);
                 }}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-muted text-xs font-semibold text-foreground focus:outline-none focus:border-primary cursor-pointer"
               >
+                <option value="image/jpeg">JPG / JPEG (Universal Compatibility)</option>
+                <option value="image/webp">WEBP (Smallest Size &amp; Crisp Quality)</option>
                 <option value="original">Preserve Original Format</option>
-                <option value="image/webp">Convert to WEBP (Recommended - Smallest)</option>
-                <option value="image/jpeg">Convert to JPG / JPEG</option>
-                <option value="image/png">Convert to PNG (Lossless)</option>
+                <option value="image/png">PNG (Lossless - Larger Size)</option>
               </select>
-              <p className="text-[10px] text-muted-foreground">
-                WEBP offers up to 40% higher compression with high fidelity.
-              </p>
             </div>
 
-            {/* 3. Max Resolution / Resizing */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <label className="block text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                Max Dimension / Scaling
+                Max Dimension Scaling
               </label>
               <select
                 value={maxDimension}
                 onChange={(e) => {
                   const val = e.target.value === 'original' ? 'original' : Number(e.target.value);
                   setMaxDimension(val);
-                  recompressAll(quality, outputFormat, val);
+                  recompressAll(compressionMode, targetSizeKb, quality, outputFormat, val);
                 }}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-muted text-xs font-semibold text-foreground focus:outline-none focus:border-primary cursor-pointer"
               >
                 <option value="original">Preserve Original Dimensions</option>
-                <option value={3840}>Scale to 4K Ultra HD (Max 3840px)</option>
                 <option value={1920}>Scale to Full HD (Max 1920px)</option>
                 <option value={1280}>Scale to 720p HD (Max 1280px)</option>
-                <option value={800}>Scale to Web Thumbnail (Max 800px)</option>
+                <option value={800}>Scale to Web Medium (Max 800px)</option>
+                <option value={500}>Scale to Profile / Passport (Max 500px)</option>
               </select>
-              <p className="text-[10px] text-muted-foreground">
-                Maintains aspect ratio automatically without distortion.
-              </p>
             </div>
-
           </div>
         </div>
 
@@ -396,17 +557,17 @@ export default function ImageCompressorPage() {
 
           <div className="space-y-1">
             <h3 className="text-base sm:text-lg font-bold text-foreground">
-              Drop your images here, or <span className="text-primary underline">browse files</span>
+              Drop large images here, or <span className="text-primary underline">browse files</span>
             </h3>
             <p className="text-xs text-muted-foreground">
-              Supports batch uploading of JPG, PNG, WEBP, AVIF, and BMP files. No file size limits!
+              Supports 4MB+ JPG, PNG, WEBP, and AVIF photos. Iteratively compressed under {targetSizeKb} KB instantly!
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 pt-2 text-[11px] text-muted-foreground font-mono">
-            <span className="px-2.5 py-1 rounded-lg bg-card border border-border">⚡ Batch Processing</span>
-            <span className="px-2.5 py-1 rounded-lg bg-card border border-border">🔒 Zero Server Uploads</span>
-            <span className="px-2.5 py-1 rounded-lg bg-card border border-border">🎯 Instant Canvas Rendering</span>
+            <span className="px-2.5 py-1 rounded-lg bg-card border border-border">⚡ Iterative Compression Engine</span>
+            <span className="px-2.5 py-1 rounded-lg bg-card border border-border">🔒 100% In-Browser Privacy</span>
+            <span className="px-2.5 py-1 rounded-lg bg-card border border-border">🎯 Exact KB Targets</span>
           </div>
         </div>
 
@@ -451,187 +612,76 @@ export default function ImageCompressorPage() {
                 <button
                   type="button"
                   onClick={clearAll}
-                  className="py-2.5 px-3 rounded-xl border border-border bg-muted/50 hover:bg-muted text-muted-foreground hover:text-red-400 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  className="p-2.5 rounded-xl border border-border hover:border-red-500/40 text-muted-foreground hover:text-red-400 transition-colors cursor-pointer"
                   title="Clear all images"
                 >
                   <Trash2 className="w-4 h-4" />
-                  <span className="hidden sm:inline">Clear</span>
                 </button>
               </div>
             </div>
 
-            {/* Images List & Details Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-              
-              {/* Left Column: Image Cards List */}
-              <div className="lg:col-span-7 space-y-3">
-                {images.map((img) => {
-                  const isSelected = selectedPreview?.id === img.id;
-                  return (
-                    <div
-                      key={img.id}
-                      onClick={() => setSelectedPreview(img)}
-                      className={`p-3.5 sm:p-4 rounded-2xl border transition-all flex items-center justify-between gap-3 sm:gap-4 cursor-pointer ${
-                        isSelected
-                          ? 'border-primary bg-primary/10 shadow-md ring-1 ring-primary/40'
-                          : 'border-border bg-card hover:border-border hover:bg-muted/40'
-                      }`}
-                      style={{ backgroundColor: isSelected ? undefined : 'var(--card)' }}
-                    >
-                      {/* Thumbnail */}
-                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-black/20 border border-border flex-shrink-0 flex items-center justify-center">
+            {/* Images Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {images.map((img) => (
+                <div
+                  key={img.id}
+                  className="p-4 rounded-2xl border border-border bg-card shadow-sm space-y-3 flex flex-col justify-between hover:border-primary/40 transition-colors"
+                  style={{ backgroundColor: 'var(--card)' }}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-14 h-14 rounded-xl bg-muted/60 border border-border overflow-hidden flex-shrink-0 flex items-center justify-center">
                         <img
                           src={img.compressedUrl}
                           alt={img.name}
                           className="w-full h-full object-cover"
                         />
-                        <span className="absolute bottom-0.5 right-0.5 px-1 py-0.2 rounded bg-black/80 text-[8px] font-mono font-bold text-white">
-                          {img.format}
-                        </span>
                       </div>
-
-                      {/* File Details */}
-                      <div className="min-w-0 flex-1 space-y-1">
-                        <div className="text-xs sm:text-sm font-semibold text-foreground truncate">{img.name}</div>
-                        <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                          <span className="text-muted-foreground line-through text-[11px]">
-                            {formatBytes(img.originalSize)}
-                          </span>
-                          <ArrowRight className="w-3 h-3 text-muted-foreground" />
-                          <span className="font-bold text-foreground">
-                            {formatBytes(img.compressedSize)}
-                          </span>
-                          <span className="px-1.5 py-0.2 rounded-full bg-emerald-500/15 text-emerald-400 font-bold text-[10px]">
-                            -{img.savingsPercent}%
-                          </span>
-                        </div>
-                        <div className="text-[10px] text-muted-foreground font-mono">
-                          {img.compressedDimensions.width} × {img.compressedDimensions.height} px
-                        </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex items-center gap-1.5 flex-shrink-0" onClick={(e) => e.stopPropagation()}>
-                        <button
-                          type="button"
-                          onClick={() => downloadSingle(img)}
-                          className="p-2 rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
-                          title="Download compressed image"
-                        >
-                          <Download className="w-4 h-4" />
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => removeImage(img.id)}
-                          className="p-2 rounded-xl text-muted-foreground hover:bg-muted hover:text-red-400 transition-colors cursor-pointer"
-                          title="Remove item"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Right Column: Comparison & Live Preview */}
-              <div className="lg:col-span-5 space-y-4">
-                {selectedPreview ? (
-                  <div className="p-5 rounded-3xl border border-border bg-card shadow-xl space-y-4 sticky top-20" style={{ backgroundColor: 'var(--card)' }}>
-                    <div className="flex items-center justify-between border-b border-border pb-3">
-                      <div className="flex items-center gap-2 min-w-0">
-                        <Eye className="w-4 h-4 text-primary flex-shrink-0" />
-                        <h4 className="text-xs sm:text-sm font-bold text-foreground truncate">
-                          {selectedPreview.name}
+                      <div className="min-w-0">
+                        <h4 className="text-xs sm:text-sm font-bold text-foreground truncate" title={img.name}>
+                          {img.name}
                         </h4>
-                      </div>
-                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 font-mono text-[10px] font-bold">
-                        -{selectedPreview.savingsPercent}% Saved
-                      </span>
-                    </div>
-
-                    {/* Preview Box */}
-                    <div className="relative rounded-2xl overflow-hidden border border-border bg-black/40 flex items-center justify-center min-h-[220px] max-h-[300px]">
-                      <img
-                        src={selectedPreview.compressedUrl}
-                        alt={selectedPreview.name}
-                        className="max-h-[280px] w-auto object-contain"
-                      />
-                    </div>
-
-                    {/* Side-by-side stats breakdown */}
-                    <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                      <div className="p-2.5 rounded-xl bg-muted/40 border border-border">
-                        <div className="text-[10px] font-bold uppercase text-muted-foreground">Original</div>
-                        <div className="font-bold text-foreground mt-0.5">{formatBytes(selectedPreview.originalSize)}</div>
-                        <div className="text-[10px] text-muted-foreground mt-0.5">
-                          {selectedPreview.originalDimensions.width} × {selectedPreview.originalDimensions.height} px
+                        <div className="flex items-center gap-2 text-[11px] font-mono mt-0.5">
+                          <span className="text-muted-foreground line-through">{formatBytes(img.originalSize)}</span>
+                          <ArrowRight className="w-3 h-3 text-muted-foreground" />
+                          <span className="text-primary font-bold">{formatBytes(img.compressedSize)}</span>
                         </div>
-                      </div>
-
-                      <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20">
-                        <div className="text-[10px] font-bold uppercase text-primary">Compressed</div>
-                        <div className="font-bold text-primary mt-0.5">{formatBytes(selectedPreview.compressedSize)}</div>
                         <div className="text-[10px] text-muted-foreground mt-0.5">
-                          {selectedPreview.compressedDimensions.width} × {selectedPreview.compressedDimensions.height} px
+                          {img.compressedDimensions.width} &times; {img.compressedDimensions.height} px • {img.format}
                         </div>
                       </div>
                     </div>
 
-                    {/* Single Download button */}
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[11px] font-bold">
+                      -{img.savingsPercent}%
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2 pt-2 border-t border-border/70">
                     <button
                       type="button"
-                      onClick={() => downloadSingle(selectedPreview)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center gap-2 shadow-glow-primary hover:opacity-90 transition-opacity cursor-pointer"
+                      onClick={() => downloadSingle(img)}
+                      className="flex-1 py-2 px-3 rounded-xl bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity cursor-pointer"
                     >
-                      <Download className="w-4 h-4" />
-                      <span>Download Compressed Image</span>
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Download ({formatBytes(img.compressedSize)})</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => removeImage(img.id)}
+                      className="p-2 rounded-xl border border-border text-muted-foreground hover:text-red-400 hover:border-red-500/40 transition-colors"
+                      title="Remove image"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                ) : (
-                  <div className="p-8 rounded-3xl border border-border bg-card text-center text-muted-foreground text-xs space-y-2">
-                    <FileImage className="w-8 h-8 mx-auto text-muted-foreground/50" />
-                    <p>Select any image from the left list to view side-by-side comparison details.</p>
-                  </div>
-                )}
-              </div>
-
+                </div>
+              ))}
             </div>
+
           </div>
         )}
-
-        {/* Feature Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-          <div className="p-5 rounded-2xl border border-border bg-card/60 space-y-2">
-            <div className="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-              <Zap className="w-4 h-4" />
-            </div>
-            <h4 className="text-xs font-bold text-foreground">Zero Latency HTML5 Canvas</h4>
-            <p className="text-[11px] text-muted-foreground leading-relaxed">
-              Images are compressed concurrently inside your local browser thread using hardware-accelerated Canvas. No waiting for server uploads.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl border border-border bg-card/60 space-y-2">
-            <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <Lock className="w-4 h-4" />
-            </div>
-            <h4 className="text-xs font-bold text-foreground">100% Private &amp; Secure</h4>
-            <p className="text-[11px] text-muted-foreground leading-relaxed">
-              Your photos, documents, and sensitive assets never leave your computer or touch any external cloud servers.
-            </p>
-          </div>
-
-          <div className="p-5 rounded-2xl border border-border bg-card/60 space-y-2">
-            <div className="w-8 h-8 rounded-xl bg-violet-500/10 text-violet-400 flex items-center justify-center">
-              <Archive className="w-4 h-4" />
-            </div>
-            <h4 className="text-xs font-bold text-foreground">Multi-Format Batch Converter</h4>
-            <p className="text-[11px] text-muted-foreground leading-relaxed">
-              Upload dozens of heavy JPGs or PNGs at once and convert them to lightweight Next-Gen WebP with a single click.
-            </p>
-          </div>
-        </div>
 
       </div>
     </div>

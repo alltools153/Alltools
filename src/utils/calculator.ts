@@ -691,9 +691,9 @@ export function calculateChineseZodiac(birthDate: Date): ChineseZodiacSign {
   };
 }
 
-export function calculateGeneration(birthDate: Date): GenerationCohort {
+export function calculateGeneration(birthDate: Date | string): GenerationCohort {
   const b = new Date(birthDate);
-  const year = isNaN(b.getTime()) ? 1998 : b.getFullYear();
+  const year = isNaN(b.getTime()) ? new Date().getFullYear() : b.getFullYear();
 
   if (year <= 1927) {
     return {
@@ -737,19 +737,27 @@ export function calculateGeneration(birthDate: Date): GenerationCohort {
     };
   } else if (year <= 2012) {
     return {
-      name: 'Generation Z',
+      name: 'Generation Z (Zoomers)',
       range: '1997 – 2012',
       eraTagline: 'The True Digital Natives',
       definingCharacteristics: ['Mobile-first', 'Socially conscious', 'Entrepreneurial and authentic'],
       iconicTech: 'Touchscreens, Streaming, AI, TikTok, 5G',
     };
-  } else {
+  } else if (year <= 2024) {
     return {
       name: 'Generation Alpha',
-      range: '2013 – 2025+',
+      range: '2013 – 2024',
       eraTagline: 'The AI & Spatial Generation',
       definingCharacteristics: ['AI-immersed from infancy', 'Hyper-connected global view', 'Smart devices integration'],
       iconicTech: 'Generative AI, Autonomous Systems, VR/AR, Smart Assistants',
+    };
+  } else {
+    return {
+      name: 'Generation Beta',
+      range: '2025 – 2039',
+      eraTagline: 'The Quantum & Synthetic Era',
+      definingCharacteristics: ['Born into native AGI & quantum leap', 'Fully automated digital ecosystems', 'Next-century pioneers'],
+      iconicTech: 'Quantum Computing, Neural Interfaces, Space Commercialization',
     };
   }
 }

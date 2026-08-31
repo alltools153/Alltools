@@ -109,19 +109,26 @@ const defaultData: MarketData = {
   source: 'live_feed',
 };
 
+import { getIndianMarketStatus } from '@/lib/indianMarket';
+
 export default function StockMarketPage() {
   const [marketData, setMarketData] = useState<MarketData>(defaultData);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [tickCount, setTickCount] = useState(0);
+  const [currentMarketStatus, setCurrentMarketStatus] = useState(() => getIndianMarketStatus());
 
   useEffect(() => {
     let isMounted = true;
 
-    const loadMarket = async () => {
+    const updateStatusAndData = async () => {
+      // Update market open/closed status in real time
+      const status = getIndianMarketStatus();
+      if (isMounted) setCurrentMarketStatus(status);
+
       try {
         const response = await fetch('/api/market-live', { cache: 'no-store' });
         if (!response.ok) {
-          throw new Error('Failed to fetch live market data');
+          throw new Error('Failed to fetch market data');
         }
         const data = (await response.json()) as MarketData;
 
@@ -130,17 +137,17 @@ export default function StockMarketPage() {
           setTickCount((prev) => prev + 1);
         }
       } catch (error) {
-        console.warn('Live market update notice:', error);
+        console.warn('Market update notice:', error);
       } finally {
         if (isMounted) setIsInitialLoading(false);
       }
     };
 
     // Initial fetch
-    loadMarket();
+    updateStatusAndData();
 
-    // Smooth real-time update polling (2.5s interval to ensure smooth UI without jitter)
-    const interval = window.setInterval(loadMarket, 2500);
+    // Poll every 3 seconds for live streaming when open (or status updates when closed)
+    const interval = window.setInterval(updateStatusAndData, 3000);
     return () => {
       isMounted = false;
       window.clearInterval(interval);
@@ -148,20 +155,6 @@ export default function StockMarketPage() {
   }, []);
 
   const totalMarketCap = useMemo(() => marketData.totalMarketCap || '₹227.4L Cr', [marketData.totalMarketCap]);
-  const statusText = useMemo(() => {
-    if (isInitialLoading) return 'Connecting live feed...';
-    if (marketData.updatedAt) {
-      try {
-        const d = new Date(marketData.updatedAt);
-        const formattedDate = d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-        const formattedTime = d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        return `Live Stream Active • Last Updated: ${formattedDate}, ${formattedTime}`;
-      } catch {
-        return 'Live Stream Active';
-      }
-    }
-    return 'Live Stream Active';
-  }, [isInitialLoading, marketData.updatedAt]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -175,13 +168,23 @@ export default function StockMarketPage() {
               <div className="min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
                   <h1 className="text-xl xs:text-2xl sm:text-3xl font-black tracking-tight">Sensex &amp; Nifty 50 Market View</h1>
-                  <span className="relative inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-400">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  
+                  {/* Status Badge: Green only when LIVE, Rose/Amber when CLOSED */}
+                  {currentMarketStatus.isOpen ? (
+                    <span className="relative inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-emerald-400">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                      LIVE
                     </span>
-                    LIVE FEED
-                  </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-500/40 bg-rose-500/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] text-rose-400">
+                      <span className="h-2 w-2 rounded-full bg-rose-500"></span>
+                      MARKET CLOSED
+                    </span>
+                  )}
+
                   {marketData.source === 'indianapi' && (
                     <span className="rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.14em] text-amber-400 flex items-center gap-1">
                       <Zap className="h-2.5 w-2.5" /> IndianAPI
@@ -189,18 +192,31 @@ export default function StockMarketPage() {
                   )}
                 </div>
                 <p className="mt-1 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Accurate real-time market snapshot for major Indian indices, sector performance, and live price tickers updated seamlessly.
+                  {currentMarketStatus.isOpen
+                    ? 'Accurate real-time market snapshot for major Indian indices, sector performance, and live price tickers.'
+                    : 'Indian Stock Market (NSE / BSE) is currently closed. Showing latest closing session prices.'}
                 </p>
               </div>
             </div>
 
             <div className="flex items-center justify-between sm:justify-start gap-2.5 sm:gap-3 w-full lg:w-auto">
               <div className="rounded-xl sm:rounded-2xl border border-border bg-muted/40 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm text-muted-foreground shadow-inner flex-1 sm:flex-initial">
-                <div className="flex items-center gap-1.5 sm:gap-2 text-foreground">
-                  <Bell className="h-3.5 w-3.5 text-amber-400" />
-                  <span className="font-semibold text-[11px] sm:text-xs uppercase tracking-wider">Live Stream</span>
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  {currentMarketStatus.isOpen ? (
+                    <>
+                      <Zap className="h-3.5 w-3.5 text-emerald-400" />
+                      <span className="font-semibold text-[11px] sm:text-xs uppercase tracking-wider text-emerald-400">Live Stream</span>
+                    </>
+                  ) : (
+                    <>
+                      <Clock className="h-3.5 w-3.5 text-rose-400" />
+                      <span className="font-semibold text-[11px] sm:text-xs uppercase tracking-wider text-rose-400">Market Status</span>
+                    </>
+                  )}
                 </div>
-                <div className="mt-0.5 sm:mt-1 text-[11px] sm:text-xs font-mono">{statusText}</div>
+                <div className="mt-0.5 sm:mt-1 text-[11px] sm:text-xs font-mono text-foreground font-medium">
+                  {currentMarketStatus.displayText}
+                </div>
               </div>
               <Link
                 href="/"

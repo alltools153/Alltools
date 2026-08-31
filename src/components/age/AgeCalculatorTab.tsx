@@ -1,8 +1,7 @@
-'use client';
-
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ChronologicalAgeResult, NextBirthdayInfo } from '../types';
 import { NextBirthdayCard } from './NextBirthdayCard';
+import { calculateGeneration } from '@/utils/calculator';
 import { 
   Calendar, 
   Clock, 
@@ -15,7 +14,8 @@ import {
   Share2,
   RotateCcw,
   CheckCircle2,
-  Calculator
+  Calculator,
+  Users
 } from 'lucide-react';
 
 interface AgeCalculatorTabProps {
@@ -69,6 +69,8 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
     setInputBirthDate(d.toISOString().split('T')[0]);
   };
 
+  const generation = useMemo(() => calculateGeneration(inputBirthDate || '1998-05-20'), [inputBirthDate]);
+
   return (
     <div className="space-y-8">
       {/* Date Input & Submit Form Card */}
@@ -100,7 +102,7 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
                     required
                     value={inputBirthDate}
                     onChange={(e) => setInputBirthDate(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
                   />
                   <span className="text-[10px] text-slate-500 block mt-1">Select date</span>
                 </div>
@@ -110,38 +112,25 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
                     step="1"
                     value={inputBirthTime}
                     onChange={(e) => setInputBirthTime(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
                   />
                   <span className="text-[10px] text-slate-500 block mt-1">Birth time (optional)</span>
                 </div>
               </div>
             </div>
 
-            {/* Age at the Date of (Target Date) */}
+            {/* Target Date */}
             <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 focus-within:border-indigo-500/50 transition-all">
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" /> Age at the Date of
-                </label>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const now = new Date();
-                    setInputTargetDate(now.toISOString().split('T')[0]);
-                    setInputTargetTime(now.toTimeString().split(' ')[0]);
-                  }}
-                  className="text-[11px] text-indigo-400 hover:text-indigo-300 underline"
-                >
-                  Set to Today
-                </button>
-              </div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-purple-400 mb-2 flex items-center gap-1.5">
+                <Clock className="w-4 h-4" /> Age As Of Date (Target)
+              </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <input
                     type="date"
                     value={inputTargetDate}
                     onChange={(e) => setInputTargetDate(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                   />
                   <span className="text-[10px] text-slate-500 block mt-1">Defaults to today</span>
                 </div>
@@ -151,7 +140,7 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
                     step="1"
                     value={inputTargetTime}
                     onChange={(e) => setInputTargetTime(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                   />
                   <span className="text-[10px] text-slate-500 block mt-1">Target time (optional)</span>
                 </div>
@@ -159,22 +148,21 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
             </div>
           </div>
 
-          {/* Quick Presets */}
+          {/* Presets */}
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="text-xs text-slate-400 font-semibold mr-1">Quick Select:</span>
+            <span className="text-xs text-slate-500 mr-1">Quick Presets:</span>
             {[
-              { label: '18 Years', years: 18 },
-              { label: '21 Years', years: 21 },
-              { label: '25 Years', years: 25 },
-              { label: '30 Years', years: 30 },
-              { label: '40 Years', years: 40 },
-              { label: '50 Years', years: 50 },
-            ].map((p, idx) => (
+              { label: 'Born Today', years: 0 },
+              { label: '10 Years Ago', years: 10 },
+              { label: '18 Years Ago', years: 18 },
+              { label: '25 Years Ago', years: 25 },
+              { label: '50 Years Ago', years: 50 },
+            ].map((p) => (
               <button
-                key={idx}
+                key={p.label}
                 type="button"
                 onClick={() => applyPreset(p.years)}
-                className="text-xs px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-all"
+                className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-indigo-600/20 border border-slate-800 hover:border-indigo-500/40 text-slate-400 hover:text-indigo-300 text-xs font-medium transition-all"
               >
                 {p.label}
               </button>
@@ -270,14 +258,21 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
           <div className="glass-card rounded-3xl p-6 sm:p-8 border border-indigo-500/30 bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-indigo-950/30">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
               <div>
-                <span className="text-xs uppercase font-bold tracking-wider text-indigo-400">
-                  Calculated Age
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs uppercase font-bold tracking-wider text-indigo-400">
+                    Calculated Age
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[11px] font-bold flex items-center gap-1">
+                    <Users className="w-3 h-3" />
+                    <span>Cohort: {generation.name} ({generation.range})</span>
+                  </span>
+                </div>
                 <h3 className="text-3xl sm:text-4xl font-black text-white mt-1">
                   <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">
                     {ageResult.years} Years, {ageResult.months} Months, {ageResult.days} Days
                   </span>
                 </h3>
+                <p className="text-xs text-cyan-200/80 font-medium italic mt-1">&ldquo;{generation.eraTagline}&rdquo;</p>
               </div>
 
               <div className="text-left md:text-right text-xs text-slate-400">
