@@ -27,9 +27,24 @@ import {
   Copy,
   Terminal,
   Radio,
-  Clock,
-  ExternalLink,
   Sliders,
+  TrendingUp,
+  ArrowUpRight,
+  ArrowDownRight,
+  Activity,
+  Database,
+  FileCode,
+  Mail,
+  QrCode,
+  Image as ImageIcon,
+  Binary,
+  Fingerprint,
+  Clock,
+  Globe2,
+  FileSearch,
+  Receipt,
+  Coins,
+  FileCheck2,
 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 import { THEMES_LIST } from '@/lib/themeConfig';
@@ -43,6 +58,40 @@ export default function HomePage() {
   // Search state in Hero
   const [heroSearch, setHeroSearch] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('all');
+
+  // Live market indices state for Indian Stock Market
+  const [homeMarket, setHomeMarket] = useState([
+    { name: 'SENSEX', value: '76,878.98', change: '-385.53', percent: '-0.50%', positive: false },
+    { name: 'NIFTY 50', value: '24,068.85', change: '-106.80', percent: '-0.44%', positive: false },
+  ]);
+
+  // Live polling for Nifty & Sensex indices on Home Page
+  useEffect(() => {
+    let isMounted = true;
+    const fetchHomeMarket = async () => {
+      try {
+        const res = await fetch('/api/market-live', { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (isMounted && data?.marketSnapshots?.length) {
+          const sensex = data.marketSnapshots.find((s: any) => s.name?.toUpperCase().includes('SENSEX'));
+          const nifty = data.marketSnapshots.find((s: any) => s.name?.toUpperCase().includes('NIFTY 50') || s.name?.toUpperCase() === 'NIFTY');
+          const list = [];
+          if (sensex) list.push(sensex);
+          if (nifty) list.push(nifty);
+          if (list.length > 0) setHomeMarket(list);
+        }
+      } catch {
+        // silent fallback
+      }
+    };
+    fetchHomeMarket();
+    const interval = setInterval(fetchHomeMarket, 3000);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, []);
 
   // Quick interactive demo states for tools
   const [demoDob, setDemoDob] = useState('1998-08-15');
@@ -184,63 +233,291 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* Quick Launch Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-            <Link
-              href="/json-formatter"
-              className="px-3.5 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 transition-colors"
-            >
-              <FileJson className="w-3.5 h-3.5" />
-              <span>JSON Formatter</span>
-            </Link>
+          {/* 25+ Core Tools Quick Launch Showcase */}
+          <div className="space-y-3 pt-2">
+            <div className="flex items-center justify-between max-w-4xl mx-auto px-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground font-mono flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span>25+ Essential Micro-Tools Directory</span>
+              </span>
+              <span className="text-[11px] text-muted-foreground hidden sm:inline font-mono">
+                Click to launch instantly
+              </span>
+            </div>
 
-            <Link
-              href="/regex-tester"
-              className="px-3.5 py-1.5 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-pink-500/20 transition-colors"
-            >
-              <Code2 className="w-3.5 h-3.5" />
-              <span>Regex Tester</span>
-            </Link>
+            <div className="flex flex-wrap items-center justify-center gap-2 max-w-5xl mx-auto">
+              {/* Developer Tools */}
+              <Link
+                href="/regex-tester"
+                className="px-3 py-1.5 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-pink-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Code2 className="w-3.5 h-3.5" />
+                <span>Regex Tester</span>
+              </Link>
 
-            <Link
-              href="/jwt-decoder"
-              className="px-3.5 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-purple-500/20 transition-colors"
-            >
-              <KeyRound className="w-3.5 h-3.5" />
-              <span>JWT Decoder</span>
-            </Link>
+              <Link
+                href="/json-formatter"
+                className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <FileJson className="w-3.5 h-3.5" />
+                <span>JSON Formatter</span>
+              </Link>
 
-            <Link
-              href="/vapt-scanner"
-              className="px-3.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 transition-colors"
-            >
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>VAPT Scanner</span>
-            </Link>
+              <Link
+                href="/jwt-decoder"
+                className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-purple-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <KeyRound className="w-3.5 h-3.5" />
+                <span>JWT Decoder</span>
+              </Link>
 
-            <Link
-              href="/age-calculator"
-              className="px-3.5 py-1.5 rounded-xl bg-primary/10 border border-primary/30 text-primary font-semibold flex items-center gap-1.5 text-xs hover:bg-primary/20 transition-colors"
-            >
-              <Calculator className="w-3.5 h-3.5" />
-              <span>Age Calculator</span>
-            </Link>
+              <Link
+                href="/sql-generator"
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Database className="w-3.5 h-3.5" />
+                <span>AI SQL Generator</span>
+              </Link>
 
-            <Link
-              href="/bengali-calendar"
-              className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 transition-colors"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>বাংলা পঞ্জিকা</span>
-            </Link>
+              <Link
+                href="/gitignore-generator"
+                className="px-3 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-blue-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <FileCode className="w-3.5 h-3.5" />
+                <span>Git Ignore</span>
+              </Link>
 
-            <Link
-              href="/document-tools"
-              className="px-3.5 py-1.5 rounded-xl bg-violet-500/10 border border-violet-500/30 text-violet-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-violet-500/20 transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              <span>PDF Studio (25+)</span>
-            </Link>
+              <Link
+                href="/base64-encoder-decoder"
+                className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Binary className="w-3.5 h-3.5" />
+                <span>Base64 Codec</span>
+              </Link>
+
+              <Link
+                href="/uuid-generator"
+                className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-purple-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Fingerprint className="w-3.5 h-3.5" />
+                <span>UUID v4</span>
+              </Link>
+
+              <Link
+                href="/cron-expression-generator"
+                className="px-3 py-1.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-indigo-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Clock className="w-3.5 h-3.5" />
+                <span>Cron Generator</span>
+              </Link>
+
+              <Link
+                href="/dns-lookup"
+                className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Globe2 className="w-3.5 h-3.5" />
+                <span>DNS Lookup</span>
+              </Link>
+
+              <Link
+                href="/whois-lookup"
+                className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <FileSearch className="w-3.5 h-3.5" />
+                <span>WHOIS / RDAP</span>
+              </Link>
+
+              {/* Security Tools */}
+              <Link
+                href="/vapt-scanner"
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>VAPT Scanner</span>
+              </Link>
+
+              <Link
+                href="/nmap-scanner"
+                className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Radio className="w-3.5 h-3.5" />
+                <span>Nmap Port Audit</span>
+              </Link>
+
+              <Link
+                href="/ssl-certificate-checker"
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Lock className="w-3.5 h-3.5" />
+                <span>SSL Checker</span>
+              </Link>
+
+              <Link
+                href="/email-security"
+                className="px-3 py-1.5 rounded-xl bg-violet-500/10 border border-violet-500/30 text-violet-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-violet-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>SPF / DKIM / DMARC</span>
+              </Link>
+
+              <Link
+                href="/password-generator"
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <KeyRound className="w-3.5 h-3.5" />
+                <span>Password Gen</span>
+              </Link>
+
+              <Link
+                href="/password-strength-checker"
+                className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Shield className="w-3.5 h-3.5" />
+                <span>Password Entropy</span>
+              </Link>
+
+              {/* Utility & AI Tools */}
+              <Link
+                href="/resume-ats-checker"
+                className="px-3 py-1.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-indigo-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <FileCheck2 className="w-3.5 h-3.5" />
+                <span>Resume ATS Checker</span>
+              </Link>
+
+              <Link
+                href="/age-calculator"
+                className="px-3 py-1.5 rounded-xl bg-primary/10 border border-primary/30 text-primary font-semibold flex items-center gap-1.5 text-xs hover:bg-primary/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Calculator className="w-3.5 h-3.5" />
+                <span>Age Calculator</span>
+              </Link>
+
+              <Link
+                href="/bengali-calendar"
+                className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+                <span>বাংলা পঞ্জিকা</span>
+              </Link>
+
+              <Link
+                href="/qr-generator"
+                className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-purple-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <QrCode className="w-3.5 h-3.5" />
+                <span>QR Generator</span>
+              </Link>
+
+              <Link
+                href="/image-compressor"
+                className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <ImageIcon className="w-3.5 h-3.5" />
+                <span>Image Compressor</span>
+              </Link>
+
+              {/* Finance Tools */}
+              <Link
+                href="/stock-market"
+                className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <TrendingUp className="w-3.5 h-3.5" />
+                <span>Sensex &amp; Nifty Live</span>
+              </Link>
+
+              <Link
+                href="/gst-calculator"
+                className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Receipt className="w-3.5 h-3.5" />
+                <span>GST Calculator</span>
+              </Link>
+
+              <Link
+                href="/sip-calculator"
+                className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <Coins className="w-3.5 h-3.5" />
+                <span>SIP Calculator</span>
+              </Link>
+
+              {/* PDF Studio Suite */}
+              <Link
+                href="/document-tools"
+                className="px-3 py-1.5 rounded-xl bg-violet-500/10 border border-violet-500/30 text-violet-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-violet-500/20 hover:scale-105 transition-all shadow-sm"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>PDF Studio (25+ Tools)</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Live Indian Stock Market (Sensex & Nifty 50) Responsive Hero Banner */}
+          <div className="max-w-3xl mx-auto pt-2">
+            <div className="p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-amber-500/30 bg-card/90 backdrop-blur shadow-md">
+              <div className="flex items-center justify-between gap-2 pb-2 mb-2 border-b border-border/70">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
+                    <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs sm:text-sm font-bold text-foreground">Indian Market Live</span>
+                    <span className="relative inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 text-[9px] font-bold text-emerald-400 uppercase">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                      </span>
+                      1s Feed
+                    </span>
+                  </div>
+                </div>
+
+                <Link
+                  href="/stock-market"
+                  className="text-[10px] sm:text-xs font-bold text-primary hover:underline flex items-center gap-1"
+                >
+                  <span>Full View</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+
+              {/* Mobile-Fitted 2-Card Index Grid for SENSEX & NIFTY 50 */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                {homeMarket.map((item) => (
+                  <Link
+                    key={item.name}
+                    href="/stock-market"
+                    className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-border/80 bg-muted/20 hover:border-amber-500/50 hover:bg-muted/40 transition-all flex flex-col justify-between gap-1.5 group shadow-sm text-left"
+                  >
+                    <div className="flex items-center justify-between text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      <span className="truncate">{item.name}</span>
+                      <span
+                        className={`inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold font-mono flex-shrink-0 ${
+                          item.positive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-red-500/15 text-red-400'
+                        }`}
+                      >
+                        {item.positive ? <ArrowUpRight className="w-2.5 h-2.5" /> : <ArrowDownRight className="w-2.5 h-2.5" />}
+                        {item.percent}
+                      </span>
+                    </div>
+
+                    <div className="flex items-baseline justify-between gap-1 flex-wrap">
+                      <div className="text-sm xs:text-base sm:text-xl lg:text-2xl font-black font-mono text-foreground tracking-tight">
+                        {item.value}
+                      </div>
+                      <div
+                        className={`text-[9px] sm:text-xs font-mono font-medium ${
+                          item.positive ? 'text-emerald-400' : 'text-red-400'
+                        }`}
+                      >
+                        {item.change}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Key Metrics Strip */}
@@ -684,7 +961,7 @@ export default function HomePage() {
               <span>Complete Tools Directory</span>
             </h2>
             <p className="text-xs text-muted-foreground">
-              Browse all 30+ in-server & client-side micro-applications by category.
+              Browse all 40+ in-server &amp; client-side micro-applications by category.
             </p>
           </div>
 
@@ -808,21 +1085,25 @@ export default function HomePage() {
 
       {/* 6. INTERACTIVE THEME SHOWCASE STRIP */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-8 rounded-3xl border border-border bg-card shadow-sm space-y-5" style={{ backgroundColor: 'var(--card)' }}>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border bg-card shadow-sm space-y-4 sm:space-y-5" style={{ backgroundColor: 'var(--card)' }}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
             <div>
-              <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
-                <Palette className="w-5 h-5 text-primary" />
+              <h3 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
+                <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 <span>Live Theme Switcher</span>
               </h3>
-              <p className="text-xs text-muted-foreground">
-                Click any palette below to instantly switch the entire application look.
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Tap any palette below to instantly switch the entire application look across all tools.
               </p>
             </div>
-            <span className="text-xs font-mono text-muted-foreground">Current: {THEMES_LIST.find((t) => t.id === theme)?.name}</span>
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-xs font-mono font-bold text-primary">
+                Active: {THEMES_LIST.find((t) => t.id === theme)?.name}
+              </span>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5">
+          <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-2.5">
             {THEMES_LIST.map((t) => {
               const isSelected = t.id === theme;
               return (
@@ -830,24 +1111,32 @@ export default function HomePage() {
                   type="button"
                   key={t.id}
                   onClick={() => setTheme(t.id)}
-                  className={`p-3 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between gap-3 ${
+                  className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between gap-2.5 min-w-0 ${
                     isSelected
-                      ? 'border-primary bg-primary/15 shadow-sm'
+                      ? 'border-primary bg-primary/15 shadow-sm ring-1 ring-primary/40'
                       : 'border-border bg-muted/30 hover:border-primary/40 hover:bg-muted/60'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div
-                      className="w-6 h-6 rounded-lg border border-white/20 flex items-center justify-center shadow-inner"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl border border-white/20 flex items-center justify-center shadow-inner flex-shrink-0"
                       style={{ backgroundColor: t.previewBg }}
                     >
-                      <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: t.previewAccent }} />
+                      <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full" style={{ backgroundColor: t.previewAccent }} />
                     </div>
-                    {isSelected && <Check className="w-3.5 h-3.5 text-primary" />}
+                    {isSelected ? (
+                      <span className="rounded-full bg-primary text-primary-foreground p-0.5 shadow-sm">
+                        <Check className="w-3 h-3" />
+                      </span>
+                    ) : (
+                      <span className="text-[9px] font-mono text-muted-foreground opacity-60">
+                        {t.isDark ? 'Dark' : 'Light'}
+                      </span>
+                    )}
                   </div>
-                  <div>
-                    <div className="text-xs font-bold text-foreground truncate">{t.name}</div>
-                    <div className="text-[10px] text-muted-foreground truncate">{t.isDark ? 'Dark Mode' : 'Light Mode'}</div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-bold text-foreground truncate leading-snug">{t.name}</div>
+                    <div className="text-[10px] text-muted-foreground truncate leading-tight mt-0.5">{t.tagline}</div>
                   </div>
                 </button>
               );
@@ -883,16 +1172,14 @@ export default function HomePage() {
               <span>Developer Profile</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <a
-              href="https://github.com/alltools153/Alltools.git"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/api-hub"
               className="px-5 py-3 rounded-2xl border border-border bg-card hover:bg-muted text-foreground font-semibold text-sm flex items-center gap-2 transition-colors whitespace-nowrap"
               style={{ backgroundColor: 'var(--card)' }}
             >
-              <span>GitHub Source</span>
-              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
-            </a>
+              <span>Explore All APIs</span>
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+            </Link>
           </div>
         </div>
       </section>
