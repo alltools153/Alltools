@@ -274,7 +274,14 @@ export function bengaliToGregorianDate(
 
   const mIdx = ((bengaliMonthIndex % 12) + 12) % 12;
   const monthStart = startDates[mIdx];
-  const targetDate = new Date(monthStart.getTime() + (bengaliDay - 1) * 86400000);
+  const targetDate = new Date(
+    monthStart.getFullYear(),
+    monthStart.getMonth(),
+    monthStart.getDate() + (bengaliDay - 1),
+    12,
+    0,
+    0
+  );
   return targetDate;
 }
 

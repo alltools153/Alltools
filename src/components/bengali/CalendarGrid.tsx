@@ -19,6 +19,7 @@ import {
 import { BENGALI_MONTHS, WEEKDAYS, toBengaliDigits } from '@/lib/constants/panjikaData';
 import { DayPanjika, Language, LocationConfig, Numerals } from '@/types/panjika';
 import { getBengaliDate, getDayPanjika, getMonthCalendarDays, getBengaliMonthCalendarDays } from '@/lib/panjikaEngine';
+import { AUSPICIOUS_CEREMONY_DATES } from '@/lib/festivalsData';
 import { AlponaBorderDivider, DiyaFlameIcon, MangalGhatIcon, ShankhaIcon } from './AlponaMotifs';
 
 interface CalendarGridProps {
@@ -326,7 +327,9 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
             const isPurnima = panjikaDay.tithi.nameBn === 'পূর্ণিমা';
             const isAmavasya = panjikaDay.tithi.nameBn === 'অমাবস্যা';
             const hasFestivals = panjikaDay.festivals.length > 0;
-            const isMarriageDate = panjikaDay.bengaliDate.monthIndex === 7 && [3, 8, 15].includes(panjikaDay.bengaliDate.day);
+            const isMarriageDate =
+              AUSPICIOUS_CEREMONY_DATES.some((a) => a.category === 'bibaho' && a.gregorianDateStr === panjikaDay.dateStr) ||
+              (panjikaDay.bengaliDate.monthIndex === 7 && [4, 9, 16].includes(panjikaDay.bengaliDate.day));
 
             // Filter logic
             if (activeFilter === 'marriage' && !isMarriageDate) return null;
@@ -338,7 +341,7 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
               <div
                 key={panjikaDay.dateStr}
                 onClick={() => onSelectDate(panjikaDay.gregorianDate)}
-                className={`min-h-[58px] sm:min-h-[105px] md:min-h-[120px] p-1 sm:p-2 md:p-2.5 rounded-lg sm:rounded-2xl border sm:border-2 cursor-pointer transition-all duration-200 flex flex-col justify-between relative group ${
+                className={`min-h-[72px] xs:min-h-[82px] sm:min-h-[105px] md:min-h-[120px] p-1 sm:p-2 md:p-2.5 rounded-xl sm:rounded-2xl border sm:border-2 cursor-pointer transition-all duration-200 flex flex-col justify-between relative group ${
                   isSelected
                     ? 'border-[#8B0000] bg-[#FDE8E8] dark:bg-[#3D1420] shadow-royal-gold scale-[1.02] z-10'
                     : isToday
@@ -348,9 +351,9 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
               >
                 {/* Top Row: Large English Date & Subscript Bengali Day */}
                 <div className="flex items-start justify-between">
-                  {/* Large English Date (e.g. "22") */}
+                  {/* Large English Date (e.g. "31") */}
                   <span
-                    className={`font-sans text-xs sm:text-xl md:text-2xl font-black leading-none ${
+                    className={`font-sans text-sm sm:text-xl md:text-2xl font-black leading-none ${
                       panjikaDay.gregorianDate.getDay() === 0
                         ? 'text-red-700 dark:text-red-400'
                         : 'text-[#2B080C] dark:text-[#FDFBF7]'
@@ -359,18 +362,18 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                     {gDay}
                   </span>
 
-                  {/* Subscript Bengali Date (Desktop: "৭ ভাদ্র", Mobile: "৭") */}
+                  {/* Subscript Bengali Date (e.g. "১৪ ভাদ্র" or "১৪") */}
                   <span className="hidden sm:inline-block text-[11px] font-serif font-bold text-[#8B0000] dark:text-[#E5C158] bg-[#F5EBE1] dark:bg-[#2B1220] px-1.5 py-0.5 rounded-md border border-[#D4AF37]/30">
                     {toBengaliDigits(panjikaDay.bengaliDate.day)} {panjikaDay.bengaliDate.monthNameBn}
                   </span>
-                  <span className="sm:hidden text-[9px] font-serif font-bold text-[#8B0000] dark:text-[#E5C158] bg-[#F5EBE1]/80 dark:bg-[#2B1220]/80 px-1 py-0.2 rounded border border-[#D4AF37]/30 leading-none">
+                  <span className="sm:hidden text-[9px] xs:text-[10px] font-serif font-bold text-[#8B0000] dark:text-[#E5C158] bg-[#F5EBE1]/90 dark:bg-[#2B1220]/90 px-1 py-0.5 rounded border border-[#D4AF37]/30 leading-none">
                     {toBengaliDigits(panjikaDay.bengaliDate.day)}
                   </span>
                 </div>
 
                 {/* Middle Row: Subscript Tithi Badge */}
                 <div className="my-0.5 sm:my-1 min-w-0">
-                  <div className="text-[8px] sm:text-[11px] font-medium text-[#8B0000] dark:text-[#FEF3C7] truncate font-serif flex items-center space-x-0.5 sm:space-x-1">
+                  <div className="text-[8px] xs:text-[9px] sm:text-[11px] font-medium text-[#8B0000] dark:text-[#FEF3C7] truncate font-serif flex items-center space-x-0.5 sm:space-x-1">
                     {isPurnima ? <span>🌕</span> : isAmavasya ? <span>🌑</span> : isEkadashi ? <span>🍃</span> : null}
                     <span className="truncate">{panjikaDay.tithi.nameBn}</span>
                   </div>
@@ -379,44 +382,27 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
                   </div>
                 </div>
 
-                {/* Bottom Row / Badges */}
-                {/* Mobile: compact indicators */}
-                <div className="sm:hidden flex items-center gap-0.5 overflow-hidden">
+                {/* Bottom Row / Festival & Auspicious Badges (Clean and visible on BOTH Mobile & Desktop) */}
+                <div className="space-y-0.5">
                   {hasFestivals && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 shrink-0" title={panjikaDay.festivals[0].nameBn} />
-                  )}
-                  {isMarriageDate && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" title="শুভ বিবাহ" />
-                  )}
-                  {isEkadashi && !hasFestivals && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" title="একাদশী" />
-                  )}
-                  {isPurnima && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0" title="পূর্ণিমা" />
-                  )}
-                  {isAmavasya && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" title="অমাবস্যা" />
-                  )}
-                </div>
-
-                {/* Desktop: full badges */}
-                <div className="hidden sm:block space-y-0.5">
-                  {hasFestivals && (
-                    <div className="bg-[#8B0000] text-white text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-md truncate shadow-sm flex items-center space-x-1">
-                      <span>🌺</span>
+                    <div
+                      className="bg-[#8B0000] text-white text-[7.5px] xs:text-[8.5px] sm:text-[10px] font-bold px-1 sm:px-1.5 py-0.5 rounded sm:rounded-md truncate shadow-sm flex items-center space-x-0.5 sm:space-x-1"
+                      title={panjikaDay.festivals[0].nameBn}
+                    >
+                      <span className="shrink-0">🌺</span>
                       <span className="truncate">{panjikaDay.festivals[0].nameBn}</span>
                     </div>
                   )}
 
                   {isMarriageDate && !hasFestivals && (
-                    <div className="bg-emerald-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md truncate">
-                      💍 শুভ বিবাহ লগ্ন
+                    <div className="bg-emerald-700 text-white text-[7.5px] xs:text-[8.5px] sm:text-[9px] font-bold px-1 sm:px-1.5 py-0.5 rounded sm:rounded-md truncate">
+                      💍 শুভ বিবাহ
                     </div>
                   )}
 
                   {isEkadashi && !hasFestivals && (
-                    <div className="bg-amber-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md truncate">
-                      🍃 একাদশী উপবাস
+                    <div className="bg-amber-600 text-white text-[7.5px] xs:text-[8.5px] sm:text-[9px] font-bold px-1 sm:px-1.5 py-0.5 rounded sm:rounded-md truncate">
+                      🍃 একাদশী
                     </div>
                   )}
                 </div>

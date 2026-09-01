@@ -138,6 +138,41 @@ export const LivePanjikaWidget: React.FC<LivePanjikaWidgetProps> = ({
           </div>
         </div>
 
+        {/* Today's Festival Highlight Banner (Mobile & Desktop) */}
+        {panjika.festivals && panjika.festivals.length > 0 && (
+          <div className="mt-3 sm:mt-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#8B0000] via-[#9B111E] to-[#6A0404] text-white border-2 border-[#D4AF37] shadow-lg flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+            <div className="flex items-center space-x-2.5 min-w-0">
+              <div className="p-1.5 sm:p-2 rounded-xl bg-[#FEF08A] text-[#6A0404] shadow font-bold shrink-0 text-base">
+                🌺
+              </div>
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-[#FEF08A] uppercase tracking-wide">
+                    {isBn ? 'আজকের বিশেষ উৎসব ও পর্ব' : "TODAY'S SPECIAL FESTIVAL"}
+                  </span>
+                  {panjika.festivals[0].isPublicHoliday && (
+                    <span className="text-[9px] bg-red-800 text-white px-1.5 py-0.2 rounded font-semibold">
+                      {isBn ? 'ছুটি' : 'Holiday'}
+                    </span>
+                  )}
+                </div>
+                <div className="text-sm sm:text-base font-serif font-bold text-white mt-0.5 truncate">
+                  {panjika.festivals[0].nameBn}
+                </div>
+                <p className="text-[11px] sm:text-xs text-gray-200 line-clamp-1">
+                  {panjika.festivals[0].descriptionBn}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onOpenDetails}
+              className="text-xs font-bold bg-[#FEF08A] text-[#6A0404] hover:bg-white px-3 py-1.5 rounded-xl shadow transition shrink-0 text-center active:scale-95"
+            >
+              {isBn ? 'উৎসবের নির্ঘণ্ট →' : 'View Timings →'}
+            </button>
+          </div>
+        )}
+
         {/* Live Active Muhurat Alert Ribbon */}
         <div className="mt-3 sm:mt-4 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-emerald-900/10 via-emerald-800/15 to-teal-900/10 dark:from-emerald-950/40 dark:to-teal-950/40 border border-emerald-600/40 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
           <div className="flex items-center space-x-2.5 min-w-0">
