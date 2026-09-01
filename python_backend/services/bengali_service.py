@@ -137,12 +137,12 @@ def get_bengali_date(dt: Optional[datetime] = None, time_zone: str = "Asia/Kolka
         date(ref_year, 5, 16), # Jyoishtho (May 16)
         date(ref_year, 6, 16), # Asharh (Jun 16)
         date(ref_year, 7, 18), # Srabon (Jul 18)
-        date(ref_year, 8, 18), # Bhadro (Aug 18)
-        date(ref_year, 9, 18), # Ashwin (Sep 18)
-        date(ref_year, 10, 18), # Kartik (Oct 18)
-        date(ref_year, 11, 17), # Agrahayan (Nov 17)
-        date(ref_year, 12, 17), # Poush (Dec 17)
-        date(ref_year + 1, 1, 16), # Magh (Jan 16)
+        date(ref_year, 8, 19), # Bhadro (Aug 19) -> Sept 1 is 14 Bhadro
+        date(ref_year, 9, 19), # Ashwin (Sep 19)
+        date(ref_year, 10, 19), # Kartik (Oct 19)
+        date(ref_year, 11, 18), # Agrahayan (Nov 18)
+        date(ref_year, 12, 18), # Poush (Dec 18)
+        date(ref_year + 1, 1, 17), # Magh (Jan 17)
         date(ref_year + 1, 2, 15), # Falgun (Feb 15)
         date(ref_year + 1, 3, 16), # Choitro (Mar 16)
     ]
