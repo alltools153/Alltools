@@ -40,7 +40,7 @@ export interface BengaliDate {
   monthIndex: number;
   monthNameEn: string;
   monthNameBn: string;
-  year: number; // e.g. 1431, 1432
+  year: number; // e.g. 1431, 1432, 1433
   yearBn: string;
   ritu: BengaliRitu;
   barEn: string;
@@ -51,6 +51,13 @@ export interface BengaliDate {
   tripurabdo: number;
   formattedBn: string;
   formattedEn: string;
+  dayBn?: string;
+  sakabdoBn?: string;
+  seasonBn?: string;
+  periodBn?: string;
+  tithiBn?: string;
+  pakshaBn?: string;
+  nakshatraBn?: string;
 }
 
 export interface TithiInfo {

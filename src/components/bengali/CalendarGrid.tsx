@@ -18,7 +18,13 @@ import {
 } from 'lucide-react';
 import { BENGALI_MONTHS, WEEKDAYS, toBengaliDigits } from '@/lib/constants/panjikaData';
 import { DayPanjika, Language, LocationConfig, Numerals } from '@/types/panjika';
-import { getBengaliDate, getDayPanjika, getMonthCalendarDays, getBengaliMonthCalendarDays } from '@/lib/panjikaEngine';
+import {
+  getBengaliDate,
+  getDayPanjika,
+  getMonthCalendarDays,
+  getBengaliMonthCalendarDays,
+  getZonedCalendarDate,
+} from '@/lib/panjikaEngine';
 import { AUSPICIOUS_CEREMONY_DATES } from '@/lib/festivalsData';
 import { AlponaBorderDivider, DiyaFlameIcon, MangalGhatIcon, ShankhaIcon } from './AlponaMotifs';
 
@@ -44,12 +50,15 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   // Navigation mode: 'gregorian' (Jan-Dec) vs 'bengali' (Boishakh-Choitro)
   const [navMode, setNavMode] = useState<'gregorian' | 'bengali'>('gregorian');
 
+  const tz = location?.timezone || 'Asia/Kolkata';
+  const initialZoned = getZonedCalendarDate(selectedDate, tz);
+
   // Gregorian view state
-  const [viewYear, setViewYear] = useState(selectedDate.getFullYear());
-  const [viewMonth, setViewMonth] = useState(selectedDate.getMonth()); // 0-11
+  const [viewYear, setViewYear] = useState(initialZoned.year);
+  const [viewMonth, setViewMonth] = useState(initialZoned.month); // 0-11
 
   // Bengali view state dynamically initialized from selectedDate
-  const initialBDate = getBengaliDate(selectedDate);
+  const initialBDate = getBengaliDate(selectedDate, 'surya_siddhanta', tz);
   const [bengaliMonthIndex, setBengaliMonthIndex] = useState(initialBDate.monthIndex);
   const [bengaliYear, setBengaliYear] = useState(initialBDate.year);
 
@@ -72,12 +81,12 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
 
   if (navMode === 'gregorian') {
     monthDays = getMonthCalendarDays(viewYear, viewMonth, location);
-    firstDayWeekday = new Date(viewYear, viewMonth, 1).getDay();
+    firstDayWeekday = new Date(Date.UTC(viewYear, viewMonth, 1, 12, 0, 0)).getUTCDay();
     const midDay = monthDays[Math.min(14, monthDays.length - 1)];
     const bnMonth = midDay?.bengaliDate.monthNameBn || '';
     const bnYr = midDay?.bengaliDate.year || 1433;
     headerTitleBn = `${gregorianMonthNamesBn[viewMonth]} ${viewYear}`;
-    headerSubtitle = `${bnMonth} ${toBengaliDigits(bnYr)} বঙ্গাব্দ (${midDay?.bengaliDate.ritu.nameBn})`;
+    headerSubtitle = `${bnMonth} ${toBengaliDigits(bnYr)} বঙ্গাব্দ (${midDay?.bengaliDate.ritu?.nameBn || 'শরৎ'})`;
   } else {
     // Exact authentic Bengali Month calendar days (1st to 30th/31st of this Bengali month)
     const res = getBengaliMonthCalendarDays(bengaliYear, bengaliMonthIndex, location);
@@ -126,13 +135,13 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   };
 
   const handleJumpToday = () => {
-    const today = new Date();
-    setViewYear(today.getFullYear());
-    setViewMonth(today.getMonth());
-    const bToday = getBengaliDate(today);
+    const todayZoned = getZonedCalendarDate(new Date(), tz);
+    setViewYear(todayZoned.year);
+    setViewMonth(todayZoned.month);
+    const bToday = getBengaliDate(new Date(), 'surya_siddhanta', tz);
     setBengaliMonthIndex(bToday.monthIndex);
     setBengaliYear(bToday.year);
-    onSelectDate(today);
+    onSelectDate(new Date(Date.UTC(todayZoned.year, todayZoned.month, todayZoned.day, 12, 0, 0)));
   };
 
   return (

@@ -22,7 +22,7 @@ export const PrintCalendarView: React.FC<PrintCalendarViewProps> = ({
   const midDay = monthDays[Math.min(14, monthDays.length - 1)];
   const monthNameBn = midDay?.bengaliDate.monthNameBn || '';
   const bongabdoYear = midDay?.bengaliDate.year || 1433;
-  const firstDayWeekday = new Date(year, monthIndex, 1).getDay();
+  const firstDayWeekday = new Date(Date.UTC(year, monthIndex, 1, 12, 0, 0)).getUTCDay();
 
   return (
     <div className="p-8 bg-white text-black max-w-4xl mx-auto border-4 border-[#8b0000] rounded-xl font-serif">

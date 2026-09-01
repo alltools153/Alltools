@@ -49,7 +49,7 @@ import {
 import { useTheme } from '@/components/ThemeProvider';
 import { THEMES_LIST } from '@/lib/themeConfig';
 import { ALL_TOOLS_CATALOG, TOOL_CATEGORIES, ToolItem } from '@/lib/allToolsList';
-import { getBengaliDate } from '@/lib/bengaliEngine';
+import { getBengaliDate } from '@/lib/panjikaEngine';
 import { calculateChronologicalAge } from '@/lib/ageEngine';
 import { getIndianMarketStatus } from '@/lib/indianMarket';
 
@@ -109,10 +109,10 @@ export default function HomePage() {
   const [quickAgeResult, setQuickAgeResult] = useState<any>(null);
   const [bengaliToday, setBengaliToday] = useState<any>(null);
 
-  // Compute live calculations for demos
+  // Compute live calculations for demos using centralized engine with IST (Asia/Kolkata)
   useEffect(() => {
     setQuickAgeResult(calculateChronologicalAge(demoDob));
-    setBengaliToday(getBengaliDate(new Date()));
+    setBengaliToday(getBengaliDate(new Date(), 'surya_siddhanta', 'Asia/Kolkata'));
   }, [demoDob]);
 
   // JSON formatter quick demo
