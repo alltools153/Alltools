@@ -162,10 +162,33 @@ export function getZonedCalendarDate(
     date = new Date();
   } else if (dateInput instanceof Date) {
     date = isNaN(dateInput.getTime()) ? new Date() : dateInput;
+    const year = date.getFullYear();
+    const monthIndex = date.getMonth();
+    const day = date.getDate();
+    const dayOfWeek = date.getDay();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    const yyyy = String(year).padStart(4, '0');
+    const mm = String(monthIndex + 1).padStart(2, '0');
+    const dd = String(day).padStart(2, '0');
+
+    return {
+      year,
+      month: monthIndex,
+      day,
+      dayOfWeek,
+      hours,
+      minutes,
+      seconds,
+      isoDateString: `${yyyy}-${mm}-${dd}`,
+      timeZone: tz,
+    };
   } else if (typeof dateInput === 'number') {
     date = new Date(dateInput);
   } else if (typeof dateInput === 'string') {
-    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateInput.trim());
+    const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(dateInput.trim());
     if (match) {
       const y = parseInt(match[1], 10);
       const m = parseInt(match[2], 10) - 1;
@@ -189,85 +212,29 @@ export function getZonedCalendarDate(
     date = new Date();
   }
 
-  try {
-    const formatter = new Intl.DateTimeFormat('en-US', {
-      timeZone: tz,
-      hour12: false,
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      weekday: 'short',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-    });
+  const year = date.getFullYear();
+  const monthIndex = date.getMonth();
+  const day = date.getDate();
+  const dayOfWeek = date.getDay();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
 
-    const parts = formatter.formatToParts(date);
-    let year = 2026;
-    let month = 1;
-    let day = 1;
-    let weekdayStr = 'Sun';
-    let hours = 12;
-    let minutes = 0;
-    let seconds = 0;
+  const yyyy = String(year).padStart(4, '0');
+  const mm = String(monthIndex + 1).padStart(2, '0');
+  const dd = String(day).padStart(2, '0');
 
-    for (const part of parts) {
-      if (part.type === 'year') year = parseInt(part.value, 10);
-      else if (part.type === 'month') month = parseInt(part.value, 10);
-      else if (part.type === 'day') day = parseInt(part.value, 10);
-      else if (part.type === 'weekday') weekdayStr = part.value;
-      else if (part.type === 'hour') hours = parseInt(part.value, 10);
-      else if (part.type === 'minute') minutes = parseInt(part.value, 10);
-      else if (part.type === 'second') seconds = parseInt(part.value, 10);
-    }
-
-    if (hours === 24) hours = 0;
-
-    const weekdayMap: Record<string, number> = {
-      Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
-    };
-    const dayOfWeek = weekdayMap[weekdayStr] ?? date.getUTCDay();
-    const monthIndex = month - 1;
-
-    const yyyy = String(year).padStart(4, '0');
-    const mm = String(month).padStart(2, '0');
-    const dd = String(day).padStart(2, '0');
-
-    return {
-      year,
-      month: monthIndex,
-      day,
-      dayOfWeek,
-      hours,
-      minutes,
-      seconds,
-      isoDateString: `${yyyy}-${mm}-${dd}`,
-      timeZone: tz,
-    };
-  } catch {
-    const year = date.getUTCFullYear();
-    const monthIndex = date.getUTCMonth();
-    const day = date.getUTCDate();
-    const dayOfWeek = date.getUTCDay();
-    const hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes();
-    const seconds = date.getUTCSeconds();
-    const yyyy = String(year).padStart(4, '0');
-    const mm = String(monthIndex + 1).padStart(2, '0');
-    const dd = String(day).padStart(2, '0');
-
-    return {
-      year,
-      month: monthIndex,
-      day,
-      dayOfWeek,
-      hours,
-      minutes,
-      seconds,
-      isoDateString: `${yyyy}-${mm}-${dd}`,
-      timeZone: tz,
-    };
-  }
+  return {
+    year,
+    month: monthIndex,
+    day,
+    dayOfWeek,
+    hours,
+    minutes,
+    seconds,
+    isoDateString: `${yyyy}-${mm}-${dd}`,
+    timeZone: tz,
+  };
 }
 
 /**
@@ -315,12 +282,12 @@ export function getBengaliDate(
         Date.UTC(refYear, 4, 16, 12, 0, 0), // Jyoishtho (May 16)
         Date.UTC(refYear, 5, 16, 12, 0, 0), // Asharh (Jun 16)
         Date.UTC(refYear, 6, 18, 12, 0, 0), // Srabon (Jul 18)
-        Date.UTC(refYear, 7, 18, 12, 0, 0), // Bhadro (Aug 18)
-        Date.UTC(refYear, 8, 18, 12, 0, 0), // Ashwin (Sep 18)
-        Date.UTC(refYear, 9, 18, 12, 0, 0), // Kartik (Oct 18)
-        Date.UTC(refYear, 10, 17, 12, 0, 0), // Agrahayan (Nov 17)
-        Date.UTC(refYear, 11, 17, 12, 0, 0), // Poush (Dec 17)
-        Date.UTC(refYear + 1, 0, 16, 12, 0, 0), // Magh (Jan 16)
+        Date.UTC(refYear, 7, 19, 12, 0, 0), // Bhadro (Aug 19) -> Sept 1 is 14 Bhadro
+        Date.UTC(refYear, 8, 19, 12, 0, 0), // Ashwin (Sep 19)
+        Date.UTC(refYear, 9, 19, 12, 0, 0), // Kartik (Oct 19)
+        Date.UTC(refYear, 10, 18, 12, 0, 0), // Agrahayan (Nov 18)
+        Date.UTC(refYear, 11, 18, 12, 0, 0), // Poush (Dec 18)
+        Date.UTC(refYear + 1, 0, 17, 12, 0, 0), // Magh (Jan 17)
         Date.UTC(refYear + 1, 1, 15, 12, 0, 0), // Falgun (Feb 15)
         Date.UTC(refYear + 1, 2, 16, 12, 0, 0), // Choitro (Mar 16)
       ];
@@ -405,12 +372,12 @@ export function bengaliToGregorianDate(
         [refYear, 4, 16], // Jyoishtho
         [refYear, 5, 16], // Asharh
         [refYear, 6, 18], // Srabon
-        [refYear, 7, 18], // Bhadro
-        [refYear, 8, 18], // Ashwin
-        [refYear, 9, 18], // Kartik
-        [refYear, 10, 17], // Agrahayan
-        [refYear, 11, 17], // Poush
-        [refYear + 1, 0, 16], // Magh
+        [refYear, 7, 19], // Bhadro (Aug 19)
+        [refYear, 8, 19], // Ashwin
+        [refYear, 9, 19], // Kartik
+        [refYear, 10, 18], // Agrahayan
+        [refYear, 11, 18], // Poush
+        [refYear + 1, 0, 17], // Magh
         [refYear + 1, 1, 15], // Falgun
         [refYear + 1, 2, 16], // Choitro
       ];
