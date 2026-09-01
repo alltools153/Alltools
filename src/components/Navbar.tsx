@@ -815,18 +815,18 @@ export default function Navbar() {
             </div>
 
             {/* 6. Finance Tools Dropdown */}
-            <div className="relative">
+            <div className="relative flex-shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveDropdown(activeDropdown === 'fin' ? null : 'fin')}
-                className={`flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full border text-[11px] sm:text-xs xl:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap min-w-[88px] shadow-sm ${
                   activeDropdown === 'fin' || pathname.startsWith('/stock-market') || pathname.startsWith('/gst') || pathname.startsWith('/sip')
-                    ? 'bg-primary/15 text-primary'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                    ? 'border-primary/40 bg-primary/10 text-primary shadow-glow-primary/10'
+                    : 'border-border bg-card/85 text-muted-foreground hover:text-foreground hover:bg-muted/80'
                 }`}
               >
-                <TrendingUp className="w-3.5 h-3.5 text-amber-400" />
-                <span>Finance</span>
+                <TrendingUp className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                <span className="leading-none">Finance</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeDropdown === 'fin' ? 'rotate-180 text-primary' : 'text-muted-foreground'}`} />
               </button>
 
@@ -907,7 +907,7 @@ export default function Navbar() {
           <div className="flex items-center gap-1.5 sm:gap-2.5">
             {/* Live Sensex & Nifty Index Indicator (Pure Informative Display - No Hyperlink / Zero Collision) */}
             <div
-              className="hidden 2xl:flex items-center gap-1.5 rounded-xl border border-border bg-muted/20 px-2.5 py-1 select-none"
+              className="hidden 2xl:flex items-center gap-1.5 rounded-full border border-border bg-card/90 px-2.5 py-1.5 shadow-sm select-none flex-shrink-0 ml-1"
               title="Real-Time Indian Stock Market Indices"
             >
               <div className="flex items-center gap-1 pr-1 border-r border-border/70">
@@ -918,7 +918,7 @@ export default function Navbar() {
                 <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider">Live</span>
               </div>
               {liveIndices.map((item) => (
-                <div key={item.name} className="flex items-center gap-1 rounded-lg bg-card/90 px-1.5 py-0.5 border border-border/50">
+                <div key={item.name} className="flex items-center gap-1 rounded-full border border-border/70 bg-card/95 px-1.5 py-0.5">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
                     {item.name === 'NIFTY 50' ? 'NIFTY' : item.name}
                   </span>

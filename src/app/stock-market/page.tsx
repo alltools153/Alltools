@@ -266,6 +266,8 @@ export default function StockMarketPage() {
           </section>
 
           <section className="grid gap-6 xl:grid-cols-[1.35fr_0.95fr]">
+            {/* Temporarily disabled until the graph version is ready */}
+            {/*
             <div className="rounded-2xl sm:rounded-3xl border border-border bg-card p-4 sm:p-5 shadow-sm">
               <div className="flex items-center justify-between gap-3">
                 <div>
@@ -307,6 +309,7 @@ export default function StockMarketPage() {
                 </div>
               </div>
             </div>
+            */}
 
             <div className="rounded-2xl sm:rounded-3xl border border-border bg-card p-4 sm:p-5 shadow-sm">
               <div className="flex items-center justify-between gap-3">

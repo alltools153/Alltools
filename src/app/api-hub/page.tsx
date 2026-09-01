@@ -341,17 +341,7 @@ export default function ApiHubPage() {
               </div>
             )}
 
-            {/* Execute Button */}
-            <div className="pt-2">
-              <button
-                onClick={runTestRequest}
-                disabled={loading}
-                className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center gap-2 shadow-glow-primary hover:opacity-90 disabled:opacity-50"
-              >
-                {loading ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
-                <span>{loading ? 'Executing API Request...' : 'Send Live Request'}</span>
-              </button>
-            </div>
+            {/* Execute Button intentionally hidden for now */}
           </div>
 
           {/* Response Payload Viewer */}
