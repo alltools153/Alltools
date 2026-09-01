@@ -1,6 +1,6 @@
 export type Language = 'bn' | 'en';
 export type Numerals = 'bn' | 'en';
-export type CalculationMethod = 'surya_siddhanta' | 'drik_siddhanta';
+export type CalculationMethod = 'surya_siddhanta' | 'drik_siddhanta' | 'bangladesh_academy';
 export type ThemeMode = 'parchment' | 'crimson' | 'dark';
 
 export interface LocationConfig {

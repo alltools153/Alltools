@@ -55,34 +55,43 @@ export function getBengaliDate(date: Date = new Date()): BengaliDateInfo {
   const dayOfWeek = date.getDay();
 
   let bengaliYear = gYear - 593;
-  if (gMonth < 3 || (gMonth === 3 && gDay < 14)) {
+  let refYear = gYear;
+  if (gMonth < 3 || (gMonth === 3 && gDay < 15)) {
     bengaliYear = gYear - 594;
+    refYear = gYear - 1;
   }
 
-  let pbDate = new Date(bengaliYear + 593, 3, 14);
-  if (date < pbDate) {
-    pbDate = new Date(bengaliYear + 592, 3, 14);
-  }
+  // Traditional Bengali Panjika month transitions (0 = Boishakh ... 11 = Choitro)
+  const startDates = [
+    new Date(refYear, 3, 15, 12, 0, 0), // Boishakh (Apr 15)
+    new Date(refYear, 4, 16, 12, 0, 0), // Jyoishtho (May 16)
+    new Date(refYear, 5, 16, 12, 0, 0), // Asharh (Jun 16)
+    new Date(refYear, 6, 18, 12, 0, 0), // Srabon (Jul 18)
+    new Date(refYear, 7, 18, 12, 0, 0), // Bhadro (Aug 18)
+    new Date(refYear, 8, 18, 12, 0, 0), // Ashwin (Sep 18)
+    new Date(refYear, 9, 18, 12, 0, 0), // Kartik (Oct 18)
+    new Date(refYear, 10, 17, 12, 0, 0), // Agrahayan (Nov 17)
+    new Date(refYear, 11, 17, 12, 0, 0), // Poush (Dec 17)
+    new Date(refYear + 1, 0, 16, 12, 0, 0), // Magh (Jan 16)
+    new Date(refYear + 1, 1, 15, 12, 0, 0), // Falgun (Feb 15)
+    new Date(refYear + 1, 2, 16, 12, 0, 0), // Choitro (Mar 16)
+  ];
 
-  const diffTime = date.getTime() - pbDate.getTime();
-  let daysDiff = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const currentNoon = new Date(gYear, gMonth, gDay, 12, 0, 0);
 
-  const monthLengths = [31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30, 30];
-  const isLeap = (gYear % 4 === 0 && gYear % 100 !== 0) || gYear % 400 === 0;
-  if (isLeap) monthLengths[10] = 31;
-
-  let monthIndex = 0;
-  let remainingDays = daysDiff;
-
-  for (let i = 0; i < monthLengths.length; i++) {
-    if (remainingDays < monthLengths[i]) {
+  let monthIndex = 11;
+  for (let i = 0; i < 11; i++) {
+    if (currentNoon < startDates[i + 1]) {
       monthIndex = i;
       break;
     }
-    remainingDays -= monthLengths[i];
   }
 
-  const bengaliDay = remainingDays + 1;
+  const monthStart = startDates[monthIndex];
+  const diffMs = currentNoon.getTime() - monthStart.getTime();
+  const daysDiff = Math.round(diffMs / (1000 * 60 * 60 * 24));
+  const bengaliDay = daysDiff + 1;
+
   const monthInfo = BENGALI_MONTHS[monthIndex];
   const weekdayInfo = WEEKDAYS_BN[dayOfWeek];
 
