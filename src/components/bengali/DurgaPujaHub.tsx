@@ -25,8 +25,8 @@ interface DurgaPujaHubProps {
 export const DurgaPujaHub: React.FC<DurgaPujaHubProps> = ({ language, numerals }) => {
   const isBn = language === 'bn';
 
-  // Target date for Durga Shashthi 2026 (October 16, 2026)
-  const targetDate = new Date(2026, 9, 16, 6, 0, 0);
+  // Target timestamp for Durga Shashthi 2026 (October 16, 2026, 06:00:00 AM IST)
+  const targetTimestamp = Date.UTC(2026, 9, 16, 0, 30, 0);
 
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
@@ -41,8 +41,7 @@ export const DurgaPujaHub: React.FC<DurgaPujaHubProps> = ({ language, numerals }
 
   useEffect(() => {
     const calculateTime = () => {
-      const now = new Date();
-      const diff = targetDate.getTime() - now.getTime();
+      const diff = targetTimestamp - Date.now();
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);

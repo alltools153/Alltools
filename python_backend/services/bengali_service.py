@@ -105,37 +105,59 @@ FESTIVALS_DB = [
     }
 ]
 
-def get_bengali_date(dt: datetime) -> Dict[str, Any]:
+def get_bengali_date(dt: Optional[datetime] = None, time_zone: str = "Asia/Kolkata") -> Dict[str, Any]:
+    if dt is None:
+        try:
+            import zoneinfo
+            tz = zoneinfo.ZoneInfo(time_zone)
+            dt = datetime.now(tz)
+        except Exception:
+            dt = datetime.now()
+    elif dt.tzinfo is not None:
+        try:
+            import zoneinfo
+            tz = zoneinfo.ZoneInfo(time_zone)
+            dt = dt.astimezone(tz)
+        except Exception:
+            pass
+
     g_year = dt.year
     g_month = dt.month
     g_day = dt.day
 
     b_year = g_year - 593
-    if g_month < 4 or (g_month == 4 and g_day < 14):
+    ref_year = g_year
+    if g_month < 4 or (g_month == 4 and g_day < 15):
         b_year = g_year - 594
+        ref_year = g_year - 1
 
-    # Calculate day offset from April 14
-    pb_date = datetime(b_year + 593, 4, 14)
-    if dt < pb_date:
-        pb_date = datetime(b_year + 592, 4, 14)
+    # Traditional Surya Siddhanta month starting dates (0 = Boishakh ... 11 = Choitro)
+    start_dates = [
+        date(ref_year, 4, 15), # Boishakh (Apr 15)
+        date(ref_year, 5, 16), # Jyoishtho (May 16)
+        date(ref_year, 6, 16), # Asharh (Jun 16)
+        date(ref_year, 7, 18), # Srabon (Jul 18)
+        date(ref_year, 8, 18), # Bhadro (Aug 18)
+        date(ref_year, 9, 18), # Ashwin (Sep 18)
+        date(ref_year, 10, 18), # Kartik (Oct 18)
+        date(ref_year, 11, 17), # Agrahayan (Nov 17)
+        date(ref_year, 12, 17), # Poush (Dec 17)
+        date(ref_year + 1, 1, 16), # Magh (Jan 16)
+        date(ref_year + 1, 2, 15), # Falgun (Feb 15)
+        date(ref_year + 1, 3, 16), # Choitro (Mar 16)
+    ]
 
-    days_diff = (dt.date() - pb_date.date()).days
-    month_lengths = [31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30, 30]
-
-    # Leap year for Falgun
-    is_leap = (g_year % 4 == 0 and g_year % 100 != 0) or (g_year % 400 == 0)
-    if is_leap:
-        month_lengths[10] = 31
-
-    month_idx = 0
-    rem_days = days_diff
-    for i, l in enumerate(month_lengths):
-        if rem_days < l:
+    cur_date = date(g_year, g_month, g_day)
+    month_idx = 11
+    for i in range(11):
+        if cur_date < start_dates[i + 1]:
             month_idx = i
             break
-        rem_days -= l
 
-    b_day = rem_days + 1
+    month_start = start_dates[month_idx]
+    days_diff = (cur_date - month_start).days
+    b_day = days_diff + 1
+
     m_info = BENGALI_MONTHS[month_idx]
     w_info = WEEKDAYS_BN[dt.weekday()]
 

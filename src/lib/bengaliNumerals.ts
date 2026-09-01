@@ -452,25 +452,70 @@ export const WEEKDAYS_EN: Readonly<string[]> = Object.freeze([
 
 /**
  * Deterministic date formatter across Node.js SSR and Browser to 100% eliminate hydration errors.
+ * Uses target timezone (default 'Asia/Kolkata') to extract exact calendar date parts.
  */
 export function formatDeterministicDate(
   date: Date | string | number | null | undefined,
   isBn: boolean = true,
-  numerals: 'bn' | 'en' = 'bn'
+  numerals: 'bn' | 'en' = 'bn',
+  timeZone: string = 'Asia/Kolkata'
 ): string {
   if (!date) return '';
-  const dObj = date instanceof Date ? date : new Date(date);
+  let dObj: Date;
+  if (date instanceof Date) {
+    dObj = date;
+  } else if (typeof date === 'string') {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date.trim());
+    if (match) {
+      dObj = new Date(Date.UTC(parseInt(match[1], 10), parseInt(match[2], 10) - 1, parseInt(match[3], 10), 12, 0, 0));
+    } else {
+      dObj = new Date(date);
+    }
+  } else {
+    dObj = new Date(date);
+  }
+
   if (isNaN(dObj.getTime())) return '';
 
-  const d = dObj.getDate();
-  const m = dObj.getMonth();
-  const y = dObj.getFullYear();
-  const w = dObj.getDay();
+  let y = dObj.getFullYear();
+  let m = dObj.getMonth();
+  let d = dObj.getDate();
+  let w = dObj.getDay();
+
+  try {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: timeZone || 'Asia/Kolkata',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      weekday: 'short',
+    });
+    const parts = formatter.formatToParts(dObj);
+    let weekdayStr = '';
+    for (const part of parts) {
+      if (part.type === 'year') y = parseInt(part.value, 10);
+      else if (part.type === 'month') m = parseInt(part.value, 10) - 1;
+      else if (part.type === 'day') d = parseInt(part.value, 10);
+      else if (part.type === 'weekday') weekdayStr = part.value;
+    }
+    const weekdayMap: Record<string, number> = {
+      Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
+    };
+    if (weekdayStr && weekdayMap[weekdayStr] !== undefined) {
+      w = weekdayMap[weekdayStr];
+    }
+  } catch {
+    // fallback to standard get methods
+    y = dObj.getUTCFullYear();
+    m = dObj.getUTCMonth();
+    d = dObj.getUTCDate();
+    w = dObj.getUTCDay();
+  }
 
   if (isBn) {
     const dayStr = numerals === 'bn' ? toBengaliNumeral(d) : d.toString();
     const yearStr = numerals === 'bn' ? toBengaliNumeral(y) : y.toString();
-    return `${WEEKDAYS_BN[w]}, ${dayStr} ${GREGORIAN_MONTHS_BN[m]}, ${yearStr}`.normalize('NFC');
+    return `${WEEKDAYS_BN[w] || 'রবিবার'}, ${dayStr} ${GREGORIAN_MONTHS_BN[m] || ''}, ${yearStr}`.normalize('NFC');
   }
-  return `${WEEKDAYS_EN[w]}, ${GREGORIAN_MONTHS_EN[m]} ${d}, ${y}`;
+  return `${WEEKDAYS_EN[w] || 'Sunday'}, ${GREGORIAN_MONTHS_EN[m] || ''} ${d}, ${y}`;
 }

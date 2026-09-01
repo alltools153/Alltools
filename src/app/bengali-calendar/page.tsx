@@ -16,7 +16,7 @@ import { PrintCalendarView } from '@/components/bengali/PrintCalendarView';
 import { SeoFaqSection } from '@/components/bengali/SeoFaqSection';
 import { Footer } from '@/components/bengali/Footer';
 import { LOCATIONS } from '@/lib/constants/panjikaData';
-import { getDayPanjika } from '@/lib/panjikaEngine';
+import { getDayPanjika, getZonedCalendarDate, logBengaliDateDebug } from '@/lib/panjikaEngine';
 import { CalculationMethod, Language, LocationConfig, Numerals, ThemeMode } from '@/types/panjika';
 import { Clock, Sparkles, Heart, BookOpen, Flame, MapPin, Globe, Moon } from 'lucide-react';
 
@@ -28,14 +28,19 @@ export default function BengaliCalendarPage() {
   const [theme, setTheme] = useState<ThemeMode>('parchment');
   const [activeTab, setActiveTab] = useState<string>('live');
 
-  const [currentDate, setCurrentDate] = useState<Date>(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [currentDate, setCurrentDate] = useState<Date>(() => new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(() => new Date());
   const [isDayModalOpen, setIsDayModalOpen] = useState(false);
 
   const isBn = language === 'bn';
 
-  // Calculate panjika for selected date
+  // Calculate panjika for selected date using centralized service
   const selectedDayPanjika = getDayPanjika(selectedDate, location, calcMethod);
+
+  // Debug logging comparing Gregorian Date, UTC Date, Asia/Kolkata Date, and Bengali Conversion Result
+  useEffect(() => {
+    logBengaliDateDebug('BengaliCalendarPage View', selectedDate, location.timezone);
+  }, [selectedDate, location, calcMethod]);
 
   const handleSelectDate = (date: Date) => {
     setSelectedDate(date);
@@ -43,7 +48,8 @@ export default function BengaliCalendarPage() {
   };
 
   const handleJumpToToday = () => {
-    const today = new Date();
+    const todayZoned = getZonedCalendarDate(new Date(), location.timezone);
+    const today = new Date(Date.UTC(todayZoned.year, todayZoned.month, todayZoned.day, 12, 0, 0));
     setSelectedDate(today);
     setIsDayModalOpen(true);
   };

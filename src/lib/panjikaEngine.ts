@@ -135,14 +135,154 @@ export function calculateSunTimes(
   };
 }
 
+export interface ZonedCalendarDate {
+  year: number;
+  month: number; // 0-indexed (0 = Jan ... 11 = Dec)
+  day: number;
+  dayOfWeek: number; // 0 = Sun ... 6 = Sat
+  hours: number;
+  minutes: number;
+  seconds: number;
+  isoDateString: string; // YYYY-MM-DD
+  timeZone: string;
+}
+
 /**
- * Converts Gregorian Date to authentic Bengali Date (বঙ্গাব্দ)
+ * Accurately extracts year, month, day, dayOfWeek in a specific timezone (defaults to Asia/Kolkata / IST).
+ * Guarantees identical output across Mobile, Desktop, Node.js SSR, and all browser engines.
  */
-export function getBengaliDate(date: Date, method: CalculationMethod = 'surya_siddhanta'): BengaliDate {
-  const gYear = date.getFullYear();
-  const gMonth = date.getMonth(); // 0-indexed (0 = Jan, 3 = April)
-  const gDay = date.getDate();
-  const dayOfWeek = date.getDay(); // 0 = Sun
+export function getZonedCalendarDate(
+  dateInput?: Date | string | number | null,
+  timeZone: string = 'Asia/Kolkata'
+): ZonedCalendarDate {
+  const tz = timeZone || 'Asia/Kolkata';
+  let date: Date;
+
+  if (!dateInput) {
+    date = new Date();
+  } else if (dateInput instanceof Date) {
+    date = isNaN(dateInput.getTime()) ? new Date() : dateInput;
+  } else if (typeof dateInput === 'number') {
+    date = new Date(dateInput);
+  } else if (typeof dateInput === 'string') {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateInput.trim());
+    if (match) {
+      const y = parseInt(match[1], 10);
+      const m = parseInt(match[2], 10) - 1;
+      const d = parseInt(match[3], 10);
+      const dayOfWeek = new Date(Date.UTC(y, m, d, 12, 0, 0)).getUTCDay();
+      return {
+        year: y,
+        month: m,
+        day: d,
+        dayOfWeek,
+        hours: 12,
+        minutes: 0,
+        seconds: 0,
+        isoDateString: `${match[1]}-${match[2]}-${match[3]}`,
+        timeZone: tz,
+      };
+    }
+    date = new Date(dateInput);
+    if (isNaN(date.getTime())) date = new Date();
+  } else {
+    date = new Date();
+  }
+
+  try {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      hour12: false,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      weekday: 'short',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    });
+
+    const parts = formatter.formatToParts(date);
+    let year = 2026;
+    let month = 1;
+    let day = 1;
+    let weekdayStr = 'Sun';
+    let hours = 12;
+    let minutes = 0;
+    let seconds = 0;
+
+    for (const part of parts) {
+      if (part.type === 'year') year = parseInt(part.value, 10);
+      else if (part.type === 'month') month = parseInt(part.value, 10);
+      else if (part.type === 'day') day = parseInt(part.value, 10);
+      else if (part.type === 'weekday') weekdayStr = part.value;
+      else if (part.type === 'hour') hours = parseInt(part.value, 10);
+      else if (part.type === 'minute') minutes = parseInt(part.value, 10);
+      else if (part.type === 'second') seconds = parseInt(part.value, 10);
+    }
+
+    if (hours === 24) hours = 0;
+
+    const weekdayMap: Record<string, number> = {
+      Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
+    };
+    const dayOfWeek = weekdayMap[weekdayStr] ?? date.getUTCDay();
+    const monthIndex = month - 1;
+
+    const yyyy = String(year).padStart(4, '0');
+    const mm = String(month).padStart(2, '0');
+    const dd = String(day).padStart(2, '0');
+
+    return {
+      year,
+      month: monthIndex,
+      day,
+      dayOfWeek,
+      hours,
+      minutes,
+      seconds,
+      isoDateString: `${yyyy}-${mm}-${dd}`,
+      timeZone: tz,
+    };
+  } catch {
+    const year = date.getUTCFullYear();
+    const monthIndex = date.getUTCMonth();
+    const day = date.getUTCDate();
+    const dayOfWeek = date.getUTCDay();
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
+    const seconds = date.getUTCSeconds();
+    const yyyy = String(year).padStart(4, '0');
+    const mm = String(monthIndex + 1).padStart(2, '0');
+    const dd = String(day).padStart(2, '0');
+
+    return {
+      year,
+      month: monthIndex,
+      day,
+      dayOfWeek,
+      hours,
+      minutes,
+      seconds,
+      isoDateString: `${yyyy}-${mm}-${dd}`,
+      timeZone: tz,
+    };
+  }
+}
+
+/**
+ * Converts Gregorian Date to authentic Bengali Date (বঙ্গাব্দ) with IST / Location Timezone Normalization
+ */
+export function getBengaliDate(
+  dateInput?: Date | string | number | null,
+  method: CalculationMethod = 'surya_siddhanta',
+  timeZone: string = 'Asia/Kolkata'
+): BengaliDate {
+  const zoned = getZonedCalendarDate(dateInput, timeZone);
+  const gYear = zoned.year;
+  const gMonth = zoned.month; // 0-indexed (0 = Jan, 3 = April)
+  const gDay = zoned.day;
+  const dayOfWeek = zoned.dayOfWeek;
 
   const isBD = method === 'bangladesh_academy';
   const newYearDay = isBD ? 14 : 15;
@@ -154,50 +294,50 @@ export function getBengaliDate(date: Date, method: CalculationMethod = 'surya_si
     refYear = gYear - 1;
   }
 
-  // Month starting dates for refYear (0 = Boishakh ... 11 = Choitro)
-  const startDates = isBD
+  // Month starting UTC timestamps for refYear (0 = Boishakh ... 11 = Choitro)
+  const startDatesUtc = isBD
     ? [
-        new Date(refYear, 3, 14, 12, 0, 0), // Boishakh (Apr 14)
-        new Date(refYear, 4, 15, 12, 0, 0), // Jyoishtho (May 15)
-        new Date(refYear, 5, 15, 12, 0, 0), // Asharh (Jun 15)
-        new Date(refYear, 6, 16, 12, 0, 0), // Srabon (Jul 16)
-        new Date(refYear, 7, 17, 12, 0, 0), // Bhadro (Aug 17)
-        new Date(refYear, 8, 17, 12, 0, 0), // Ashwin (Sep 17)
-        new Date(refYear, 9, 17, 12, 0, 0), // Kartik (Oct 17)
-        new Date(refYear, 10, 16, 12, 0, 0), // Agrahayan (Nov 16)
-        new Date(refYear, 11, 16, 12, 0, 0), // Poush (Dec 16)
-        new Date(refYear + 1, 0, 15, 12, 0, 0), // Magh (Jan 15)
-        new Date(refYear + 1, 1, 14, 12, 0, 0), // Falgun (Feb 14)
-        new Date(refYear + 1, 2, 15, 12, 0, 0), // Choitro (Mar 15)
+        Date.UTC(refYear, 3, 14, 12, 0, 0), // Boishakh (Apr 14)
+        Date.UTC(refYear, 4, 15, 12, 0, 0), // Jyoishtho (May 15)
+        Date.UTC(refYear, 5, 15, 12, 0, 0), // Asharh (Jun 15)
+        Date.UTC(refYear, 6, 16, 12, 0, 0), // Srabon (Jul 16)
+        Date.UTC(refYear, 7, 17, 12, 0, 0), // Bhadro (Aug 17)
+        Date.UTC(refYear, 8, 17, 12, 0, 0), // Ashwin (Sep 17)
+        Date.UTC(refYear, 9, 17, 12, 0, 0), // Kartik (Oct 17)
+        Date.UTC(refYear, 10, 16, 12, 0, 0), // Agrahayan (Nov 16)
+        Date.UTC(refYear, 11, 16, 12, 0, 0), // Poush (Dec 16)
+        Date.UTC(refYear + 1, 0, 15, 12, 0, 0), // Magh (Jan 15)
+        Date.UTC(refYear + 1, 1, 14, 12, 0, 0), // Falgun (Feb 14)
+        Date.UTC(refYear + 1, 2, 15, 12, 0, 0), // Choitro (Mar 15)
       ]
     : [
-        new Date(refYear, 3, 15, 12, 0, 0), // Boishakh (Apr 15)
-        new Date(refYear, 4, 16, 12, 0, 0), // Jyoishtho (May 16)
-        new Date(refYear, 5, 16, 12, 0, 0), // Asharh (Jun 16)
-        new Date(refYear, 6, 18, 12, 0, 0), // Srabon (Jul 18)
-        new Date(refYear, 7, 18, 12, 0, 0), // Bhadro (Aug 18)
-        new Date(refYear, 8, 18, 12, 0, 0), // Ashwin (Sep 18)
-        new Date(refYear, 9, 18, 12, 0, 0), // Kartik (Oct 18)
-        new Date(refYear, 10, 17, 12, 0, 0), // Agrahayan (Nov 17)
-        new Date(refYear, 11, 17, 12, 0, 0), // Poush (Dec 17)
-        new Date(refYear + 1, 0, 16, 12, 0, 0), // Magh (Jan 16)
-        new Date(refYear + 1, 1, 15, 12, 0, 0), // Falgun (Feb 15)
-        new Date(refYear + 1, 2, 16, 12, 0, 0), // Choitro (Mar 16)
+        Date.UTC(refYear, 3, 15, 12, 0, 0), // Boishakh (Apr 15)
+        Date.UTC(refYear, 4, 16, 12, 0, 0), // Jyoishtho (May 16)
+        Date.UTC(refYear, 5, 16, 12, 0, 0), // Asharh (Jun 16)
+        Date.UTC(refYear, 6, 18, 12, 0, 0), // Srabon (Jul 18)
+        Date.UTC(refYear, 7, 18, 12, 0, 0), // Bhadro (Aug 18)
+        Date.UTC(refYear, 8, 18, 12, 0, 0), // Ashwin (Sep 18)
+        Date.UTC(refYear, 9, 18, 12, 0, 0), // Kartik (Oct 18)
+        Date.UTC(refYear, 10, 17, 12, 0, 0), // Agrahayan (Nov 17)
+        Date.UTC(refYear, 11, 17, 12, 0, 0), // Poush (Dec 17)
+        Date.UTC(refYear + 1, 0, 16, 12, 0, 0), // Magh (Jan 16)
+        Date.UTC(refYear + 1, 1, 15, 12, 0, 0), // Falgun (Feb 15)
+        Date.UTC(refYear + 1, 2, 16, 12, 0, 0), // Choitro (Mar 16)
       ];
 
-  const currentNoon = new Date(gYear, gMonth, gDay, 12, 0, 0);
+  const currentNoonUtc = Date.UTC(gYear, gMonth, gDay, 12, 0, 0);
 
   let monthIndex = 11;
   for (let i = 0; i < 11; i++) {
-    if (currentNoon < startDates[i + 1]) {
+    if (currentNoonUtc < startDatesUtc[i + 1]) {
       monthIndex = i;
       break;
     }
   }
 
-  const monthStart = startDates[monthIndex];
-  const diffMs = currentNoon.getTime() - monthStart.getTime();
-  const daysDiff = Math.round(diffMs / (1000 * 60 * 60 * 24));
+  const monthStartUtc = startDatesUtc[monthIndex];
+  const diffMs = currentNoonUtc - monthStartUtc;
+  const daysDiff = Math.round(diffMs / 86400000);
   const bengaliDay = daysDiff + 1;
 
   const monthInfo = BENGALI_MONTHS[monthIndex];
@@ -213,9 +353,11 @@ export function getBengaliDate(date: Date, method: CalculationMethod = 'surya_si
 
   return {
     day: bengaliDay,
+    dayBn,
     monthIndex,
     monthNameEn: monthInfo.nameEn,
     monthNameBn: monthInfo.nameBn,
+    seasonBn: monthInfo.seasonBn,
     year: bengaliYear,
     yearBn,
     ritu,
@@ -224,6 +366,7 @@ export function getBengaliDate(date: Date, method: CalculationMethod = 'surya_si
     barShortBn: weekdayInfo.shortBn,
     planetLordBn: weekdayInfo.planetLordBn,
     sakabdo: gYear - 78,
+    sakabdoBn: toBengaliDigits(gYear - 78),
     tripurabdo: gYear - 590,
     formattedBn,
     formattedEn,
@@ -244,44 +387,37 @@ export function bengaliToGregorianDate(
 
   const startDates = isBD
     ? [
-        new Date(refYear, 3, 14, 12, 0, 0), // Boishakh
-        new Date(refYear, 4, 15, 12, 0, 0), // Jyoishtho
-        new Date(refYear, 5, 15, 12, 0, 0), // Asharh
-        new Date(refYear, 6, 16, 12, 0, 0), // Srabon
-        new Date(refYear, 7, 17, 12, 0, 0), // Bhadro
-        new Date(refYear, 8, 17, 12, 0, 0), // Ashwin
-        new Date(refYear, 9, 17, 12, 0, 0), // Kartik
-        new Date(refYear, 10, 16, 12, 0, 0), // Agrahayan
-        new Date(refYear, 11, 16, 12, 0, 0), // Poush
-        new Date(refYear + 1, 0, 15, 12, 0, 0), // Magh
-        new Date(refYear + 1, 1, 14, 12, 0, 0), // Falgun
-        new Date(refYear + 1, 2, 15, 12, 0, 0), // Choitro
+        [refYear, 3, 14], // Boishakh
+        [refYear, 4, 15], // Jyoishtho
+        [refYear, 5, 15], // Asharh
+        [refYear, 6, 16], // Srabon
+        [refYear, 7, 17], // Bhadro
+        [refYear, 8, 17], // Ashwin
+        [refYear, 9, 17], // Kartik
+        [refYear, 10, 16], // Agrahayan
+        [refYear, 11, 16], // Poush
+        [refYear + 1, 0, 15], // Magh
+        [refYear + 1, 1, 14], // Falgun
+        [refYear + 1, 2, 15], // Choitro
       ]
     : [
-        new Date(refYear, 3, 15, 12, 0, 0), // Boishakh
-        new Date(refYear, 4, 16, 12, 0, 0), // Jyoishtho
-        new Date(refYear, 5, 16, 12, 0, 0), // Asharh
-        new Date(refYear, 6, 18, 12, 0, 0), // Srabon
-        new Date(refYear, 7, 18, 12, 0, 0), // Bhadro
-        new Date(refYear, 8, 18, 12, 0, 0), // Ashwin
-        new Date(refYear, 9, 18, 12, 0, 0), // Kartik
-        new Date(refYear, 10, 17, 12, 0, 0), // Agrahayan
-        new Date(refYear, 11, 17, 12, 0, 0), // Poush
-        new Date(refYear + 1, 0, 16, 12, 0, 0), // Magh
-        new Date(refYear + 1, 1, 15, 12, 0, 0), // Falgun
-        new Date(refYear + 1, 2, 16, 12, 0, 0), // Choitro
+        [refYear, 3, 15], // Boishakh
+        [refYear, 4, 16], // Jyoishtho
+        [refYear, 5, 16], // Asharh
+        [refYear, 6, 18], // Srabon
+        [refYear, 7, 18], // Bhadro
+        [refYear, 8, 18], // Ashwin
+        [refYear, 9, 18], // Kartik
+        [refYear, 10, 17], // Agrahayan
+        [refYear, 11, 17], // Poush
+        [refYear + 1, 0, 16], // Magh
+        [refYear + 1, 1, 15], // Falgun
+        [refYear + 1, 2, 16], // Choitro
       ];
 
   const mIdx = ((bengaliMonthIndex % 12) + 12) % 12;
-  const monthStart = startDates[mIdx];
-  const targetDate = new Date(
-    monthStart.getFullYear(),
-    monthStart.getMonth(),
-    monthStart.getDate() + (bengaliDay - 1),
-    12,
-    0,
-    0
-  );
+  const [sY, sM, sD] = startDates[mIdx];
+  const targetDate = new Date(Date.UTC(sY, sM, sD + (bengaliDay - 1), 12, 0, 0));
   return targetDate;
 }
 
@@ -669,24 +805,25 @@ export function getDishaShool(dayOfWeek: number): { directionEn: string; directi
 }
 
 /**
- * Builds Full Day Panjika Object for any Gregorian Date & Location
+ * Builds Full Day Panjika Object for any Gregorian Date & Location with Centralized Timezone Normalization
  */
 export function getDayPanjika(
-  date: Date,
+  dateInput?: Date | string | number | null,
   location: LocationConfig = LOCATIONS[0],
   method: CalculationMethod = 'surya_siddhanta'
 ): DayPanjika {
-  const sunTimes = calculateSunTimes(date, location.lat, location.lng, location.utcOffset);
-  const bengaliDate = getBengaliDate(date, method);
-  const panchang = calculatePanchangLimbs(date, sunTimes.sunriseDate, sunTimes.sunsetDate);
-  const muhurats = calculateMuhurats(date, sunTimes.sunriseDate, sunTimes.sunsetDate, panchang.nakshatra.index);
-  const festivals = getFestivalsForDate(date, bengaliDate, panchang.tithi, panchang.paksha);
-  const dishaShool = getDishaShool(date.getDay());
+  const timeZone = location.timezone || 'Asia/Kolkata';
+  const zoned = getZonedCalendarDate(dateInput, timeZone);
+  const anchorDate = new Date(Date.UTC(zoned.year, zoned.month, zoned.day, 12, 0, 0));
 
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
-  const dateStr = `${yyyy}-${mm}-${dd}`;
+  const sunTimes = calculateSunTimes(anchorDate, location.lat, location.lng, location.utcOffset);
+  const bengaliDate = getBengaliDate(anchorDate, method, timeZone);
+  const panchang = calculatePanchangLimbs(anchorDate, sunTimes.sunriseDate, sunTimes.sunsetDate);
+  const muhurats = calculateMuhurats(anchorDate, sunTimes.sunriseDate, sunTimes.sunsetDate, panchang.nakshatra.index);
+  const festivals = getFestivalsForDate(anchorDate, bengaliDate, panchang.tithi, panchang.paksha);
+  const dishaShool = getDishaShool(zoned.dayOfWeek);
+
+  const dateStr = zoned.isoDateString;
 
   // Auspicious ceremonies lookup
   const auspiciousCeremonies: { type: string; typeBn: string; timing: string }[] = [];
@@ -719,7 +856,7 @@ export function getDayPanjika(
   }
 
   return {
-    gregorianDate: date,
+    gregorianDate: anchorDate,
     dateStr,
     bengaliDate,
     tithi: panchang.tithi,
@@ -744,7 +881,7 @@ export function getDayPanjika(
 }
 
 /**
- * Generates Gregorian Month Calendar Days
+ * Generates Gregorian Month Calendar Days with Timezone Normalization
  */
 export function getMonthCalendarDays(
   year: number,
@@ -752,11 +889,11 @@ export function getMonthCalendarDays(
   location: LocationConfig = LOCATIONS[0],
   method: CalculationMethod = 'surya_siddhanta'
 ): DayPanjika[] {
-  const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+  const daysInMonth = new Date(Date.UTC(year, monthIndex + 1, 0)).getUTCDate();
   const list: DayPanjika[] = [];
 
   for (let d = 1; d <= daysInMonth; d++) {
-    const curDate = new Date(year, monthIndex, d, 12, 0, 0);
+    const curDate = new Date(Date.UTC(year, monthIndex, d, 12, 0, 0));
     list.push(getDayPanjika(curDate, location, method));
   }
 
@@ -787,6 +924,56 @@ export function getBengaliMonthCalendarDays(
     }
   }
 
-  const firstDayWeekday = days.length > 0 ? days[0].gregorianDate.getDay() : 0;
+  const firstDayWeekday = days.length > 0 ? days[0].gregorianDate.getUTCDay() : 0;
   return { days, firstDayWeekday };
+}
+
+/**
+ * Logs and compares Gregorian Date, UTC Date, Asia/Kolkata Date, and Bengali Conversion Result
+ * for debugging consistency between Desktop and Mobile rendering paths.
+ */
+export function logBengaliDateDebug(
+  renderContext: string,
+  dateInput?: Date | string | number | null,
+  timeZone: string = 'Asia/Kolkata'
+): {
+  context: string;
+  gregorianDate: string;
+  utcDate: string;
+  asiaKolkataDate: string;
+  bengaliConversionResult: string;
+} {
+  const d = dateInput
+    ? dateInput instanceof Date
+      ? dateInput
+      : new Date(dateInput)
+    : new Date();
+  const validDate = isNaN(d.getTime()) ? new Date() : d;
+  const zoned = getZonedCalendarDate(validDate, timeZone);
+  const bengaliDate = getBengaliDate(validDate, 'surya_siddhanta', timeZone);
+
+  let asiaKolkataFormatted = '';
+  try {
+    asiaKolkataFormatted = new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      dateStyle: 'full',
+      timeStyle: 'long',
+    }).format(validDate);
+  } catch {
+    asiaKolkataFormatted = `${zoned.isoDateString} (IST)`;
+  }
+
+  const debugInfo = {
+    context: renderContext,
+    gregorianDate: zoned.isoDateString,
+    utcDate: validDate.toISOString(),
+    asiaKolkataDate: asiaKolkataFormatted,
+    bengaliConversionResult: bengaliDate.formattedBn,
+  };
+
+  if (typeof window !== 'undefined' || process.env.NODE_ENV !== 'production') {
+    console.log(`[BengaliCalendar Debug | ${renderContext}]`, debugInfo);
+  }
+
+  return debugInfo;
 }
