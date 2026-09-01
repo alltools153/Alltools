@@ -17,7 +17,7 @@ export default function Footer() {
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-accent to-secondary flex items-center justify-center text-black font-bold shadow-glow-primary">
                 <Wrench className="w-5 h-5 text-black" />
               </div>
-              <span className="text-xl font-bold text-foreground">AllTools Suite</span>
+              <span className="text-xl font-bold text-foreground">AllToolss Suite</span>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-md">
               A clean, unified multi-tool web platform delivering high-precision chronological & planetary age calculations,
@@ -141,7 +141,7 @@ export default function Footer() {
 
         {/* Copyright & Lead Credits */}
         <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} AllTools Suite. Built with Next.js 14, TypeScript &amp; Python FastAPI.</p>
+          <p>© {new Date().getFullYear()} AllToolss Suite. Built with Next.js 14, TypeScript &amp; Python FastAPI.</p>
           <div className="flex items-center gap-1">
             <span>Crafted with</span>
             <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />

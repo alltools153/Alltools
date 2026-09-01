@@ -11,5 +11,5 @@ export const POST = createFileHandler(
     const bytes = await imagesToPdf(images);
     return { filename: "converted.pdf", bytes, contentType: contentTypeFor("pdf") };
   },
-  { accept: ["jpg", "png"], multiple: true }
+  { accept: ["jpg", "jpeg", "png"], multiple: true }
 );

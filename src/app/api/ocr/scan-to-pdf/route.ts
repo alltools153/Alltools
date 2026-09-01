@@ -15,5 +15,5 @@ export const POST = createFileHandler(
     const bytes = await buildSearchablePdf(pages);
     return { filename: "scanned.pdf", bytes, contentType: contentTypeFor("pdf") };
   },
-  { accept: ["jpg", "png"], multiple: true }
+  { accept: ["jpg", "jpeg", "png"], multiple: true }
 );

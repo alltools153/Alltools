@@ -1,6 +1,32 @@
 import { PDFDocument } from "pdf-lib";
 import { loadPdf, parsePageSelection } from "./shared";
 
+export function parsePageOrder(orderInput: string | number[] | undefined, pageCount: number): number[] {
+  if (!orderInput) {
+    throw new Error("Enter the page order you want to use.");
+  }
+
+  const normalized = Array.isArray(orderInput)
+    ? orderInput
+    : orderInput.split(/[\s,]+/).map((value) => Number(value.trim())).filter((value) => Number.isFinite(value));
+
+  if (normalized.length !== pageCount || normalized.some((value) => value < 1 || value > pageCount)) {
+    throw new Error(`The requested page order must include every page once, using 1-based numbers from 1 to ${pageCount}.`);
+  }
+
+  const seen = new Set<number>();
+  const result: number[] = [];
+  for (const value of normalized) {
+    if (seen.has(value)) {
+      throw new Error("Duplicate page numbers are not allowed in the reorder list.");
+    }
+    seen.add(value);
+    result.push(value - 1);
+  }
+
+  return result;
+}
+
 /** Extracts the requested pages into a new PDF (source is left untouched). */
 export async function extractPages(buffer: Buffer, pageSelection: string): Promise<Buffer> {
   const src = await loadPdf(buffer);

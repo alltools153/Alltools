@@ -8,5 +8,5 @@ export const POST = createFileHandler(
     const text = await ocrImage(files[0].buffer, language);
     return { filename: "extracted.txt", bytes: Buffer.from(text, "utf-8"), contentType: contentTypeFor("txt") };
   },
-  { accept: ["jpg", "png"], multiple: false }
+  { accept: ["jpg", "jpeg", "png"], multiple: false }
 );

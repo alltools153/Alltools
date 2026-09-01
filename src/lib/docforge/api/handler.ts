@@ -28,6 +28,7 @@ const CONTENT_TYPES: Record<string, string> = {
   pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
   txt: "text/plain; charset=utf-8",
   jpg: "image/jpeg",
+  jpeg: "image/jpeg",
   png: "image/png",
   zip: "application/zip",
   html: "text/html; charset=utf-8"
