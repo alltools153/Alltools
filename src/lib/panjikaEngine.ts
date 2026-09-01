@@ -144,56 +144,62 @@ export function getBengaliDate(date: Date, method: CalculationMethod = 'surya_si
   const gDay = date.getDate();
   const dayOfWeek = date.getDay(); // 0 = Sun
 
-  // Traditional Bengali calendar transition anchor
-  // Poila Boishakh usually falls on April 14 or 15
-  const poilaBoishakhDay = 14; 
+  const isBD = method === 'bangladesh_academy';
+  const newYearDay = isBD ? 14 : 15;
+
   let bengaliYear = gYear - 593;
-
-  // If before April 14, it is still the previous Bengali year
-  if (gMonth < 3 || (gMonth === 3 && gDay < poilaBoishakhDay)) {
+  let refYear = gYear;
+  if (gMonth < 3 || (gMonth === 3 && gDay < newYearDay)) {
     bengaliYear = gYear - 594;
+    refYear = gYear - 1;
   }
 
-  // Month day allocation (Bengali Academy / Surya Siddhanta refined)
-  // Boishakh: Apr 14/15 - May 14/15 (31 days)
-  // Jyoishtho: May 15 - Jun 15 (31 days)
-  // Asharh: Jun 16 - Jul 16 (31 days)
-  // Srabon: Jul 17 - Aug 16 (31 days)
-  // Bhadro: Aug 17 - Sep 16 (31 days)
-  // Ashwin: Sep 17 - Oct 16 (30 days)
-  // Kartik: Oct 17 - Nov 15 (30 days)
-  // Agrahayan: Nov 16 - Dec 15 (30 days)
-  // Poush: Dec 16 - Jan 14 (30 days)
-  // Magh: Jan 15 - Feb 13 (30 days)
-  // Falgun: Feb 14 - Mar 14 (30/31 days)
-  // Choitro: Mar 15 - Apr 13/14 (30 days)
+  // Month starting dates for refYear (0 = Boishakh ... 11 = Choitro)
+  const startDates = isBD
+    ? [
+        new Date(refYear, 3, 14, 12, 0, 0), // Boishakh (Apr 14)
+        new Date(refYear, 4, 15, 12, 0, 0), // Jyoishtho (May 15)
+        new Date(refYear, 5, 15, 12, 0, 0), // Asharh (Jun 15)
+        new Date(refYear, 6, 16, 12, 0, 0), // Srabon (Jul 16)
+        new Date(refYear, 7, 17, 12, 0, 0), // Bhadro (Aug 17)
+        new Date(refYear, 8, 17, 12, 0, 0), // Ashwin (Sep 17)
+        new Date(refYear, 9, 17, 12, 0, 0), // Kartik (Oct 17)
+        new Date(refYear, 10, 16, 12, 0, 0), // Agrahayan (Nov 16)
+        new Date(refYear, 11, 16, 12, 0, 0), // Poush (Dec 16)
+        new Date(refYear + 1, 0, 15, 12, 0, 0), // Magh (Jan 15)
+        new Date(refYear + 1, 1, 14, 12, 0, 0), // Falgun (Feb 14)
+        new Date(refYear + 1, 2, 15, 12, 0, 0), // Choitro (Mar 15)
+      ]
+    : [
+        new Date(refYear, 3, 15, 12, 0, 0), // Boishakh (Apr 15)
+        new Date(refYear, 4, 16, 12, 0, 0), // Jyoishtho (May 16)
+        new Date(refYear, 5, 16, 12, 0, 0), // Asharh (Jun 16)
+        new Date(refYear, 6, 18, 12, 0, 0), // Srabon (Jul 18)
+        new Date(refYear, 7, 18, 12, 0, 0), // Bhadro (Aug 18)
+        new Date(refYear, 8, 18, 12, 0, 0), // Ashwin (Sep 18)
+        new Date(refYear, 9, 18, 12, 0, 0), // Kartik (Oct 18)
+        new Date(refYear, 10, 17, 12, 0, 0), // Agrahayan (Nov 17)
+        new Date(refYear, 11, 17, 12, 0, 0), // Poush (Dec 17)
+        new Date(refYear + 1, 0, 16, 12, 0, 0), // Magh (Jan 16)
+        new Date(refYear + 1, 1, 15, 12, 0, 0), // Falgun (Feb 15)
+        new Date(refYear + 1, 2, 16, 12, 0, 0), // Choitro (Mar 16)
+      ];
 
-  // Calculate day offset from Poila Boishakh of the current Bengali year
-  let pbDate = new Date(bengaliYear + 593, 3, poilaBoishakhDay);
-  if (date < pbDate) {
-    pbDate = new Date(bengaliYear + 592, 3, poilaBoishakhDay);
-  }
+  const currentNoon = new Date(gYear, gMonth, gDay, 12, 0, 0);
 
-  const diffTime = date.getTime() - pbDate.getTime();
-  let daysDiff = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-  const monthLengths = [31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 30, 30];
-  // Check leap year for Falgun
-  const isLeap = (gYear % 4 === 0 && gYear % 100 !== 0) || gYear % 400 === 0;
-  if (isLeap) monthLengths[10] = 31;
-
-  let monthIndex = 0;
-  let remainingDays = daysDiff;
-
-  for (let i = 0; i < monthLengths.length; i++) {
-    if (remainingDays < monthLengths[i]) {
+  let monthIndex = 11;
+  for (let i = 0; i < 11; i++) {
+    if (currentNoon < startDates[i + 1]) {
       monthIndex = i;
       break;
     }
-    remainingDays -= monthLengths[i];
   }
 
-  const bengaliDay = remainingDays + 1;
+  const monthStart = startDates[monthIndex];
+  const diffMs = currentNoon.getTime() - monthStart.getTime();
+  const daysDiff = Math.round(diffMs / (1000 * 60 * 60 * 24));
+  const bengaliDay = daysDiff + 1;
+
   const monthInfo = BENGALI_MONTHS[monthIndex];
   const rituIndex = Math.floor(monthIndex / 2);
   const ritu = BENGALI_RITUS[rituIndex];
@@ -222,6 +228,54 @@ export function getBengaliDate(date: Date, method: CalculationMethod = 'surya_si
     formattedBn,
     formattedEn,
   };
+}
+
+/**
+ * Converts Bengali Date (বঙ্গাব্দ) to Gregorian Date
+ */
+export function bengaliToGregorianDate(
+  bengaliYear: number,
+  bengaliMonthIndex: number,
+  bengaliDay: number,
+  method: CalculationMethod = 'surya_siddhanta'
+): Date {
+  const isBD = method === 'bangladesh_academy';
+  const refYear = bengaliYear + 593;
+
+  const startDates = isBD
+    ? [
+        new Date(refYear, 3, 14, 12, 0, 0), // Boishakh
+        new Date(refYear, 4, 15, 12, 0, 0), // Jyoishtho
+        new Date(refYear, 5, 15, 12, 0, 0), // Asharh
+        new Date(refYear, 6, 16, 12, 0, 0), // Srabon
+        new Date(refYear, 7, 17, 12, 0, 0), // Bhadro
+        new Date(refYear, 8, 17, 12, 0, 0), // Ashwin
+        new Date(refYear, 9, 17, 12, 0, 0), // Kartik
+        new Date(refYear, 10, 16, 12, 0, 0), // Agrahayan
+        new Date(refYear, 11, 16, 12, 0, 0), // Poush
+        new Date(refYear + 1, 0, 15, 12, 0, 0), // Magh
+        new Date(refYear + 1, 1, 14, 12, 0, 0), // Falgun
+        new Date(refYear + 1, 2, 15, 12, 0, 0), // Choitro
+      ]
+    : [
+        new Date(refYear, 3, 15, 12, 0, 0), // Boishakh
+        new Date(refYear, 4, 16, 12, 0, 0), // Jyoishtho
+        new Date(refYear, 5, 16, 12, 0, 0), // Asharh
+        new Date(refYear, 6, 18, 12, 0, 0), // Srabon
+        new Date(refYear, 7, 18, 12, 0, 0), // Bhadro
+        new Date(refYear, 8, 18, 12, 0, 0), // Ashwin
+        new Date(refYear, 9, 18, 12, 0, 0), // Kartik
+        new Date(refYear, 10, 17, 12, 0, 0), // Agrahayan
+        new Date(refYear, 11, 17, 12, 0, 0), // Poush
+        new Date(refYear + 1, 0, 16, 12, 0, 0), // Magh
+        new Date(refYear + 1, 1, 15, 12, 0, 0), // Falgun
+        new Date(refYear + 1, 2, 16, 12, 0, 0), // Choitro
+      ];
+
+  const mIdx = ((bengaliMonthIndex % 12) + 12) % 12;
+  const monthStart = startDates[mIdx];
+  const targetDate = new Date(monthStart.getTime() + (bengaliDay - 1) * 86400000);
+  return targetDate;
 }
 
 /**
@@ -619,7 +673,7 @@ export function getDayPanjika(
   const bengaliDate = getBengaliDate(date, method);
   const panchang = calculatePanchangLimbs(date, sunTimes.sunriseDate, sunTimes.sunsetDate);
   const muhurats = calculateMuhurats(date, sunTimes.sunriseDate, sunTimes.sunsetDate, panchang.nakshatra.index);
-  const festivals = getFestivalsForDate(date, bengaliDate);
+  const festivals = getFestivalsForDate(date, bengaliDate, panchang.tithi, panchang.paksha);
   const dishaShool = getDishaShool(date.getDay());
 
   const yyyy = date.getFullYear();
@@ -711,21 +765,7 @@ export function getBengaliMonthCalendarDays(
   location: LocationConfig = LOCATIONS[0],
   method: CalculationMethod = 'surya_siddhanta'
 ): { days: DayPanjika[]; firstDayWeekday: number } {
-  // Approximate starting Gregorian year & month
-  const approxGYear = bengaliMonthIndex >= 8 ? bengaliYear + 594 : bengaliYear + 593;
-  const approxGMonth = (bengaliMonthIndex + 3) % 12;
-
-  // Search around the 10th to 18th of approxGMonth for day 1 of the Bengali month
-  let startDate = new Date(approxGYear, approxGMonth, 14, 12, 0, 0);
-  for (let offset = -5; offset <= 6; offset++) {
-    const testDate = new Date(approxGYear, approxGMonth, 14 + offset, 12, 0, 0);
-    const bDate = getBengaliDate(testDate, method);
-    if (bDate.year === bengaliYear && bDate.monthIndex === bengaliMonthIndex && bDate.day === 1) {
-      startDate = testDate;
-      break;
-    }
-  }
-
+  const startDate = bengaliToGregorianDate(bengaliYear, bengaliMonthIndex, 1, method);
   const days: DayPanjika[] = [];
   let cur = new Date(startDate);
 

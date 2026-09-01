@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { BENGALI_MONTHS, WEEKDAYS, toBengaliDigits } from '@/lib/constants/panjikaData';
 import { DayPanjika, Language, LocationConfig, Numerals } from '@/types/panjika';
-import { getDayPanjika, getMonthCalendarDays, getBengaliMonthCalendarDays } from '@/lib/panjikaEngine';
+import { getBengaliDate, getDayPanjika, getMonthCalendarDays, getBengaliMonthCalendarDays } from '@/lib/panjikaEngine';
 import { AlponaBorderDivider, DiyaFlameIcon, MangalGhatIcon, ShankhaIcon } from './AlponaMotifs';
 
 interface CalendarGridProps {
@@ -47,9 +47,10 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
   const [viewYear, setViewYear] = useState(selectedDate.getFullYear());
   const [viewMonth, setViewMonth] = useState(selectedDate.getMonth()); // 0-11
 
-  // Bengali view state (0 = Boishakh, 11 = Choitro)
-  const [bengaliMonthIndex, setBengaliMonthIndex] = useState(4); // Bhadro default
-  const [bengaliYear, setBengaliYear] = useState(1433);
+  // Bengali view state dynamically initialized from selectedDate
+  const initialBDate = getBengaliDate(selectedDate);
+  const [bengaliMonthIndex, setBengaliMonthIndex] = useState(initialBDate.monthIndex);
+  const [bengaliYear, setBengaliYear] = useState(initialBDate.year);
 
   // Quick Filter Chips: 'all' | 'marriage' | 'ekadashi' | 'purnima_amavasya' | 'holidays'
   const [activeFilter, setActiveFilter] = useState<'all' | 'marriage' | 'ekadashi' | 'purnima_amavasya' | 'holidays'>('all');
@@ -127,8 +128,9 @@ export const CalendarGrid: React.FC<CalendarGridProps> = ({
     const today = new Date();
     setViewYear(today.getFullYear());
     setViewMonth(today.getMonth());
-    setBengaliMonthIndex(4); // current approx
-    setBengaliYear(1433);
+    const bToday = getBengaliDate(today);
+    setBengaliMonthIndex(bToday.monthIndex);
+    setBengaliYear(bToday.year);
     onSelectDate(today);
   };
 

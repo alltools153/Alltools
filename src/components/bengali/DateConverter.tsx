@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { BENGALI_MONTHS, toBengaliDigits } from '@/lib/constants/panjikaData';
 import { Language, LocationConfig, Numerals } from '@/types/panjika';
-import { getBengaliDate, getDayPanjika } from '@/lib/panjikaEngine';
+import { getBengaliDate, getDayPanjika, bengaliToGregorianDate } from '@/lib/panjikaEngine';
 import { safeCopyToClipboard } from '@/lib/safeClient';
 
 interface DateConverterProps {
@@ -24,25 +24,24 @@ export const DateConverter: React.FC<DateConverterProps> = ({ language, numerals
   const [conversionMode, setConversionMode] = useState<'greg_to_bn' | 'bn_to_greg'>('greg_to_bn');
   
   // Gregorian input state
-  const [gregDateStr, setGregDateStr] = useState('2026-08-22');
+  const [gregDateStr, setGregDateStr] = useState('2026-08-31');
 
   // Bengali input state
   const [bnYear, setBnYear] = useState(1433);
   const [bnMonthIndex, setBnMonthIndex] = useState(4); // Bhadro
-  const [bnDay, setBnDay] = useState(7);
+  const [bnDay, setBnDay] = useState(14);
 
   const [copied, setCopied] = useState(false);
 
   const isBn = language === 'bn';
 
-  // Perform Greg to Bn calculation
-  const selectedGregDate = new Date(gregDateStr + 'T12:00:00');
-  const calculatedPanjika = getDayPanjika(selectedGregDate, location);
+  // Perform calculation based on conversionMode
+  const activeGregDate =
+    conversionMode === 'greg_to_bn'
+      ? new Date(gregDateStr + 'T12:00:00')
+      : bengaliToGregorianDate(bnYear, bnMonthIndex, bnDay);
 
-  // Perform Bn to Greg approximation
-  const approximateGregYear = bnYear + 593;
-  // approximate month mapping
-  const approxGregDate = new Date(approximateGregYear, (bnMonthIndex + 3) % 12, bnDay, 12, 0, 0);
+  const calculatedPanjika = getDayPanjika(activeGregDate, location);
 
   const handleCopy = async (text: string) => {
     const success = await safeCopyToClipboard(text);
