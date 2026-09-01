@@ -100,7 +100,7 @@ export default function DevToolsPage() {
       {/* Footer */}
       <footer className="border-t border-white/10 bg-[#070a0f] py-4 text-center text-xs font-mono text-slate-500 mt-12">
         <div className="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-between gap-3">
-          <span>AllTools Suite &bull; Lead Architect: <a href="/developer" className="text-[#00f0ff] underline hover:text-white">Santanu Batabyal</a></span>
+          <span>AllToolss Suite &bull; Lead Architect: <a href="/developer" className="text-[#00f0ff] underline hover:text-white">Santanu Batabyal</a></span>
           <div className="flex items-center gap-3 text-slate-400">
             <span>JSON Engine</span>
             <span>&bull;</span>

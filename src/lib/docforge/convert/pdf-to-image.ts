@@ -24,13 +24,23 @@ export async function renderPdfPagesToImages(
   scale = 2
 ): Promise<PageImage[]> {
   let createCanvas: any;
-  try {
-    const loadOptionalModule = new Function("modulePath", "return import(modulePath)") as (modulePath: string) => Promise<any>;
-    ({ createCanvas } = await loadOptionalModule("canvas"));
-  } catch {
+  const loadOptionalModule = new Function("modulePath", "return import(modulePath)") as (modulePath: string) => Promise<any>;
+
+  for (const modulePath of ["canvas", "@napi-rs/canvas"]) {
+    try {
+      const mod = await loadOptionalModule(modulePath);
+      if (mod && typeof mod.createCanvas === "function") {
+        createCanvas = mod.createCanvas;
+        break;
+      }
+    } catch {
+      // Try the next supported canvas package implementation.
+    }
+  }
+
+  if (!createCanvas) {
     throw new Error(
-      "Page rendering requires the `canvas` native package on the server. " +
-        "See README ‘Deployment’ for install instructions."
+      "Page rendering requires a native canvas package on the server. Install `canvas` or `@napi-rs/canvas` in the deployment environment and rebuild the app."
     );
   }
 

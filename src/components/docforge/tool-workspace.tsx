@@ -48,6 +48,11 @@ export function ToolWorkspace({ tool }: { tool: ToolConfig }) {
       }
     }
 
+    if (tool.slug === "reorder-pages") {
+      const orderValue = values.order?.trim();
+      if (orderValue) formData.set("order", orderValue);
+    }
+
     try {
       setStage("processing");
       const res = await fetch(tool.apiPath, { method: "POST", body: formData });

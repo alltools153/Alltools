@@ -151,7 +151,7 @@ export default function Navbar() {
             </div>
             <div>
               <div className="text-base sm:text-lg font-extrabold tracking-tight text-foreground flex items-center gap-1.5">
-                <span>AllTools</span>
+                <span>AllToolss</span>
                 <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hidden xs:inline">
                   In-Server
                 </span>

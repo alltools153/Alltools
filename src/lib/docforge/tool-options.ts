@@ -70,6 +70,7 @@ export const TOOL_OPTIONS: Record<string, OptionField[]> = {
     { type: "checkbox", name: "disallowModification", label: "Disallow editing" }
   ],
   "unlock-pdf": [{ type: "password", name: "password", label: "Current password" }],
+  "reorder-pages": [{ type: "text", name: "order", label: "New page order", placeholder: "1,3,2,4", help: "Use 1-based page numbers in the order you want" }],
   "compress-pdf": [
     { type: "select", name: "mode", label: "Compression", defaultValue: "recommended", options: [
       { value: "recommended", label: "Recommended" },

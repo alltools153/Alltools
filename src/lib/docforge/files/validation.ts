@@ -15,6 +15,7 @@ const MAX_BATCH_FILES = Number(process.env.DOCFORGE_MAX_BATCH_FILES || 20);
 const ACCEPTED_SIGNATURES: Record<string, string[]> = {
   pdf: ["application/pdf", "application/x-pdf", "application/acrobat", "application/vnd.pdf", "text/pdf", "text/x-pdf"],
   jpg: ["image/jpeg", "image/jpg", "image/pjpeg"],
+  jpeg: ["image/jpeg", "image/jpg", "image/pjpeg"],
   png: ["image/png", "image/x-png"],
   docx: [
     "application/zip",
@@ -75,6 +76,8 @@ export async function validateUpload(
   const claimedExt = (file.name.split(".").pop() || "").toLowerCase();
 
   const matches = accept.some((kind) => {
+    const normalizedKind = kind === "jpeg" ? "jpg" : kind;
+
     // Office OpenXML files (docx, xlsx, pptx) verified via PK magic bytes or MIME
     if (["docx", "xlsx", "pptx"].includes(kind)) {
       if (claimedExt === kind && (isPkZipContainer(buffer) || (detectedMime && ACCEPTED_SIGNATURES[kind]?.includes(detectedMime)))) {
@@ -82,16 +85,17 @@ export async function validateUpload(
       }
     }
 
-    const signatures = ACCEPTED_SIGNATURES[kind];
+    const signatures = ACCEPTED_SIGNATURES[normalizedKind] || ACCEPTED_SIGNATURES[kind];
     if (!signatures || signatures.length === 0) {
       return claimedExt === kind && isLikelyTextFile(buffer);
     }
-    return (signatures.includes(detectedMime || "") || signatures.includes(file.type || "")) && (claimedExt === kind || kind === "pdf");
+    const isJpegAlias = (claimedExt === "jpeg" || claimedExt === "jpg") && (kind === "jpg" || kind === "jpeg");
+    return (signatures.includes(detectedMime || "") || signatures.includes(file.type || "")) && (claimedExt === kind || isJpegAlias || kind === "pdf");
   });
 
   if (!matches) {
     // Fallback: If extension matches accepted types and file is not corrupt
-    const isExtensionAccepted = accept.includes(claimedExt as any);
+    const isExtensionAccepted = accept.includes(claimedExt as any) || (claimedExt === "jpeg" && accept.includes("jpg"));
     if (!isExtensionAccepted) {
       throw new ValidationError("Unsupported file type. Please upload a valid document.");
     }

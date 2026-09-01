@@ -1065,7 +1065,7 @@ export default function HomePage() {
             Why In-Server Processing Matters
           </h2>
           <p className="text-xs sm:text-sm text-muted-foreground">
-            Unlike commercial cloud tools that transmit your data to third-party ad networks, AllTools is built on zero-data-retention principles.
+            Unlike commercial cloud tools that transmit your data to third-party ad networks, AllToolss is built on zero-data-retention principles.
           </p>
         </div>
 
