@@ -157,7 +157,7 @@ export default function WhoisLookupPage() {
                   type="text"
                   value={domain}
                   onChange={(e) => setDomain(e.target.value)}
-                  placeholder="e.g. google.com, github.com, openai.com"
+                  placeholder="e.g. google.com, microsoft.com, openai.com"
                   className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-border bg-muted/40 text-foreground font-mono text-sm font-semibold focus:outline-none focus:border-primary"
                 />
               </div>
@@ -185,7 +185,7 @@ export default function WhoisLookupPage() {
           {/* Quick Preset Domains */}
           <div className="flex items-center gap-2 flex-wrap pt-1">
             <span className="text-[11px] text-muted-foreground font-mono">Sample Domains:</span>
-            {['google.com', 'github.com', 'wikipedia.org', 'cloudflare.com'].map((sample) => (
+            {['google.com', 'microsoft.com', 'wikipedia.org', 'cloudflare.com'].map((sample) => (
               <button
                 key={sample}
                 type="button"

@@ -16,8 +16,6 @@ import {
   Calculator,
   Calendar,
   CheckCircle2,
-  GitBranch,
-  Github,
   Mail,
   Linkedin,
   Heart,
@@ -187,7 +185,7 @@ export default function DeveloperPage() {
           <div className="space-y-1">
             <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
               <Layers className="w-5 h-5 text-primary" />
-              <span>Architectural Philosophy behind AllTools</span>
+              <span>Architectural Philosophy behind AllToolss</span>
             </h3>
             <p className="text-xs text-muted-foreground">
               Built on three foundational principles: Zero Tracking, High-Precision Computing, and Universal Accessibility.
@@ -245,8 +243,8 @@ export default function DeveloperPage() {
             </div>
 
             <div className="p-3.5 rounded-xl bg-black/90 font-mono text-xs text-emerald-400 space-y-1.5">
-              <div>$ alltools --version</div>
-              <div className="text-white">AllTools Suite v1.0.0 (Production)</div>
+              <div>$ alltoolss --version</div>
+              <div className="text-white">AllToolss Suite v1.0.0 (Production)</div>
               <div>$ whoami</div>
               <div className="text-white">Santanu Batabyal (Lead Architect)</div>
               <div>$ git status</div>

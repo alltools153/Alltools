@@ -136,7 +136,7 @@ export default function CronExpressionGeneratorPage() {
   };
 
   const downloadCrontab = (cronExpression: string) => {
-    const fileContent = `# Crontab Task Definition\n# Created with AllTools Studio\n# Schedule: ${parseCronExplanation(cronExpression)}\n${cronExpression} /path/to/your/script.sh >> /var/log/cron.log 2>&1\n`;
+    const fileContent = `# Crontab Task Definition\n# Created with AllToolss Studio\n# Schedule: ${parseCronExplanation(cronExpression)}\n${cronExpression} /path/to/your/script.sh >> /var/log/cron.log 2>&1\n`;
     const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

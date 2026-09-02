@@ -162,7 +162,7 @@ export default function SslCertificateCheckerPage() {
                   type="text"
                   value={domainInput}
                   onChange={(e) => setDomainInput(e.target.value)}
-                  placeholder="e.g. google.com, github.com, cloudflare.com"
+                  placeholder="e.g. google.com, amazon.com, cloudflare.com"
                   className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-border bg-muted/40 text-foreground font-mono text-sm font-semibold focus:outline-none focus:border-primary"
                 />
               </div>
@@ -190,7 +190,7 @@ export default function SslCertificateCheckerPage() {
           {/* Quick Preset Domains */}
           <div className="flex items-center gap-2 flex-wrap pt-1">
             <span className="text-[11px] text-muted-foreground font-mono">Sample Domains:</span>
-            {['google.com', 'github.com', 'cloudflare.com', 'wikipedia.org'].map((sample) => (
+            {['google.com', 'amazon.com', 'cloudflare.com', 'wikipedia.org'].map((sample) => (
               <button
                 key={sample}
                 type="button"
@@ -351,7 +351,7 @@ export default function SslCertificateCheckerPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
             <div className="p-4 rounded-2xl bg-muted/20 border border-border space-y-1.5">
               <span className="font-mono font-bold text-primary">01. Enter Domain</span>
-              <p>Type any website hostname (e.g. google.com or subdomains like api.github.com) into the search box.</p>
+              <p>Type any website hostname (e.g. google.com or subdomains like api.cloudflare.com) into the search box.</p>
             </div>
             <div className="p-4 rounded-2xl bg-muted/20 border border-border space-y-1.5">
               <span className="font-mono font-bold text-primary">02. Live Handshake</span>

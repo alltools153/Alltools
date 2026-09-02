@@ -5,8 +5,8 @@ export function getBlueprintMetadata(slug: string): Metadata {
   const bp = SEO_MASTER_BLUEPRINT[slug];
   if (!bp) {
     const fallback = TOOLS_METADATA_CONFIG[slug] || {
-      title: 'AllTools Online Utility',
-      description: 'Free high-performance online utility on AllTools suite.',
+      title: 'AllToolss Online Utility',
+      description: 'Free high-performance online utility on AllToolss suite.',
       path: `/${slug}`,
       category: 'Utilities',
     };
@@ -23,11 +23,16 @@ export function getBlueprintMetadata(slug: string): Metadata {
 }
 
 export const SITE_CONFIG = {
-  name: 'AllTools',
-  siteName: 'AllTools Multi-Tool Suite',
-  title: 'AllTools — Enterprise Developer, Security, PDF, Finance & AI Utilities',
-  description: 'Production-ready suite of 40+ high-performance tools: JSON Formatter, Regex Tester, JWT Decoder, AI SQL Generator, SSL & DNS Checker, 25+ PDF Tools, GST & SIP Wealth Calculators.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://alltools.dev',
+  name: 'AllToolss',
+  siteName: 'AllToolss Multi-Tool Suite',
+  title: 'AllToolss — Enterprise Developer, Security, PDF, Finance & AI Utilities',
+  description: 'Production-ready suite of 40+ high-performance tools: JSON Formatter, Regex Tester, JWT Decoder, AI SQL Generator, Resume ATS Scanner, SSL & DNS Checker, 25+ PDF Tools, GST & SIP Wealth Calculators.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://alltoolss.com',
+  primaryDomain: 'alltoolss.com',
+  secondaryDomain: 'alltoolss.in',
+  primaryUrl: 'https://alltoolss.com',
+  secondaryUrl: 'https://alltoolss.in',
+  domains: ['alltoolss.com', 'alltoolss.in'],
   author: 'Santanu Batabyal',
   twitterHandle: '@alltools_dev',
 };
@@ -62,7 +67,7 @@ export function constructToolMetadata({
     `${SITE_CONFIG.url}/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}&cat=${encodeURIComponent(category)}`;
 
   return {
-    title: title, // Root layout template will format to `${title} | AllTools`
+    title: title, // Root layout template will format to `${title} | AllToolss`
     description,
     keywords: [
       'online tools',
@@ -77,6 +82,11 @@ export function constructToolMetadata({
     metadataBase: new URL(SITE_CONFIG.url),
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        'en-US': `https://alltoolss.com${path}`,
+        'en-IN': `https://alltoolss.in${path}`,
+        'x-default': `https://alltoolss.com${path}`,
+      },
     },
     openGraph: {
       title: fullTitle,
@@ -319,14 +329,14 @@ export const TOOLS_METADATA_CONFIG: Record<string, ToolSeoOptions> = {
     description: 'Engineered by Santanu Batabyal — Architecture philosophy: 100% In-Server processing, zero external cloud SaaS APIs.',
     path: '/developer',
     category: 'System & APIs',
-    keywords: ['santanu batabyal', 'alltools architect', 'full stack systems engineer', 'software architect profile'],
+    keywords: ['santanu batabyal', 'alltoolss architect', 'full stack systems engineer', 'software architect profile'],
   },
   'api-hub': {
     title: 'API Hub & Developer Documentation',
-    description: 'Comprehensive REST API documentation for AllTools endpoints: VAPT audit, DNS lookup, WHOIS, age computation, and live market feed.',
+    description: 'Comprehensive REST API documentation for AllToolss endpoints: VAPT audit, DNS lookup, WHOIS, age computation, and live market feed.',
     path: '/api-hub',
     category: 'System & APIs',
-    keywords: ['alltools api', 'developer api documentation', 'rest api endpoints', 'vapt api', 'dns api'],
+    keywords: ['alltoolss api', 'developer api documentation', 'rest api endpoints', 'vapt api', 'dns api'],
   },
 };
 

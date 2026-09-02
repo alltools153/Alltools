@@ -8,6 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/py/debug', '/api/private/'],
     },
-    sitemap: `${SITE_CONFIG.url}/sitemap.xml`,
+    sitemap: [
+      'https://alltoolss.com/sitemap.xml',
+      'https://alltoolss.in/sitemap.xml',
+    ],
   };
 }

@@ -56,7 +56,7 @@ export default function SeoKeywordsPage() {
             SEO Keyword Matrix & Schemas
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Explore curated high-intent search keywords across AllTools, Age Calculator, VAPT Scanner, and Bengali Panjika.
+            Explore curated high-intent search keywords across AllToolss, Age Calculator, VAPT Scanner, and Bengali Panjika.
           </p>
         </div>
 
@@ -88,7 +88,7 @@ export default function SeoKeywordsPage() {
             className="px-3 py-1.5 rounded-xl border border-border bg-background text-foreground text-xs font-medium"
           >
             <option value="all">All Tools (4 Categories)</option>
-            <option value="general">AllTools Hub</option>
+            <option value="general">AllToolss Hub</option>
             <option value="age">Age Calculator</option>
             <option value="vapt">VAPT Scanner</option>
             <option value="bengali">Bengali Calendar</option>

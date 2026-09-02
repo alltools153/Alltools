@@ -17,7 +17,7 @@ export default function VaptScannerPage() {
   const [logs, setLogs] = useState<string[]>([]);
   const [isMuted, setIsMuted] = useState(false);
   const [activeView, setActiveView] = useState<'vapt' | 'nmap'>('vapt');
-  const [currentTargetUrl, setCurrentTargetUrl] = useState('https://github.com');
+  const [currentTargetUrl, setCurrentTargetUrl] = useState('https://example.com');
 
   const handleStartScan = async (rawUrl: string) => {
     if (isScanning) return;

@@ -71,7 +71,7 @@ const ENDPOINTS: ApiEndpoint[] = [
     path: '/api/v1/vapt/scan',
     category: 'VAPT Scanner',
     description: 'Audits HTTP security headers (HSTS, CSP, XFO), SSL/TLS ciphers, and OWASP compliance.',
-    sampleParams: { url: 'https://github.com' },
+    sampleParams: { url: 'https://example.com' },
   },
   {
     id: 'vapt-owasp',
@@ -245,7 +245,7 @@ export default function ApiHubPage() {
             Unified REST API Documentation & Playground
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Interactive request tester and production code generator for all AllTools microservices.
+            Interactive request tester and production code generator for all AllToolss microservices.
           </p>
         </div>
 

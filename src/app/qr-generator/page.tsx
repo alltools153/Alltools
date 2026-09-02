@@ -30,11 +30,11 @@ export default function QRCodeGeneratorPage() {
   const [qrType, setQrType] = useState<QRType>('url');
   
   // Inputs
-  const [textContent, setTextContent] = useState('https://alltools.local');
-  const [urlContent, setUrlContent] = useState('https://alltools.local');
+  const [textContent, setTextContent] = useState('https://alltoolss.com');
+  const [urlContent, setUrlContent] = useState('https://alltoolss.com');
   
   const [emailTo, setEmailTo] = useState('support@example.com');
-  const [emailSubject, setEmailSubject] = useState('Inquiry from AllTools');
+  const [emailSubject, setEmailSubject] = useState('Inquiry from AllToolss');
   const [emailBody, setEmailBody] = useState('Hello, I would like to get in touch.');
   
   const [phoneNumber, setPhoneNumber] = useState('+91 98765 43210');
@@ -62,14 +62,14 @@ export default function QRCodeGeneratorPage() {
   const getRawContent = (): string => {
     switch (qrType) {
       case 'url':
-        if (!urlContent.trim()) return 'https://alltools.local';
+        if (!urlContent.trim()) return 'https://alltoolss.com';
         if (!urlContent.startsWith('http://') && !urlContent.startsWith('https://')) {
           return `https://${urlContent.trim()}`;
         }
         return urlContent.trim();
 
       case 'text':
-        return textContent || 'AllTools QR Engine';
+        return textContent || 'AllToolss QR Engine';
 
       case 'email': {
         const queryParams = [];

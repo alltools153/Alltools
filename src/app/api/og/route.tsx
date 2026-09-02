@@ -6,7 +6,7 @@ export const runtime = 'edge';
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const title = searchParams.get('title') || 'AllTools';
+    const title = searchParams.get('title') || 'AllToolss';
     const description = searchParams.get('desc') || 'Enterprise Developer, Security, PDF, Finance & AI Utilities';
     const category = searchParams.get('cat') || 'Multi-Tool Platform';
 
@@ -72,7 +72,7 @@ export async function GET(req: NextRequest) {
               </div>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '28px', fontWeight: 900, color: '#f8fafc', letterSpacing: '-0.03em' }}>
-                  AllTools
+                  AllToolss
                 </span>
                 <span style={{ fontSize: '13px', color: '#94a3b8', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                   Unified SaaS Suite
@@ -155,7 +155,7 @@ export async function GET(req: NextRequest) {
             </div>
 
             <div style={{ fontSize: '16px', color: '#64748b', fontWeight: 600 }}>
-              alltools.dev
+              alltoolss.com • alltoolss.in
             </div>
           </div>
         </div>

@@ -98,10 +98,10 @@ export interface NetworkAuditViewProps {
 
 export const NetworkAuditView: React.FC<NetworkAuditViewProps> = ({
   theme = 'dos-green',
-  initialTarget = 'https://github.com',
+  initialTarget = 'https://example.com',
   onBack,
 }) => {
-  const [targetInput, setTargetInput] = useState(initialTarget || 'https://github.com');
+  const [targetInput, setTargetInput] = useState(initialTarget || 'https://example.com');
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
   const [currentPortProbe, setCurrentPortProbe] = useState('');
@@ -116,7 +116,7 @@ export const NetworkAuditView: React.FC<NetworkAuditViewProps> = ({
 
   const runNetworkAudit = async (urlOrHost: string) => {
     let cleanHost = (urlOrHost || '').trim();
-    if (!cleanHost) cleanHost = 'https://github.com';
+    if (!cleanHost) cleanHost = 'https://example.com';
 
     setIsScanning(true);
     setErrorMessage(null);
@@ -180,7 +180,7 @@ export const NetworkAuditView: React.FC<NetworkAuditViewProps> = ({
   };
 
   useEffect(() => {
-    runNetworkAudit(initialTarget || 'https://github.com');
+    runNetworkAudit(initialTarget || 'https://example.com');
   }, [initialTarget]);
 
   const copyRawOutput = () => {

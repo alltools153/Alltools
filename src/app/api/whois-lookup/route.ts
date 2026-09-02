@@ -36,7 +36,7 @@ export async function POST(req: Request): Promise<NextResponse> {
     const res = await fetch(rdapUrl, {
       headers: {
         Accept: 'application/rdap+json, application/json',
-        'User-Agent': 'AllTools-Whois-Bot/1.0',
+        'User-Agent': 'AllToolss-Whois-Bot/1.0',
       },
       cache: 'no-store',
     });

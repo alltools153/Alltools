@@ -12,7 +12,7 @@ export interface NmapAuditViewProps {
 
 export const NmapAuditView: React.FC<NmapAuditViewProps> = ({
   theme,
-  initialTarget = 'https://github.com',
+  initialTarget = 'https://example.com',
   onBackToTerminal,
 }) => {
   return (

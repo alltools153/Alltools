@@ -28,8 +28,8 @@ export const TerminalView: React.FC<TerminalViewProps> = ({
   onStartScan,
   onSwitchToPaper,
 }) => {
-  const [inputVal, setInputVal] = useState('SCAN https://github.com');
-  const [quickUrl, setQuickUrl] = useState('https://github.com');
+  const [inputVal, setInputVal] = useState('SCAN https://example.com');
+  const [quickUrl, setQuickUrl] = useState('https://example.com');
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
@@ -80,7 +80,7 @@ export const TerminalView: React.FC<TerminalViewProps> = ({
       case 'SCAN': {
         if (!args) {
           newOutputs.push('ERROR: Missing target URL. Usage: SCAN <url>');
-          newOutputs.push('Example: SCAN https://github.com');
+          newOutputs.push('Example: SCAN https://example.com');
           retroSound.playWarningAlert();
         } else {
           newOutputs.push(`[+] Command acknowledged. Initializing passive audit on: ${args}`);

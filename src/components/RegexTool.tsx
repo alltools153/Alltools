@@ -23,7 +23,7 @@ const REGEX_TEMPLATES = [
     name: 'Email Validation (RFC 5322 Compliant)',
     pattern: '([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})',
     flags: 'gm',
-    sample: `Contact list:\nsantanu@alltools.dev\nsupport@google.com\ninvalid-email@\nlead.architect@company.co.in`,
+    sample: `Contact list:\nsantanu@alltoolss.com\nsupport@google.com\ninvalid-email@\nlead.architect@company.co.in`,
   },
   {
     name: 'IPv4 Address Extraction',
@@ -47,7 +47,7 @@ const REGEX_TEMPLATES = [
     name: 'URL Slug Validation',
     pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$',
     flags: 'gm',
-    sample: `alltools-developer-suite\nvapt-security-scanner\n123-valid-slug\nInvalid_Slug_With_Underscore`,
+    sample: `alltoolss-developer-suite\nvapt-security-scanner\n123-valid-slug\nInvalid_Slug_With_Underscore`,
   },
   {
     name: 'JWT Token Structure',

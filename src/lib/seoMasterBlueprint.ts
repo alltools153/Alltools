@@ -133,7 +133,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       },
       {
         q: 'Is decoding JWT safe online?',
-        a: 'Yes on AllTools, because decoding executes entirely in client-side JavaScript without any network API transmissions.'
+        a: 'Yes on AllToolss, because decoding executes entirely in client-side JavaScript without any network API transmissions.'
       },
       {
         q: 'What is the exp claim in JWT?',
@@ -608,7 +608,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       },
       {
         q: 'Can I convert Word DOCX and Excel XLSX to PDF?',
-        a: 'Yes, AllTools provides high-speed, in-memory conversion for Word, Excel, and PowerPoint with zero external software requirements.'
+        a: 'Yes, AllToolss provides high-speed, in-memory conversion for Word, Excel, and PowerPoint with zero external software requirements.'
       }
     ],
     siloLinks: [

@@ -1,7 +1,9 @@
 import { SeoKeyword } from '@/types/seo';
 
 export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
-  // 1. AllTools General Platform Keywords
+  // 1. AllToolss General Platform Keywords
+  { keyword: 'alltoolss online free', category: 'general', intent: 'commercial', volumeTier: 'High', lang: 'en' },
+  { keyword: 'alltoolss developer suite', category: 'general', intent: 'commercial', volumeTier: 'High', lang: 'en' },
   { keyword: 'all tools online free', category: 'general', intent: 'commercial', volumeTier: 'High', lang: 'en' },
   { keyword: 'multi tool web app nextjs', category: 'general', intent: 'informational', volumeTier: 'High', lang: 'en' },
   { keyword: 'free online developer utility toolkit', category: 'general', intent: 'transactional', volumeTier: 'Medium', lang: 'en' },
@@ -65,10 +67,10 @@ export const SEO_JSON_LD = {
   webApp: {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'AllTools',
-    alternateName: 'AllTools Multi-Project Suite',
+    name: 'AllToolss',
+    alternateName: 'AllToolss Multi-Tool Suite',
     description:
-      'Unified online multi-tool suite featuring Age Milestone Calculator, Website VAPT Security Scanner, and Bengali Calendar & Panjika powered by Next.js and Python FastAPI.',
+      'Unified online multi-tool suite AllToolss featuring Age Milestone Calculator, Website VAPT Security Scanner, ATS Resume Checker, 25+ PDF Tools, and Bengali Calendar & Panjika powered by Next.js and Python FastAPI.',
     applicationCategory: 'DeveloperApplication, UtilityApplication, SecurityApplication',
     operatingSystem: 'All',
     offers: {
@@ -94,26 +96,26 @@ export const SEO_JSON_LD = {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What tools are available in AllTools?',
+        name: 'What tools are available in AllToolss?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'AllTools includes three flagship tools: 1) Age Milestone & Planetary Calculator, 2) Website VAPT Security Scanner & OWASP Top 10 Auditor, and 3) Bengali Calendar & Panjika (বাংলা পঞ্জিকা) with Live Bengali Clock.',
+          text: 'AllToolss includes 40+ production utilities: 1) Resume ATS Scanner, 2) Website VAPT Security Scanner, 3) Age Milestone & Planetary Calculator, 4) 25+ PDF Tools, 5) Developer JSON/Regex/JWT/SQL Utilities, 6) GST & SIP Calculators, and 7) Bengali Calendar & Panjika.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is the VAPT security scanner free and safe to use?',
+        name: 'Is the AllToolss security scanner free and safe to use?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes! The VAPT scanner is 100% free, safe, and performs non-invasive passive security audits including HTTP header verification (HSTS, CSP, XFO), SSL/TLS cipher inspection, and DNS security checks with zero exploitation.',
+          text: 'Yes! The AllToolss VAPT scanner is 100% free, safe, and performs non-invasive passive security audits including HTTP header verification (HSTS, CSP, XFO), SSL/TLS cipher inspection, and DNS security checks with zero exploitation.',
         },
       },
       {
         '@type': 'Question',
-        name: 'How accurate is the Bengali Calendar and Panjika?',
+        name: 'How accurate is the Bengali Calendar and Panjika on AllToolss?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The Bengali Calendar strictly computes astronomical solar and lunar positions following traditional Surya Siddhanta and Bengali Academy standards, including Tithi, Nakshatra, Yoga, Karana, and auspicious Muhurats.',
+          text: 'The Bengali Calendar on AllToolss strictly computes astronomical solar and lunar positions following traditional Surya Siddhanta and Bengali Academy standards, including Tithi, Nakshatra, Yoga, Karana, and auspicious Muhurats.',
         },
       },
     ],

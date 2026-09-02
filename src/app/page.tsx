@@ -103,8 +103,8 @@ export default function HomePage() {
   // Quick interactive demo states for tools
   const [demoDob, setDemoDob] = useState('1998-08-15');
   const [demoRegex, setDemoRegex] = useState('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}');
-  const [demoRegexText, setDemoRegexText] = useState('Contact us at contact@alltools.local or support@domain.com');
-  const [demoJson, setDemoJson] = useState('{"tool":"AllTools","version":"2.4","inServer":true,"status":"Active"}');
+  const [demoRegexText, setDemoRegexText] = useState('Contact us at contact@alltoolss.com or support@domain.com');
+  const [demoJson, setDemoJson] = useState('{"tool":"AllToolss","version":"2.4","inServer":true,"status":"Active"}');
   const [jsonIndent, setJsonIndent] = useState<2 | 4 | 'min'>(2);
   const [quickAgeResult, setQuickAgeResult] = useState<any>(null);
   const [bengaliToday, setBengaliToday] = useState<any>(null);
@@ -830,7 +830,7 @@ export default function HomePage() {
               <div className="p-3 rounded-2xl bg-muted/40 border border-border space-y-1.5">
                 <div className="text-[11px] font-semibold text-muted-foreground flex items-center justify-between">
                   <span>Target Preset:</span>
-                  <span className="text-emerald-400 font-mono text-[10px]">https://github.com</span>
+                  <span className="text-emerald-400 font-mono text-[10px]">https://example.com</span>
                 </div>
                 <div className="p-2 rounded-xl bg-card border border-border text-[10px] text-muted-foreground space-y-1" style={{ backgroundColor: 'var(--card)' }}>
                   <div className="flex items-center gap-1.5 text-emerald-400">

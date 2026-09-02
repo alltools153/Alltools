@@ -1,5 +1,5 @@
 /**
- * Unified API Client for AllTools
+ * Unified API Client for AllToolss
  * Communicates with Python FastAPI Backend (`/api/py/*` or direct)
  * and falls back gracefully to Next.js API Routes.
  */

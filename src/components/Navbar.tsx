@@ -1230,6 +1230,24 @@ export default function Navbar() {
                   )}
                 </div>
 
+                {/* Platform Links: About, Contact & Developer */}
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <Link
+                    href="/about"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-3 rounded-2xl border border-border bg-muted/20 hover:bg-muted text-xs font-semibold text-foreground text-center"
+                  >
+                    About Us
+                  </Link>
+                  <Link
+                    href="/contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-3 rounded-2xl border border-border bg-muted/20 hover:bg-muted text-xs font-semibold text-foreground text-center"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+
                 {/* Developer Profile Link */}
                 <Link
                   href="/developer"

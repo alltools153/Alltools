@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 
 const SAMPLE_JSON = `{
-  "projectName": "AllTools Developer Suite",
+  "projectName": "AllToolss Developer Suite",
   "version": "2.4.0",
   "leadArchitect": "Santanu Batabyal",
   "location": "Bankura, West Bengal",

@@ -26,7 +26,7 @@ export default function Base64EncoderDecoderPage() {
   const [mode, setMode] = useState<'text_encode' | 'text_decode' | 'file_encode' | 'file_decode'>('text_encode');
   
   // Text Mode States
-  const [inputText, setInputText] = useState('Hello, World! Welcome to AllTools Base64 Studio.');
+  const [inputText, setInputText] = useState('Hello, World! Welcome to AllToolss Base64 Studio.');
   const [outputText, setOutputText] = useState('');
   const [isUrlSafe, setIsUrlSafe] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);

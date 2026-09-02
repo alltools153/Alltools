@@ -374,7 +374,7 @@ export function buildGitignore(selectedIds: string[], customRules = ''): string 
   const selectedTemplates = GITIGNORE_TEMPLATES.filter((t) => selectedIds.includes(t.id));
 
   let output = `# =========================================================================
-# Created with AllTools GitIgnore Generator Studio (https://alltools.local)
+# Created with AllToolss GitIgnore Generator Studio (https://alltoolss.com)
 # Selected Technologies: ${selectedTemplates.map((t) => t.name).join(', ') || 'Custom Rules'}
 # Timestamp: ${new Date().toISOString()}
 # =========================================================================

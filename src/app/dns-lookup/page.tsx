@@ -168,7 +168,7 @@ export default function DnsLookupPage() {
                   type="text"
                   value={domain}
                   onChange={(e) => setDomain(e.target.value)}
-                  placeholder="e.g. google.com, github.com, microsoft.com"
+                  placeholder="e.g. google.com, apple.com, microsoft.com"
                   className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-border bg-muted/40 text-foreground font-mono text-sm font-semibold focus:outline-none focus:border-primary"
                 />
               </div>
@@ -207,7 +207,7 @@ export default function DnsLookupPage() {
           {/* Quick Presets */}
           <div className="flex items-center gap-2 flex-wrap pt-1">
             <span className="text-[11px] text-muted-foreground font-mono">Popular Domains:</span>
-            {['google.com', 'github.com', 'cloudflare.com', 'amazon.com'].map((sample) => (
+            {['google.com', 'apple.com', 'cloudflare.com', 'amazon.com'].map((sample) => (
               <button
                 key={sample}
                 type="button"

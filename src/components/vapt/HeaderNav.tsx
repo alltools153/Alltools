@@ -21,7 +21,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   onSelectPreset,
 }) => {
   const presets = [
-    { label: 'GitHub.com', url: 'https://github.com' },
+    { label: 'Google.com', url: 'https://google.com' },
     { label: 'Cloudflare.com', url: 'https://cloudflare.com' },
     { label: 'Example.com', url: 'http://example.com' },
     { label: 'Wikipedia.org', url: 'https://wikipedia.org' },

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/py/debug
+Disallow: /api/private/
+
+Sitemap: https://alltoolss.com/sitemap.xml
+Sitemap: https://alltoolss.in/sitemap.xml

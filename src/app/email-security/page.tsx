@@ -180,7 +180,7 @@ export default function EmailSecurityCheckerPage() {
                   type="text"
                   value={domainInput}
                   onChange={(e) => setDomainInput(e.target.value)}
-                  placeholder="Enter target domain (e.g. google.com, github.com, paypal.com)..."
+                  placeholder="Enter target domain (e.g. google.com, apple.com, paypal.com)..."
                   className="w-full pl-10 pr-4 py-3 rounded-2xl border border-border bg-muted/40 text-foreground text-sm font-mono focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                 />
               </div>
@@ -201,7 +201,7 @@ export default function EmailSecurityCheckerPage() {
               {/* Quick Sample Domain Buttons */}
               <div className="flex items-center gap-1.5 flex-wrap">
                 <span className="text-[11px] font-bold text-muted-foreground uppercase mr-1">Sample Domains:</span>
-                {['google.com', 'github.com', 'microsoft.com', 'paypal.com', 'cloudflare.com'].map((dom) => (
+                {['google.com', 'apple.com', 'microsoft.com', 'paypal.com', 'cloudflare.com'].map((dom) => (
                   <button
                     key={dom}
                     type="button"
