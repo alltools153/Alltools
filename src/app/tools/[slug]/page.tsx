@@ -7,20 +7,13 @@ import {
   ToolMetadata,
 } from '@/lib/tools-registry';
 import { getToolBySlug } from '@/lib/docforge/tools-config';
-import { ToolWorkspace } from '@/components/docforge/tool-workspace';
-import { JsonTool } from '@/components/JsonTool';
-import { JwtTool } from '@/components/JwtTool';
-import { RegexTool } from '@/components/RegexTool';
+import { ToolDispatcher } from '@/components/tools/ToolDispatcher';
 import {
   Wrench,
   ShieldCheck,
   CheckCircle2,
-  ArrowRight,
-  Sparkles,
   HelpCircle,
-  FileText,
   Lock,
-  ExternalLink,
   Zap,
 } from 'lucide-react';
 
@@ -117,40 +110,6 @@ export default function ToolSubRoutePage({ params }: Props) {
     })),
   };
 
-  // Resolve direct standalone route if exists
-  const getDirectToolHref = (slug: string): string => {
-    const directMap: Record<string, string> = {
-      'vapt-security-scanner': '/vapt-scanner',
-      'vapt-scanner': '/vapt-scanner',
-      'nmap-audit': '/vapt-scanner',
-      'ssl-checker': '/ssl-certificate-checker',
-      'ssl-certificate-checker': '/ssl-certificate-checker',
-      'dns-lookup': '/dns-lookup',
-      'whois-lookup': '/whois-lookup',
-      'email-security': '/email-security',
-      'password-generator': '/password-generator',
-      'password-strength-checker': '/password-strength-checker',
-      'resume-ats-checker': '/resume-ats-checker',
-      'qr-generator': '/qr-generator',
-      'image-compressor': '/image-compressor',
-      'age-calculator': '/age-calculator',
-      'bengali-panjika': '/bengali-calendar',
-      'bengali-calendar': '/bengali-calendar',
-      'gst-calculator': '/gst-calculator',
-      'sip-calculator': '/sip-calculator',
-      'stock-market': '/stock-market',
-      'sql-generator': '/sql-generator',
-      'gitignore-generator': '/gitignore-generator',
-      'base64-encoder-decoder': '/base64-encoder-decoder',
-      'uuid-generator': '/uuid-generator',
-      'cron-expression-generator': '/cron-expression-generator',
-      'dev-tools': '/dev-tools',
-    };
-    return directMap[slug] || `/tools/${slug}`;
-  };
-
-  const directHref = getDirectToolHref(tool.slug);
-
   return (
     <div className="min-h-screen pb-20">
       {/* Dynamic JSON-LD Structured Data */}
@@ -201,38 +160,7 @@ export default function ToolSubRoutePage({ params }: Props) {
       {/* Interactive Tool Mount Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="rounded-2xl border border-border bg-card shadow-sm p-4 sm:p-6">
-          {tool.slug === 'json-formatter' ? (
-            <JsonTool />
-          ) : tool.slug === 'jwt-decoder' ? (
-            <JwtTool />
-          ) : tool.slug === 'regex-tester' ? (
-            <RegexTool />
-          ) : pdfTool ? (
-            <ToolWorkspace tool={pdfTool} />
-          ) : (
-            <div className="py-10 px-4 text-center space-y-5">
-              <div className="inline-flex p-3.5 rounded-2xl bg-primary/10 border border-primary/20 text-primary">
-                <Sparkles className="w-8 h-8" />
-              </div>
-              <div className="max-w-xl mx-auto space-y-2">
-                <h3 className="text-xl font-bold text-foreground">
-                  Launch {tool.name} Workspace
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  Access the interactive live engine for {tool.name} with real-time feedback, batch processing, and privacy-first local computation.
-                </p>
-              </div>
-              <div>
-                <a
-                  href={directHref}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
-                >
-                  <span>Open Full Interactive Tool</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          )}
+          <ToolDispatcher slug={tool.slug} pdfTool={pdfTool} toolName={tool.name} />
         </div>
       </div>
 

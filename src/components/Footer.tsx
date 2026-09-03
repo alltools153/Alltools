@@ -60,27 +60,27 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>🛡️ Website VAPT Scanner</span>
                 </Link>
               </li>
               <li>
-                <Link href="/resume-ats-checker" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/resume-ats-checker" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>📄 Resume ATS Checker</span>
                 </Link>
               </li>
               <li>
-                <Link href="/age-calculator" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/age-calculator" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>🧮 Age &amp; Planetary Calc</span>
                 </Link>
               </li>
               <li>
-                <Link href="/bengali-calendar" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/bengali-calendar" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>📅 বাংলা পঞ্জিকা ১৪৩১-১৪৩৩</span>
                 </Link>
               </li>
               <li>
-                <Link href="/stock-market" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/stock-market" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>📈 Indian Stock Market</span>
                 </Link>
               </li>
@@ -94,27 +94,27 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/json-formatter" className="hover:text-primary transition-colors">
+                <Link href="/tools/json-formatter" className="hover:text-primary transition-colors">
                   ⚡ JSON Formatter &amp; Tree
                 </Link>
               </li>
               <li>
-                <Link href="/regex-tester" className="hover:text-primary transition-colors">
+                <Link href="/tools/regex-tester" className="hover:text-primary transition-colors">
                   🔍 Regex Tester &amp; VM
                 </Link>
               </li>
               <li>
-                <Link href="/jwt-decoder" className="hover:text-primary transition-colors">
+                <Link href="/tools/jwt-decoder" className="hover:text-primary transition-colors">
                   🔑 JWT Decoder &amp; Claims
                 </Link>
               </li>
               <li>
-                <Link href="/sql-generator" className="hover:text-primary transition-colors">
+                <Link href="/tools/sql-generator" className="hover:text-primary transition-colors">
                   🤖 AI SQL Generator
                 </Link>
               </li>
               <li>
-                <Link href="/document-tools/compress-pdf" className="hover:text-primary transition-colors">
+                <Link href="/tools/compress-pdf" className="hover:text-primary transition-colors">
                   🗜️ Compress PDF
                 </Link>
               </li>

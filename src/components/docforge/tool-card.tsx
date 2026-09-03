@@ -25,7 +25,7 @@ const ICONS: Record<string, JSX.Element> = {
 export function ToolCard({ tool }: { tool: ToolConfig }) {
   return (
     <Link
-      href={`/document-tools/${tool.slug}`}
+      href={`/tools/${tool.slug}`}
       className="group flex flex-col gap-3 rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-glow-primary focus:outline-none focus:ring-2 focus:ring-primary/50"
     >
       <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary">

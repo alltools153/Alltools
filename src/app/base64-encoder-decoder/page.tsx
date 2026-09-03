@@ -565,7 +565,7 @@ export default function Base64EncoderDecoderPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <Link
-              href="/jwt-decoder"
+              href="/tools/jwt-decoder"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400">
@@ -578,7 +578,7 @@ export default function Base64EncoderDecoderPage() {
             </Link>
 
             <Link
-              href="/json-formatter"
+              href="/tools/json-formatter"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400">
@@ -591,7 +591,7 @@ export default function Base64EncoderDecoderPage() {
             </Link>
 
             <Link
-              href="/qr-generator"
+              href="/tools/qr-generator"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400">

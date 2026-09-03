@@ -476,7 +476,7 @@ export default function SipCalculatorPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <Link
-              href="/stock-market"
+              href="/tools/stock-market"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-amber-500/10 text-amber-400">
@@ -489,7 +489,7 @@ export default function SipCalculatorPage() {
             </Link>
 
             <Link
-              href="/gst-calculator"
+              href="/tools/gst-calculator"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
@@ -502,7 +502,7 @@ export default function SipCalculatorPage() {
             </Link>
 
             <Link
-              href="/age-calculator"
+              href="/tools/age-calculator"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400">
