@@ -1,6 +1,7 @@
 import { ToolSearch } from "@/components/docforge/tool-search";
 import { QuickUploadPicker } from "@/components/docforge/quick-upload-picker";
 import { ToolGrid } from "@/components/docforge/tool-grid";
+import ToolSeoFooter from "@/components/seo/ToolSeoFooter";
 
 export default function HomePage() {
   return (
@@ -52,8 +53,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 space-y-12">
         <ToolGrid />
+        <ToolSeoFooter toolSlug="compress-pdf" />
       </section>
     </>
   );

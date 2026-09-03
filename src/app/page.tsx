@@ -69,10 +69,11 @@ export default function HomePage() {
     { name: 'NIFTY 50', value: '24,068.85', change: '-106.80', percent: '-0.44%', positive: false },
   ]);
 
-  // Live polling for Nifty & Sensex indices on Home Page
+  // Live polling for Nifty & Sensex indices on Home Page (15s gentle interval with visibility check)
   useEffect(() => {
     let isMounted = true;
     const fetchHomeMarket = async () => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       const currentStatus = getIndianMarketStatus();
       if (isMounted) setMarketStatus(currentStatus);
 
@@ -93,7 +94,7 @@ export default function HomePage() {
       }
     };
     fetchHomeMarket();
-    const interval = setInterval(fetchHomeMarket, 3000);
+    const interval = setInterval(fetchHomeMarket, 15000);
     return () => {
       isMounted = false;
       clearInterval(interval);
@@ -171,14 +172,14 @@ export default function HomePage() {
           {/* Privacy & In-Server Guarantee Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider shadow-sm backdrop-blur-md">
             <Lock className="w-3.5 h-3.5" />
-            <span>100% In-Server & Client-Side Engine • Zero External Third-Party APIs</span>
+            <span>100% In-Server &amp; Client-Side Engine • Zero External Third-Party APIs</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-foreground max-w-5xl mx-auto leading-[1.15]">
             One Unified Multi-Tool Suite.{' '}
             <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Fast, Clean & In-Server.
+              Fast, Clean &amp; In-Server.
             </span>
           </h1>
 
@@ -192,10 +193,12 @@ export default function HomePage() {
             <div className="relative flex items-center">
               <Search className="absolute left-4 w-5 h-5 text-primary" />
               <input
+                id="hero-search-input"
                 type="text"
                 value={heroSearch}
                 onChange={(e) => setHeroSearch(e.target.value)}
                 placeholder="Search 30+ in-server tools (e.g. 'merge pdf', 'jwt', 'vapt', 'age', 'panjika', 'json')..."
+                aria-label="Search all tools by keyword, name or category"
                 className="w-full pl-12 pr-10 py-3.5 sm:py-4 rounded-2xl border border-border bg-card text-foreground text-sm sm:text-base shadow-lg placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                 style={{ backgroundColor: 'var(--card)' }}
               />
@@ -203,7 +206,8 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={() => setHeroSearch('')}
-                  className="absolute right-4 text-xs font-mono px-2 py-1 rounded bg-muted text-muted-foreground hover:text-foreground"
+                  aria-label="Clear tool search input"
+                  className="absolute right-4 text-xs font-mono px-2 py-1 rounded bg-muted text-muted-foreground hover:text-foreground cursor-pointer"
                 >
                   CLEAR
                 </button>
@@ -764,10 +768,12 @@ export default function HomePage() {
               {/* Quick Test Demo */}
               <div className="p-3 rounded-2xl bg-muted/40 border border-border space-y-2">
                 <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
-                  <span>Interactive Birthdate:</span>
+                  <label htmlFor="demo-dob-input" className="cursor-pointer">Interactive Birthdate:</label>
                   <input
+                    id="demo-dob-input"
                     type="date"
                     value={demoDob}
+                    aria-label="Interactive Birthdate for age calculation demo"
                     onChange={(e) => setDemoDob(e.target.value)}
                     className="px-2 py-1 rounded-lg border border-border bg-card text-foreground text-xs focus:outline-none focus:border-primary"
                     style={{ backgroundColor: 'var(--card)' }}
@@ -1025,9 +1031,9 @@ export default function HomePage() {
             >
               <div className="space-y-2">
                 <div className="flex items-start justify-between gap-2">
-                  <h4 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                     {tool.name}
-                  </h4>
+                  </h3>
                   {tool.badge && (
                     <span
                       className={`text-[9px] uppercase font-mono px-1.5 py-0.5 rounded border flex-shrink-0 ${
@@ -1074,7 +1080,7 @@ export default function HomePage() {
             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <Lock className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-foreground">100% Client & In-Server Memory</h3>
+            <h3 className="text-base font-bold text-foreground">100% Client &amp; In-Server Memory</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Your sensitive tokens, passwords, document data, and birthdates are processed within browser RAM or isolated FastAPI process memory without database logging.
             </p>
@@ -1107,10 +1113,10 @@ export default function HomePage() {
         <div className="p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border bg-card shadow-sm space-y-4 sm:space-y-5" style={{ backgroundColor: 'var(--card)' }}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
             <div>
-              <h3 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-bold text-foreground flex items-center gap-2">
                 <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 <span>Live Theme Switcher</span>
-              </h3>
+              </h2>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Tap any palette below to instantly switch the entire application look across all tools.
               </p>
@@ -1176,9 +1182,9 @@ export default function HomePage() {
               <User className="w-3.5 h-3.5" />
               <span>Lead Architect &amp; Systems Engineer</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-foreground">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
               Engineered by Santanu Batabyal
-            </h3>
+            </h2>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
               Designed from Bankura, West Bengal with a strict architectural philosophy: <strong>100% In-Server processing</strong>, zero external API dependencies, and high-performance polyglot UI (Next.js 14 + Python FastAPI).
             </p>

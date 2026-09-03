@@ -21,6 +21,7 @@ import {
   ArrowRight,
   Database,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 interface DnsData {
   domain: string;
@@ -464,6 +465,8 @@ export default function DnsLookupPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="dns-lookup" />
       </div>
     </div>
   );

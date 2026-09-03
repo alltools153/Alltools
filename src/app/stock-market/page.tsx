@@ -22,6 +22,7 @@ import {
   Bell,
   Zap,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 interface MarketSnapshot {
   name: string;
@@ -474,6 +475,9 @@ export default function StockMarketPage() {
               </div>
             </div>
           </section>
+
+          {/* Master SEO Blueprint & Structured Data Schema Footer */}
+          <ToolSeoFooter toolSlug="stock-market" />
         </main>
       </div>
     </div>

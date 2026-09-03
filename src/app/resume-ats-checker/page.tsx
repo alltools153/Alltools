@@ -42,6 +42,7 @@ import {
   analyzeResumeText,
   TARGET_ROLE_KEYWORDS,
 } from '@/lib/resumeAts';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function ResumeAtsCheckerPage() {
   const [inputMode, setInputMode] = useState<'upload' | 'paste'>('upload');
@@ -1144,6 +1145,8 @@ ${report.recommendations.map((r) => `• ${r}`).join('\n')}
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="resume-ats-checker" />
       </div>
     </div>
   );

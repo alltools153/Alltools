@@ -53,20 +53,24 @@ export const ComparisonTab: React.FC = () => {
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-semibold">Name / Label</label>
+              <label htmlFor="comp-person1-name" className="block text-xs text-slate-400 mb-1 font-semibold">Name / Label</label>
               <input
+                id="comp-person1-name"
                 type="text"
                 value={person1Name}
+                aria-label="Person 1 Name"
                 onChange={(e) => setPerson1Name(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"
                 placeholder="e.g. Alex"
               />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-semibold">Date of Birth</label>
+              <label htmlFor="comp-person1-dob" className="block text-xs text-slate-400 mb-1 font-semibold">Date of Birth</label>
               <input
+                id="comp-person1-dob"
                 type="date"
                 value={person1Date}
+                aria-label="Person 1 Date of Birth"
                 onChange={(e) => setPerson1Date(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"
               />
@@ -85,20 +89,24 @@ export const ComparisonTab: React.FC = () => {
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-semibold">Name / Label</label>
+              <label htmlFor="comp-person2-name" className="block text-xs text-slate-400 mb-1 font-semibold">Name / Label</label>
               <input
+                id="comp-person2-name"
                 type="text"
                 value={person2Name}
+                aria-label="Person 2 Name"
                 onChange={(e) => setPerson2Name(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500"
                 placeholder="e.g. Sam"
               />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-semibold">Date of Birth</label>
+              <label htmlFor="comp-person2-dob" className="block text-xs text-slate-400 mb-1 font-semibold">Date of Birth</label>
               <input
+                id="comp-person2-dob"
                 type="date"
                 value={person2Date}
+                aria-label="Person 2 Date of Birth"
                 onChange={(e) => setPerson2Date(e.target.value)}
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500"
               />

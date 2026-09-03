@@ -94,12 +94,14 @@ export const DateConverter: React.FC<DateConverterProps> = ({ language, numerals
 
             {conversionMode === 'greg_to_bn' ? (
               <div className="space-y-2.5 sm:space-y-3">
-                <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300">
+                <label htmlFor="greg-date-input" className="block text-xs font-semibold text-gray-700 dark:text-gray-300">
                   {isBn ? 'তারিখ বেছে নিন:' : 'Choose Date:'}
                 </label>
                 <input
+                  id="greg-date-input"
                   type="date"
                   value={gregDateStr}
+                  aria-label={isBn ? 'ইংরেজি তারিখ' : 'Gregorian Date'}
                   onChange={(e) => setGregDateStr(e.target.value)}
                   className="w-full bg-[#fbf8f1] dark:bg-[#150f0d] border-2 border-[#d4af37] rounded-xl p-2.5 sm:p-3 text-sm font-semibold focus:outline-none"
                 />
@@ -107,11 +109,13 @@ export const DateConverter: React.FC<DateConverterProps> = ({ language, numerals
             ) : (
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="block text-[10px] sm:text-[11px] font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  <label htmlFor="bn-day-select" className="block text-[10px] sm:text-[11px] font-semibold text-gray-600 dark:text-gray-400 mb-1">
                     {isBn ? 'দিন' : 'Day'}
                   </label>
                   <select
+                    id="bn-day-select"
                     value={bnDay}
+                    aria-label={isBn ? 'বাংলা দিন' : 'Bengali Day'}
                     onChange={(e) => setBnDay(Number(e.target.value))}
                     className="w-full bg-[#fbf8f1] dark:bg-[#150f0d] border border-[#d4af37] rounded-xl p-2 sm:p-2.5 text-xs font-bold"
                   >
@@ -124,11 +128,13 @@ export const DateConverter: React.FC<DateConverterProps> = ({ language, numerals
                 </div>
 
                 <div>
-                  <label className="block text-[10px] sm:text-[11px] font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  <label htmlFor="bn-month-select" className="block text-[10px] sm:text-[11px] font-semibold text-gray-600 dark:text-gray-400 mb-1">
                     {isBn ? 'মাস' : 'Month'}
                   </label>
                   <select
+                    id="bn-month-select"
                     value={bnMonthIndex}
+                    aria-label={isBn ? 'বাংলা মাস' : 'Bengali Month'}
                     onChange={(e) => setBnMonthIndex(Number(e.target.value))}
                     className="w-full bg-[#fbf8f1] dark:bg-[#150f0d] border border-[#d4af37] rounded-xl p-2 sm:p-2.5 text-xs font-bold"
                   >
@@ -141,11 +147,13 @@ export const DateConverter: React.FC<DateConverterProps> = ({ language, numerals
                 </div>
 
                 <div>
-                  <label className="block text-[10px] sm:text-[11px] font-semibold text-gray-600 dark:text-gray-400 mb-1">
+                  <label htmlFor="bn-year-select" className="block text-[10px] sm:text-[11px] font-semibold text-gray-600 dark:text-gray-400 mb-1">
                     {isBn ? 'সন' : 'Year'}
                   </label>
                   <select
+                    id="bn-year-select"
                     value={bnYear}
+                    aria-label={isBn ? 'বাংলা সন' : 'Bengali Year'}
                     onChange={(e) => setBnYear(Number(e.target.value))}
                     className="w-full bg-[#fbf8f1] dark:bg-[#150f0d] border border-[#d4af37] rounded-xl p-2 sm:p-2.5 text-xs font-bold"
                   >

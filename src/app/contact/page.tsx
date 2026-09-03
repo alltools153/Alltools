@@ -147,34 +147,40 @@ export default function ContactPage() {
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="font-bold text-foreground">Your Name *</label>
+                      <label htmlFor="contact-name" className="font-bold text-foreground">Your Name *</label>
                       <input
+                        id="contact-name"
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Alex Johnson"
+                        aria-label="Your Name"
                         className="w-full p-3 rounded-xl border border-border bg-muted/30 text-foreground text-xs focus:outline-none focus:border-primary"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="font-bold text-foreground">Your Email Address *</label>
+                      <label htmlFor="contact-email" className="font-bold text-foreground">Your Email Address *</label>
                       <input
+                        id="contact-email"
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. alex@company.com"
+                        aria-label="Your Email Address"
                         className="w-full p-3 rounded-xl border border-border bg-muted/30 text-foreground text-xs focus:outline-none focus:border-primary"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-foreground">Subject / Topic</label>
+                    <label htmlFor="contact-subject" className="font-bold text-foreground">Subject / Topic</label>
                     <select
+                      id="contact-subject"
                       value={formData.subject}
+                      aria-label="Subject or topic"
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       className="w-full p-3 rounded-xl border border-border bg-muted/30 text-foreground text-xs focus:outline-none focus:border-primary cursor-pointer"
                     >
@@ -187,13 +193,15 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="font-bold text-foreground">Your Message *</label>
+                    <label htmlFor="contact-message" className="font-bold text-foreground">Your Message *</label>
                     <textarea
+                      id="contact-message"
                       required
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please detail your question, feedback, or tool suggestion here..."
+                      aria-label="Your Message"
                       className="w-full p-3 rounded-xl border border-border bg-muted/30 text-foreground font-mono text-xs focus:outline-none focus:border-primary resize-y"
                     />
                   </div>

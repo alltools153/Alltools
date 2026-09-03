@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
-import { ALL_TOOLS_CATALOG } from '@/lib/allToolsList';
-import { TOOLS as PDF_TOOLS } from '@/lib/docforge/tools-config';
+import { TOOLS_REGISTRY } from '@/lib/tools-registry';
 import { SITE_CONFIG } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/document-tools`,
       lastModified: now,
       changeFrequency: 'daily',
-      priority: 0.95,
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/dev-tools`,
@@ -28,100 +27,56 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
-      url: `${baseUrl}/api-hub`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/seo-keywords`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/developer`,
+      url: `${baseUrl}/api-hub`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.75,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.75,
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/disclaimer`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.65,
-    },
-    {
-      url: `${baseUrl}/cookie-policy`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/editorial-policy`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/dmca`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/affiliate-disclosure`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
   ];
 
-  // Map all standalone tools from the master catalog
-  const toolPages: MetadataRoute.Sitemap = ALL_TOOLS_CATALOG.map((tool) => ({
-    url: `${baseUrl}${tool.href}`,
+  // Map each individual programmatic tool from TOOLS_REGISTRY
+  const programmaticToolPages: MetadataRoute.Sitemap = TOOLS_REGISTRY.map((tool) => ({
+    url: `${baseUrl}/tools/${tool.slug}`,
     lastModified: now,
-    changeFrequency: 'daily',
-    priority: tool.isPopular ? 0.9 : 0.8,
+    changeFrequency: 'weekly',
+    priority: 0.8,
   }));
 
-  // Map all 25+ PDF Studio tools
-  const pdfToolPages: MetadataRoute.Sitemap = PDF_TOOLS.map((tool) => ({
-    url: `${baseUrl}/document-tools/${tool.slug}`,
-    lastModified: now,
-    changeFrequency: 'daily',
-    priority: 0.85,
-  }));
-
-  // Deduplicate URLs in case of shared hub links
+  // Deduplicate URLs in case of shared links
   const urlSet = new Set<string>();
   const combinedSitemap: MetadataRoute.Sitemap = [];
 
-  for (const page of [...staticPages, ...toolPages, ...pdfToolPages]) {
+  for (const page of [...staticPages, ...programmaticToolPages]) {
     if (!urlSet.has(page.url)) {
       urlSet.add(page.url);
       combinedSitemap.push(page);

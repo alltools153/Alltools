@@ -1,0 +1,53 @@
+# AllToolss — Unified Developer, Security, PDF, Finance & AI Multi-Tool Suite
+
+> AllToolss (https://alltoolss.com) is a high-performance, privacy-first web platform featuring 40+ production-grade online developer tools, passive VAPT security scanners, ATS resume checkers, 25+ PDF document operations, financial calculators, and astronomical calendar systems. All computations run in-server and client-side with 100% memory isolation and zero external third-party data tracking.
+
+## Core Capabilities & Tool Directory
+
+### Developer Utilities
+- [JSON Formatter & Validator](https://alltoolss.com/json-formatter): Fast JSON tree visualization, minify, syntax check, and error highlight.
+- [Regex Tester & Debugger](https://alltoolss.com/regex-tester): Interactive regular expression testing with cheat sheet and match explanations.
+- [JWT Decoder & Inspector](https://alltoolss.com/jwt-decoder): Parse JWT headers, payload claims, expiration timestamps, and signature verification.
+- [AI SQL Query Generator](https://alltoolss.com/sql-generator): Natural language to optimized SQL queries for PostgreSQL, MySQL, SQLite, and SQL Server.
+- [Gitignore Generator](https://alltoolss.com/gitignore-generator): Production-ready .gitignore configurations for 50+ languages and frameworks.
+- [Base64 Encoder & Decoder](https://alltoolss.com/base64-encoder-decoder): Encode and decode strings, images, and binary payloads.
+- [UUID v4 Generator](https://alltoolss.com/uuid-generator): Bulk RFC-compliant UUID v4 generation with custom casing and hyphens.
+- [Cron Expression Generator](https://alltoolss.com/cron-expression-generator): Visual cron schedule builder with human-readable explanations.
+
+### Application Security & Network Diagnostics
+- [Website VAPT Security Scanner](https://alltoolss.com/vapt-scanner): Non-invasive passive security header audit (HSTS, CSP, X-Frame-Options, X-Content-Type, Referrer-Policy, Permissions-Policy), TLS inspection, and OWASP API Top 10 checklist.
+- [SSL/TLS Certificate Checker](https://alltoolss.com/ssl-certificate-checker): Real-time certificate validity, cipher suites, expiration countdown, and SAN validation.
+- [DNS Lookup & Propagation](https://alltoolss.com/dns-lookup): Query A, AAAA, MX, TXT, CNAME, NS, SOA records with DNSSEC verification.
+- [WHOIS & RDAP Lookup](https://alltoolss.com/whois-lookup): Domain registrar details, creation/expiration dates, and status codes.
+- [SPF / DKIM / DMARC Email Security](https://alltoolss.com/email-security): Mail domain deliverability and email spoofing protection audit.
+- [Nmap Port Audit](https://alltoolss.com/nmap-scanner): Non-intrusive standard port availability and service detection.
+- [Password Generator & Entropy Checker](https://alltoolss.com/password-generator): Cryptographically secure random password generation with Shannon entropy score.
+
+### PDF Studio & Document Tools (25+ Operations)
+- [Merge & Split PDF](https://alltoolss.com/document-tools): Reorder, join, and extract pages in memory without third-party cloud uploads.
+- [Compress PDF](https://alltoolss.com/document-tools): Reduce file size with lossy and lossless vector compression.
+- [PDF to Word / Image / Text](https://alltoolss.com/document-tools): High-fidelity format conversions.
+- [OCR Text Recognition](https://alltoolss.com/document-tools): Extract text from scanned documents and images.
+- [Protect & Unlock PDF](https://alltoolss.com/document-tools): AES-128/256 encryption and permission password removal.
+
+### Finance, Calculators & Temporal Computing
+- [Age Milestone & Cosmic Calculator](https://alltoolss.com/age-calculator): Chronological age, 9 solar system planetary orbital ages, biological heartbeats/breaths, and generational cohorts.
+- [GST Calculator](https://alltoolss.com/gst-calculator): Inclusive and exclusive Goods & Services Tax calculations with CGST/SGST breakdowns.
+- [SIP & Lumpsum Wealth Calculator](https://alltoolss.com/sip-calculator): Compounding return projections with inflation adjustments and graphical growth paths.
+- [Live Indian Stock Market Indices](https://alltoolss.com/stock-market): Real-time Sensex and Nifty 50 ticker feeds.
+
+### Cultural & Astronomical Almanac
+- [Bengali Calendar & Panjika (১৪৩১–১৪৩৩)](https://alltoolss.com/bengali-calendar): Astronomical Surya Siddhanta calculations, live 6-period Bengali clock, Tithi, Nakshatra, Yoga, Karana, Disha Shool, Amritayog, Rahukal, and complete festival almanac.
+
+## API & Programmatic Access
+- REST API Documentation: https://alltoolss.com/api-hub
+- Python FastAPI Backend: https://alltools-c30i.onrender.com/docs
+- Key Endpoints:
+  - `POST /api/v1/vapt/scan`: JSON payload `{"url": "https://example.com"}`
+  - `GET /api/v1/age/calculate?birthDate=YYYY-MM-DD`
+  - `GET /api/v1/bengali/today`
+
+## Privacy, Security & Architecture
+- **Zero Cloud Storage**: User uploaded files and input strings are processed in memory and immediately discarded.
+- **Client-Side & Edge Server Execution**: Computations occur directly in browser WASM/JS or ephemeral server processes.
+- **Architect & Maintainer**: Santanu Batabyal (Principal Application Security Architect).

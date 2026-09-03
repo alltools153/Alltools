@@ -19,6 +19,7 @@ import {
   Info,
   Sliders,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 import {
   GITIGNORE_TEMPLATES,
   PRESET_BUNDLES,
@@ -313,15 +314,15 @@ export default function GitIgnoreGeneratorPage() {
 
             {/* Quick Tips */}
             <div className="p-5 rounded-2xl border border-border bg-card/60 text-xs space-y-2">
-              <h4 className="font-bold text-foreground flex items-center gap-1.5">
+              <h3 className="font-bold text-foreground flex items-center gap-1.5">
                 <Info className="w-4 h-4 text-primary" />
                 <span>Git Pro-Tip: Untracking already committed files</span>
-              </h4>
+              </h3>
               <p className="text-muted-foreground leading-relaxed">
                 If files like <code className="text-foreground bg-muted px-1 rounded">node_modules/</code> or <code className="text-foreground bg-muted px-1 rounded">.env</code> were previously committed to Git history, add this file and run:
               </p>
               <div className="p-2.5 rounded-xl bg-black font-mono text-[11px] text-cyan-300 select-all">
-                git rm -r --cached . &amp;&amp; git add . &amp;&amp; git commit -m "chore: apply updated .gitignore"
+                git rm -r --cached . &amp;&amp; git add . &amp;&amp; git commit -m &quot;chore: apply updated .gitignore&quot;
               </div>
             </div>
 
@@ -329,6 +330,8 @@ export default function GitIgnoreGeneratorPage() {
 
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="gitignore-generator" />
       </div>
     </div>
   );

@@ -85,8 +85,10 @@ export const FestivalDirectory: React.FC<FestivalDirectoryProps> = ({ language, 
               <div className="relative w-full sm:w-80">
                 <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
                 <input
+                  id="festival-search-input"
                   type="text"
                   value={searchQuery}
+                  aria-label={isBn ? 'উৎসবের নাম দিয়ে অনুসন্ধান' : 'Search festivals by name'}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={isBn ? 'উৎসবের নাম দিয়ে খুঁজুন...' : 'Search festivals...'}
                   className="w-full pl-9 pr-4 py-2 bg-white dark:bg-[#150f0d] border border-[#e6d7bc] dark:border-[#443228] rounded-xl text-xs focus:outline-none focus:border-[#8b0000]"

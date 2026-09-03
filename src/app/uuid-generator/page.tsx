@@ -19,6 +19,7 @@ import {
   Layers,
   Zap,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function UuidGeneratorPage() {
   const [quantity, setQuantity] = useState<number>(5);
@@ -455,6 +456,8 @@ export default function UuidGeneratorPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="uuid-generator" />
       </div>
     </div>
   );

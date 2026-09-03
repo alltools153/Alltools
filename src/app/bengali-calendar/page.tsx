@@ -19,6 +19,7 @@ import { LOCATIONS } from '@/lib/constants/panjikaData';
 import { getDayPanjika, getZonedCalendarDate, logBengaliDateDebug } from '@/lib/panjikaEngine';
 import { CalculationMethod, Language, LocationConfig, Numerals, ThemeMode } from '@/types/panjika';
 import { Clock, Sparkles, Heart, BookOpen, Flame, MapPin, Globe, Moon } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function BengaliCalendarPage() {
   const [language, setLanguage] = useState<Language>('bn');
@@ -298,6 +299,9 @@ export default function BengaliCalendarPage() {
             <AboutHeritage language={language} />
           </div>
         )}
+
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="bengali-calendar" />
       </main>
 
       {/* Footer */}

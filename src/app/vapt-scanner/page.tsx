@@ -7,6 +7,7 @@ import { NmapAuditView } from '@/components/vapt/NmapAuditView';
 import { HeaderNav } from '@/components/vapt/HeaderNav';
 import { ScanReport, ScanTheme } from '@/types/scanner';
 import { retroSound } from '@/lib/retroAudio';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function VaptScannerPage() {
   const [theme, setTheme] = useState<ScanTheme>('dos-green');
@@ -155,6 +156,11 @@ export default function VaptScannerPage() {
             onSwitchToPaper={() => setTheme('paper-matrix')}
           />
         )}
+
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <ToolSeoFooter toolSlug="vapt-scanner" />
+        </div>
       </main>
 
       {/* Retro Status Footer */}

@@ -151,6 +151,7 @@ export function QuickSearchModal({ isOpen, onClose }: QuickSearchModalProps) {
             ref={inputRef}
             type="text"
             value={query}
+            aria-label="Search tools by name, topic, or file type"
             onChange={(e) => {
               setQuery(e.target.value);
               setSelectedIndex(0);
@@ -160,15 +161,19 @@ export function QuickSearchModal({ isOpen, onClose }: QuickSearchModalProps) {
           />
           {query && (
             <button
+              type="button"
               onClick={() => setQuery('')}
-              className="p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted"
+              aria-label="Clear search input"
+              className="p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
           )}
           <button
+            type="button"
             onClick={onClose}
-            className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground border border-border hidden sm:inline"
+            aria-label="Close search modal"
+            className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground border border-border hidden sm:inline cursor-pointer"
           >
             ESC
           </button>

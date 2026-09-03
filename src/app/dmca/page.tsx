@@ -2,12 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { Scale, ShieldAlert, ArrowLeft, Mail, FileText } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'DMCA & Copyright Policy — Intellectual Property Compliance',
   description:
     'DMCA Notice and Copyright Policy for AllToolss. Guidelines for submitting copyright infringement notifications and takedown requests.',
-};
+  path: '/dmca',
+  category: 'Legal & Policy',
+  keywords: ['dmca policy', 'copyright infringement', 'takedown notices', 'intellectual property'],
+});
 
 export default function DmcaPage() {
   return (

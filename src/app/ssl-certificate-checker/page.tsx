@@ -23,6 +23,7 @@ import {
   Server,
   ArrowRight,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 interface SslResult {
   domain: string;
@@ -439,6 +440,8 @@ export default function SslCertificateCheckerPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="ssl-certificate-checker" />
       </div>
     </div>
   );

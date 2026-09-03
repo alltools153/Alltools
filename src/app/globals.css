@@ -32,8 +32,8 @@
   --muted-foreground-rgb: 156 163 175;
   --border: #1e293b;
   --border-rgb: 30 41 59;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 [data-theme='matrix'] {
@@ -98,8 +98,8 @@
   --muted-foreground-rgb: 148 163 184;
   --border: #334155;
   --border-rgb: 51 65 85;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 [data-theme='clean-light'] {
@@ -127,12 +127,12 @@
   --accent-glow: rgba(124, 58, 237, 0.2);
   --muted: #e2e8f0;
   --muted-rgb: 226 232 240;
-  --muted-foreground: #64748b;
-  --muted-foreground-rgb: 100 116 139;
+  --muted-foreground: #475569;
+  --muted-foreground-rgb: 71 85 105;
   --border: #cbd5e1;
   --border-rgb: 203 213 225;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 [data-theme='royal-bengali'] {
@@ -164,8 +164,8 @@
   --muted-foreground-rgb: 252 211 77;
   --border: #5e1a2f;
   --border-rgb: 94 26 47;
-  --font-sans: '"Noto Sans Bengali"', 'Inter', sans-serif;
-  --font-mono: 'Courier New', monospace;
+  --font-sans: 'Noto Sans Bengali', 'Kalpurush', 'SolaimanLipi', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 [data-theme='sunset-amber'] {
@@ -197,8 +197,8 @@
   --muted-foreground-rgb: 254 215 170;
   --border: #4c2875;
   --border-rgb: 76 40 117;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 [data-theme='midnight-amoled'] {
@@ -230,8 +230,8 @@
   --muted-foreground-rgb: 163 163 163;
   --border: #262626;
   --border-rgb: 38 38 38;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Courier New', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* Custom Scrollbars */

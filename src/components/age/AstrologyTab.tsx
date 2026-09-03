@@ -62,12 +62,14 @@ export const AstrologyTab: React.FC<AstrologyTabProps> = ({
           {/* Quick Date Change */}
           <div className="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 flex items-center gap-3">
             <div>
-              <label className="block text-[11px] font-bold uppercase text-slate-400 mb-1 flex items-center gap-1">
+              <label htmlFor="astrology-birth-date" className="block text-[11px] font-bold uppercase text-slate-400 mb-1 flex items-center gap-1 cursor-pointer">
                 <Calendar className="w-3 h-3 text-purple-400" /> Birth Date
               </label>
               <input
+                id="astrology-birth-date"
                 type="date"
                 value={birthDate}
+                aria-label="Birth Date for Zodiac & Generation Insights"
                 onChange={(e) => {
                   setBirthDate(e.target.value);
                   if (onRecalculate) onRecalculate();

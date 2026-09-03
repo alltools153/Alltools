@@ -21,6 +21,7 @@ import {
   Target,
   FileCheck,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 interface ProcessedImage {
   id: string;
@@ -683,6 +684,8 @@ export default function ImageCompressorPage() {
           </div>
         )}
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="image-compressor" />
       </div>
     </div>
   );

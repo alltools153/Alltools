@@ -21,6 +21,7 @@ import {
   Clock,
   Layers,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 interface AnalysisResult {
   score: number; // 0 to 100
@@ -466,6 +467,8 @@ export default function PasswordStrengthCheckerPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="password-strength-checker" />
       </div>
     </div>
   );
