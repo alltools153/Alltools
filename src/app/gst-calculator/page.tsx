@@ -19,6 +19,7 @@ import {
   Shield,
   FileSpreadsheet,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function GstCalculatorPage() {
   const [mode, setMode] = useState<'exclusive' | 'inclusive'>('exclusive');
@@ -436,6 +437,8 @@ export default function GstCalculatorPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="gst-calculator" />
       </div>
     </div>
   );

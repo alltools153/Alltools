@@ -2,12 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { Cookie, Shield, Lock, Eye, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'Cookie Policy — Cookie Usage & AdSense Opt-Out',
   description:
     'Detailed Cookie Policy for AllToolss explaining essential operational cookies, analytics, Google AdSense advertising cookies, and opt-out controls.',
-};
+  path: '/cookie-policy',
+  category: 'Legal & Policy',
+  keywords: ['cookie policy', 'cookie preferences', 'adsense cookies', 'opt out cookies'],
+});
 
 export default function CookiePolicyPage() {
   return (

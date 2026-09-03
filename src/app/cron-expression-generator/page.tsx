@@ -20,6 +20,7 @@ import {
   FileCode,
   Zap,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function CronExpressionGeneratorPage() {
   const [activeTab, setActiveTab] = useState<'generator' | 'explainer'>('generator');
@@ -539,6 +540,8 @@ export default function CronExpressionGeneratorPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="cron-expression-generator" />
       </div>
     </div>
   );

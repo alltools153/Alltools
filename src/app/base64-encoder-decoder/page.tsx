@@ -21,6 +21,7 @@ import {
   Eye,
   Layers,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function Base64EncoderDecoderPage() {
   const [mode, setMode] = useState<'text_encode' | 'text_decode' | 'file_encode' | 'file_decode'>('text_encode');
@@ -604,6 +605,8 @@ export default function Base64EncoderDecoderPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="base64-encoder-decoder" />
       </div>
     </div>
   );

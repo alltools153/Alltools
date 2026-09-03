@@ -19,6 +19,7 @@ import {
 } from '@/utils/calculator';
 import { triggerBirthdayConfetti } from '@/utils/confetti';
 import { Heart, Clock, Orbit, Award, Grid, ArrowRightLeft, Sparkles, User } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function AgeCalculatorPage() {
   const [activeTab, setActiveTab] = useState('age');
@@ -257,6 +258,9 @@ export default function AgeCalculatorPage() {
             </div>
           </div>
         )}
+
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="age-calculator" />
       </main>
 
       {/* Share / Export Modal */}

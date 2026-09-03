@@ -19,6 +19,7 @@ import {
   Layers,
   Shield,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function PasswordGeneratorPage() {
   const [length, setLength] = useState<number>(16);
@@ -515,6 +516,8 @@ export default function PasswordGeneratorPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="password-generator" />
       </div>
     </div>
   );

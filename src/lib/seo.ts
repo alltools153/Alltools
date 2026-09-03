@@ -27,12 +27,10 @@ export const SITE_CONFIG = {
   siteName: 'AllToolss Multi-Tool Suite',
   title: 'AllToolss — Enterprise Developer, Security, PDF, Finance & AI Utilities',
   description: 'Production-ready suite of 40+ high-performance tools: JSON Formatter, Regex Tester, JWT Decoder, AI SQL Generator, Resume ATS Scanner, SSL & DNS Checker, 25+ PDF Tools, GST & SIP Wealth Calculators.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://alltoolss.com',
+  url: 'https://alltoolss.com',
   primaryDomain: 'alltoolss.com',
-  secondaryDomain: 'alltoolss.in',
   primaryUrl: 'https://alltoolss.com',
-  secondaryUrl: 'https://alltoolss.in',
-  domains: ['alltoolss.com', 'alltoolss.in'],
+  domains: ['alltoolss.com'],
   author: 'Santanu Batabyal',
   twitterHandle: '@alltools_dev',
 };
@@ -84,7 +82,6 @@ export function constructToolMetadata({
       canonical: canonicalUrl,
       languages: {
         'en-US': `https://alltoolss.com${path}`,
-        'en-IN': `https://alltoolss.in${path}`,
         'x-default': `https://alltoolss.com${path}`,
       },
     },

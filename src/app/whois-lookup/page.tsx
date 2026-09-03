@@ -22,6 +22,7 @@ import {
   Lock,
   Zap,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 interface WhoisData {
   domain: string;
@@ -434,6 +435,8 @@ export default function WhoisLookupPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="whois-lookup" />
       </div>
     </div>
   );

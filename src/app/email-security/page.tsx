@@ -23,6 +23,7 @@ import {
   ChevronDown,
   Info,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 interface AuditResult {
   domain: string;
@@ -607,6 +608,8 @@ export default function EmailSecurityCheckerPage() {
           </div>
         )}
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="email-security" />
       </div>
     </div>
   );

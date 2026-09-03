@@ -23,6 +23,7 @@ import {
   Smartphone,
   Layers,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 type QRType = 'text' | 'url' | 'email' | 'phone' | 'wifi';
 
@@ -676,10 +677,10 @@ export default function QRCodeGeneratorPage() {
 
             {/* Quick Tips & Device Compatibility */}
             <div className="p-5 rounded-2xl border border-border bg-card/60 text-xs space-y-2.5">
-              <h4 className="font-bold text-foreground flex items-center gap-1.5">
+              <h3 className="font-bold text-foreground flex items-center gap-1.5">
                 <Smartphone className="w-4 h-4 text-emerald-400" />
                 <span>Mobile Scan Compatibility Guide</span>
-              </h4>
+              </h3>
               <ul className="space-y-1.5 text-muted-foreground list-disc pl-4 leading-relaxed">
                 <li><strong>iOS Camera &amp; Android:</strong> Native camera apps decode URLs, WiFi credentials, and phone numbers directly.</li>
                 <li><strong>WiFi QR:</strong> Allows instant 1-tap connection without typing long passwords.</li>
@@ -689,6 +690,9 @@ export default function QRCodeGeneratorPage() {
 
           </div>
         </div>
+
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="qr-generator" />
       </div>
     </div>
   );

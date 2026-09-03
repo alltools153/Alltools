@@ -48,7 +48,7 @@ export default function CookieConsentBanner() {
             <Cookie className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-foreground">Cookie &amp; Privacy Notice</h4>
+            <div className="text-xs font-bold text-foreground">Cookie &amp; Privacy Notice</div>
             <span className="text-[10px] text-muted-foreground font-mono">GDPR &amp; AdSense Compliant</span>
           </div>
         </div>

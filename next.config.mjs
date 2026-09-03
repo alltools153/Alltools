@@ -4,6 +4,11 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      'clsx',
+      'tailwind-merge',
+    ],
     serverComponentsExternalPackages: [
       'pdfjs-dist',
       'tesseract.js',

@@ -20,6 +20,7 @@ import {
   FileSpreadsheet,
   Coins,
 } from 'lucide-react';
+import ToolSeoFooter from '@/components/seo/ToolSeoFooter';
 
 export default function SipCalculatorPage() {
   const [monthlyInvestment, setMonthlyInvestment] = useState<number>(10000);
@@ -515,6 +516,8 @@ export default function SipCalculatorPage() {
           </div>
         </div>
 
+        {/* Master SEO Blueprint & Structured Data Schema Footer */}
+        <ToolSeoFooter toolSlug="sip-calculator" />
       </div>
     </div>
   );

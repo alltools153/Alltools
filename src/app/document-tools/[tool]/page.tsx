@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getToolBySlug, TOOLS } from "@/lib/docforge/tools-config";
 import { ToolWorkspace } from "@/components/docforge/tool-workspace";
+import ToolSeoFooter from "@/components/seo/ToolSeoFooter";
 
 import { constructToolMetadata } from "@/lib/seo";
 
@@ -49,6 +50,10 @@ export default function ToolPage({ params }: { params: { tool: string } }) {
       </div>
 
       <ToolExplainer slug={tool.slug} />
+
+      <div className="mt-12">
+        <ToolSeoFooter toolSlug={tool.slug} />
+      </div>
     </div>
   );
 }

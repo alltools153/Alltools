@@ -109,6 +109,7 @@ export default function Navbar() {
   useEffect(() => {
     let isMounted = true;
     const fetchLiveTicker = async () => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       try {
         const res = await fetch('/api/market-live', { cache: 'no-store' });
         if (!res.ok) return;
@@ -128,7 +129,7 @@ export default function Navbar() {
       }
     };
     fetchLiveTicker();
-    const interval = setInterval(fetchLiveTicker, 3000);
+    const interval = setInterval(fetchLiveTicker, 15000);
     return () => {
       isMounted = false;
       clearInterval(interval);
@@ -1008,17 +1009,20 @@ export default function Navbar() {
             <div className="relative">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
+                id="mobile-nav-search-input"
                 type="text"
                 value={mobileSearchQuery}
                 onChange={(e) => setMobileSearchQuery(e.target.value)}
                 placeholder="Search all tools (e.g. QR, SQL, SPF, PDF)..."
+                aria-label="Search all tools on mobile"
                 className="w-full pl-10 pr-8 py-2.5 rounded-xl border border-border bg-muted/60 text-foreground text-xs placeholder:text-muted-foreground focus:outline-none focus:border-primary"
               />
               {mobileSearchQuery && (
                 <button
                   type="button"
                   onClick={() => setMobileSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground"
+                  aria-label="Clear mobile search query"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>

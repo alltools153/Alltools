@@ -250,10 +250,12 @@ export const TerminalView: React.FC<TerminalViewProps> = ({
       >
         <div className="flex items-center gap-2 flex-1 min-w-[240px]">
           <Globe className="w-4 h-4 shrink-0" />
-          <span className="font-bold shrink-0">TARGET URL:</span>
+          <label htmlFor="vapt-target-url" className="font-bold shrink-0 cursor-pointer">TARGET URL:</label>
           <input
+            id="vapt-target-url"
             type="text"
             value={quickUrl}
+            aria-label="Target Website URL for VAPT Audit"
             onChange={(e) => setQuickUrl(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && quickUrl.trim() && !isScanning) {
@@ -456,8 +458,10 @@ export const TerminalView: React.FC<TerminalViewProps> = ({
           <span className="font-bold select-none">C:\VAPT99&gt;</span>
           <input
             ref={inputRef}
+            id="terminal-command-input"
             type="text"
             value={inputVal}
+            aria-label="VAPT Terminal Command Input"
             onChange={(e) => setInputVal(e.target.value)}
             onKeyDown={handleKeyDown}
             disabled={isScanning}

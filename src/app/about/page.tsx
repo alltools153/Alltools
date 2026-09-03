@@ -16,12 +16,16 @@ import {
   ArrowLeft,
 } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'About Us — Mission, Architecture & E-E-A-T Standards',
   description:
     'Learn about AllToolss: Our architectural mission, in-server privacy philosophy, zero third-party telemetry, and engineering lead Santanu Batabyal.',
-};
+  path: '/about',
+  category: 'Platform & Docs',
+  keywords: ['about alltoolss', 'santanu batabyal', 'in-server tools', 'developer utility suite'],
+});
 
 export default function AboutPage() {
   return (

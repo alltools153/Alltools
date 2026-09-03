@@ -98,9 +98,11 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <input
+                    id="age-birth-date"
                     type="date"
                     required
                     value={inputBirthDate}
+                    aria-label="Date of Birth"
                     onChange={(e) => setInputBirthDate(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
                   />
@@ -108,9 +110,11 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
                 </div>
                 <div>
                   <input
+                    id="age-birth-time"
                     type="time"
                     step="1"
                     value={inputBirthTime}
+                    aria-label="Birth time (optional)"
                     onChange={(e) => setInputBirthTime(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
                   />
@@ -127,8 +131,10 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <input
+                    id="age-target-date"
                     type="date"
                     value={inputTargetDate}
+                    aria-label="Age as of target date"
                     onChange={(e) => setInputTargetDate(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                   />
@@ -136,9 +142,11 @@ export const AgeCalculatorTab: React.FC<AgeCalculatorTabProps> = ({
                 </div>
                 <div>
                   <input
+                    id="age-target-time"
                     type="time"
                     step="1"
                     value={inputTargetTime}
+                    aria-label="Target calculation time (optional)"
                     onChange={(e) => setInputTargetTime(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-700 text-white text-sm focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                   />

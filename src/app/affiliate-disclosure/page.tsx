@@ -2,12 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { DollarSign, ShieldCheck, ArrowLeft, HeartHandshake } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'Affiliate & Advertising Disclosure — FTC Transparency',
   description:
     'Affiliate and monetization disclosure for AllToolss adhering to FTC guidelines, Google AdSense policies, and transparent reader disclosure.',
-};
+  path: '/affiliate-disclosure',
+  category: 'Legal & Policy',
+  keywords: ['affiliate disclosure', 'advertising policy', 'ftc guidelines', 'transparency standards'],
+});
 
 export default function AffiliateDisclosurePage() {
   return (

@@ -2,12 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { AlertTriangle, ShieldAlert, Scale, ArrowLeft, TrendingUp, ShieldCheck, FileCheck2 } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'Legal Disclaimer — Financial, Security & Conversion Disclaimers',
   description:
     'Legal disclaimers for AllToolss regarding financial calculations, cybersecurity auditing tools, ATS resume recommendations, and document conversions.',
-};
+  path: '/disclaimer',
+  category: 'Legal & Policy',
+  keywords: ['legal disclaimer', 'financial calculator disclaimer', 'vapt scan disclaimer', 'alltoolss terms'],
+});
 
 export default function DisclaimerPage() {
   return (

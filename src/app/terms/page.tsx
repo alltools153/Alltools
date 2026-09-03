@@ -2,12 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { FileCheck2, ShieldAlert, Scale, ArrowLeft, Mail, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'Terms of Service — Acceptable Use & Legal Agreement',
   description:
     'Terms of Service for AllToolss. Outlines acceptable use policies, intellectual property rights, security scanner authorizations, and liability disclaimers.',
-};
+  path: '/terms',
+  category: 'Legal & Policy',
+  keywords: ['terms of service', 'user agreement', 'legal disclaimer', 'alltoolss terms'],
+});
 
 export default function TermsPage() {
   return (

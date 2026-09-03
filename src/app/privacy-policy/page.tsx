@@ -2,12 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { Shield, Lock, Eye, CheckCircle2, ArrowLeft, Mail, Globe, Server, FileText } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'Privacy Policy — In-Server Privacy & AdSense Compliance',
   description:
     'Comprehensive Privacy Policy for AllToolss. Details our zero-telemetry in-server processing, Google AdSense DoubleClick cookie disclosure, and GDPR/CCPA data rights.',
-};
+  path: '/privacy-policy',
+  category: 'Legal & Policy',
+  keywords: ['privacy policy', 'gdpr compliance', 'adsense compliance', 'zero telemetry'],
+});
 
 export default function PrivacyPolicyPage() {
   return (

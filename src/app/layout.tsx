@@ -3,6 +3,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import FooterDirectory from '@/components/FooterDirectory';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import GoogleAdSense from '@/components/GoogleAdSense';
 import CookieConsentBanner from '@/components/CookieConsentBanner';
@@ -43,7 +44,6 @@ export const metadata: Metadata = {
     canonical: 'https://alltoolss.com',
     languages: {
       'en-US': 'https://alltoolss.com',
-      'en-IN': 'https://alltoolss.in',
       'x-default': 'https://alltoolss.com',
     },
   },
@@ -85,11 +85,19 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'google-site-verification-placeholder',
-    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
-    other: {
-      'msvalidate.01': [process.env.NEXT_PUBLIC_BING_VERIFICATION || 'bing-verification-placeholder'],
-    },
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION &&
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION !== 'google-site-verification-placeholder' && {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+      }),
+    ...(process.env.NEXT_PUBLIC_YANDEX_VERIFICATION && {
+      yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+    }),
+    ...(process.env.NEXT_PUBLIC_BING_VERIFICATION &&
+      process.env.NEXT_PUBLIC_BING_VERIFICATION !== 'bing-verification-placeholder' && {
+        other: {
+          'msvalidate.01': [process.env.NEXT_PUBLIC_BING_VERIFICATION],
+        },
+      }),
   },
 };
 
@@ -112,7 +120,6 @@ const ORGANIZATION_SCHEMA = {
     availableLanguage: ['English', 'Bengali', 'Hindi'],
   },
   sameAs: [
-    'https://alltoolss.in',
     'https://twitter.com/alltools_dev',
   ],
 };
@@ -140,12 +147,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         {/* Google Analytics & Google AdSense Scripts */}
         <GoogleAnalytics />
         <GoogleAdSense />
@@ -180,6 +181,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           <main className="flex-1 w-full">{children}</main>
+          <FooterDirectory />
           <Footer />
           <CookieConsentBanner />
         </ThemeProvider>

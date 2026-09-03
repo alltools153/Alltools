@@ -59,7 +59,7 @@ export default function ThemeSwitcher() {
                 <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </span>
               <div>
-                <h4 className="text-xs sm:text-sm font-bold text-foreground">Theme Palette</h4>
+                <div className="text-xs sm:text-sm font-bold text-foreground">Theme Palette</div>
                 <p className="text-[10px] sm:text-[11px] text-muted-foreground">{THEMES_LIST.length} Handcrafted Modes</p>
               </div>
             </div>

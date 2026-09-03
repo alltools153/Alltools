@@ -55,9 +55,9 @@ export default function Footer() {
 
           {/* Column 2: Flagship & Security Tools */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
               Security &amp; Calculators
-            </h4>
+            </h3>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
@@ -89,9 +89,9 @@ export default function Footer() {
 
           {/* Column 3: Developer & PDF Tools */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
               Dev &amp; PDF Tools
-            </h4>
+            </h3>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/json-formatter" className="hover:text-primary transition-colors">
@@ -128,9 +128,9 @@ export default function Footer() {
 
           {/* Column 4: Platform & Support */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-foreground">
               Platform &amp; Docs
-            </h4>
+            </h3>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/about" className="hover:text-primary transition-colors">
@@ -168,10 +168,10 @@ export default function Footer() {
 
           {/* Column 5: Legal, AdSense & Compliance */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-foreground flex items-center gap-1.5">
               <Scale className="w-3.5 h-3.5 text-indigo-400" />
               <span>Legal &amp; Policies</span>
-            </h4>
+            </h3>
             <ul className="space-y-2 text-xs">
               <li>
                 <Link href="/privacy-policy" className="hover:text-primary transition-colors font-medium">

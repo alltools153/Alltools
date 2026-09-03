@@ -2,12 +2,16 @@ import React from 'react';
 import Link from 'next/link';
 import { Award, BookOpen, CheckCircle2, ArrowLeft, ShieldCheck } from 'lucide-react';
 import { Metadata } from 'next';
+import { constructToolMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructToolMetadata({
   title: 'Editorial Policy — Accuracy & Verification Standards',
   description:
     'Editorial standards and computational verification practices of AllToolss. Details how we maintain precision across all developer and scientific calculators.',
-};
+  path: '/editorial-policy',
+  category: 'Legal & Policy',
+  keywords: ['editorial policy', 'computational accuracy', 'verification standards', 'e-e-a-t guidelines'],
+});
 
 export default function EditorialPolicyPage() {
   return (
