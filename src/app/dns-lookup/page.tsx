@@ -425,7 +425,7 @@ export default function DnsLookupPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <Link
-              href="/ssl-certificate-checker"
+              href="/tools/ssl-certificate-checker"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
@@ -438,7 +438,7 @@ export default function DnsLookupPage() {
             </Link>
 
             <Link
-              href="/email-security"
+              href="/tools/email-security"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400">
@@ -451,7 +451,7 @@ export default function DnsLookupPage() {
             </Link>
 
             <Link
-              href="/vapt-scanner"
+              href="/tools/vapt-scanner"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400">

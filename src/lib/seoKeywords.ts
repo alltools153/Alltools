@@ -94,7 +94,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'json formatter online free',
     toolName: 'JSON Formatter & Tree',
-    toolHref: '/json-formatter',
+    toolHref: '/tools/json-formatter',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -103,7 +103,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'json beautifier and validator tree view',
     toolName: 'JSON Formatter & Tree',
-    toolHref: '/json-formatter',
+    toolHref: '/tools/json-formatter',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -112,7 +112,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'format json online without server upload',
     toolName: 'JSON Formatter & Tree',
-    toolHref: '/json-formatter',
+    toolHref: '/tools/json-formatter',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'High',
@@ -121,7 +121,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'json minify and compress online',
     toolName: 'JSON Formatter & Tree',
-    toolHref: '/json-formatter',
+    toolHref: '/tools/json-formatter',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -130,7 +130,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'json syntax error validator client side',
     toolName: 'JSON Formatter & Tree',
-    toolHref: '/json-formatter',
+    toolHref: '/tools/json-formatter',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -139,7 +139,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'best private json formatter without ads',
     toolName: 'JSON Formatter & Tree',
-    toolHref: '/json-formatter',
+    toolHref: '/tools/json-formatter',
     category: 'developer',
     intent: 'commercial',
     volumeTier: 'Medium',
@@ -148,7 +148,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'regex tester online with match explanation',
     toolName: 'Regex Tester & VM',
-    toolHref: '/regex-tester',
+    toolHref: '/tools/regex-tester',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -157,7 +157,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'regular expression validator javascript python',
     toolName: 'Regex Tester & VM',
-    toolHref: '/regex-tester',
+    toolHref: '/tools/regex-tester',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -166,7 +166,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'regex cheat sheet and capture group inspector',
     toolName: 'Regex Tester & VM',
-    toolHref: '/regex-tester',
+    toolHref: '/tools/regex-tester',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'High',
@@ -175,7 +175,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'test regex pattern against string online',
     toolName: 'Regex Tester & VM',
-    toolHref: '/regex-tester',
+    toolHref: '/tools/regex-tester',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -184,7 +184,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'visual regex tester with flag toggles',
     toolName: 'Regex Tester & VM',
-    toolHref: '/regex-tester',
+    toolHref: '/tools/regex-tester',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -193,7 +193,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'jwt decoder online secret check',
     toolName: 'JWT Decoder & Inspector',
-    toolHref: '/jwt-decoder',
+    toolHref: '/tools/jwt-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -202,7 +202,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'json web token debugger claims inspector',
     toolName: 'JWT Decoder & Inspector',
-    toolHref: '/jwt-decoder',
+    toolHref: '/tools/jwt-decoder',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'High',
@@ -211,7 +211,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'decode jwt without sending to server',
     toolName: 'JWT Decoder & Inspector',
-    toolHref: '/jwt-decoder',
+    toolHref: '/tools/jwt-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -220,7 +220,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'jwt expiration timestamp checker',
     toolName: 'JWT Decoder & Inspector',
-    toolHref: '/jwt-decoder',
+    toolHref: '/tools/jwt-decoder',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -229,7 +229,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'view jwt header payload claims online',
     toolName: 'JWT Decoder & Inspector',
-    toolHref: '/jwt-decoder',
+    toolHref: '/tools/jwt-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -238,7 +238,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'ai sql query generator from text',
     toolName: 'AI SQL Query Generator',
-    toolHref: '/sql-generator',
+    toolHref: '/tools/sql-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -247,7 +247,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert natural language to sql online',
     toolName: 'AI SQL Query Generator',
-    toolHref: '/sql-generator',
+    toolHref: '/tools/sql-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -256,7 +256,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'text to sql postgres mysql sqlite oracle',
     toolName: 'AI SQL Query Generator',
-    toolHref: '/sql-generator',
+    toolHref: '/tools/sql-generator',
     category: 'developer',
     intent: 'commercial',
     volumeTier: 'High',
@@ -265,7 +265,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'generate complex sql join queries with ai',
     toolName: 'AI SQL Query Generator',
-    toolHref: '/sql-generator',
+    toolHref: '/tools/sql-generator',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -274,7 +274,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'free ai sql query builder without login',
     toolName: 'AI SQL Query Generator',
-    toolHref: '/sql-generator',
+    toolHref: '/tools/sql-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -283,7 +283,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'gitignore generator online multi-stack',
     toolName: 'Git Ignore Generator',
-    toolHref: '/gitignore-generator',
+    toolHref: '/tools/gitignore-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -292,7 +292,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'generate gitignore for react python node docker',
     toolName: 'Git Ignore Generator',
-    toolHref: '/gitignore-generator',
+    toolHref: '/tools/gitignore-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -301,7 +301,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'combined gitignore generator for vscode terraform',
     toolName: 'Git Ignore Generator',
-    toolHref: '/gitignore-generator',
+    toolHref: '/tools/gitignore-generator',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -310,7 +310,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'create custom gitignore template online',
     toolName: 'Git Ignore Generator',
-    toolHref: '/gitignore-generator',
+    toolHref: '/tools/gitignore-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -319,7 +319,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'base64 encoder decoder online',
     toolName: 'Base64 Encoder / Decoder',
-    toolHref: '/base64-encoder-decoder',
+    toolHref: '/tools/base64-encoder-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -328,7 +328,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'encode string to base64 online free',
     toolName: 'Base64 Encoder / Decoder',
-    toolHref: '/base64-encoder-decoder',
+    toolHref: '/tools/base64-encoder-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -337,7 +337,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'decode base64 to text or binary',
     toolName: 'Base64 Encoder / Decoder',
-    toolHref: '/base64-encoder-decoder',
+    toolHref: '/tools/base64-encoder-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -346,7 +346,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'base64 image encoder data uri generator',
     toolName: 'Base64 Encoder / Decoder',
-    toolHref: '/base64-encoder-decoder',
+    toolHref: '/tools/base64-encoder-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -355,7 +355,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'url safe base64 decode online',
     toolName: 'Base64 Encoder / Decoder',
-    toolHref: '/base64-encoder-decoder',
+    toolHref: '/tools/base64-encoder-decoder',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -364,7 +364,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'uuid v4 generator online bulk',
     toolName: 'UUID v4 Generator',
-    toolHref: '/uuid-generator',
+    toolHref: '/tools/uuid-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -373,7 +373,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'generate random uuid v4 without hyphens',
     toolName: 'UUID v4 Generator',
-    toolHref: '/uuid-generator',
+    toolHref: '/tools/uuid-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -382,7 +382,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'guid generator online free rfc compliant',
     toolName: 'UUID v4 Generator',
-    toolHref: '/uuid-generator',
+    toolHref: '/tools/uuid-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -391,7 +391,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'bulk uuid generator uppercase lowercase',
     toolName: 'UUID v4 Generator',
-    toolHref: '/uuid-generator',
+    toolHref: '/tools/uuid-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -400,7 +400,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'cron expression generator and descriptor',
     toolName: 'Cron Expression Generator',
-    toolHref: '/cron-expression-generator',
+    toolHref: '/tools/cron-expression-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -409,7 +409,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'crontab guru schedule visual builder',
     toolName: 'Cron Expression Generator',
-    toolHref: '/cron-expression-generator',
+    toolHref: '/tools/cron-expression-generator',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'High',
@@ -418,7 +418,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'human readable cron expression generator',
     toolName: 'Cron Expression Generator',
-    toolHref: '/cron-expression-generator',
+    toolHref: '/tools/cron-expression-generator',
     category: 'developer',
     intent: 'transactional',
     volumeTier: 'High',
@@ -427,7 +427,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'cron schedule helper next execution times',
     toolName: 'Cron Expression Generator',
-    toolHref: '/cron-expression-generator',
+    toolHref: '/tools/cron-expression-generator',
     category: 'developer',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -454,7 +454,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'website vapt scanner online free',
     toolName: 'Website VAPT Security Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -463,7 +463,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'free web application vulnerability scanner',
     toolName: 'Website VAPT Security Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'commercial',
     volumeTier: 'Very High',
@@ -472,7 +472,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'http security headers checker hsts csp x-frame-options',
     toolName: 'Website VAPT Security Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -481,7 +481,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'owasp api top 10 2023 checklist and audit tool',
     toolName: 'Website VAPT Security Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'informational',
     volumeTier: 'High',
@@ -490,7 +490,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'passive website penetration testing audit tool',
     toolName: 'Website VAPT Security Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'commercial',
     volumeTier: 'High',
@@ -499,7 +499,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'check cookie httponly secure samesite flags',
     toolName: 'Website VAPT Security Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -508,7 +508,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'online nmap port scanner check open ports',
     toolName: 'N-Map Port & Socket Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -517,7 +517,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'scan website standard ports online free',
     toolName: 'N-Map Port & Socket Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -526,7 +526,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'port 80 443 8080 open port checker',
     toolName: 'N-Map Port & Socket Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -535,7 +535,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'network socket port scanner non intrusive',
     toolName: 'N-Map Port & Socket Scanner',
-    toolHref: '/vapt-scanner',
+    toolHref: '/tools/vapt-scanner',
     category: 'security',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -544,7 +544,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'ssl certificate checker online expiration date',
     toolName: 'SSL Certificate Checker',
-    toolHref: '/ssl-certificate-checker',
+    toolHref: '/tools/ssl-certificate-checker',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -553,7 +553,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'tls cipher suite inspector and grade check',
     toolName: 'SSL Certificate Checker',
-    toolHref: '/ssl-certificate-checker',
+    toolHref: '/tools/ssl-certificate-checker',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -562,7 +562,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'check ssl certificate validity and san domains',
     toolName: 'SSL Certificate Checker',
-    toolHref: '/ssl-certificate-checker',
+    toolHref: '/tools/ssl-certificate-checker',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -571,7 +571,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'ssl expiry countdown alert checker',
     toolName: 'SSL Certificate Checker',
-    toolHref: '/ssl-certificate-checker',
+    toolHref: '/tools/ssl-certificate-checker',
     category: 'security',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -580,7 +580,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'dns lookup online query a mx txt aaaa ns cname',
     toolName: 'DNS Records Lookup',
-    toolHref: '/dns-lookup',
+    toolHref: '/tools/dns-lookup',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -589,7 +589,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'check dns records and propagation status',
     toolName: 'DNS Records Lookup',
-    toolHref: '/dns-lookup',
+    toolHref: '/tools/dns-lookup',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -598,7 +598,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'dnssec verification and soa lookup tool',
     toolName: 'DNS Records Lookup',
-    toolHref: '/dns-lookup',
+    toolHref: '/tools/dns-lookup',
     category: 'security',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -607,7 +607,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'query reverse dns ptr record online',
     toolName: 'DNS Records Lookup',
-    toolHref: '/dns-lookup',
+    toolHref: '/tools/dns-lookup',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -616,7 +616,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'whois lookup domain registrar expiration dates',
     toolName: 'WHOIS / RDAP Domain Lookup',
-    toolHref: '/whois-lookup',
+    toolHref: '/tools/whois-lookup',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -625,7 +625,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'rdap domain search query nameservers',
     toolName: 'WHOIS / RDAP Domain Lookup',
-    toolHref: '/whois-lookup',
+    toolHref: '/tools/whois-lookup',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -634,7 +634,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'check domain availability and registration status',
     toolName: 'WHOIS / RDAP Domain Lookup',
-    toolHref: '/whois-lookup',
+    toolHref: '/tools/whois-lookup',
     category: 'security',
     intent: 'informational',
     volumeTier: 'High',
@@ -643,7 +643,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'domain owner and creation date finder',
     toolName: 'WHOIS / RDAP Domain Lookup',
-    toolHref: '/whois-lookup',
+    toolHref: '/tools/whois-lookup',
     category: 'security',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -652,7 +652,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'spf dkim dmarc checker email security audit',
     toolName: 'SPF / DKIM / DMARC Checker',
-    toolHref: '/email-security',
+    toolHref: '/tools/email-security',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -661,7 +661,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'check domain email deliverability authentication',
     toolName: 'SPF / DKIM / DMARC Checker',
-    toolHref: '/email-security',
+    toolHref: '/tools/email-security',
     category: 'security',
     intent: 'commercial',
     volumeTier: 'High',
@@ -670,7 +670,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'dmarc policy validator p=reject p=none',
     toolName: 'SPF / DKIM / DMARC Checker',
-    toolHref: '/email-security',
+    toolHref: '/tools/email-security',
     category: 'security',
     intent: 'informational',
     volumeTier: 'High',
@@ -679,7 +679,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'verify spf record syntax online free',
     toolName: 'SPF / DKIM / DMARC Checker',
-    toolHref: '/email-security',
+    toolHref: '/tools/email-security',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -688,7 +688,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'secure password generator random strong entropy',
     toolName: 'Secure Password Generator',
-    toolHref: '/password-generator',
+    toolHref: '/tools/password-generator',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -697,7 +697,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'generate passwords with symbols numbers client side',
     toolName: 'Secure Password Generator',
-    toolHref: '/password-generator',
+    toolHref: '/tools/password-generator',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -706,7 +706,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'random memorable passphrase generator online',
     toolName: 'Secure Password Generator',
-    toolHref: '/password-generator',
+    toolHref: '/tools/password-generator',
     category: 'security',
     intent: 'transactional',
     volumeTier: 'High',
@@ -715,7 +715,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'password strength and shannon entropy score',
     toolName: 'Password Strength & Entropy Checker',
-    toolHref: '/password-strength-checker',
+    toolHref: '/tools/password-strength-checker',
     category: 'security',
     intent: 'informational',
     volumeTier: 'High',
@@ -724,7 +724,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'how strong is my password check entropy bits',
     toolName: 'Password Strength & Entropy Checker',
-    toolHref: '/password-strength-checker',
+    toolHref: '/tools/password-strength-checker',
     category: 'security',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -733,7 +733,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'estimate password brute force crack time',
     toolName: 'Password Strength & Entropy Checker',
-    toolHref: '/password-strength-checker',
+    toolHref: '/tools/password-strength-checker',
     category: 'security',
     intent: 'informational',
     volumeTier: 'High',
@@ -742,7 +742,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'resume ats checker free score and review',
     toolName: 'Resume ATS Compatibility Checker',
-    toolHref: '/resume-ats-checker',
+    toolHref: '/tools/resume-ats-checker',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -751,7 +751,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'ats resume compatibility scanner online',
     toolName: 'Resume ATS Compatibility Checker',
-    toolHref: '/resume-ats-checker',
+    toolHref: '/tools/resume-ats-checker',
     category: 'utility',
     intent: 'commercial',
     volumeTier: 'Very High',
@@ -760,7 +760,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'check resume against applicant tracking system',
     toolName: 'Resume ATS Compatibility Checker',
-    toolHref: '/resume-ats-checker',
+    toolHref: '/tools/resume-ats-checker',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -769,7 +769,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'ats friendly resume keywords match percentage',
     toolName: 'Resume ATS Compatibility Checker',
-    toolHref: '/resume-ats-checker',
+    toolHref: '/tools/resume-ats-checker',
     category: 'utility',
     intent: 'informational',
     volumeTier: 'High',
@@ -778,7 +778,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'free ats resume parser with formatting feedback',
     toolName: 'Resume ATS Compatibility Checker',
-    toolHref: '/resume-ats-checker',
+    toolHref: '/tools/resume-ats-checker',
     category: 'utility',
     intent: 'commercial',
     volumeTier: 'High',
@@ -787,7 +787,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'qr code generator custom color and logo',
     toolName: 'QR Code Generator Studio',
-    toolHref: '/qr-generator',
+    toolHref: '/tools/qr-generator',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -796,7 +796,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'free qr code maker for url wifi vcard',
     toolName: 'QR Code Generator Studio',
-    toolHref: '/qr-generator',
+    toolHref: '/tools/qr-generator',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -805,7 +805,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'create vector svg png qr code online',
     toolName: 'QR Code Generator Studio',
-    toolHref: '/qr-generator',
+    toolHref: '/tools/qr-generator',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'High',
@@ -814,7 +814,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'high resolution qr code generator without expiration',
     toolName: 'QR Code Generator Studio',
-    toolHref: '/qr-generator',
+    toolHref: '/tools/qr-generator',
     category: 'utility',
     intent: 'commercial',
     volumeTier: 'High',
@@ -823,7 +823,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'compress image online reduce kb without quality loss',
     toolName: 'Image Compressor Studio',
-    toolHref: '/image-compressor',
+    toolHref: '/tools/image-compressor',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -832,7 +832,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'jpeg png webp image compressor in browser memory',
     toolName: 'Image Compressor Studio',
-    toolHref: '/image-compressor',
+    toolHref: '/tools/image-compressor',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'High',
@@ -841,7 +841,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'bulk image size reducer client side',
     toolName: 'Image Compressor Studio',
-    toolHref: '/image-compressor',
+    toolHref: '/tools/image-compressor',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'High',
@@ -850,7 +850,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'compress photo to 50kb 100kb 200kb online',
     toolName: 'Image Compressor Studio',
-    toolHref: '/image-compressor',
+    toolHref: '/tools/image-compressor',
     category: 'utility',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -859,7 +859,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'gst calculator online india cgst sgst igst',
     toolName: 'GST Tax Calculator',
-    toolHref: '/gst-calculator',
+    toolHref: '/tools/gst-calculator',
     category: 'finance',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -868,7 +868,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'calculate gst inclusive and exclusive amount',
     toolName: 'GST Tax Calculator',
-    toolHref: '/gst-calculator',
+    toolHref: '/tools/gst-calculator',
     category: 'finance',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -877,7 +877,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'gst tax calculation formula reverse gst calculator',
     toolName: 'GST Tax Calculator',
-    toolHref: '/gst-calculator',
+    toolHref: '/tools/gst-calculator',
     category: 'finance',
     intent: 'informational',
     volumeTier: 'High',
@@ -886,7 +886,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'gst rates 5 12 18 28 percentage slab calculator',
     toolName: 'GST Tax Calculator',
-    toolHref: '/gst-calculator',
+    toolHref: '/tools/gst-calculator',
     category: 'finance',
     intent: 'transactional',
     volumeTier: 'High',
@@ -895,7 +895,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'sip calculator mutual fund expected returns',
     toolName: 'SIP Wealth Calculator',
-    toolHref: '/sip-calculator',
+    toolHref: '/tools/sip-calculator',
     category: 'finance',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -904,7 +904,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'systematic investment plan growth calculator monthly',
     toolName: 'SIP Wealth Calculator',
-    toolHref: '/sip-calculator',
+    toolHref: '/tools/sip-calculator',
     category: 'finance',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -913,7 +913,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'sip calculator with inflation adjustment',
     toolName: 'SIP Wealth Calculator',
-    toolHref: '/sip-calculator',
+    toolHref: '/tools/sip-calculator',
     category: 'finance',
     intent: 'informational',
     volumeTier: 'High',
@@ -922,7 +922,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'lumpsum investment compounding return calculator',
     toolName: 'SIP Wealth Calculator',
-    toolHref: '/sip-calculator',
+    toolHref: '/tools/sip-calculator',
     category: 'finance',
     intent: 'transactional',
     volumeTier: 'High',
@@ -931,7 +931,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'sip vs lumpsum returns comparison chart',
     toolName: 'SIP Wealth Calculator',
-    toolHref: '/sip-calculator',
+    toolHref: '/tools/sip-calculator',
     category: 'finance',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -940,7 +940,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'sensex and nifty 50 live stock market updates',
     toolName: 'Indian Stock Market Live Updates',
-    toolHref: '/stock-market',
+    toolHref: '/tools/stock-market',
     category: 'finance',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -949,7 +949,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'indian stock market indices real time feed',
     toolName: 'Indian Stock Market Live Updates',
-    toolHref: '/stock-market',
+    toolHref: '/tools/stock-market',
     category: 'finance',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -958,7 +958,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'live bse sensex nse nifty percentage change',
     toolName: 'Indian Stock Market Live Updates',
-    toolHref: '/stock-market',
+    toolHref: '/tools/stock-market',
     category: 'finance',
     intent: 'informational',
     volumeTier: 'High',
@@ -967,7 +967,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'track indian stock market live ticker online',
     toolName: 'Indian Stock Market Live Updates',
-    toolHref: '/stock-market',
+    toolHref: '/tools/stock-market',
     category: 'finance',
     intent: 'transactional',
     volumeTier: 'High',
@@ -976,7 +976,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'age calculator online free exact years months days',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -985,7 +985,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'calculate exact age in years months days seconds',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -994,7 +994,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'chronological age calculator with live ticker',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'informational',
     volumeTier: 'High',
@@ -1003,7 +1003,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'date of birth to age calculator',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1012,7 +1012,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'how old am i today exact calculation',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -1021,7 +1021,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'planetary age calculator calculate age on mars jupiter',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -1030,7 +1030,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'biological life milestone calculator heartbeats breaths',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'informational',
     volumeTier: 'Medium',
@@ -1039,7 +1039,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'chinese zodiac animal and lunar element by birthday',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'informational',
     volumeTier: 'High',
@@ -1048,7 +1048,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'date difference working days calculator',
     toolName: 'Age Milestone & Planetary Calculator',
-    toolHref: '/age-calculator',
+    toolHref: '/tools/age-calculator',
     category: 'age',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1057,7 +1057,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'bengali calendar 1431 1432 1433',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -1066,7 +1066,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'বাংলা ক্যালেন্ডার ১৪৩১ ১৪৩২ ১৪৩৩',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -1075,7 +1075,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'bengali panjika today with tithi and nakshatra',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -1084,7 +1084,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'আজকের বাংলা পঞ্জিকা তিথি ও নক্ষত্র',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -1093,7 +1093,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'english to bengali date converter online',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1102,7 +1102,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'ইংরেজি থেকে বাংলা তারিখ রূপান্তর',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1111,7 +1111,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'durga puja calendar dates schedule 2025 2026',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -1120,7 +1120,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'দুর্গাপূজা ক্যালেন্ডার ও নির্ঘণ্ট সময়সূচী',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'Very High',
@@ -1129,7 +1129,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'bengali marriage auspicious dates subho bibaho lagna',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'High',
@@ -1138,7 +1138,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'amrita yoga mahendra yoga rahu kalam today',
     toolName: 'বাংলা পঞ্জিকা ও ক্যালেন্ডার',
-    toolHref: '/bengali-calendar',
+    toolHref: '/tools/bengali-calendar',
     category: 'bengali',
     intent: 'informational',
     volumeTier: 'High',
@@ -1165,7 +1165,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'jpg to pdf converter online free',
     toolName: 'JPG to PDF',
-    toolHref: '/document-tools/jpg-to-pdf',
+    toolHref: '/tools/jpg-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1174,7 +1174,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert multiple jpg images to single pdf',
     toolName: 'JPG to PDF',
-    toolHref: '/document-tools/jpg-to-pdf',
+    toolHref: '/tools/jpg-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1183,7 +1183,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'png to pdf converter online',
     toolName: 'PNG to PDF',
-    toolHref: '/document-tools/png-to-pdf',
+    toolHref: '/tools/png-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1192,7 +1192,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert transparent png to pdf document',
     toolName: 'PNG to PDF',
-    toolHref: '/document-tools/png-to-pdf',
+    toolHref: '/tools/png-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1201,7 +1201,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'word to pdf converter online docx',
     toolName: 'Word to PDF',
-    toolHref: '/document-tools/word-to-pdf',
+    toolHref: '/tools/word-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1210,7 +1210,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert docx to pdf free without formatting loss',
     toolName: 'Word to PDF',
-    toolHref: '/document-tools/word-to-pdf',
+    toolHref: '/tools/word-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1219,7 +1219,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'excel to pdf converter online xlsx',
     toolName: 'Excel to PDF',
-    toolHref: '/document-tools/excel-to-pdf',
+    toolHref: '/tools/excel-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1228,7 +1228,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert excel spreadsheet to print ready pdf',
     toolName: 'Excel to PDF',
-    toolHref: '/document-tools/excel-to-pdf',
+    toolHref: '/tools/excel-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1237,7 +1237,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'powerpoint to pdf converter pptx online',
     toolName: 'PowerPoint to PDF',
-    toolHref: '/document-tools/powerpoint-to-pdf',
+    toolHref: '/tools/powerpoint-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1246,7 +1246,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert ppt slides to pdf presentation',
     toolName: 'PowerPoint to PDF',
-    toolHref: '/document-tools/powerpoint-to-pdf',
+    toolHref: '/tools/powerpoint-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1255,7 +1255,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'txt to pdf converter online free',
     toolName: 'TXT to PDF',
-    toolHref: '/document-tools/txt-to-pdf',
+    toolHref: '/tools/txt-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1264,7 +1264,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert text notes file to paginated pdf',
     toolName: 'TXT to PDF',
-    toolHref: '/document-tools/txt-to-pdf',
+    toolHref: '/tools/txt-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -1273,7 +1273,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'html to pdf converter render webpage online',
     toolName: 'HTML to PDF',
-    toolHref: '/document-tools/html-to-pdf',
+    toolHref: '/tools/html-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1282,7 +1282,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert html with css to pdf document',
     toolName: 'HTML to PDF',
-    toolHref: '/document-tools/html-to-pdf',
+    toolHref: '/tools/html-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1291,7 +1291,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'pdf to word converter online editable docx',
     toolName: 'PDF to Word',
-    toolHref: '/document-tools/pdf-to-word',
+    toolHref: '/tools/pdf-to-word',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1300,7 +1300,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'convert pdf to docx without losing formatting',
     toolName: 'PDF to Word',
-    toolHref: '/document-tools/pdf-to-word',
+    toolHref: '/tools/pdf-to-word',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1309,7 +1309,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'pdf to excel converter online extract tables',
     toolName: 'PDF to Excel',
-    toolHref: '/document-tools/pdf-to-excel',
+    toolHref: '/tools/pdf-to-excel',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1318,7 +1318,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'extract tabular data from pdf to xlsx spreadsheet',
     toolName: 'PDF to Excel',
-    toolHref: '/document-tools/pdf-to-excel',
+    toolHref: '/tools/pdf-to-excel',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1327,7 +1327,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'pdf to powerpoint converter pptx slides online',
     toolName: 'PDF to PowerPoint',
-    toolHref: '/document-tools/pdf-to-powerpoint',
+    toolHref: '/tools/pdf-to-powerpoint',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1336,7 +1336,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'pdf to jpg converter high resolution online',
     toolName: 'PDF to JPG',
-    toolHref: '/document-tools/pdf-to-jpg',
+    toolHref: '/tools/pdf-to-jpg',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1345,7 +1345,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'extract pages from pdf as jpg images',
     toolName: 'PDF to JPG',
-    toolHref: '/document-tools/pdf-to-jpg',
+    toolHref: '/tools/pdf-to-jpg',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1354,7 +1354,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'pdf to png converter extract images online',
     toolName: 'PDF to PNG',
-    toolHref: '/document-tools/pdf-to-png',
+    toolHref: '/tools/pdf-to-png',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1363,7 +1363,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'pdf to text converter extract plain txt',
     toolName: 'PDF to Text',
-    toolHref: '/document-tools/pdf-to-text',
+    toolHref: '/tools/pdf-to-text',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1372,7 +1372,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'merge pdf online free without file upload',
     toolName: 'Merge PDF',
-    toolHref: '/document-tools/merge-pdf',
+    toolHref: '/tools/merge-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1381,7 +1381,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'combine multiple pdfs into one document',
     toolName: 'Merge PDF',
-    toolHref: '/document-tools/merge-pdf',
+    toolHref: '/tools/merge-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1390,7 +1390,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'split pdf pages into separate files online',
     toolName: 'Split PDF',
-    toolHref: '/document-tools/split-pdf',
+    toolHref: '/tools/split-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1399,7 +1399,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'divide pdf by custom page ranges',
     toolName: 'Split PDF',
-    toolHref: '/document-tools/split-pdf',
+    toolHref: '/tools/split-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1408,7 +1408,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'delete pages from pdf online free',
     toolName: 'Delete Pages',
-    toolHref: '/document-tools/delete-pages',
+    toolHref: '/tools/delete-pages',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1417,7 +1417,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'remove unwanted pages from pdf document',
     toolName: 'Delete Pages',
-    toolHref: '/document-tools/delete-pages',
+    toolHref: '/tools/delete-pages',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1426,7 +1426,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'extract pages from pdf create new document',
     toolName: 'Extract Pages',
-    toolHref: '/document-tools/extract-pages',
+    toolHref: '/tools/extract-pages',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1435,7 +1435,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'reorder pdf pages rearrange page order online',
     toolName: 'Reorder Pages',
-    toolHref: '/document-tools/reorder-pages',
+    toolHref: '/tools/reorder-pages',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1444,7 +1444,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'rotate pdf pages 90 180 degrees permanently',
     toolName: 'Rotate PDF',
-    toolHref: '/document-tools/rotate-pdf',
+    toolHref: '/tools/rotate-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1453,7 +1453,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'compress pdf reduce file size online memory',
     toolName: 'Compress PDF',
-    toolHref: '/document-tools/compress-pdf',
+    toolHref: '/tools/compress-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1462,7 +1462,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'shrink pdf to 100kb 200kb 500kb online free',
     toolName: 'Compress PDF',
-    toolHref: '/document-tools/compress-pdf',
+    toolHref: '/tools/compress-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1471,7 +1471,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'repair corrupted pdf file recover pages',
     toolName: 'Repair PDF',
-    toolHref: '/document-tools/repair-pdf',
+    toolHref: '/tools/repair-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1480,7 +1480,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'flatten pdf form fields and interactive annotations',
     toolName: 'Flatten PDF',
-    toolHref: '/document-tools/flatten-pdf',
+    toolHref: '/tools/flatten-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -1489,7 +1489,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'add watermark to pdf document text image stamp',
     toolName: 'Watermark PDF',
-    toolHref: '/document-tools/watermark-pdf',
+    toolHref: '/tools/watermark-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1498,7 +1498,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'add page numbers to pdf header footer custom format',
     toolName: 'Add Page Numbers',
-    toolHref: '/document-tools/add-page-numbers',
+    toolHref: '/tools/add-page-numbers',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1507,7 +1507,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'crop pdf margins trim whitespace online',
     toolName: 'Crop PDF',
-    toolHref: '/document-tools/crop-pdf',
+    toolHref: '/tools/crop-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1516,7 +1516,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'password protect pdf encrypt aes 256',
     toolName: 'Protect PDF',
-    toolHref: '/document-tools/protect-pdf',
+    toolHref: '/tools/protect-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1525,7 +1525,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'unlock pdf remove password and permissions',
     toolName: 'Unlock PDF',
-    toolHref: '/document-tools/unlock-pdf',
+    toolHref: '/tools/unlock-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1534,7 +1534,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'remove metadata from pdf sanitize document properties',
     toolName: 'Remove Metadata',
-    toolHref: '/document-tools/remove-metadata',
+    toolHref: '/tools/remove-metadata',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Medium',
@@ -1543,7 +1543,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'ocr pdf scan extract searchable text online',
     toolName: 'OCR PDF',
-    toolHref: '/document-tools/ocr-pdf',
+    toolHref: '/tools/ocr-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1552,7 +1552,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'make scanned pdf searchable optical character recognition',
     toolName: 'OCR PDF',
-    toolHref: '/document-tools/ocr-pdf',
+    toolHref: '/tools/ocr-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',
@@ -1561,7 +1561,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'image to text ocr extract text from photo',
     toolName: 'Image to Text',
-    toolHref: '/document-tools/image-to-text',
+    toolHref: '/tools/image-to-text',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'Very High',
@@ -1570,7 +1570,7 @@ export const MASTER_SEO_KEYWORDS: SeoKeyword[] = [
   {
     keyword: 'scan to pdf turn camera photos into searchable pdf',
     toolName: 'Scan to PDF',
-    toolHref: '/document-tools/scan-to-pdf',
+    toolHref: '/tools/scan-to-pdf',
     category: 'pdf',
     intent: 'transactional',
     volumeTier: 'High',

@@ -88,7 +88,7 @@ export function QuickUploadPicker() {
         disabled={!hasSelection}
         onClick={() => {
           if (!hasSelection) return;
-          router.push(`/document-tools/${selectedTool}`);
+          router.push(`/tools/${selectedTool}`);
         }}
         className="inline-flex h-14 items-center justify-center rounded-full bg-forge-500 px-6 font-medium text-white shadow-[0_12px_30px_rgba(126,92,214,0.45)] transition hover:bg-forge-400 focus-ring disabled:cursor-not-allowed disabled:bg-forge-500/40 disabled:text-paper-100/60"
       >

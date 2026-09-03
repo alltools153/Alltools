@@ -259,7 +259,7 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center justify-center gap-2 max-w-5xl mx-auto">
               {/* Developer Tools */}
               <Link
-                href="/regex-tester"
+                href="/tools/regex-tester"
                 className="px-3 py-1.5 rounded-xl bg-pink-500/10 border border-pink-500/30 text-pink-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-pink-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Code2 className="w-3.5 h-3.5" />
@@ -267,7 +267,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/json-formatter"
+                href="/tools/json-formatter"
                 className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <FileJson className="w-3.5 h-3.5" />
@@ -275,7 +275,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/jwt-decoder"
+                href="/tools/jwt-decoder"
                 className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-purple-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <KeyRound className="w-3.5 h-3.5" />
@@ -283,7 +283,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/sql-generator"
+                href="/tools/sql-generator"
                 className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Database className="w-3.5 h-3.5" />
@@ -291,7 +291,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/gitignore-generator"
+                href="/tools/gitignore-generator"
                 className="px-3 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-blue-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <FileCode className="w-3.5 h-3.5" />
@@ -299,7 +299,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/base64-encoder-decoder"
+                href="/tools/base64-encoder-decoder"
                 className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Binary className="w-3.5 h-3.5" />
@@ -307,7 +307,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/uuid-generator"
+                href="/tools/uuid-generator"
                 className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-purple-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Fingerprint className="w-3.5 h-3.5" />
@@ -315,7 +315,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/cron-expression-generator"
+                href="/tools/cron-expression-generator"
                 className="px-3 py-1.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-indigo-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Clock className="w-3.5 h-3.5" />
@@ -323,7 +323,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/dns-lookup"
+                href="/tools/dns-lookup"
                 className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Globe2 className="w-3.5 h-3.5" />
@@ -331,7 +331,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/whois-lookup"
+                href="/tools/whois-lookup"
                 className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <FileSearch className="w-3.5 h-3.5" />
@@ -340,7 +340,7 @@ export default function HomePage() {
 
               {/* Security Tools */}
               <Link
-                href="/vapt-scanner"
+                href="/tools/vapt-scanner"
                 className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <ShieldCheck className="w-3.5 h-3.5" />
@@ -348,7 +348,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/nmap-scanner"
+                href="/tools/nmap-audit"
                 className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Radio className="w-3.5 h-3.5" />
@@ -356,7 +356,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/ssl-certificate-checker"
+                href="/tools/ssl-certificate-checker"
                 className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Lock className="w-3.5 h-3.5" />
@@ -364,7 +364,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/email-security"
+                href="/tools/email-security"
                 className="px-3 py-1.5 rounded-xl bg-violet-500/10 border border-violet-500/30 text-violet-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-violet-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Mail className="w-3.5 h-3.5" />
@@ -372,7 +372,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/password-generator"
+                href="/tools/password-generator"
                 className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <KeyRound className="w-3.5 h-3.5" />
@@ -380,7 +380,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/password-strength-checker"
+                href="/tools/password-strength-checker"
                 className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Shield className="w-3.5 h-3.5" />
@@ -389,7 +389,7 @@ export default function HomePage() {
 
               {/* Utility & AI Tools */}
               <Link
-                href="/resume-ats-checker"
+                href="/tools/resume-ats-checker"
                 className="px-3 py-1.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-indigo-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <FileCheck2 className="w-3.5 h-3.5" />
@@ -397,7 +397,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/age-calculator"
+                href="/tools/age-calculator"
                 className="px-3 py-1.5 rounded-xl bg-primary/10 border border-primary/30 text-primary font-semibold flex items-center gap-1.5 text-xs hover:bg-primary/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Calculator className="w-3.5 h-3.5" />
@@ -405,7 +405,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/bengali-calendar"
+                href="/tools/bengali-calendar"
                 className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Calendar className="w-3.5 h-3.5" />
@@ -413,7 +413,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/qr-generator"
+                href="/tools/qr-generator"
                 className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-purple-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <QrCode className="w-3.5 h-3.5" />
@@ -421,7 +421,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/image-compressor"
+                href="/tools/image-compressor"
                 className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-cyan-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <ImageIcon className="w-3.5 h-3.5" />
@@ -430,7 +430,7 @@ export default function HomePage() {
 
               {/* Finance Tools */}
               <Link
-                href="/stock-market"
+                href="/tools/stock-market"
                 className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <TrendingUp className="w-3.5 h-3.5" />
@@ -438,7 +438,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/gst-calculator"
+                href="/tools/gst-calculator"
                 className="px-3 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-amber-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Receipt className="w-3.5 h-3.5" />
@@ -446,7 +446,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/sip-calculator"
+                href="/tools/sip-calculator"
                 className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1.5 text-xs hover:bg-emerald-500/20 hover:scale-105 transition-all shadow-sm"
               >
                 <Coins className="w-3.5 h-3.5" />
@@ -497,7 +497,7 @@ export default function HomePage() {
                 </div>
 
                 <Link
-                  href="/stock-market"
+                  href="/tools/stock-market"
                   className="text-[10px] sm:text-xs font-bold text-primary hover:underline flex items-center gap-1"
                 >
                   <span>Full View</span>
@@ -510,7 +510,7 @@ export default function HomePage() {
                 {homeMarket.map((item) => (
                   <Link
                     key={item.name}
-                    href="/stock-market"
+                    href="/tools/stock-market"
                     className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border border-border/80 bg-muted/20 hover:border-amber-500/50 hover:bg-muted/40 transition-all flex flex-col justify-between gap-1.5 group shadow-sm text-left"
                   >
                     <div className="flex items-center justify-between text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
@@ -643,7 +643,7 @@ export default function HomePage() {
 
             <div className="pt-5">
               <Link
-                href="/json-formatter"
+                href="/tools/json-formatter"
                 className="w-full py-2.5 rounded-xl bg-cyan-500 text-black font-bold flex items-center justify-center gap-1.5 text-xs hover:opacity-95 transition-opacity shadow-sm"
               >
                 <span>Launch JSON Formatter</span>
@@ -688,7 +688,7 @@ export default function HomePage() {
 
             <div className="pt-5">
               <Link
-                href="/regex-tester"
+                href="/tools/regex-tester"
                 className="w-full py-2.5 rounded-xl bg-pink-500 text-white font-bold flex items-center justify-center gap-1.5 text-xs hover:opacity-95 transition-opacity shadow-sm"
               >
                 <span>Launch Regex Tester</span>
@@ -734,7 +734,7 @@ export default function HomePage() {
 
             <div className="pt-5">
               <Link
-                href="/jwt-decoder"
+                href="/tools/jwt-decoder"
                 className="w-full py-2.5 rounded-xl bg-purple-500 text-white font-bold flex items-center justify-center gap-1.5 text-xs hover:opacity-95 transition-opacity shadow-sm"
               >
                 <span>Launch JWT Decoder</span>
@@ -801,7 +801,7 @@ export default function HomePage() {
 
             <div className="pt-5">
               <Link
-                href="/age-calculator"
+                href="/tools/age-calculator"
                 className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-bold flex items-center justify-center gap-1.5 text-xs hover:opacity-95 transition-opacity shadow-sm"
               >
                 <span>Launch Age Calculator</span>
@@ -853,7 +853,7 @@ export default function HomePage() {
 
             <div className="pt-5">
               <Link
-                href="/vapt-scanner"
+                href="/tools/vapt-scanner"
                 className="w-full py-2.5 rounded-xl bg-emerald-500 text-black font-bold flex items-center justify-center gap-1.5 text-xs hover:opacity-95 transition-opacity shadow-sm"
               >
                 <span>Launch VAPT Scanner</span>
@@ -902,7 +902,7 @@ export default function HomePage() {
 
             <div className="pt-5">
               <Link
-                href="/bengali-calendar"
+                href="/tools/bengali-calendar"
                 className="w-full py-2.5 rounded-xl bg-amber-500 text-black font-bold flex items-center justify-center gap-1.5 text-xs hover:opacity-95 transition-opacity shadow-sm"
               >
                 <span>Open Bengali Calendar</span>
@@ -937,14 +937,14 @@ export default function HomePage() {
               {/* Popular PDF Badges */}
               <div className="flex flex-wrap gap-2 pt-2">
                 {[
-                  { name: 'Merge PDF', href: '/document-tools/merge-pdf' },
-                  { name: 'Split PDF', href: '/document-tools/split-pdf' },
-                  { name: 'Compress PDF', href: '/document-tools/compress-pdf' },
-                  { name: 'Word to PDF', href: '/document-tools/word-to-pdf' },
-                  { name: 'Excel to PDF', href: '/document-tools/excel-to-pdf' },
-                  { name: 'OCR PDF', href: '/document-tools/ocr-pdf' },
-                  { name: 'Protect PDF', href: '/document-tools/protect-pdf' },
-                  { name: 'Watermark PDF', href: '/document-tools/watermark-pdf' },
+                  { name: 'Merge PDF', href: '/tools/merge-pdf' },
+                  { name: 'Split PDF', href: '/tools/split-pdf' },
+                  { name: 'Compress PDF', href: '/tools/compress-pdf' },
+                  { name: 'Word to PDF', href: '/tools/word-to-pdf' },
+                  { name: 'Excel to PDF', href: '/tools/excel-to-pdf' },
+                  { name: 'OCR PDF', href: '/tools/ocr-pdf' },
+                  { name: 'Protect PDF', href: '/tools/protect-pdf' },
+                  { name: 'Watermark PDF', href: '/tools/watermark-pdf' },
                 ].map((item) => (
                   <Link
                     key={item.name}
@@ -966,7 +966,7 @@ export default function HomePage() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/document-tools/merge-pdf"
+                href="/tools/merge-pdf"
                 className="px-6 py-3.5 rounded-2xl border border-border bg-card hover:bg-muted text-foreground font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
                 style={{ backgroundColor: 'var(--card)' }}
               >

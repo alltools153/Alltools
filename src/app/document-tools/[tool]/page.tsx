@@ -16,7 +16,7 @@ export function generateMetadata({ params }: { params: { tool: string } }): Meta
   return constructToolMetadata({
     title: `${tool.name} — ${titleSuffix(tool.outputExt)}`,
     description: tool.description || tool.tagline,
-    path: `/document-tools/${tool.slug}`,
+    path: `/tools/${tool.slug}`,
     category: `PDF Studio • ${tool.category}`,
     keywords: ['pdf studio', 'document converter', tool.name.toLowerCase(), ...(tool.keywords || [])],
   });

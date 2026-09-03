@@ -218,25 +218,25 @@ export default function Navbar() {
                         <span>Developer Tools</span>
                       </div>
                       <div className="space-y-0.5">
-                        <Link href="/regex-tester" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
+                        <Link href="/tools/regex-tester" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
                           Regex Tester &amp; VM
                         </Link>
-                        <Link href="/json-formatter" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
+                        <Link href="/tools/json-formatter" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
                           JSON Formatter &amp; Tree
                         </Link>
-                        <Link href="/jwt-decoder" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
+                        <Link href="/tools/jwt-decoder" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
                           JWT Decoder &amp; Claims
                         </Link>
-                        <Link href="/base64-encoder-decoder" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/base64-encoder-decoder" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ Base64 Encoder / Decoder
                         </Link>
-                        <Link href="/uuid-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/uuid-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ UUID v4 Generator
                         </Link>
-                        <Link href="/cron-expression-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/cron-expression-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ Cron Expression Generator
                         </Link>
-                        <Link href="/sql-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/sql-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ AI SQL Generator
                         </Link>
                         <Link href="/gitignore-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
@@ -255,28 +255,28 @@ export default function Navbar() {
                         <span>Security Tools</span>
                       </div>
                       <div className="space-y-0.5">
-                        <Link href="/vapt-scanner" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
+                        <Link href="/tools/vapt-scanner" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
                           Website VAPT Scanner
                         </Link>
-                        <Link href="/vapt-scanner" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
+                        <Link href="/tools/vapt-scanner" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
                           Nmap Port Audit
                         </Link>
-                        <Link href="/ssl-certificate-checker" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/ssl-certificate-checker" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ SSL Certificate Checker
                         </Link>
-                        <Link href="/dns-lookup" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/dns-lookup" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ DNS Records Lookup
                         </Link>
-                        <Link href="/whois-lookup" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/whois-lookup" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ WHOIS / RDAP Lookup
                         </Link>
-                        <Link href="/email-security" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/email-security" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ SPF / DKIM / DMARC
                         </Link>
-                        <Link href="/password-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/password-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ Password Generator
                         </Link>
-                        <Link href="/password-strength-checker" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/password-strength-checker" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ Password Strength Checker
                         </Link>
                       </div>
@@ -289,19 +289,19 @@ export default function Navbar() {
                         <span>Utility Tools</span>
                       </div>
                       <div className="space-y-0.5">
-                        <Link href="/bengali-calendar" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
+                        <Link href="/tools/bengali-calendar" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
                           বাংলা পঞ্জিকা ও ক্যালেন্ডার
                         </Link>
-                        <Link href="/age-calculator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
+                        <Link href="/tools/age-calculator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-medium text-foreground">
                           Age &amp; Planetary Calculator
                         </Link>
-                        <Link href="/resume-ats-checker" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/resume-ats-checker" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ Resume ATS Checker
                         </Link>
-                        <Link href="/qr-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/qr-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ QR Code Generator
                         </Link>
-                        <Link href="/image-compressor" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/image-compressor" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ Image Compressor
                         </Link>
                       </div>
@@ -315,13 +315,13 @@ export default function Navbar() {
                           <span>Finance Tools</span>
                         </div>
                         <div className="space-y-0.5">
-                          <Link href="/stock-market" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-foreground">
+                          <Link href="/tools/stock-market" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-foreground">
                             📈 Sensex &amp; Nifty Live
                           </Link>
-                          <Link href="/gst-calculator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                          <Link href="/tools/gst-calculator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                             ✨ GST Calculator
                           </Link>
-                          <Link href="/sip-calculator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                          <Link href="/tools/sip-calculator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                             ✨ SIP Wealth Calculator
                           </Link>
                         </div>
@@ -333,13 +333,13 @@ export default function Navbar() {
                           <span>PDF Studio</span>
                         </div>
                         <div className="space-y-0.5">
-                          <Link href="/document-tools/merge-pdf" onClick={() => setActiveDropdown(null)} className="block p-1 rounded hover:bg-muted text-[11px] text-muted-foreground">
+                          <Link href="/tools/merge-pdf" onClick={() => setActiveDropdown(null)} className="block p-1 rounded hover:bg-muted text-[11px] text-muted-foreground">
                             Merge PDF
                           </Link>
-                          <Link href="/document-tools/split-pdf" onClick={() => setActiveDropdown(null)} className="block p-1 rounded hover:bg-muted text-[11px] text-muted-foreground">
+                          <Link href="/tools/split-pdf" onClick={() => setActiveDropdown(null)} className="block p-1 rounded hover:bg-muted text-[11px] text-muted-foreground">
                             Split PDF
                           </Link>
-                          <Link href="/document-tools/compress-pdf" onClick={() => setActiveDropdown(null)} className="block p-1 rounded hover:bg-muted text-[11px] text-muted-foreground">
+                          <Link href="/tools/compress-pdf" onClick={() => setActiveDropdown(null)} className="block p-1 rounded hover:bg-muted text-[11px] text-muted-foreground">
                             Compress PDF
                           </Link>
                           <Link href="/document-tools" onClick={() => setActiveDropdown(null)} className="block p-1 rounded font-semibold text-primary text-[11px]">
@@ -379,7 +379,7 @@ export default function Navbar() {
                     Developer Suite
                   </div>
                   <Link
-                    href="/regex-tester"
+                    href="/tools/regex-tester"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -393,7 +393,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/json-formatter"
+                    href="/tools/json-formatter"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -407,7 +407,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/jwt-decoder"
+                    href="/tools/jwt-decoder"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -421,7 +421,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/base64-encoder-decoder"
+                    href="/tools/base64-encoder-decoder"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -438,7 +438,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/uuid-generator"
+                    href="/tools/uuid-generator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -455,7 +455,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/cron-expression-generator"
+                    href="/tools/cron-expression-generator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -472,7 +472,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/sql-generator"
+                    href="/tools/sql-generator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -527,7 +527,7 @@ export default function Navbar() {
                     Security &amp; Audit Tools
                   </div>
                   <Link
-                    href="/vapt-scanner"
+                    href="/tools/vapt-scanner"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -541,7 +541,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/ssl-certificate-checker"
+                    href="/tools/ssl-certificate-checker"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -558,7 +558,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/dns-lookup"
+                    href="/tools/dns-lookup"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -575,7 +575,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/whois-lookup"
+                    href="/tools/whois-lookup"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -592,7 +592,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/email-security"
+                    href="/tools/email-security"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -606,7 +606,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/password-generator"
+                    href="/tools/password-generator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -623,7 +623,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/password-strength-checker"
+                    href="/tools/password-strength-checker"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -667,7 +667,7 @@ export default function Navbar() {
                     Utility &amp; Calculation Suite
                   </div>
                   <Link
-                    href="/bengali-calendar"
+                    href="/tools/bengali-calendar"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -681,7 +681,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/age-calculator"
+                    href="/tools/age-calculator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -695,7 +695,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/resume-ats-checker"
+                    href="/tools/resume-ats-checker"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -712,7 +712,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/qr-generator"
+                    href="/tools/qr-generator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -726,7 +726,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/image-compressor"
+                    href="/tools/image-compressor"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -770,35 +770,35 @@ export default function Navbar() {
                     </Link>
                   </div>
                   <Link
-                    href="/document-tools/merge-pdf"
+                    href="/tools/merge-pdf"
                     onClick={() => setActiveDropdown(null)}
                     className="block p-2 rounded-lg hover:bg-muted text-xs text-foreground font-semibold"
                   >
                     Merge PDF Documents
                   </Link>
                   <Link
-                    href="/document-tools/split-pdf"
+                    href="/tools/split-pdf"
                     onClick={() => setActiveDropdown(null)}
                     className="block p-2 rounded-lg hover:bg-muted text-xs text-foreground font-semibold"
                   >
                     Split PDF Pages
                   </Link>
                   <Link
-                    href="/document-tools/compress-pdf"
+                    href="/tools/compress-pdf"
                     onClick={() => setActiveDropdown(null)}
                     className="block p-2 rounded-lg hover:bg-muted text-xs text-foreground font-semibold"
                   >
                     Compress &amp; Optimize PDF
                   </Link>
                   <Link
-                    href="/document-tools/word-to-pdf"
+                    href="/tools/word-to-pdf"
                     onClick={() => setActiveDropdown(null)}
                     className="block p-2 rounded-lg hover:bg-muted text-xs text-foreground font-semibold"
                   >
                     Word to PDF (DOCX)
                   </Link>
                   <Link
-                    href="/document-tools/ocr-pdf"
+                    href="/tools/ocr-pdf"
                     onClick={() => setActiveDropdown(null)}
                     className="block p-2 rounded-lg hover:bg-muted text-xs text-foreground font-semibold"
                   >
@@ -840,7 +840,7 @@ export default function Navbar() {
                     Financial Calculators
                   </div>
                   <Link
-                    href="/stock-market"
+                    href="/tools/stock-market"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -854,7 +854,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/gst-calculator"
+                    href="/tools/gst-calculator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -871,7 +871,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/sip-calculator"
+                    href="/tools/sip-calculator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >
@@ -1070,25 +1070,25 @@ export default function Navbar() {
                   </button>
                   {mobileExpandedCat === 'developer' && (
                     <div className="p-2 pt-0 space-y-1 border-t border-border/60">
-                      <Link href="/regex-tester" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/regex-tester" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         Regex Tester &amp; VM
                       </Link>
-                      <Link href="/json-formatter" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/json-formatter" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         JSON Formatter &amp; Tree
                       </Link>
-                      <Link href="/jwt-decoder" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/jwt-decoder" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         JWT Decoder &amp; Claims
                       </Link>
-                      <Link href="/base64-encoder-decoder" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/base64-encoder-decoder" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ Base64 Encoder / Decoder
                       </Link>
-                      <Link href="/uuid-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/uuid-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ UUID v4 Generator
                       </Link>
-                      <Link href="/cron-expression-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/cron-expression-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ Cron Expression Generator
                       </Link>
-                      <Link href="/sql-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/sql-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ AI SQL Generator
                       </Link>
                       <Link href="/gitignore-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
@@ -1113,25 +1113,25 @@ export default function Navbar() {
                   </button>
                   {mobileExpandedCat === 'security' && (
                     <div className="p-2 pt-0 space-y-1 border-t border-border/60">
-                      <Link href="/vapt-scanner" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/vapt-scanner" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         Website VAPT Testing &amp; Port Audit
                       </Link>
-                      <Link href="/ssl-certificate-checker" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/ssl-certificate-checker" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ SSL Certificate Checker
                       </Link>
-                      <Link href="/dns-lookup" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/dns-lookup" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ DNS Records Lookup
                       </Link>
-                      <Link href="/whois-lookup" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/whois-lookup" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ WHOIS / RDAP Lookup
                       </Link>
-                      <Link href="/email-security" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/email-security" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ SPF / DKIM / DMARC Checker
                       </Link>
-                      <Link href="/password-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/password-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ Password Generator
                       </Link>
-                      <Link href="/password-strength-checker" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/password-strength-checker" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ Password Strength Checker
                       </Link>
                     </div>
@@ -1153,19 +1153,19 @@ export default function Navbar() {
                   </button>
                   {mobileExpandedCat === 'utility' && (
                     <div className="p-2 pt-0 space-y-1 border-t border-border/60">
-                      <Link href="/bengali-calendar" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/bengali-calendar" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         বাংলা পঞ্জিকা ১৪৩১-১৪৩৩
                       </Link>
-                      <Link href="/age-calculator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/age-calculator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         Age Milestone &amp; Planetary Calc
                       </Link>
-                      <Link href="/resume-ats-checker" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/resume-ats-checker" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ Resume ATS Checker
                       </Link>
-                      <Link href="/qr-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/qr-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ QR Code Generator
                       </Link>
-                      <Link href="/image-compressor" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/image-compressor" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ Image Compressor
                       </Link>
                     </div>
@@ -1187,16 +1187,16 @@ export default function Navbar() {
                   </button>
                   {mobileExpandedCat === 'pdf' && (
                     <div className="p-2 pt-0 space-y-1 border-t border-border/60">
-                      <Link href="/document-tools/merge-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/merge-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         Merge PDF
                       </Link>
-                      <Link href="/document-tools/split-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/split-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         Split PDF
                       </Link>
-                      <Link href="/document-tools/compress-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/compress-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         Compress PDF
                       </Link>
-                      <Link href="/document-tools/ocr-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/ocr-pdf" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         OCR PDF
                       </Link>
                       <Link href="/document-tools" onClick={() => setMobileMenuOpen(false)} className="block p-2 text-center rounded-xl bg-primary/10 text-xs font-bold text-primary mt-1">
@@ -1221,13 +1221,13 @@ export default function Navbar() {
                   </button>
                   {mobileExpandedCat === 'finance' && (
                     <div className="p-2 pt-0 space-y-1 border-t border-border/60">
-                      <Link href="/stock-market" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
+                      <Link href="/tools/stock-market" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-medium text-foreground">
                         📈 Indian Stock Market Live (Sensex &amp; Nifty)
                       </Link>
-                      <Link href="/gst-calculator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/gst-calculator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ GST Tax Calculator
                       </Link>
-                      <Link href="/sip-calculator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/sip-calculator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ SIP Wealth Calculator
                       </Link>
                     </div>
