@@ -94,12 +94,6 @@ def generate_json_ld_schemas() -> Dict[str, Any]:
                 "@type": "Person",
                 "name": "Santanu Batabyal",
                 "jobTitle": "Principal Application Security Architect & Full-Stack Engineer"
-            },
-            "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.9",
-                "reviewCount": "1280",
-                "bestRating": "5"
             }
         },
         "faqPage": {

@@ -1706,12 +1706,6 @@ export const SEO_JSON_LD = {
       name: 'Santanu Batabyal',
       jobTitle: 'Principal Application Security Architect & Full-Stack Engineer',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.95',
-      reviewCount: '1840',
-      bestRating: '5',
-    },
   },
   faqPage: {
     '@context': 'https://schema.org',
