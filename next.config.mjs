@@ -3,18 +3,18 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  serverExternalPackages: [
-    'pdfjs-dist',
-    'tesseract.js',
-    'libreoffice-convert',
-    'canvas',
-    'sharp',
-  ],
   experimental: {
     optimizePackageImports: [
       'lucide-react',
       'clsx',
       'tailwind-merge',
+    ],
+    serverComponentsExternalPackages: [
+      'pdfjs-dist',
+      'tesseract.js',
+      'libreoffice-convert',
+      'canvas',
+      'sharp',
     ],
   },
   async headers() {
