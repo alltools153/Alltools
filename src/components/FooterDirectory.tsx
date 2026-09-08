@@ -42,13 +42,13 @@ export default function FooterDirectory() {
                 <ul className="space-y-1.5 list-none p-0 m-0">
                   {tools.map((tool) => (
                     <li key={tool.slug}>
-                      <a
+                      <Link
                         href={`/tools/${tool.slug}`}
                         title={tool.title}
                         className="text-muted-foreground hover:text-primary transition-colors block truncate py-0.5"
                       >
                         {tool.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

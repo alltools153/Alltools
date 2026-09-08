@@ -24,7 +24,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'regex-tester',
     name: 'Regex Tester & Debugger',
     category: 'Developer Tools',
-    path: '/regex-tester',
+    path: '/tools/regex-tester',
     primaryKeyword: 'regex tester',
     searchVolume: '450,000/mo',
     kd: '72%',
@@ -59,10 +59,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       { step: 'Inspect Matches & Groups', instruction: 'Review real-time highlighted matches, capture group tables, and substitution output.' }
     ],
     siloLinks: [
-      { name: 'JSON Formatter', href: '/json-formatter', type: 'primary' },
-      { name: 'Base64 Encoder / Decoder', href: '/base64-encoder-decoder', type: 'primary' },
-      { name: 'Cron Expression Generator', href: '/cron-expression-generator', type: 'primary' },
-      { name: 'AI SQL Generator', href: '/sql-generator', type: 'cross' }
+      { name: 'JSON Formatter', href: '/tools/json-formatter', type: 'primary' },
+      { name: 'Base64 Encoder / Decoder', href: '/tools/base64-encoder-decoder', type: 'primary' },
+      { name: 'Cron Expression Generator', href: '/tools/cron-expression-generator', type: 'primary' },
+      { name: 'AI SQL Generator', href: '/tools/sql-generator', type: 'cross' }
     ]
   },
 
@@ -70,7 +70,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'json-formatter',
     name: 'JSON Formatter & Validator',
     category: 'Developer Tools',
-    path: '/json-formatter',
+    path: '/tools/json-formatter',
     primaryKeyword: 'json formatter',
     searchVolume: '820,000/mo',
     kd: '78%',
@@ -100,10 +100,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'JWT Decoder', href: '/jwt-decoder', type: 'primary' },
-      { name: 'Base64 Encoder / Decoder', href: '/base64-encoder-decoder', type: 'primary' },
-      { name: 'Regex Tester', href: '/regex-tester', type: 'primary' },
-      { name: 'UUID Generator', href: '/uuid-generator', type: 'cross' }
+      { name: 'JWT Decoder', href: '/tools/jwt-decoder', type: 'primary' },
+      { name: 'Base64 Encoder / Decoder', href: '/tools/base64-encoder-decoder', type: 'primary' },
+      { name: 'Regex Tester', href: '/tools/regex-tester', type: 'primary' },
+      { name: 'UUID Generator', href: '/tools/uuid-generator', type: 'cross' }
     ]
   },
 
@@ -111,7 +111,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'jwt-decoder',
     name: 'JWT Decoder & Token Inspector',
     category: 'Developer Tools',
-    path: '/jwt-decoder',
+    path: '/tools/jwt-decoder',
     primaryKeyword: 'jwt decoder',
     searchVolume: '210,000/mo',
     kd: '54%',
@@ -141,10 +141,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'JSON Formatter', href: '/json-formatter', type: 'primary' },
-      { name: 'Base64 Encoder', href: '/base64-encoder-decoder', type: 'primary' },
-      { name: 'Password Generator', href: '/password-generator', type: 'cross' },
-      { name: 'SSL Certificate Checker', href: '/ssl-certificate-checker', type: 'cross' }
+      { name: 'JSON Formatter', href: '/tools/json-formatter', type: 'primary' },
+      { name: 'Base64 Encoder', href: '/tools/base64-encoder-decoder', type: 'primary' },
+      { name: 'Password Generator', href: '/tools/password-generator', type: 'cross' },
+      { name: 'SSL Certificate Checker', href: '/tools/ssl-certificate-checker', type: 'cross' }
     ]
   },
 
@@ -152,7 +152,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'sql-generator',
     name: 'AI SQL Query Generator',
     category: 'Developer Tools',
-    path: '/sql-generator',
+    path: '/tools/sql-generator',
     primaryKeyword: 'ai sql generator',
     searchVolume: '90,000/mo',
     kd: '38%',
@@ -177,10 +177,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'JSON Formatter', href: '/json-formatter', type: 'primary' },
-      { name: 'Cron Expression Generator', href: '/cron-expression-generator', type: 'primary' },
-      { name: 'Regex Tester', href: '/regex-tester', type: 'primary' },
-      { name: 'Resume ATS Checker', href: '/resume-ats-checker', type: 'cross' }
+      { name: 'JSON Formatter', href: '/tools/json-formatter', type: 'primary' },
+      { name: 'Cron Expression Generator', href: '/tools/cron-expression-generator', type: 'primary' },
+      { name: 'Regex Tester', href: '/tools/regex-tester', type: 'primary' },
+      { name: 'Resume ATS Checker', href: '/tools/resume-ats-checker', type: 'cross' }
     ]
   },
 
@@ -188,7 +188,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'gitignore-generator',
     name: 'Git Ignore Generator',
     category: 'Developer Tools',
-    path: '/gitignore-generator',
+    path: '/tools/gitignore-generator',
     primaryKeyword: 'gitignore generator',
     searchVolume: '75,000/mo',
     kd: '32%',
@@ -213,10 +213,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'UUID Generator', href: '/uuid-generator', type: 'primary' },
-      { name: 'Base64 Encoder', href: '/base64-encoder-decoder', type: 'primary' },
-      { name: 'Cron Expression Generator', href: '/cron-expression-generator', type: 'primary' },
-      { name: 'AI SQL Generator', href: '/sql-generator', type: 'cross' }
+      { name: 'UUID Generator', href: '/tools/uuid-generator', type: 'primary' },
+      { name: 'Base64 Encoder', href: '/tools/base64-encoder-decoder', type: 'primary' },
+      { name: 'Cron Expression Generator', href: '/tools/cron-expression-generator', type: 'primary' },
+      { name: 'AI SQL Generator', href: '/tools/sql-generator', type: 'cross' }
     ]
   },
 
@@ -224,7 +224,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'base64-encoder-decoder',
     name: 'Base64 Encoder & Decoder',
     category: 'Developer Tools',
-    path: '/base64-encoder-decoder',
+    path: '/tools/base64-encoder-decoder',
     primaryKeyword: 'base64 encode decode',
     searchVolume: '680,000/mo',
     kd: '76%',
@@ -249,10 +249,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'JWT Decoder', href: '/jwt-decoder', type: 'primary' },
-      { name: 'JSON Formatter', href: '/json-formatter', type: 'primary' },
-      { name: 'QR Code Generator', href: '/qr-generator', type: 'cross' },
-      { name: 'Image Compressor', href: '/image-compressor', type: 'cross' }
+      { name: 'JWT Decoder', href: '/tools/jwt-decoder', type: 'primary' },
+      { name: 'JSON Formatter', href: '/tools/json-formatter', type: 'primary' },
+      { name: 'QR Code Generator', href: '/tools/qr-generator', type: 'cross' },
+      { name: 'Image Compressor', href: '/tools/image-compressor', type: 'cross' }
     ]
   },
 
@@ -260,7 +260,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'uuid-generator',
     name: 'UUID / GUID Generator',
     category: 'Developer Tools',
-    path: '/uuid-generator',
+    path: '/tools/uuid-generator',
     primaryKeyword: 'uuid generator',
     searchVolume: '310,000/mo',
     kd: '61%',
@@ -285,10 +285,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Password Generator', href: '/password-generator', type: 'primary' },
-      { name: 'JSON Formatter', href: '/json-formatter', type: 'primary' },
-      { name: 'Git Ignore Generator', href: '/gitignore-generator', type: 'primary' },
-      { name: 'AI SQL Generator', href: '/sql-generator', type: 'cross' }
+      { name: 'Password Generator', href: '/tools/password-generator', type: 'primary' },
+      { name: 'JSON Formatter', href: '/tools/json-formatter', type: 'primary' },
+      { name: 'Git Ignore Generator', href: '/tools/gitignore-generator', type: 'primary' },
+      { name: 'AI SQL Generator', href: '/tools/sql-generator', type: 'cross' }
     ]
   },
 
@@ -296,7 +296,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'cron-expression-generator',
     name: 'Cron Expression Generator & Editor',
     category: 'Developer Tools',
-    path: '/cron-expression-generator',
+    path: '/tools/cron-expression-generator',
     primaryKeyword: 'cron expression generator',
     searchVolume: '290,000/mo',
     kd: '58%',
@@ -321,10 +321,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Regex Tester', href: '/regex-tester', type: 'primary' },
-      { name: 'AI SQL Generator', href: '/sql-generator', type: 'primary' },
-      { name: 'Git Ignore Generator', href: '/gitignore-generator', type: 'primary' },
-      { name: 'UUID Generator', href: '/uuid-generator', type: 'cross' }
+      { name: 'Regex Tester', href: '/tools/regex-tester', type: 'primary' },
+      { name: 'AI SQL Generator', href: '/tools/sql-generator', type: 'primary' },
+      { name: 'Git Ignore Generator', href: '/tools/gitignore-generator', type: 'primary' },
+      { name: 'UUID Generator', href: '/tools/uuid-generator', type: 'cross' }
     ]
   },
 
@@ -332,7 +332,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'dns-lookup',
     name: 'DNS Lookup & Records Checker',
     category: 'Developer Tools',
-    path: '/dns-lookup',
+    path: '/tools/dns-lookup',
     primaryKeyword: 'dns lookup',
     searchVolume: '380,000/mo',
     kd: '65%',
@@ -357,10 +357,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'WHOIS Lookup', href: '/whois-lookup', type: 'primary' },
-      { name: 'SPF / DKIM / DMARC Checker', href: '/email-security', type: 'primary' },
-      { name: 'SSL Certificate Checker', href: '/ssl-certificate-checker', type: 'primary' },
-      { name: 'VAPT Scanner', href: '/vapt-scanner', type: 'cross' }
+      { name: 'WHOIS Lookup', href: '/tools/whois-lookup', type: 'primary' },
+      { name: 'SPF / DKIM / DMARC Checker', href: '/tools/email-security', type: 'primary' },
+      { name: 'SSL Certificate Checker', href: '/tools/ssl-certificate-checker', type: 'primary' },
+      { name: 'VAPT Scanner', href: '/tools/vapt-scanner', type: 'cross' }
     ]
   },
 
@@ -368,7 +368,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'whois-lookup',
     name: 'WHOIS Lookup',
     category: 'Developer Tools',
-    path: '/whois-lookup',
+    path: '/tools/whois-lookup',
     primaryKeyword: 'whois lookup',
     searchVolume: '520,000/mo',
     kd: '74%',
@@ -393,10 +393,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'DNS Lookup', href: '/dns-lookup', type: 'primary' },
-      { name: 'SSL Certificate Checker', href: '/ssl-certificate-checker', type: 'primary' },
-      { name: 'SPF / DKIM / DMARC Checker', href: '/email-security', type: 'primary' },
-      { name: 'VAPT Scanner', href: '/vapt-scanner', type: 'cross' }
+      { name: 'DNS Lookup', href: '/tools/dns-lookup', type: 'primary' },
+      { name: 'SSL Certificate Checker', href: '/tools/ssl-certificate-checker', type: 'primary' },
+      { name: 'SPF / DKIM / DMARC Checker', href: '/tools/email-security', type: 'primary' },
+      { name: 'VAPT Scanner', href: '/tools/vapt-scanner', type: 'cross' }
     ]
   },
 
@@ -405,7 +405,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'vapt-scanner',
     name: 'Online VAPT Scanner',
     category: 'Security Tools',
-    path: '/vapt-scanner',
+    path: '/tools/vapt-scanner',
     primaryKeyword: 'vapt scanner',
     searchVolume: '35,000/mo',
     kd: '42%',
@@ -431,10 +431,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'SSL Certificate Checker', href: '/ssl-certificate-checker', type: 'primary' },
-      { name: 'SPF / DKIM / DMARC Checker', href: '/email-security', type: 'primary' },
-      { name: 'DNS Lookup', href: '/dns-lookup', type: 'cross' },
-      { name: 'WHOIS Lookup', href: '/whois-lookup', type: 'cross' }
+      { name: 'SSL Certificate Checker', href: '/tools/ssl-certificate-checker', type: 'primary' },
+      { name: 'SPF / DKIM / DMARC Checker', href: '/tools/email-security', type: 'primary' },
+      { name: 'DNS Lookup', href: '/tools/dns-lookup', type: 'cross' },
+      { name: 'WHOIS Lookup', href: '/tools/whois-lookup', type: 'cross' }
     ]
   },
 
@@ -442,7 +442,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'email-security',
     name: 'SPF / DKIM / DMARC Checker',
     category: 'Security Tools',
-    path: '/email-security',
+    path: '/tools/email-security',
     primaryKeyword: 'dmarc checker',
     searchVolume: '110,000/mo',
     kd: '39%',
@@ -467,10 +467,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'DNS Lookup', href: '/dns-lookup', type: 'primary' },
-      { name: 'SSL Certificate Checker', href: '/ssl-certificate-checker', type: 'primary' },
-      { name: 'WHOIS Lookup', href: '/whois-lookup', type: 'primary' },
-      { name: 'VAPT Scanner', href: '/vapt-scanner', type: 'cross' }
+      { name: 'DNS Lookup', href: '/tools/dns-lookup', type: 'primary' },
+      { name: 'SSL Certificate Checker', href: '/tools/ssl-certificate-checker', type: 'primary' },
+      { name: 'WHOIS Lookup', href: '/tools/whois-lookup', type: 'primary' },
+      { name: 'VAPT Scanner', href: '/tools/vapt-scanner', type: 'cross' }
     ]
   },
 
@@ -478,7 +478,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'password-generator',
     name: 'Password Generator',
     category: 'Security Tools',
-    path: '/password-generator',
+    path: '/tools/password-generator',
     primaryKeyword: 'password generator',
     searchVolume: '1,800,000/mo',
     kd: '82%',
@@ -503,10 +503,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Password Strength Checker', href: '/password-strength-checker', type: 'primary' },
-      { name: 'UUID Generator', href: '/uuid-generator', type: 'primary' },
-      { name: 'Base64 Encoder', href: '/base64-encoder-decoder', type: 'cross' },
-      { name: 'JWT Decoder', href: '/jwt-decoder', type: 'cross' }
+      { name: 'Password Strength Checker', href: '/tools/password-strength-checker', type: 'primary' },
+      { name: 'UUID Generator', href: '/tools/uuid-generator', type: 'primary' },
+      { name: 'Base64 Encoder', href: '/tools/base64-encoder-decoder', type: 'cross' },
+      { name: 'JWT Decoder', href: '/tools/jwt-decoder', type: 'cross' }
     ]
   },
 
@@ -514,7 +514,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'password-strength-checker',
     name: 'Password Strength Checker',
     category: 'Security Tools',
-    path: '/password-strength-checker',
+    path: '/tools/password-strength-checker',
     primaryKeyword: 'password strength checker',
     searchVolume: '160,000/mo',
     kd: '44%',
@@ -539,10 +539,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Password Generator', href: '/password-generator', type: 'primary' },
-      { name: 'JWT Decoder', href: '/jwt-decoder', type: 'primary' },
-      { name: 'VAPT Scanner', href: '/vapt-scanner', type: 'cross' },
-      { name: 'SSL Certificate Checker', href: '/ssl-certificate-checker', type: 'cross' }
+      { name: 'Password Generator', href: '/tools/password-generator', type: 'primary' },
+      { name: 'JWT Decoder', href: '/tools/jwt-decoder', type: 'primary' },
+      { name: 'VAPT Scanner', href: '/tools/vapt-scanner', type: 'cross' },
+      { name: 'SSL Certificate Checker', href: '/tools/ssl-certificate-checker', type: 'cross' }
     ]
   },
 
@@ -550,7 +550,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'ssl-certificate-checker',
     name: 'SSL Certificate Checker',
     category: 'Security Tools',
-    path: '/ssl-certificate-checker',
+    path: '/tools/ssl-certificate-checker',
     primaryKeyword: 'ssl checker',
     searchVolume: '220,000/mo',
     kd: '59%',
@@ -575,10 +575,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'DNS Lookup', href: '/dns-lookup', type: 'primary' },
-      { name: 'WHOIS Lookup', href: '/whois-lookup', type: 'primary' },
-      { name: 'VAPT Scanner', href: '/vapt-scanner', type: 'primary' },
-      { name: 'SPF / DKIM / DMARC Checker', href: '/email-security', type: 'cross' }
+      { name: 'DNS Lookup', href: '/tools/dns-lookup', type: 'primary' },
+      { name: 'WHOIS Lookup', href: '/tools/whois-lookup', type: 'primary' },
+      { name: 'VAPT Scanner', href: '/tools/vapt-scanner', type: 'primary' },
+      { name: 'SPF / DKIM / DMARC Checker', href: '/tools/email-security', type: 'cross' }
     ]
   },
 
@@ -612,10 +612,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Image Compressor', href: '/image-compressor', type: 'primary' },
-      { name: 'QR Code Generator', href: '/qr-generator', type: 'primary' },
-      { name: 'Base64 Encoder', href: '/base64-encoder-decoder', type: 'cross' },
-      { name: 'Resume ATS Checker', href: '/resume-ats-checker', type: 'cross' }
+      { name: 'Image Compressor', href: '/tools/image-compressor', type: 'primary' },
+      { name: 'QR Code Generator', href: '/tools/qr-generator', type: 'primary' },
+      { name: 'Base64 Encoder', href: '/tools/base64-encoder-decoder', type: 'cross' },
+      { name: 'Resume ATS Checker', href: '/tools/resume-ats-checker', type: 'cross' }
     ]
   },
 
@@ -624,7 +624,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'age-calculator',
     name: 'Age Calculator',
     category: 'Utility Tools',
-    path: '/age-calculator',
+    path: '/tools/age-calculator',
     primaryKeyword: 'age calculator',
     searchVolume: '2,200,000/mo',
     kd: '79%',
@@ -649,10 +649,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Bengali Calendar', href: '/bengali-calendar', type: 'primary' },
-      { name: 'GST Calculator', href: '/gst-calculator', type: 'primary' },
-      { name: 'SIP Calculator', href: '/sip-calculator', type: 'primary' },
-      { name: 'QR Code Generator', href: '/qr-generator', type: 'cross' }
+      { name: 'Bengali Calendar', href: '/tools/bengali-calendar', type: 'primary' },
+      { name: 'GST Calculator', href: '/tools/gst-calculator', type: 'primary' },
+      { name: 'SIP Calculator', href: '/tools/sip-calculator', type: 'primary' },
+      { name: 'QR Code Generator', href: '/tools/qr-generator', type: 'cross' }
     ]
   },
 
@@ -660,7 +660,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'bengali-calendar',
     name: 'Bengali Calendar (বাংলা ক্যালেন্ডার)',
     category: 'Utility Tools',
-    path: '/bengali-calendar',
+    path: '/tools/bengali-calendar',
     primaryKeyword: 'bengali calendar',
     searchVolume: '450,000/mo',
     kd: '34%',
@@ -685,10 +685,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Age Calculator', href: '/age-calculator', type: 'primary' },
-      { name: 'GST Calculator', href: '/gst-calculator', type: 'primary' },
-      { name: 'Indian Stock Market Live', href: '/stock-market', type: 'cross' },
-      { name: 'QR Code Generator', href: '/qr-generator', type: 'cross' }
+      { name: 'Age Calculator', href: '/tools/age-calculator', type: 'primary' },
+      { name: 'GST Calculator', href: '/tools/gst-calculator', type: 'primary' },
+      { name: 'Indian Stock Market Live', href: '/tools/stock-market', type: 'cross' },
+      { name: 'QR Code Generator', href: '/tools/qr-generator', type: 'cross' }
     ]
   },
 
@@ -696,7 +696,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'qr-generator',
     name: 'QR Code Generator',
     category: 'Utility Tools',
-    path: '/qr-generator',
+    path: '/tools/qr-generator',
     primaryKeyword: 'qr code generator',
     searchVolume: '1,950,000/mo',
     kd: '83%',
@@ -721,10 +721,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Image Compressor', href: '/image-compressor', type: 'primary' },
-      { name: 'Base64 Encoder', href: '/base64-encoder-decoder', type: 'primary' },
+      { name: 'Image Compressor', href: '/tools/image-compressor', type: 'primary' },
+      { name: 'Base64 Encoder', href: '/tools/base64-encoder-decoder', type: 'primary' },
       { name: 'PDF Studio', href: '/document-tools', type: 'primary' },
-      { name: 'Age Calculator', href: '/age-calculator', type: 'cross' }
+      { name: 'Age Calculator', href: '/tools/age-calculator', type: 'cross' }
     ]
   },
 
@@ -732,7 +732,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'image-compressor',
     name: 'Image Compressor',
     category: 'Utility Tools',
-    path: '/image-compressor',
+    path: '/tools/image-compressor',
     primaryKeyword: 'image compressor',
     searchVolume: '1,400,000/mo',
     kd: '77%',
@@ -758,9 +758,9 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     ],
     siloLinks: [
       { name: 'PDF Studio', href: '/document-tools', type: 'primary' },
-      { name: 'Base64 Encoder', href: '/base64-encoder-decoder', type: 'primary' },
-      { name: 'QR Code Generator', href: '/qr-generator', type: 'primary' },
-      { name: 'Resume ATS Checker', href: '/resume-ats-checker', type: 'cross' }
+      { name: 'Base64 Encoder', href: '/tools/base64-encoder-decoder', type: 'primary' },
+      { name: 'QR Code Generator', href: '/tools/qr-generator', type: 'primary' },
+      { name: 'Resume ATS Checker', href: '/tools/resume-ats-checker', type: 'cross' }
     ]
   },
 
@@ -769,7 +769,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'stock-market',
     name: 'Indian Stock Market Live Updates',
     category: 'Finance Tools',
-    path: '/stock-market',
+    path: '/tools/stock-market',
     primaryKeyword: 'indian stock market live',
     searchVolume: '1,100,000/mo',
     kd: '71%',
@@ -794,10 +794,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'SIP Calculator', href: '/sip-calculator', type: 'primary' },
-      { name: 'GST Calculator', href: '/gst-calculator', type: 'primary' },
-      { name: 'Age Calculator', href: '/age-calculator', type: 'cross' },
-      { name: 'Bengali Calendar', href: '/bengali-calendar', type: 'cross' }
+      { name: 'SIP Calculator', href: '/tools/sip-calculator', type: 'primary' },
+      { name: 'GST Calculator', href: '/tools/gst-calculator', type: 'primary' },
+      { name: 'Age Calculator', href: '/tools/age-calculator', type: 'cross' },
+      { name: 'Bengali Calendar', href: '/tools/bengali-calendar', type: 'cross' }
     ]
   },
 
@@ -805,7 +805,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'gst-calculator',
     name: 'GST Calculator (India)',
     category: 'Finance Tools',
-    path: '/gst-calculator',
+    path: '/tools/gst-calculator',
     primaryKeyword: 'gst calculator',
     searchVolume: '650,000/mo',
     kd: '62%',
@@ -830,10 +830,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'SIP Calculator', href: '/sip-calculator', type: 'primary' },
-      { name: 'Indian Stock Market Live', href: '/stock-market', type: 'primary' },
-      { name: 'Age Calculator', href: '/age-calculator', type: 'cross' },
-      { name: 'QR Code Generator', href: '/qr-generator', type: 'cross' }
+      { name: 'SIP Calculator', href: '/tools/sip-calculator', type: 'primary' },
+      { name: 'Indian Stock Market Live', href: '/tools/stock-market', type: 'primary' },
+      { name: 'Age Calculator', href: '/tools/age-calculator', type: 'cross' },
+      { name: 'QR Code Generator', href: '/tools/qr-generator', type: 'cross' }
     ]
   },
 
@@ -841,7 +841,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'sip-calculator',
     name: 'SIP Calculator',
     category: 'Finance Tools',
-    path: '/sip-calculator',
+    path: '/tools/sip-calculator',
     primaryKeyword: 'sip calculator',
     searchVolume: '1,500,000/mo',
     kd: '75%',
@@ -866,10 +866,10 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
       }
     ],
     siloLinks: [
-      { name: 'Indian Stock Market Live', href: '/stock-market', type: 'primary' },
-      { name: 'GST Calculator', href: '/gst-calculator', type: 'primary' },
-      { name: 'Age Calculator', href: '/age-calculator', type: 'cross' },
-      { name: 'Resume ATS Checker', href: '/resume-ats-checker', type: 'cross' }
+      { name: 'Indian Stock Market Live', href: '/tools/stock-market', type: 'primary' },
+      { name: 'GST Calculator', href: '/tools/gst-calculator', type: 'primary' },
+      { name: 'Age Calculator', href: '/tools/age-calculator', type: 'cross' },
+      { name: 'Resume ATS Checker', href: '/tools/resume-ats-checker', type: 'cross' }
     ]
   },
 
@@ -878,7 +878,7 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     slug: 'resume-ats-checker',
     name: 'Resume ATS Checker & Keyword Optimizer',
     category: 'AI Tools',
-    path: '/resume-ats-checker',
+    path: '/tools/resume-ats-checker',
     primaryKeyword: 'resume ats checker',
     searchVolume: '180,000/mo',
     kd: '46%',
@@ -904,8 +904,8 @@ export const SEO_MASTER_BLUEPRINT: Record<string, ToolBlueprint> = {
     ],
     siloLinks: [
       { name: 'PDF Studio', href: '/document-tools', type: 'primary' },
-      { name: 'AI SQL Generator', href: '/sql-generator', type: 'cross' },
-      { name: 'Password Generator', href: '/password-generator', type: 'cross' }
+      { name: 'AI SQL Generator', href: '/tools/sql-generator', type: 'cross' },
+      { name: 'Password Generator', href: '/tools/password-generator', type: 'cross' }
     ]
   }
 };

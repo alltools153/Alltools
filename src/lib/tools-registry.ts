@@ -293,41 +293,11 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
     ]
   },
   {
-    "slug": "dev-tools",
-    "name": "Developer Micro-Suite Hub",
-    "h1": "Developer Tools Micro-Suite & Unified Workspace",
-    "category": "developer",
-    "title": "Developer Utilities Hub \u2013 JSON, Regex, JWT & Web Tools in One Place",
-    "description": "Unified multi-tab developer workspace combining JSON beautifier, Regex tester, and JWT token inspector in one high-performance interface.",
-    "keywords": [
-      "developer tools hub",
-      "web developer utilities",
-      "online developer suite",
-      "json regex jwt hub"
-    ],
-    "howItWorks": [
-      "Switch between JSON, Regex, and JWT workspaces with a single click.",
-      "Work on payloads and patterns without navigating across different tabs.",
-      "Benefit from zero server transmission with 100% client-side memory safety.",
-      "Copy formatted outputs directly into your code editor."
-    ],
-    "faq": [
-      {
-        "question": "Why use a unified dev hub?",
-        "answer": "It reduces context switching and eliminates the need to open multiple disparate websites for daily development tasks."
-      },
-      {
-        "question": "Does the hub save state when switching tabs?",
-        "answer": "Yes, active editors maintain their text state during your active browser session."
-      }
-    ]
-  },
-  {
-    "slug": "vapt-security-scanner",
+    "slug": "vapt-scanner",
     "name": "Website VAPT Security Scanner",
     "h1": "Website VAPT Security Scanner & OWASP Top 10 Audit",
     "category": "security",
-    "title": "Website VAPT Security Scanner Online \u2013 Free Vulnerability & Headers Audit",
+    "title": "Website VAPT Security Scanner Online – Free Vulnerability & Headers Audit",
     "description": "Scan websites for OWASP vulnerabilities, missing HTTP security headers (CSP, HSTS, X-Frame-Options), SSL/TLS cipher suites, and cookie security flags.",
     "keywords": [
       "vapt scanner",
@@ -358,37 +328,11 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
     ]
   },
   {
-    "slug": "vapt-scanner",
-    "name": "Website VAPT Scanner",
-    "h1": "Online Website Vulnerability & Penetration Audit",
-    "category": "security",
-    "title": "Online VAPT Scanner \u2013 Automated Security & Vulnerability Audit",
-    "description": "Fast, automated online VAPT security scanner checking HTTP response headers, SSL/TLS certificates, open socket exposure, and DNS records.",
-    "keywords": [
-      "vapt scanner",
-      "penetration testing tool online",
-      "web security check",
-      "owasp scanner"
-    ],
-    "howItWorks": [
-      "Input the website domain you want to audit.",
-      "Initiate the scan to analyze SSL, headers, and DNS records.",
-      "Inspect the safety score and detailed vulnerability findings.",
-      "Download or export the security audit report."
-    ],
-    "faq": [
-      {
-        "question": "How often should I scan my website?",
-        "answer": "Security audits should be conducted after every major release and at least monthly to detect expired certificates and header regressions."
-      }
-    ]
-  },
-  {
     "slug": "nmap-audit",
     "name": "N-Map Port & Socket Scanner",
     "h1": "Online Port Scanner & Socket Exposure Inspection",
     "category": "security",
-    "title": "Online Port Scanner \u2013 Check Open TCP Ports & Firewall Rules",
+    "title": "Online Port Scanner – Check Open TCP Ports & Firewall Rules",
     "description": "Inspect open network ports on your domain non-destructively. Check standard HTTP, HTTPS, SSH, SMTP, and database socket exposure safely.",
     "keywords": [
       "online port scanner",
@@ -415,11 +359,11 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
     ]
   },
   {
-    "slug": "ssl-checker",
+    "slug": "ssl-certificate-checker",
     "name": "SSL Certificate Checker",
     "h1": "SSL / TLS Certificate Checker & Expiration Countdown",
     "category": "security",
-    "title": "SSL Certificate Checker Online \u2013 Verify Validity, Issuer & Expiry",
+    "title": "SSL Certificate Checker Online – Verify Validity, Issuer & Expiry",
     "description": "Verify SSL/TLS certificate installation, certificate authority issuer, expiration countdown, Subject Alternative Names (SAN), and cipher suite security.",
     "keywords": [
       "ssl checker",
@@ -446,30 +390,6 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
       {
         "question": "How far in advance should I renew my SSL certificate?",
         "answer": "It is recommended to renew certificates at least 30 days before expiration to prevent unexpected downtime."
-      }
-    ]
-  },
-  {
-    "slug": "ssl-certificate-checker",
-    "name": "SSL Certificate Checker Tool",
-    "h1": "SSL Certificate Checker & Expiration Verifier",
-    "category": "security",
-    "title": "SSL Certificate Checker \u2013 Check Certificate Chain & Expiry Online",
-    "description": "Comprehensive SSL certificate checker to test domain certificates, expiration dates, cryptographic cipher suites, and root CA trust chains.",
-    "keywords": [
-      "ssl certificate checker",
-      "check ssl online",
-      "ssl expiry alert"
-    ],
-    "howItWorks": [
-      "Type your website domain.",
-      "Analyze the complete TLS certificate chain.",
-      "Check validity dates and protocol support (TLS 1.2, TLS 1.3)."
-    ],
-    "faq": [
-      {
-        "question": "Does this tool support TLS 1.3?",
-        "answer": "Yes, it tests modern TLS 1.3 as well as legacy protocols."
       }
     ]
   },
@@ -789,19 +709,20 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
     ]
   },
   {
-    "slug": "bengali-panjika",
-    "name": "Bengali Calendar & Panjika",
-    "h1": "\u09ac\u09be\u0982\u09b2\u09be \u09aa\u099e\u09cd\u099c\u09bf\u0995\u09be \u0993 \u0995\u09cd\u09af\u09be\u09b2\u09c7\u09a8\u09cd\u09a1\u09be\u09b0 \u09e7\u09ea\u09e9\u09e7-\u09e7\u09ea\u09e9\u09e9 (Bengali Panjika)",
+    "slug": "bengali-calendar",
+    "name": "বাংলা পঞ্জিকা ও ক্যালেন্ডার (Bengali Calendar)",
+    "h1": "বাংলা পঞ্জিকা ও ক্যালেন্ডার ১৪৩১-১৪৩৩ (Bengali Calendar & Panjika)",
     "category": "utility",
-    "title": "Bengali Calendar 1431-1433 \u2013 Today's Bangla Date, Panjika & Shubh Muhurat",
-    "description": "Surya Siddhanta astronomical Bengali Panjika. Real-time Tithi, Nakshatra, Durga Puja festival calendar, and Shubh Bibaho marriage Muhurat dates.",
+    "title": "Bengali Calendar 1431-1433 – Today's Bangla Date, Panjika & Shubh Muhurat",
+    "description": "Surya Siddhanta astronomical Bengali Panjika almanac. Real-time Tithi, Nakshatra, Durga Puja festival calendar, Poila Boishakh, Ekadashi fasts, and Shubh Bibaho marriage Muhurat dates.",
     "keywords": [
       "bengali calendar",
       "bangla calendar today date",
       "bengali panjika",
       "bangla date today",
       "durga puja calendar",
-      "shubh muhurat"
+      "shubh muhurat",
+      "ekadashi dates"
     ],
     "howItWorks": [
       "View today's exact Bengali date (Day, Month, Year 1431-1433).",
@@ -817,27 +738,7 @@ export const TOOLS_REGISTRY: ToolMetadata[] = [
       {
         "question": "Can I convert English Gregorian dates to Bengali dates?",
         "answer": "Yes, the integrated converter translates any English calendar date to its exact Bengali counterpart."
-      }
-    ]
-  },
-  {
-    "slug": "bengali-calendar",
-    "name": "Bengali Calendar 1431-1433",
-    "h1": "Bangla Calendar 1431-1433 & Daily Panjika Almanac",
-    "category": "utility",
-    "title": "Bengali Calendar 1431-1433 \u2013 Daily Tithi, Festivals & Bangla Date",
-    "description": "Daily Bengali Calendar and Panjika almanac featuring Durga Puja schedules, Ekadashi fasts, Poila Boishakh, and auspicious marriage muhurats.",
-    "keywords": [
-      "bengali calendar",
-      "bangla panjika",
-      "bangla date today",
-      "ekadashi dates"
-    ],
-    "howItWorks": [
-      "Select any month from Boishakh to Choitro.",
-      "Inspect daily tithis, festive holidays, and planetary phases."
-    ],
-    "faq": [
+      },
       {
         "question": "Does it show Durga Puja timings?",
         "answer": "Yes, complete Mahashtami, Sandhi Puja, and Nabami Nirghanto timings are included."

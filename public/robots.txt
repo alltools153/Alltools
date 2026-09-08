@@ -20,5 +20,4 @@ Disallow: /api/private/
 
 # Sitemaps & Host
 Sitemap: https://alltoolss.com/sitemap.xml
-Sitemap: https://alltoolss.in/sitemap.xml
 Host: https://alltoolss.com

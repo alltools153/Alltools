@@ -110,6 +110,15 @@ export default function ToolSubRoutePage({ params }: Props) {
     })),
   };
 
+  // Compute related tools for internal linking (PDF Step 8)
+  const sameCategoryTools = TOOLS_REGISTRY.filter(
+    (t) => t.category === tool.category && t.slug !== tool.slug
+  );
+  const otherCategoryTools = TOOLS_REGISTRY.filter(
+    (t) => t.category !== tool.category && t.slug !== tool.slug
+  );
+  const relatedTools = [...sameCategoryTools, ...otherCategoryTools].slice(0, 6);
+
   return (
     <div className="min-h-screen pb-20">
       {/* Dynamic JSON-LD Structured Data */}
@@ -130,7 +139,7 @@ export default function ToolSubRoutePage({ params }: Props) {
               Home
             </Link>
             <span>/</span>
-            <Link href="/seo-keywords" className="hover:text-primary transition-colors capitalize">
+            <Link href="/dev-tools" className="hover:text-primary transition-colors capitalize">
               {tool.category} Tools
             </Link>
             <span>/</span>
@@ -166,6 +175,27 @@ export default function ToolSubRoutePage({ params }: Props) {
 
       {/* Server-Rendered Semantic Text Section (Crawlable by Googlebot) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* Why Use & Practical Applications */}
+        <section className="p-6 sm:p-8 rounded-2xl border border-border bg-card space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-2.5 border-b border-border pb-4">
+            <Zap className="w-5 h-5 text-amber-400" />
+            <span>Why Use {tool.name}?</span>
+          </h2>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {tool.name} provides instant, browser-based execution designed for developers, security professionals, and everyday web users. Built with high-performance client-side and ephemeral server algorithms, it delivers production-grade results without requiring user registration, software downloads, or subscription fees.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div className="p-3.5 rounded-xl border border-border/60 bg-muted/20 text-xs space-y-1">
+              <span className="font-semibold text-foreground block">⚡ Lightning Performance</span>
+              <span className="text-muted-foreground">Executed in local browser memory or dedicated low-latency workers for zero waiting time.</span>
+            </div>
+            <div className="p-3.5 rounded-xl border border-border/60 bg-muted/20 text-xs space-y-1">
+              <span className="font-semibold text-foreground block">🔒 Enterprise Security</span>
+              <span className="text-muted-foreground">100% data confidentiality guarantee with zero file or snippet persistence.</span>
+            </div>
+          </div>
+        </section>
+
         {/* How to Use Section */}
         <section className="p-6 sm:p-8 rounded-2xl border border-border bg-card space-y-5">
           <h2 className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-2.5 border-b border-border pb-4">
@@ -242,6 +272,37 @@ export default function ToolSubRoutePage({ params }: Props) {
                   {f.answer}
                 </p>
               </details>
+            ))}
+          </div>
+        </section>
+
+        {/* Related Tools Internal Linking Grid (PDF Step 8) */}
+        <section className="p-6 sm:p-8 rounded-2xl border border-border bg-card space-y-6">
+          <div className="border-b border-border pb-4">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-2.5">
+              <Wrench className="w-5 h-5 text-primary" />
+              <span>Related Tools & Utilities</span>
+            </h2>
+            <p className="text-xs text-muted-foreground mt-1">
+              Explore complementary utilities in the AllToolss suite for seamless developer workflows.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {relatedTools.map((relTool) => (
+              <Link
+                key={relTool.slug}
+                href={`/tools/${relTool.slug}`}
+                className="group p-4 rounded-xl border border-border/80 bg-background/50 hover:bg-muted/30 hover:border-primary/40 transition-all space-y-1.5 block"
+              >
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                  <span>{relTool.name}</span>
+                  <span className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                  {relTool.description}
+                </p>
+              </Link>
             ))}
           </div>
         </section>

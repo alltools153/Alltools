@@ -24,10 +24,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/py/debug', '/api/private/'],
       },
     ],
-    sitemap: [
-      `${SITE_CONFIG.url}/sitemap.xml`,
-      'https://alltoolss.in/sitemap.xml',
-    ],
+    sitemap: `${SITE_CONFIG.url}/sitemap.xml`,
     host: SITE_CONFIG.url,
   };
 }

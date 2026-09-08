@@ -239,7 +239,7 @@ export default function Navbar() {
                         <Link href="/tools/sql-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ AI SQL Generator
                         </Link>
-                        <Link href="/gitignore-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
+                        <Link href="/tools/gitignore-generator" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted font-semibold text-primary">
                           ✨ Git Ignore Generator
                         </Link>
                         <Link href="/dev-tools" onClick={() => setActiveDropdown(null)} className="block p-1.5 rounded-lg hover:bg-muted text-[11px] text-muted-foreground">
@@ -486,7 +486,7 @@ export default function Navbar() {
                   </Link>
 
                   <Link
-                    href="/gitignore-generator"
+                    href="/tools/gitignore-generator"
                     onClick={() => setActiveDropdown(null)}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-muted text-xs transition-colors"
                   >

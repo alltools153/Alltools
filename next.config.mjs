@@ -3,18 +3,18 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  serverExternalPackages: [
+    'pdfjs-dist',
+    'tesseract.js',
+    'libreoffice-convert',
+    'canvas',
+    'sharp',
+  ],
   experimental: {
     optimizePackageImports: [
       'lucide-react',
       'clsx',
       'tailwind-merge',
-    ],
-    serverComponentsExternalPackages: [
-      'pdfjs-dist',
-      'tesseract.js',
-      'libreoffice-convert',
-      'canvas',
-      'sharp',
     ],
   },
   async headers() {
@@ -81,10 +81,10 @@ const nextConfig = {
       { source: '/uuid-generator', destination: '/tools/uuid-generator', permanent: true },
       { source: '/cron-expression-generator', destination: '/tools/cron-expression-generator', permanent: true },
       { source: '/vapt-scanner', destination: '/tools/vapt-scanner', permanent: true },
-      { source: '/vapt-security-scanner', destination: '/tools/vapt-security-scanner', permanent: true },
+      { source: '/vapt-security-scanner', destination: '/tools/vapt-scanner', permanent: true },
       { source: '/nmap-scanner', destination: '/tools/nmap-audit', permanent: true },
       { source: '/ssl-certificate-checker', destination: '/tools/ssl-certificate-checker', permanent: true },
-      { source: '/ssl-checker', destination: '/tools/ssl-checker', permanent: true },
+      { source: '/ssl-checker', destination: '/tools/ssl-certificate-checker', permanent: true },
       { source: '/dns-lookup', destination: '/tools/dns-lookup', permanent: true },
       { source: '/whois-lookup', destination: '/tools/whois-lookup', permanent: true },
       { source: '/email-security', destination: '/tools/email-security', permanent: true },
@@ -93,36 +93,23 @@ const nextConfig = {
       { source: '/resume-ats-checker', destination: '/tools/resume-ats-checker', permanent: true },
       { source: '/age-calculator', destination: '/tools/age-calculator', permanent: true },
       { source: '/bengali-calendar', destination: '/tools/bengali-calendar', permanent: true },
-      { source: '/bengali-panjika', destination: '/tools/bengali-panjika', permanent: true },
+      { source: '/bengali-panjika', destination: '/tools/bengali-calendar', permanent: true },
       { source: '/qr-generator', destination: '/tools/qr-generator', permanent: true },
+      { source: '/qr-code-generator', destination: '/tools/qr-generator', permanent: true },
       { source: '/image-compressor', destination: '/tools/image-compressor', permanent: true },
       { source: '/stock-market', destination: '/tools/stock-market', permanent: true },
+      { source: '/indian-stock-market', destination: '/tools/stock-market', permanent: true },
       { source: '/gst-calculator', destination: '/tools/gst-calculator', permanent: true },
       { source: '/sip-calculator', destination: '/tools/sip-calculator', permanent: true },
+      { source: '/spf-dkim-dmarc-checker', destination: '/tools/email-security', permanent: true },
       { source: '/document-tools/:tool', destination: '/tools/:tool', permanent: true },
     ];
   },
   async rewrites() {
     return [
       {
-        source: '/nmap-scanner',
-        destination: '/vapt-scanner',
-      },
-      {
-        source: '/spf-dkim-dmarc-checker',
-        destination: '/email-security',
-      },
-      {
         source: '/pdf-studio',
         destination: '/document-tools',
-      },
-      {
-        source: '/qr-code-generator',
-        destination: '/qr-generator',
-      },
-      {
-        source: '/indian-stock-market',
-        destination: '/stock-market',
       },
       {
         source: '/api/py/docforge/:path*',
