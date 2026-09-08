@@ -1,4 +1,4 @@
-# 🛠️ AllTools // Unified Multi-Tool Suite
+# 🛠️ AllTools // Unified Multi-Tool SuitE
 
 > **Lead Architect & Developer:** **Santanu Batabyal**  
 > **Repository:** `https://github.com/alltools153/Alltools.git`  
