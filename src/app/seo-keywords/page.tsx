@@ -54,16 +54,42 @@ export default function SeoKeywordsPage() {
     });
   }, [searchTerm, selectedCategory, selectedTool, selectedIntent]);
 
-  const copyKeyword = (keyword: string, idx: number) => {
-    navigator.clipboard.writeText(keyword);
-    setCopiedIndex(idx);
-    setTimeout(() => setCopiedIndex(null), 1500);
+  const copyText = async (value: string) => {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+        return true;
+      }
+
+      const textarea = document.createElement('textarea');
+      textarea.value = value;
+      textarea.setAttribute('readonly', 'true');
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const success = document.execCommand('copy');
+      document.body.removeChild(textarea);
+      return success;
+    } catch {
+      return false;
+    }
   };
 
-  const copySchemaJson = () => {
-    navigator.clipboard.writeText(JSON.stringify(SEO_JSON_LD.webApp, null, 2));
-    setCopiedSchema(true);
-    setTimeout(() => setCopiedSchema(false), 2000);
+  const copyKeyword = async (keyword: string, idx: number) => {
+    const success = await copyText(keyword);
+    if (success) {
+      setCopiedIndex(idx);
+      setTimeout(() => setCopiedIndex(null), 1500);
+    }
+  };
+
+  const copySchemaJson = async () => {
+    const success = await copyText(JSON.stringify(SEO_JSON_LD.webApp, null, 2));
+    if (success) {
+      setCopiedSchema(true);
+      setTimeout(() => setCopiedSchema(false), 2000);
+    }
   };
 
   const getCategoryBadgeClass = (category: string) => {

@@ -513,7 +513,7 @@ export default function CronExpressionGeneratorPage() {
             </Link>
 
             <Link
-              href="/gitignore-generator"
+              href="/tools/gitignore-generator"
               className="p-3.5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all flex items-center gap-3 group"
             >
               <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400">

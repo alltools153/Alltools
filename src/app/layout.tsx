@@ -7,8 +7,8 @@ import FooterDirectory from '@/components/FooterDirectory';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import GoogleAdSense from '@/components/GoogleAdSense';
 import CookieConsentBanner from '@/components/CookieConsentBanner';
-import { SEO_JSON_LD } from '@/lib/seoKeywords';
 import { SITE_CONFIG } from '@/lib/seo';
+import { TOOLS_REGISTRY } from '@/lib/tools-registry';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -37,14 +37,20 @@ export const metadata: Metadata = {
     'gst calculator',
     'stock market live',
   ],
+  applicationName: SITE_CONFIG.name,
+  category: 'technology',
   authors: [{ name: SITE_CONFIG.author, url: SITE_CONFIG.url }],
   creator: SITE_CONFIG.author,
   publisher: 'AllToolss Platform',
+  icons: {
+    icon: [{ url: '/icon', type: 'image/png', sizes: '32x32' }],
+    apple: [{ url: '/apple-icon', type: 'image/png', sizes: '180x180' }],
+  },
   alternates: {
-    canonical: 'https://alltoolss.com',
+    canonical: '/',
     languages: {
-      'en-US': 'https://alltoolss.com',
-      'x-default': 'https://alltoolss.com',
+      'en-US': '/',
+      'x-default': '/',
     },
   },
   openGraph: {
@@ -104,9 +110,10 @@ export const metadata: Metadata = {
 const ORGANIZATION_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${SITE_CONFIG.url}/#organization`,
   name: 'AllToolss',
   url: SITE_CONFIG.url,
-  logo: `${SITE_CONFIG.url}/api/og?title=AllToolss&desc=Unified%20SaaS%20Suite&cat=Official`,
+  logo: `${SITE_CONFIG.url}/apple-icon`,
   founder: {
     '@type': 'Person',
     name: 'Santanu Batabyal',
@@ -129,6 +136,10 @@ const WEBSITE_SCHEMA = {
   '@type': 'WebSite',
   name: 'AllToolss',
   url: SITE_CONFIG.url,
+  inLanguage: 'en-US',
+  publisher: {
+    '@id': `${SITE_CONFIG.url}/#organization`,
+  },
   potentialAction: {
     '@type': 'SearchAction',
     target: {
@@ -137,6 +148,20 @@ const WEBSITE_SCHEMA = {
     },
     'query-input': 'required name=search_term_string',
   },
+};
+
+const TOOLS_ITEMLIST_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'AllToolss online tools',
+  itemListOrder: 'https://schema.org/ItemListOrderAscending',
+  numberOfItems: TOOLS_REGISTRY.length,
+  itemListElement: TOOLS_REGISTRY.map((tool, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: tool.name,
+    url: `${SITE_CONFIG.url}/tools/${tool.slug}`,
+  })),
 };
 
 export default function RootLayout({
@@ -167,13 +192,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(SEO_JSON_LD.webApp),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(SEO_JSON_LD.faqPage),
+            __html: JSON.stringify(TOOLS_ITEMLIST_SCHEMA),
           }}
         />
       </head>

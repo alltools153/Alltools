@@ -51,7 +51,7 @@ export default function TermsPage() {
           <section className="p-6 rounded-3xl border border-border bg-card space-y-3" style={{ backgroundColor: 'var(--card)' }}>
             <h2 className="text-lg font-bold text-foreground">1. Acceptance of Terms</h2>
             <p>
-              By accessing and using <strong>AllToolss</strong> (accessible at alltoolss.com and alltoolss.in), you acknowledge that you have read, understood, and agreed to be bound by these Terms of Service, our <Link href="/privacy-policy" className="text-primary underline">Privacy Policy</Link>, and our <Link href="/disclaimer" className="text-primary underline">Legal Disclaimer</Link>. If you do not agree with any part of these terms, you must discontinue using our services immediately.
+              By accessing and using <strong>AllToolss</strong> (accessible at <a href="https://alltoolss.com" className="text-primary underline">alltoolss.com</a>), you acknowledge that you have read, understood, and agreed to be bound by these Terms of Service, our <Link href="/privacy-policy" className="text-primary underline">Privacy Policy</Link>, and our <Link href="/disclaimer" className="text-primary underline">Legal Disclaimer</Link>. If you do not agree with any part of these terms, you must discontinue using our services immediately.
             </p>
           </section>
 

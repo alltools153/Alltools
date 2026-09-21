@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
               <span>1. Introduction &amp; Core Privacy Philosophy</span>
             </h2>
             <p>
-              Welcome to <strong>AllToolss</strong> (accessible at <Link href="/" className="text-primary underline">alltools.com</Link>, <Link href="/" className="text-primary underline">alltools.in</Link>, and <Link href="/" className="text-primary underline">alltools.dev</Link>). We respect your privacy and are committed to protecting any data processed through our online utility platform.
+              Welcome to <strong>AllToolss</strong> (accessible at <a href="https://alltoolss.com" className="text-primary underline">alltoolss.com</a>). We respect your privacy and are committed to protecting any data processed through our online utility platform.
             </p>
             <p>
               AllToolss is engineered under a strict <strong>100% In-Server Execution Philosophy</strong>: all developer tools (JSON Formatter, Regex Tester, JWT Decoder), document tools (PDF conversion, DOCX parsing, compression), security checks (VAPT scanner, DNS lookup), and wealth calculators execute in volatile memory and are immediately cleared. <strong>We do not save, index, sell, or inspect user files or inputs.</strong>

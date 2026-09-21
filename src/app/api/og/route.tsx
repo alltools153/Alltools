@@ -155,7 +155,7 @@ export async function GET(req: NextRequest) {
             </div>
 
             <div style={{ fontSize: '16px', color: '#64748b', fontWeight: 600 }}>
-              alltoolss.com • alltoolss.in
+              alltoolss.com
             </div>
           </div>
         </div>

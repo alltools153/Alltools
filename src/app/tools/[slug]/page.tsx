@@ -6,8 +6,9 @@ import {
   getToolMetadataBySlug,
   ToolMetadata,
 } from '@/lib/tools-registry';
-import { getToolBySlug } from '@/lib/docforge/tools-config';
+import { getToolBySlug, TOOLS as DOCUMENT_TOOLS } from '@/lib/docforge/tools-config';
 import { ToolDispatcher } from '@/components/tools/ToolDispatcher';
+import { constructToolMetadata } from '@/lib/seo';
 import {
   Wrench,
   ShieldCheck,
@@ -17,6 +18,47 @@ import {
   Zap,
 } from 'lucide-react';
 
+const CATEGORY_HUB: Record<ToolMetadata['category'], { href: string; label: string }> = {
+  developer: { href: '/dev-tools', label: 'Developer tools' },
+  security: { href: '/#tools', label: 'Security tools' },
+  pdf: { href: '/document-tools', label: 'PDF Studio' },
+  finance: { href: '/#tools', label: 'Finance tools' },
+  utility: { href: '/#tools', label: 'Utility tools' },
+};
+
+function resolveTool(slug: string): ToolMetadata | undefined {
+  const registered = getToolMetadataBySlug(slug);
+  if (registered) return registered;
+
+  const pdfTool = getToolBySlug(slug);
+  if (!pdfTool) return undefined;
+
+  return {
+    slug: pdfTool.slug,
+    name: pdfTool.name,
+    h1: pdfTool.name,
+    category: 'pdf',
+    title: `${pdfTool.name} Online Free`,
+    description: pdfTool.description || pdfTool.tagline,
+    keywords: pdfTool.keywords || [],
+    howItWorks: [
+      `Upload the file you want to process with ${pdfTool.name}.`,
+      'Confirm the conversion or edit options for this tool.',
+      'Download the result. Uploaded files are discarded after processing.',
+    ],
+    faq: [
+      {
+        question: `Is ${pdfTool.name} free to use?`,
+        answer: `Yes. ${pdfTool.name} is free to use with no account required.`,
+      },
+      {
+        question: 'Are uploaded files stored?',
+        answer: 'No. Files are processed in memory for this request and then discarded.',
+      },
+    ],
+  };
+}
+
 interface Props {
   params: {
     slug: string;
@@ -24,90 +66,74 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  return TOOLS_REGISTRY.map((t) => ({ slug: t.slug }));
+  const slugs = new Set([
+    ...TOOLS_REGISTRY.map((t) => t.slug),
+    ...DOCUMENT_TOOLS.map((t) => t.slug),
+  ]);
+  return Array.from(slugs).map((slug) => ({ slug }));
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const tool = getToolMetadataBySlug(params.slug);
-  if (!tool) return {};
+  const tool = resolveTool(params.slug);
+  if (!tool) return { robots: { index: false, follow: false } };
 
-  const url = `https://alltoolss.com/tools/${tool.slug}`;
-
-  return {
+  return constructToolMetadata({
     title: tool.title,
     description: tool.description,
+    path: `/tools/${tool.slug}`,
+    category: tool.category,
     keywords: tool.keywords,
-    alternates: {
-      canonical: url,
-    },
-    openGraph: {
-      title: tool.title,
-      description: tool.description,
-      url: url,
-      siteName: 'AllToolss',
-      type: 'website',
-      images: [
-        {
-          url: `https://alltoolss.com/api/og?title=${encodeURIComponent(
-            tool.name
-          )}&desc=${encodeURIComponent(tool.description)}&cat=${encodeURIComponent(
-            tool.category
-          )}`,
-          width: 1200,
-          height: 630,
-          alt: tool.name,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: tool.title,
-      description: tool.description,
-      images: [
-        `https://alltoolss.com/api/og?title=${encodeURIComponent(
-          tool.name
-        )}&desc=${encodeURIComponent(tool.description)}&cat=${encodeURIComponent(
-          tool.category
-        )}`,
-      ],
-    },
-  };
+  });
 }
 
 export default function ToolSubRoutePage({ params }: Props) {
-  const tool = getToolMetadataBySlug(params.slug);
+  const tool = resolveTool(params.slug);
   if (!tool) notFound();
 
   const pdfTool = getToolBySlug(tool.slug);
 
-  // Schema.org WebApplication & FAQPage JSON-LD
-  const webAppSchema = {
+  // Schema must describe visible content on this particular URL.
+  const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: tool.name,
-    headline: tool.h1,
-    description: tool.description,
-    url: `https://alltoolss.com/tools/${tool.slug}`,
-    applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'All',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-  };
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: tool.faq.map((f) => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.answer,
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        '@id': `https://alltoolss.com/tools/${tool.slug}#app`,
+        name: tool.name,
+        headline: tool.h1,
+        description: tool.description,
+        url: `https://alltoolss.com/tools/${tool.slug}`,
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'Any',
+        inLanguage: 'en',
+        isAccessibleForFree: true,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
-    })),
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://alltoolss.com/' },
+          { '@type': 'ListItem', position: 2, name: CATEGORY_HUB[tool.category].label, item: `https://alltoolss.com${CATEGORY_HUB[tool.category].href}` },
+          { '@type': 'ListItem', position: 3, name: tool.name, item: `https://alltoolss.com/tools/${tool.slug}` },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: tool.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.question,
+          acceptedAnswer: { '@type': 'Answer', text: f.answer },
+        })),
+      },
+      {
+        '@type': 'HowTo',
+        name: `How to use ${tool.name}`,
+        description: tool.description,
+        step: tool.howItWorks.map((text, index) => ({
+          '@type': 'HowToStep', position: index + 1, text,
+        })),
+      },
+    ],
   };
 
   // Compute related tools for internal linking (PDF Step 8)
@@ -124,11 +150,7 @@ export default function ToolSubRoutePage({ params }: Props) {
       {/* Dynamic JSON-LD Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
       {/* Header Banner */}
@@ -139,8 +161,8 @@ export default function ToolSubRoutePage({ params }: Props) {
               Home
             </Link>
             <span>/</span>
-            <Link href="/dev-tools" className="hover:text-primary transition-colors capitalize">
-              {tool.category} Tools
+            <Link href={CATEGORY_HUB[tool.category].href} className="hover:text-primary transition-colors capitalize">
+              {CATEGORY_HUB[tool.category].label}
             </Link>
             <span>/</span>
             <span className="text-foreground font-medium">{tool.name}</span>

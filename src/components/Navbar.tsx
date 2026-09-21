@@ -1091,7 +1091,7 @@ export default function Navbar() {
                       <Link href="/tools/sql-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ AI SQL Generator
                       </Link>
-                      <Link href="/gitignore-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
+                      <Link href="/tools/gitignore-generator" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-muted text-xs font-semibold text-primary">
                         ✨ Git Ignore Generator
                       </Link>
                     </div>

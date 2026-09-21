@@ -2,12 +2,19 @@ import { MetadataRoute } from 'next';
 import { SITE_CONFIG } from '@/lib/seo';
 
 export default function robots(): MetadataRoute.Robots {
+  const apiDisallow = ['/api/', '/api/private/', '/api/py/debug'];
+
   return {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
-        disallow: ['/api/py/debug', '/api/private/'],
+        allow: ['/', '/api/og'],
+        disallow: apiDisallow,
+      },
+      {
+        userAgent: ['Googlebot', 'Googlebot-Image', 'Bingbot', 'DuckDuckBot', 'Applebot'],
+        allow: ['/', '/api/og'],
+        disallow: apiDisallow,
       },
       {
         userAgent: [
@@ -17,11 +24,10 @@ export default function robots(): MetadataRoute.Robots {
           'Claude-Web',
           'PerplexityBot',
           'Google-Extended',
-          'Bingbot',
           'Applebot-Extended',
         ],
-        allow: ['/', '/llms.txt'],
-        disallow: ['/api/py/debug', '/api/private/'],
+        allow: ['/', '/llms.txt', '/api/og'],
+        disallow: apiDisallow,
       },
     ],
     sitemap: `${SITE_CONFIG.url}/sitemap.xml`,

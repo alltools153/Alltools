@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dns from 'dns';
+import { isSafeInspectionTarget } from '@/lib/security';
 
 export const dynamic = 'force-dynamic';
 
@@ -131,6 +132,11 @@ export async function POST(req: NextRequest) {
 
     // Sanitize domain
     domain = domain.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '').replace(/:\d+$/, '');
+
+    const safety = isSafeInspectionTarget(domain);
+    if (!safety.safe) {
+      return NextResponse.json({ error: safety.reason || 'Restricted domain destination.' }, { status: 400 });
+    }
 
     // 1. Get Domain TXT records for SPF
     const rootTxtRecords = await getTxtRecords(domain);
