@@ -108,6 +108,34 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/api/v1/age/calculate',
+        destination: '/api/age',
+      },
+      {
+        source: '/api/v1/age/planetary',
+        destination: '/api/age',
+      },
+      {
+        source: '/api/v1/vapt/scan',
+        destination: '/api/vapt',
+      },
+      {
+        source: '/api/v1/vapt/owasp-checklist',
+        destination: '/api/vapt',
+      },
+      {
+        source: '/api/v1/bengali/today',
+        destination: '/api/bengali',
+      },
+      {
+        source: '/api/v1/bengali/convert',
+        destination: '/api/bengali',
+      },
+      {
+        source: '/api/v1/seo/keywords',
+        destination: '/api/seo',
+      },
+      {
         source: '/pdf-studio',
         destination: '/document-tools',
       },

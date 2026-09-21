@@ -49,22 +49,22 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>🛡️ Website VAPT Scanner</span>
                 </Link>
               </li>
               <li>
-                <Link href="/vapt-scanner" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/nmap-audit" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>📡 N-Map Port Audit</span>
                 </Link>
               </li>
               <li>
-                <Link href="/age-calculator" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/age-calculator" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>🧮 Age &amp; Planetary Calc</span>
                 </Link>
               </li>
               <li>
-                <Link href="/bengali-calendar" className="hover:text-primary transition-colors flex items-center gap-1.5">
+                <Link href="/tools/bengali-calendar" className="hover:text-primary transition-colors flex items-center gap-1.5">
                   <span>📅 বাংলা পঞ্জিকা ১৪৩১-১৪৩৩</span>
                 </Link>
               </li>
@@ -78,27 +78,27 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/json-formatter" className="hover:text-primary transition-colors">
+                <Link href="/tools/json-formatter" className="hover:text-primary transition-colors">
                   ⚡ JSON Formatter &amp; Tree
                 </Link>
               </li>
               <li>
-                <Link href="/regex-tester" className="hover:text-primary transition-colors">
+                <Link href="/tools/regex-tester" className="hover:text-primary transition-colors">
                   🔍 Regex Tester &amp; VM
                 </Link>
               </li>
               <li>
-                <Link href="/jwt-decoder" className="hover:text-primary transition-colors">
+                <Link href="/tools/jwt-decoder" className="hover:text-primary transition-colors">
                   🔑 JWT Decoder &amp; Claims
                 </Link>
               </li>
               <li>
-                <Link href="/document-tools/merge-pdf" className="hover:text-primary transition-colors">
+                <Link href="/tools/merge-pdf" className="hover:text-primary transition-colors">
                   📄 Merge &amp; Split PDF
                 </Link>
               </li>
               <li>
-                <Link href="/document-tools/compress-pdf" className="hover:text-primary transition-colors">
+                <Link href="/tools/compress-pdf" className="hover:text-primary transition-colors">
                   🗜️ Compress PDF
                 </Link>
               </li>

@@ -4,7 +4,7 @@ import { LOCATIONS } from '@/lib/constants/panjikaData';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const dateStr = searchParams.get('date');
+  const dateStr = searchParams.get('date') || searchParams.get('dateStr');
   const locationId = searchParams.get('location') || 'kolkata';
   const location = LOCATIONS.find((l) => l.id === locationId) || LOCATIONS[0];
 

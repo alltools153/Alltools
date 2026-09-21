@@ -56,8 +56,13 @@ import { getIndianMarketStatus } from '@/lib/indianMarket';
 export default function HomePage() {
   const { theme, setTheme } = useTheme();
 
-  // Search state in Hero
+  // Search state in Hero (supports ?q= for SearchAction / sitelinks search box)
   const [heroSearch, setHeroSearch] = useState('');
+
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q) setHeroSearch(q);
+  }, []);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('all');
 
   // Market status (Open / Closed)
@@ -978,7 +983,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. COMPLETE ALL TOOLS DIRECTORY MATRIX */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <section id="tools" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
           <div>
             <h2 className="text-xl sm:text-2xl font-extrabold text-foreground flex items-center gap-2">

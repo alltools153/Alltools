@@ -51,7 +51,7 @@ export default function DisclaimerPage() {
           <section className="p-6 rounded-3xl border border-border bg-card space-y-3" style={{ backgroundColor: 'var(--card)' }}>
             <h2 className="text-lg font-bold text-foreground">1. General Information Disclaimer</h2>
             <p>
-              The information and calculations provided on <strong>AllToolss</strong> (alltoolss.com and alltoolss.in) are for general educational, computational, and technical assistance purposes only. While we make every effort to maintain accurate and up-to-date mathematical and computational algorithms, AllToolss makes no representations or warranties of any kind regarding completeness, accuracy, reliability, or suitability.
+              The information and calculations provided on <strong>AllToolss</strong> (<a href="https://alltoolss.com" className="text-primary underline">alltoolss.com</a>) are for general educational, computational, and technical assistance purposes only. While we make every effort to maintain accurate and up-to-date mathematical and computational algorithms, AllToolss makes no representations or warranties of any kind regarding completeness, accuracy, reliability, or suitability.
             </p>
           </section>
 

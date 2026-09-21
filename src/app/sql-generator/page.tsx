@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   Database,
@@ -63,30 +63,19 @@ export default function SqlGeneratorPage() {
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // Generate on input changes
-  useEffect(() => {
-    let isCurrent = true;
+  const handleSubmit = () => {
+    if (!prompt.trim()) return;
+
     setIsGenerating(true);
-
-    const timer = setTimeout(() => {
-      if (prompt.trim()) {
-        const res = generateSqlFromPrompt({
-          prompt,
-          dialect,
-          schema: schemaContext,
-        });
-        if (isCurrent) {
-          setResult(res);
-          setIsGenerating(false);
-        }
-      }
-    }, 150);
-
-    return () => {
-      isCurrent = false;
-      clearTimeout(timer);
-    };
-  }, [prompt, dialect, schemaContext]);
+    setResult(
+      generateSqlFromPrompt({
+        prompt: prompt.trim(),
+        dialect,
+        schema: schemaContext,
+      })
+    );
+    setIsGenerating(false);
+  };
 
   const copySql = () => {
     if (!result?.sql) return;
@@ -217,6 +206,15 @@ export default function SqlGeneratorPage() {
                 className="w-full p-4 rounded-2xl border border-border bg-muted/40 text-foreground text-sm font-medium focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-y leading-relaxed"
               />
             </div>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={!prompt.trim() || isGenerating}
+              className="w-full sm:w-auto py-2.5 px-5 rounded-xl bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center gap-2 shadow-glow-primary hover:opacity-90 transition-opacity cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>{isGenerating ? 'Generating SQL...' : 'Submit & Generate SQL'}</span>
+            </button>
           </div>
 
           {/* Prompt Presets Pills */}

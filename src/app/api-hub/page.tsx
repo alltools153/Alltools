@@ -29,28 +29,10 @@ interface ApiEndpoint {
 
 const ENDPOINTS: ApiEndpoint[] = [
   {
-    id: 'document-merge',
-    name: 'Merge PDF Documents',
-    method: 'POST',
-    path: '/api/pdf/merge',
-    category: 'Document Tools',
-    description: 'Combines uploaded PDF files into one document while preserving page quality.',
-    sampleParams: {},
-  },
-  {
-    id: 'document-text-pdf',
-    name: 'Convert Text to PDF',
-    method: 'POST',
-    path: '/api/convert/txt-to-pdf',
-    category: 'Document Tools',
-    description: 'Converts an uploaded plain-text file into a paginated PDF.',
-    sampleParams: {},
-  },
-  {
     id: 'age-calc',
     name: 'Calculate Chronological Age & Orbits',
     method: 'GET',
-    path: '/api/v1/age/calculate',
+    path: '/api/age',
     category: 'Age Calculator',
     description: 'Computes exact years, months, days, seconds, and planetary orbits for a birthdate.',
     sampleParams: { birthDate: '1998-08-15' },
@@ -59,7 +41,7 @@ const ENDPOINTS: ApiEndpoint[] = [
     id: 'age-planets',
     name: 'Calculate 9 Planetary Ages',
     method: 'GET',
-    path: '/api/v1/age/planetary',
+    path: '/api/age',
     category: 'Age Calculator',
     description: 'Computes age in planetary years across Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.',
     sampleParams: { birthDate: '1998-08-15' },
@@ -68,7 +50,7 @@ const ENDPOINTS: ApiEndpoint[] = [
     id: 'vapt-scan',
     name: 'Execute Passive VAPT Audit',
     method: 'POST',
-    path: '/api/v1/vapt/scan',
+    path: '/api/vapt',
     category: 'VAPT Scanner',
     description: 'Audits HTTP security headers (HSTS, CSP, XFO), SSL/TLS ciphers, and OWASP compliance.',
     sampleParams: { url: 'https://example.com' },
@@ -77,16 +59,16 @@ const ENDPOINTS: ApiEndpoint[] = [
     id: 'vapt-owasp',
     name: 'Get OWASP API Top 10 Checklist',
     method: 'GET',
-    path: '/api/v1/vapt/owasp-checklist',
+    path: '/api/vapt',
     category: 'VAPT Scanner',
-    description: 'Returns the 10 standard OWASP API verification vectors with mitigation code.',
+    description: 'Returns the 10 standard OWASP API verification vectors with mitigation notes.',
     sampleParams: {},
   },
   {
     id: 'bengali-today',
     name: "Get Today's Bengali Date & Panjika",
     method: 'GET',
-    path: '/api/v1/bengali/today',
+    path: '/api/bengali',
     category: 'Bengali Calendar',
     description: "Returns live Bengali San (1431/1432/1433 BS), 6-period time, Tithi, and today's festivals.",
     sampleParams: {},
@@ -95,19 +77,55 @@ const ENDPOINTS: ApiEndpoint[] = [
     id: 'bengali-convert',
     name: 'Convert Gregorian to Bengali Date',
     method: 'GET',
-    path: '/api/v1/bengali/convert',
+    path: '/api/bengali',
     category: 'Bengali Calendar',
     description: 'Converts any Gregorian date string to authentic Bengali calendar date.',
-    sampleParams: { dateStr: '2026-04-15' },
+    sampleParams: { date: '2026-04-15' },
   },
   {
     id: 'seo-keywords',
     name: 'Get Master SEO Keywords',
     method: 'GET',
-    path: '/api/v1/seo/keywords',
+    path: '/api/seo',
     category: 'SEO Intelligence',
-    description: 'Returns curated directory of 100+ keywords categorized by intent, volume, and tool.',
+    description: 'Returns curated directory of keywords categorized by intent, volume, and tool.',
     sampleParams: { category: 'all' },
+  },
+  {
+    id: 'market-live',
+    name: 'Live Indian Market Snapshots',
+    method: 'GET',
+    path: '/api/market-live',
+    category: 'SEO Intelligence',
+    description: 'Sensex and Nifty 50 snapshots used on the homepage and stock market tool.',
+    sampleParams: {},
+  },
+  {
+    id: 'dns-lookup',
+    name: 'DNS Record Lookup',
+    method: 'POST',
+    path: '/api/dns-lookup',
+    category: 'VAPT Scanner',
+    description: 'Resolves A, AAAA, MX, TXT, NS, CNAME and SOA records for a public domain.',
+    sampleParams: { domain: 'example.com' },
+  },
+  {
+    id: 'document-merge',
+    name: 'Merge PDF Documents',
+    method: 'POST',
+    path: '/api/pdf/merge',
+    category: 'Document Tools',
+    description: 'Combines uploaded PDF files into one document while preserving page quality. Requires multipart file upload.',
+    sampleParams: {},
+  },
+  {
+    id: 'document-text-pdf',
+    name: 'Convert Text to PDF',
+    method: 'POST',
+    path: '/api/convert/txt-to-pdf',
+    category: 'Document Tools',
+    description: 'Converts an uploaded plain-text file into a paginated PDF. Requires multipart file upload.',
+    sampleParams: {},
   },
 ];
 
@@ -134,6 +152,21 @@ export default function ApiHubPage() {
     setResponseJson(null);
 
     try {
+      if (selectedEndpoint.category === 'Document Tools') {
+        setResponseJson(
+          JSON.stringify(
+            {
+              status: 'info',
+              endpoint: selectedEndpoint.path,
+              message: 'This endpoint requires a multipart file upload. Use PDF Studio at /document-tools.',
+            },
+            null,
+            2
+          )
+        );
+        return;
+      }
+
       let url = selectedEndpoint.path;
       const isPost = selectedEndpoint.method === 'POST';
 
@@ -142,36 +175,13 @@ export default function ApiHubPage() {
         url = `${url}?${q}`;
       }
 
-      // Try FastAPI direct or Next.js edge fallback
-      let res;
-      if (isPost) {
-        res = await fetch(`/api/py${selectedEndpoint.path.replace('/api/v1', '')}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(params),
-        }).catch(() => null);
-
-        if (!res || !res.ok) {
-          res = await fetch(
-            selectedEndpoint.path.includes('vapt') ? '/api/vapt' : selectedEndpoint.path,
-            {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(params),
-            }
-          );
-        }
-      } else {
-        res = await fetch(`/api/py${url.replace('/api/v1', '')}`).catch(() => null);
-        if (!res || !res.ok) {
-          const fallbackPath = url.includes('age')
-            ? `/api/age?${new URLSearchParams(params).toString()}`
-            : url.includes('bengali')
-            ? `/api/bengali?${new URLSearchParams(params).toString()}`
-            : `/api/seo?${new URLSearchParams(params).toString()}`;
-          res = await fetch(fallbackPath);
-        }
-      }
+      const res = await fetch(url, isPost
+        ? {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(params),
+          }
+        : { method: 'GET' });
 
       const data = await res.json();
       setResponseJson(JSON.stringify(data, null, 2));
@@ -179,10 +189,9 @@ export default function ApiHubPage() {
       setResponseJson(
         JSON.stringify(
           {
-            status: 'success',
+            status: 'error',
             endpoint: selectedEndpoint.path,
-            parameters: params,
-            execution: 'Local client response',
+            message: err?.message || 'Request failed',
           },
           null,
           2
@@ -194,9 +203,10 @@ export default function ApiHubPage() {
   };
 
   const getCodeSnippet = () => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://alltoolss.com';
     const isPost = selectedEndpoint.method === 'POST';
     const queryString = new URLSearchParams(params).toString();
-    const fullUrl = `http://127.0.0.1:8000${selectedEndpoint.path}${!isPost && queryString ? '?' + queryString : ''}`;
+    const fullUrl = `${origin}${selectedEndpoint.path}${!isPost && queryString ? '?' + queryString : ''}`;
 
     switch (activeLang) {
       case 'curl':
