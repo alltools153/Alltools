@@ -10,32 +10,30 @@ import CookieConsentBanner from '@/components/CookieConsentBanner';
 import { SITE_CONFIG } from '@/lib/seo';
 import { TOOLS_REGISTRY } from '@/lib/tools-registry';
 
+const DEFAULT_OG_IMAGE = `${SITE_CONFIG.url}/api/og?title=${encodeURIComponent(
+  SITE_CONFIG.title
+)}&desc=${encodeURIComponent(SITE_CONFIG.description)}&cat=Free%20Online%20Tools`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: 'AllToolss — Enterprise Developer, Security, PDF, Finance & AI Utilities',
+    default: SITE_CONFIG.title,
     template: '%s | AllToolss',
   },
-  description:
-    'AllToolss is a production-ready suite of 40+ high-performance tools: JSON Formatter, Regex Tester, JWT Decoder, AI SQL Generator, Resume ATS Scanner, SSL & DNS Checker, 25+ PDF Tools, GST & SIP Wealth Calculators.',
+  description: SITE_CONFIG.description,
   keywords: [
     'alltoolss',
-    'alltoolss online',
-    'alltoolss suite',
-    'alltoolss developer utilities',
-    'all tools online free',
-    'developer utilities',
+    'free online tools',
+    'online developer tools',
+    'online security tools',
+    'free PDF tools',
     'json formatter',
-    'jwt decoder',
     'regex tester',
-    'vapt scanner',
-    'resume ats checker',
-    'pdf tools online',
+    'jwt decoder',
+    'PDF converter',
     'age calculator',
-    'bengali calendar 1431 1432',
     'sip calculator',
     'gst calculator',
-    'stock market live',
   ],
   applicationName: SITE_CONFIG.name,
   category: 'technology',
@@ -58,24 +56,20 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
-    title: 'AllToolss — Enterprise Developer, Security, PDF, Finance & AI Utilities',
-    description:
-      'Unified suite of 40+ high-performance online developer, security, PDF, and finance tools. 100% in-server execution, fast & private.',
-    images: [
-      {
-        url: `${SITE_CONFIG.url}/api/og?title=AllToolss%20Multi-Tool%20Suite&desc=Enterprise%20Developer%2C%20Security%2C%20PDF%2C%20Finance%20%26%20AI%20Utilities&cat=Production%20SaaS`,
-        width: 1200,
-        height: 630,
-        alt: 'AllToolss Multi-Tool Platform',
-      },
-    ],
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    images: [{
+      url: DEFAULT_OG_IMAGE,
+      width: 1200,
+      height: 630,
+      alt: SITE_CONFIG.title,
+    }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AllToolss — Enterprise Developer, Security, PDF, Finance & AI Utilities',
-    description:
-      'Unified suite of 40+ high-performance online developer, security, PDF, and finance tools. 100% in-server execution, fast & private.',
-    images: [`${SITE_CONFIG.url}/api/og?title=AllToolss%20Multi-Tool%20Suite&desc=Enterprise%20Developer%2C%20Security%2C%20PDF%2C%20Finance%20%26%20AI%20Utilities&cat=Production%20SaaS`],
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    images: [DEFAULT_OG_IMAGE],
     creator: SITE_CONFIG.twitterHandle,
     site: SITE_CONFIG.twitterHandle,
   },
