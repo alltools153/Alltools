@@ -147,7 +147,7 @@ export default function Footer() {
             <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
             <span>by</span>
             <Link href="/developer" className="text-foreground font-semibold hover:underline">
-              Santanu Batabyal
+              Santanu Batabyal with Saikat
             </Link>
           </div>
         </div>
