@@ -19,7 +19,7 @@ for p in [_parent_dir, _current_dir]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 
@@ -46,6 +46,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def prevent_api_indexing(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Robots-Tag"] = "noindex, nofollow, nosnippet"
+    return response
 
 # Include Modular Routers
 app.include_router(age_router.router)

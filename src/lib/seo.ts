@@ -25,8 +25,9 @@ export function getBlueprintMetadata(slug: string): Metadata {
 export const SITE_CONFIG = {
   name: 'AllToolss',
   siteName: 'AllToolss Multi-Tool Suite',
-  title: 'AllToolss — Enterprise Developer, Security, PDF, Finance & AI Utilities',
-  description: 'Production-ready suite of 40+ high-performance tools: JSON Formatter, Regex Tester, JWT Decoder, AI SQL Generator, Resume ATS Scanner, SSL & DNS Checker, 25+ PDF Tools, GST & SIP Wealth Calculators.',
+  title: 'Free Online Tools for Developers, Security & PDF | AllToolss',
+  description:
+    'Use free online tools from AllToolss for development, security checks, PDF conversion, finance, and everyday tasks. Format JSON, test regex, inspect JWTs, and more.',
   url: 'https://alltoolss.com',
   primaryDomain: 'alltoolss.com',
   primaryUrl: 'https://alltoolss.com',
@@ -56,8 +57,10 @@ export function constructToolMetadata({
   keywords = [],
   ogImage,
 }: ToolSeoOptions): Metadata {
-  const canonicalUrl = `${SITE_CONFIG.url}${path}`;
-  const fullTitle = title.includes(SITE_CONFIG.name) ? title : `${title} | ${SITE_CONFIG.name}`;
+  const canonicalUrl = new URL(path, SITE_CONFIG.url).toString();
+  const fullTitle = title.endsWith(` | ${SITE_CONFIG.name}`)
+    ? title
+    : `${title} | ${SITE_CONFIG.name}`;
 
   // Generate dynamic 1200x630 branded OG preview image if custom image not provided
   const dynamicOgImage =
@@ -65,7 +68,7 @@ export function constructToolMetadata({
     `${SITE_CONFIG.url}/api/og?title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}&cat=${encodeURIComponent(category)}`;
 
   return {
-    title: title, // Root layout template will format to `${title} | AllToolss`
+    title: fullTitle === title ? { absolute: title } : title,
     description,
     keywords: [
       'online tools',
@@ -81,8 +84,8 @@ export function constructToolMetadata({
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        'en-US': `https://alltoolss.com${path}`,
-        'x-default': `https://alltoolss.com${path}`,
+        'en-US': canonicalUrl,
+        'x-default': canonicalUrl,
       },
     },
     openGraph: {
